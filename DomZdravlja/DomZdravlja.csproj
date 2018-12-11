@@ -78,8 +78,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyClass\PropertyCjenovnik.cs" />
+    <Compile Include="PropertyClass\PropertyDetaljiRacuna.cs" />
+    <Compile Include="PropertyClass\PropertyDijagnoza.cs" />
+    <Compile Include="PropertyClass\PropertyFaktorRizika.cs" />
+    <Compile Include="PropertyClass\PropertyFaktorRizikaKarton.cs" />
+    <Compile Include="PropertyClass\PropertyKarton.cs" />
     <Compile Include="PropertyClass\PropertyOsoba.cs" />
+    <Compile Include="PropertyClass\PropertyPacijent.cs" />
+    <Compile Include="PropertyClass\PropertyPregled.cs" />
+    <Compile Include="PropertyClass\PropertyRacun.cs" />
+    <Compile Include="PropertyClass\PropertyRecepcija.cs" />
+    <Compile Include="PropertyClass\PropertyRezervacije.cs" />
     <Compile Include="PropertyClass\PropertyZaposleni.cs" />
+    <Compile Include="PropertyClass\PropertyKartonDijagnoza.cs" />
     <Compile Include="PropertyInterface.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
