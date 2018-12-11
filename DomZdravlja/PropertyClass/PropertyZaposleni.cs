@@ -36,6 +36,7 @@ namespace DomZdravlja.PropertyClass
                 zaposleniId = value;
             }
         }
+
         [DisplayName("Zvanje")]
         [SqlName("Zvanje")]
         public string Zvanje
@@ -120,7 +121,7 @@ namespace DomZdravlja.PropertyClass
         public string GetDeleteQuery()
         {
             return @"  DELETE FROM dbo.Zaposleni
-                        WHERE ZaposleniID = @zaposleniID
+                        WHERE ZaposleniID = @ZaposleniID
                     ";
 
         }
@@ -135,8 +136,19 @@ namespace DomZdravlja.PropertyClass
                        ,TipZaposlenog
                        ,OsobaID)
                     VALUES
-                       (@zvanje,@radnoMjesto,@korisnickoIme,@password,@tipZaposlenog,@osobaID)
+                       (@Zvanje,@RadnoMjesto,@KorisnickoIme,@Password,@TipZaposlenog,@OsobaID)
                     ";
+        }
+        public string GetUpdateQuery()
+        {
+            return @"UPDATE dbo.Zapolseni
+                       set[Zvanje]=@Zvanje,
+                       [RadnoMjesto]=@RadnoMjesto,
+                       [KorisnickoIme]=@KorisnickoIme,
+                       [Password]=@Password,
+                       [TipZaposlenog]=@TipZaposlenog,
+                       [OsobaID]=@OsobaID,
+                   where @ZaposleniID=Zaposleni.ZaposleniID";
         }
 
         public string GetSelectQuery()
@@ -154,10 +166,7 @@ namespace DomZdravlja.PropertyClass
         }
 
 
-        public string GetUpdateQuery()
-        {
-            throw new NotImplementedException();
-        }
+       
         #endregion
 
         #region Parameter

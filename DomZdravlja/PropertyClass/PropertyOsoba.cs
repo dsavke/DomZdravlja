@@ -162,17 +162,64 @@ namespace DomZdravlja.PropertyClass
         }
         #endregion
 
+        #region Query
+
+        public string GetDeleteQuery()
+        {
+            return @"  DELETE FROM dbo.Osoba
+                        WHERE OsobaID = @OsobaID
+                    ";
+
+        }
+        public string GetInsertQuery()
+        {
+            return @"
+                    INSERT INTO dbo.Osoba
+                       (Ime
+                       ,Prezime
+                       ,JMB
+                       ,Adresa
+                       ,Kontakt
+                       ,Pol
+                       ,MjestoRodjenja
+                       ,DatumRodjenja)
+                    VALUES
+                       (@Ime,@Prezime,@JMB,@Adresa,@Kontakt,@Pol,@MjestoRodjenja,@DatumRodjenja)
+                    ";
+        }
+
+        public string GetUpdateQuery()
+        {
+            return @"UPDATE dbo.Osoba
+                       set[Ime]=@Ime,
+                       [Prezime]=@Prezime;
+                       [JMB]=@JMB;
+                       [Adresa]=@Adresa;
+                       [Kontakt]=@Kontakt;
+                       [Pol]=@Pol;
+                       [MjestoRodjenja]=@MjestoRodjenja;
+                       [DatumRodjenja]=@DatumRodjenja;
+                   where @OsobaID=Osoba.OsobaID";
+        }
+
+        public string GetSelectQuery()
+        {
+            return @"
+                        SELECT OsobaID
+                       ,Ime
+                       ,Prezime
+                       ,JMB
+                       ,Adresa
+                       ,Kontakt
+                       ,Pol
+                       ,MjestoRodjenja
+                       ,DatumRodjenja
+                      FROM dbo.Osoba
+                    ";
+        }
 
 
-
-
-
-
-
-
-
-
-
+        #endregion
 
         #region Parametri
         public List<SqlParameter> GetDeleteParameters()
@@ -180,35 +227,21 @@ namespace DomZdravlja.PropertyClass
             throw new NotImplementedException();
         }
 
-        public string GetDeleteQuery()
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public List<SqlParameter> GetInsertParameters()
         {
             throw new NotImplementedException();
         }
 
-        public string GetInsertQuery()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetSelectQuery()
-        {
-            throw new NotImplementedException();
-        }
-
+       
+       
         public List<SqlParameter> GetUpdateParameters()
         {
             throw new NotImplementedException();
         }
 
-        public string GetUpdateQuery()
-        {
-            throw new NotImplementedException();
-        }
+    
         #endregion
     }
 }
