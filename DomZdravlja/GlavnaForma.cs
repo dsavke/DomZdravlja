@@ -16,5 +16,12 @@ namespace DomZdravlja
         {
             InitializeComponent();
         }
+
+        private void btnIzlaz_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form1 form = new Form1();
+            form.Show();
+        }
     }
 }

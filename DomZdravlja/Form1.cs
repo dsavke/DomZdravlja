@@ -24,6 +24,7 @@ namespace DomZdravlja
             if(dialogResult == DialogResult.Yes)
             {
                 this.Close();
+                Application.Exit();
             }
 
         }
