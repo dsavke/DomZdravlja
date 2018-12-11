@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttributeClass\ForeignKeyAttribute.cs" />
     <Compile Include="AttributeClass\PrimaryKey.cs" />
     <Compile Include="AttributeClass\SqlName.cs" />
     <Compile Include="Form1.cs">
