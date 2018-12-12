@@ -16,6 +16,7 @@ namespace DomZdravlja.PropertyClass
         private string nazivUsluge;
         private decimal cijenaUsluge;
         private DateTime datumUspostavljanjaCijene;
+        private int aktivno;
         #endregion
 
 
@@ -80,45 +81,110 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
+        [DisplayName("Aktivno")]
+        [SqlName("Aktivno")]
+
+        public int Aktivno
+        {
+            get
+            {
+                return aktivno;
+            }
+            set
+            {
+                aktivno = value;
+            }
+        }
+
         #endregion
 
+        #region Kveriji
+        public string GetSelectQuery()
+        {
+            return @"USE [Tim4]
+                    GO
+
+                    SELECT [CjenovnikID]
+                          ,[NazivUsluge]
+                          ,[CijenaUsluge]
+                          ,[DatumUspostavljanjaCijene]
+                          ,[Aktivno]
+                      FROM [dbo].[Cjenovnik]
+                    GO";
+        }
+
+        public string GetInsertQuery()
+        {
+            return @"USE [Tim4]
+                    GO
+
+                    INSERT INTO [dbo].[Cjenovnik]
+                               ([NazivUsluge]
+                               ,[CijenaUsluge]
+                               ,[DatumUspostavljanjaCijene]
+                               ,[Aktivno])
+                         VALUES
+                               @NazivUsluge
+                               ,@CijenaUsluge
+                               ,@DatumUspostavljanjaCijene
+                               ,1)
+                    GO
+                    ";
+        }
+
+        public string GetUpdateQuery()
+        {
+            return @"USE [Tim4]
+                    GO
+
+                    UPDATE [dbo].[Cjenovnik]
+                       SET [Aktivno] = 0
+                     WHERE CjenovnikID = @CjenovnikID
+                    GO
+
+                    INSERT INTO [dbo].[Cjenovnik]
+                               ([NazivUsluge]
+                               ,[CijenaUsluge]
+                               ,[DatumUspostavljanjaCijene]
+                               ,[Aktivno])
+                         VALUES
+                               @NazivUsluge
+                               ,@CijenaUsluge
+                               ,GETDATE()
+                               ,1)
+                    GO
+                    ";
+        }
+
+        public string GetDeleteQuery()
+        {
+            return @"USE [Tim4]
+                    GO
+
+                    UPDATE [dbo].[Cjenovnik]
+                       SET [Aktivno] = 0
+                     WHERE CjenovnikID = @CjenovnikID
+                    GO";
+        }
+        #endregion
 
         #region Parametri
 
         public List<SqlParameter> GetDeleteParameters()
         {
             throw new NotImplementedException();
-        }
-
-        public string GetDeleteQuery()
-        {
-            throw new NotImplementedException();
-        }
+        }        
 
         public List<SqlParameter> GetInsertParameters()
         {
             throw new NotImplementedException();
-        }
-
-        public string GetInsertQuery()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetSelectQuery()
-        {
-            throw new NotImplementedException();
-        }
+        }        
 
         public List<SqlParameter> GetUpdateParameters()
         {
             throw new NotImplementedException();
         }
-
-        public string GetUpdateQuery()
-        {
-            throw new NotImplementedException();
-        }
+        
         #endregion
 
     }
