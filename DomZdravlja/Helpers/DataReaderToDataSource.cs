@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KonekcijaNaBazu.Helpers
+namespace DomZdravlja.Helpers
 {
     public static class DataReaderToDataSource
     {
