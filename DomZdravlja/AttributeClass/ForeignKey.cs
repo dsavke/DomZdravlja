@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace DomZdravlja.AttributeClass
 {
     [AttributeUsage(AttributeTargets.Property)]
-    public class ForeignKeyAttribute : Attribute
+    public class ForeignKey : Attribute
     {
         public string referencedTable;
         public string referencedColumn;
 
-        public ForeignKeyAttribute(string referencedTable, string referencedColumn)
+        public ForeignKey(string referencedTable, string referencedColumn)
         {
             this.referencedTable = referencedTable;
             this.referencedColumn = referencedColumn;
