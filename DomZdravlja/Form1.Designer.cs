@@ -118,6 +118,7 @@
             this.txtKorisnickoIme.Name = "txtKorisnickoIme";
             this.txtKorisnickoIme.Size = new System.Drawing.Size(307, 20);
             this.txtKorisnickoIme.TabIndex = 5;
+            this.txtKorisnickoIme.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLozinka_KeyPress);
             // 
             // txtLozinka
             // 
@@ -126,6 +127,7 @@
             this.txtLozinka.Size = new System.Drawing.Size(307, 20);
             this.txtLozinka.TabIndex = 6;
             this.txtLozinka.UseSystemPasswordChar = true;
+            this.txtLozinka.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLozinka_KeyPress);
             // 
             // btnNastavi
             // 
