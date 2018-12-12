@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using DomZdravlja.
+using DomZdravlja.Helpers;
 
 namespace DomZdravlja
 {
@@ -24,7 +24,7 @@ namespace DomZdravlja
 
         private void ucitajZaposlene()
         {
-           // SqlDataReader dataReader = SqlHelper.
+            //SqlDataReader dataReader = SqlHelper.
         }
 
         private void btnIzlaz_Click(object sender, EventArgs e)
