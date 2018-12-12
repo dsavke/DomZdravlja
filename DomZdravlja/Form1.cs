@@ -9,7 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DomZdravlja.
+using DomZdravlja.Helpers;
+using DomZdravlja.PropertyClass;
 
 namespace DomZdravlja
 {
@@ -20,11 +21,26 @@ namespace DomZdravlja
         public Form1()
         {
             InitializeComponent();
+            ucitajZaposlene();
         }
 
         private void ucitajZaposlene()
         {
-            SqlDataReader dataReader = SqlHelper.
+            PropertyZaposleni zaposleni = new PropertyZaposleni();
+            SqlDataReader dataReader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, zaposleni.GetSelectQuery());
+
+            while (dataReader.Read())
+            {
+                    PropertyZaposleni pomZaposleni = new PropertyZaposleni();
+                    pomZaposleni.ZaposleniID = (int)dataReader["ZaposleniID"];
+                    pomZaposleni.Zvanje = (string)dataReader["Zvanje"];
+                    pomZaposleni.RadnoMjesto = (string)dataReader["RadnoMjesto"];
+                    pomZaposleni.KorisnickoIme = (string)dataReader["KorisnickoIme"];
+                    pomZaposleni.Password = (string)dataReader["Password"];
+                    pomZaposleni.TipZaposlenog = (string)dataReader["TipZaposlenog"];
+                    pomZaposleni.OsobaID = (int)dataReader["OsobaID"];
+                    listaZaposlenih.Add(pomZaposleni);
+            }
         }
 
         private void btnIzlaz_Click(object sender, EventArgs e)

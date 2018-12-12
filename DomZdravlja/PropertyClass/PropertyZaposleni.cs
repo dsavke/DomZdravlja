@@ -17,7 +17,7 @@ namespace DomZdravlja.PropertyClass
         private string radnoMjesto;
         private string korisnickoIme;
         private string password;
-        private int tipZaposlenog;
+        private string tipZaposlenog;
         private int osobaId;
         #endregion
 
@@ -91,7 +91,7 @@ namespace DomZdravlja.PropertyClass
         }
         [DisplayName("Tip Zaposlenog")]
         [SqlName("TipZaposlenog")]
-        public int TipZaposlenog
+        public string TipZaposlenog
         {
             get
             {
@@ -155,7 +155,7 @@ namespace DomZdravlja.PropertyClass
         {
             return @"
                         SELECT ZaposleniID
-                          ,Zvanje
+                          ,isnull(Zvanje, '') as Zvanje
                           ,RadnoMjesto
                           ,KorisnickoIme
                           ,Password
