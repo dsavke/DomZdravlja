@@ -56,6 +56,9 @@
     <Compile Include="AttributeClass\ForeignKey.cs" />
     <Compile Include="AttributeClass\PrimaryKey.cs" />
     <Compile Include="AttributeClass\SqlName.cs" />
+    <Compile Include="CustomControls\CustomTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
