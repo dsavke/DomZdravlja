@@ -42,6 +42,8 @@
             this.ikonica.Size = new System.Drawing.Size(32, 32);
             this.ikonica.TabIndex = 0;
             this.ikonica.TabStop = false;
+            this.ikonica.MouseEnter += new System.EventHandler(this.PanelTabControl_MouseEnter);
+            this.ikonica.MouseLeave += new System.EventHandler(this.PanelTabControl_MouseLeave);
             // 
             // lblNaziv
             // 
@@ -53,16 +55,20 @@
             this.lblNaziv.Size = new System.Drawing.Size(99, 20);
             this.lblNaziv.TabIndex = 1;
             this.lblNaziv.Text = "RECEPCIJA";
+            this.lblNaziv.MouseEnter += new System.EventHandler(this.PanelTabControl_MouseEnter);
+            this.lblNaziv.MouseLeave += new System.EventHandler(this.PanelTabControl_MouseLeave);
             // 
             // PanelTabControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(132)))), ((int)(((byte)(229)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(67)))), ((int)(((byte)(127)))));
             this.Controls.Add(this.lblNaziv);
             this.Controls.Add(this.ikonica);
             this.Name = "PanelTabControl";
             this.Size = new System.Drawing.Size(266, 54);
+            this.MouseEnter += new System.EventHandler(this.PanelTabControl_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.PanelTabControl_MouseLeave);
             ((System.ComponentModel.ISupportInitialize)(this.ikonica)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

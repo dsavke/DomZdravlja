@@ -35,5 +35,15 @@ namespace DomZdravlja
             this.Hide();
             glavnaForma.Show();
         }
+
+        private void btnIzlaz_MouseEnter(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnIzlaz_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
     }
 }

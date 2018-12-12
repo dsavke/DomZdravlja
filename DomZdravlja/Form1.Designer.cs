@@ -69,6 +69,8 @@
             this.btnIzlaz.TabStop = false;
             this.btnIzlaz.Zoom = 10;
             this.btnIzlaz.Click += new System.EventHandler(this.btnIzlaz_Click);
+            this.btnIzlaz.MouseEnter += new System.EventHandler(this.btnIzlaz_MouseEnter);
+            this.btnIzlaz.MouseLeave += new System.EventHandler(this.btnIzlaz_MouseLeave);
             // 
             // pictureBox1
             // 

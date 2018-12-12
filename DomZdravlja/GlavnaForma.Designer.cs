@@ -34,10 +34,14 @@
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelGlavniTab = new System.Windows.Forms.FlowLayoutPanel();
-            this.panelTabControl1 = new DomZdravlja.PanelTabControl();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnIzlaz = new Bunifu.Framework.UI.BunifuImageButton();
+            this.panelTabControl1 = new DomZdravlja.PanelTabControl();
+            this.panelTabControl2 = new DomZdravlja.PanelTabControl();
+            this.panelTabControl3 = new DomZdravlja.PanelTabControl();
+            this.panelTabControl4 = new DomZdravlja.PanelTabControl();
+            this.panelTabControl5 = new DomZdravlja.PanelTabControl();
             this.panel1.SuspendLayout();
             this.panelGlavniTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -58,7 +62,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(132)))), ((int)(((byte)(229)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(67)))), ((int)(((byte)(127)))));
             this.panel1.Controls.Add(this.panelGlavniTab);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -71,20 +75,14 @@
             // panelGlavniTab
             // 
             this.panelGlavniTab.Controls.Add(this.panelTabControl1);
+            this.panelGlavniTab.Controls.Add(this.panelTabControl2);
+            this.panelGlavniTab.Controls.Add(this.panelTabControl3);
+            this.panelGlavniTab.Controls.Add(this.panelTabControl4);
+            this.panelGlavniTab.Controls.Add(this.panelTabControl5);
             this.panelGlavniTab.Location = new System.Drawing.Point(12, 135);
             this.panelGlavniTab.Name = "panelGlavniTab";
             this.panelGlavniTab.Size = new System.Drawing.Size(266, 653);
             this.panelGlavniTab.TabIndex = 2;
-            // 
-            // panelTabControl1
-            // 
-            this.panelTabControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(132)))), ((int)(((byte)(229)))));
-            this.panelTabControl1.Ikona = ((System.Drawing.Image)(resources.GetObject("panelTabControl1.Ikona")));
-            this.panelTabControl1.Location = new System.Drawing.Point(3, 3);
-            this.panelTabControl1.Name = "panelTabControl1";
-            this.panelTabControl1.Naziv = "RECEPCIJA";
-            this.panelTabControl1.Size = new System.Drawing.Size(266, 54);
-            this.panelTabControl1.TabIndex = 0;
             // 
             // label1
             // 
@@ -121,6 +119,56 @@
             this.btnIzlaz.Zoom = 10;
             this.btnIzlaz.Click += new System.EventHandler(this.btnIzlaz_Click);
             // 
+            // panelTabControl1
+            // 
+            this.panelTabControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(67)))), ((int)(((byte)(127)))));
+            this.panelTabControl1.Ikona = ((System.Drawing.Image)(resources.GetObject("panelTabControl1.Ikona")));
+            this.panelTabControl1.Location = new System.Drawing.Point(3, 3);
+            this.panelTabControl1.Name = "panelTabControl1";
+            this.panelTabControl1.Naziv = "RECEPCIJA";
+            this.panelTabControl1.Size = new System.Drawing.Size(266, 54);
+            this.panelTabControl1.TabIndex = 0;
+            // 
+            // panelTabControl2
+            // 
+            this.panelTabControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(67)))), ((int)(((byte)(127)))));
+            this.panelTabControl2.Ikona = ((System.Drawing.Image)(resources.GetObject("panelTabControl2.Ikona")));
+            this.panelTabControl2.Location = new System.Drawing.Point(3, 63);
+            this.panelTabControl2.Name = "panelTabControl2";
+            this.panelTabControl2.Naziv = "RECEPCIJA";
+            this.panelTabControl2.Size = new System.Drawing.Size(266, 54);
+            this.panelTabControl2.TabIndex = 1;
+            // 
+            // panelTabControl3
+            // 
+            this.panelTabControl3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(67)))), ((int)(((byte)(127)))));
+            this.panelTabControl3.Ikona = ((System.Drawing.Image)(resources.GetObject("panelTabControl3.Ikona")));
+            this.panelTabControl3.Location = new System.Drawing.Point(3, 123);
+            this.panelTabControl3.Name = "panelTabControl3";
+            this.panelTabControl3.Naziv = "RECEPCIJA";
+            this.panelTabControl3.Size = new System.Drawing.Size(266, 54);
+            this.panelTabControl3.TabIndex = 2;
+            // 
+            // panelTabControl4
+            // 
+            this.panelTabControl4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(67)))), ((int)(((byte)(127)))));
+            this.panelTabControl4.Ikona = ((System.Drawing.Image)(resources.GetObject("panelTabControl4.Ikona")));
+            this.panelTabControl4.Location = new System.Drawing.Point(3, 183);
+            this.panelTabControl4.Name = "panelTabControl4";
+            this.panelTabControl4.Naziv = "RECEPCIJA";
+            this.panelTabControl4.Size = new System.Drawing.Size(266, 54);
+            this.panelTabControl4.TabIndex = 3;
+            // 
+            // panelTabControl5
+            // 
+            this.panelTabControl5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(67)))), ((int)(((byte)(127)))));
+            this.panelTabControl5.Ikona = ((System.Drawing.Image)(resources.GetObject("panelTabControl5.Ikona")));
+            this.panelTabControl5.Location = new System.Drawing.Point(3, 243);
+            this.panelTabControl5.Name = "panelTabControl5";
+            this.panelTabControl5.Naziv = "RECEPCIJA";
+            this.panelTabControl5.Size = new System.Drawing.Size(266, 54);
+            this.panelTabControl5.TabIndex = 4;
+            // 
             // GlavnaForma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -151,5 +199,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.FlowLayoutPanel panelGlavniTab;
         private PanelTabControl panelTabControl1;
+        private PanelTabControl panelTabControl2;
+        private PanelTabControl panelTabControl3;
+        private PanelTabControl panelTabControl4;
+        private PanelTabControl panelTabControl5;
     }
 }
