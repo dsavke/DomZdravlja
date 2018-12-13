@@ -15,6 +15,7 @@ namespace DomZdravlja
         public GlavnaForma()
         {
             InitializeComponent();
+           
         }
 
         private void btnIzlaz_Click(object sender, EventArgs e)

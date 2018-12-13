@@ -51,18 +51,12 @@ namespace DomZdravlja
 
         private void PanelTabControl_MouseEnter(object sender, EventArgs e)
         {
-            //  this.BackColor = Color.FromArgb(23, 132, 229);
-            //this.BackColor = Color.FromArgb(112, 182, 244);
-            // this.BackColor = Color.FromArgb(81, 165, 239);
-            //this.BackColor = Color.FromArgb(66, 153, 229);
-            this.BackColor = Color.FromArgb(51, 128, 196);
-            
+            this.BackColor = Color.FromArgb(51, 128, 196);    
         }
 
         private void PanelTabControl_MouseLeave(object sender, EventArgs e)
         {
             this.BackColor = Color.FromArgb(0, 67, 127);
-            //this.BackColor = Color.FromArgb(112, 182, 244);
         }
     }
 }
