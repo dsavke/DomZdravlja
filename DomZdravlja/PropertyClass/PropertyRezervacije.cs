@@ -20,7 +20,6 @@ namespace DomZdravlja.PropertyClass
         #endregion
 
         #region Property
-
         [DisplayName("Rezervacija ID")]
         [SqlName("RezervacijaID")]
         [PrimaryKey]
@@ -38,7 +37,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Pacijent ID")]
         [SqlName("PacijentID")]
-       
+        [ForeignKey("dbo.Pacijent", "PacijentID")]
         public int PacijentID
         {
             get
@@ -53,7 +52,6 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Vrijeme rezervacije")]
         [SqlName("VrijemeRezervacije")]
-
         public DateTime VrijemeRezervacije
         {
             get
@@ -68,7 +66,6 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Termin")]
         [SqlName("Termin")]
-
         public DateTime Termin
         {
             get
@@ -83,7 +80,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Doktor ID")]
         [SqlName("DoktorID")]
-
+        [ForeignKey("dbo.Zaposleni", "ZaposleniID")]
         public int DoktorID
         {
             get
@@ -97,44 +94,114 @@ namespace DomZdravlja.PropertyClass
         }
         #endregion
 
-        #region Parametri
-
-        public List<SqlParameter> GetDeleteParameters()
-        {
-            throw new NotImplementedException();
-        }
-
+        #region queries
         public string GetDeleteQuery()
         {
-            throw new NotImplementedException();
+            return @"DELETE FROM [dbo].[Rezervacije]
+                     WHERE RezervacijaID = @RezervacijaID
+                    ";
         }
-
-        public List<SqlParameter> GetInsertParameters()
-        {
-            throw new NotImplementedException();
-        }
-
         public string GetInsertQuery()
         {
-            throw new NotImplementedException();
+            return @"
+                    INSERT INTO [dbo].[Rezervacije]
+                       ([PacijentID]
+                       ,[VrijemeRezervacije]
+                       ,[Termin]
+                       ,[DoktorID])
+                     VALUES
+                       (@PacijentID, @VrijemeRezervacije, @Termin, @DoktorID)
+                    ";
+        }
+        public string GetUpdateQuery()
+        {
+            return @"UPDATE [dbo].[Rezervacije]
+                       SET [PacijentID] = @PacijentID
+                          ,[VrijemeRezervacije] = @VrijemeRezervacije
+                          ,[Termin] = @Termin
+                          ,[DoktorID] = @DoktorID
+                     WHERE RezervacijaID = @RezervacijaID";
         }
 
         public string GetSelectQuery()
         {
-            throw new NotImplementedException();
+            return @"SELECT [RezervacijaID]
+                      ,[PacijentID]
+                      ,[VrijemeRezervacije]
+                      ,[Termin]
+                      ,[DoktorID]
+                 FROM [dbo].[Rezervacije]
+                    ";
         }
+        #endregion
 
+
+        #region Parametri
+        public List<SqlParameter> GetDeleteParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@RezervacijaID", System.Data.SqlDbType.Int);
+                parameter.Value = rezervacijaID;
+                list.Add(parameter);
+            }
+            return list;
+        }
+        public List<SqlParameter> GetInsertParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@PacijentID", System.Data.SqlDbType.Int);
+                parameter.Value = pacijentID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@VrijemeRezervacije", System.Data.SqlDbType.DateTime);
+                parameter.Value = vrijemeRezervacije;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@Termin", System.Data.SqlDbType.DateTime);
+                parameter.Value = termin;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@DoktorID", System.Data.SqlDbType.Int);
+                parameter.Value = doktorID;
+                list.Add(parameter);
+            }
+            return list;
+        }
         public List<SqlParameter> GetUpdateParameters()
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@RezervacijaID", System.Data.SqlDbType.Int);
+                parameter.Value = rezervacijaID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@PacijentID", System.Data.SqlDbType.Int);
+                parameter.Value = pacijentID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@VrijemeRezervacije", System.Data.SqlDbType.DateTime);
+                parameter.Value = vrijemeRezervacije;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@Termin", System.Data.SqlDbType.DateTime);
+                parameter.Value = termin;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@DoktorID", System.Data.SqlDbType.Int);
+                parameter.Value = doktorID;
+                list.Add(parameter);
+            }
+            return list;
         }
-
-        public string GetUpdateQuery()
-        {
-            throw new NotImplementedException();
-        }
-
-
         #endregion
     }
 }

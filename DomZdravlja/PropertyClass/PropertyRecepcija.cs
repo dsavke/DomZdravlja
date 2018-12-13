@@ -13,7 +13,7 @@ namespace DomZdravlja.PropertyClass
     {
         #region Atributi
         private int prijemID;
-        private int prijemZaposlenihID;
+        private int prijemZaposleniID;
         private int pacijentID;
         private int doktorID;
         private int prioritet;
@@ -38,24 +38,24 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Prijem zaposlenih ID")]
-        [SqlName("PrijemZaposlenihID")]
-       
+        [DisplayName("Prijem zaposleni ID")]
+        [SqlName("PrijemZaposleniID")]
+        [ForeignKey("dbo.Zaposleni", "ZaposleniID")]
         public int PrijemZaposlenihID
         {
             get
             {
-                return prijemZaposlenihID;
+                return prijemZaposleniID;
             }
             set
             {
-                prijemZaposlenihID = value;
+                prijemZaposleniID = value;
             }
         }
 
         [DisplayName("Pacijent ID")]
         [SqlName("PacijentID")]
-
+        [ForeignKey("dbo.Pacijent", "PacijentID")]
         public int PacijentID
         {
             get
@@ -70,7 +70,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Doktor ID")]
         [SqlName("DoktorID")]
-
+        [ForeignKey("dbo.Zaposleni", "ZaposleniID")]
         public int DoktorID
         {
             get
@@ -129,44 +129,68 @@ namespace DomZdravlja.PropertyClass
         }
         #endregion
 
-        #region Parametri
-
-        public List<SqlParameter> GetDeleteParameters()
-        {
-            throw new NotImplementedException();
-        }
-
+        #region queries
         public string GetDeleteQuery()
         {
-            throw new NotImplementedException();
+            return @"DELETE FROM [dbo].[Recepcija]
+                    WHERE PrijemID = @PrijemID
+                    ";
         }
-
-        public List<SqlParameter> GetInsertParameters()
-        {
-            throw new NotImplementedException();
-        }
-
         public string GetInsertQuery()
         {
-            throw new NotImplementedException();
+            return @"
+                   INSERT INTO [dbo].[Recepcija]
+                       ([PrijemZaposleniID]
+                       ,[PacijentID]
+                       ,[DoktorID]
+                       ,[Prioritet]
+                       ,[VrijemePrijema]
+                       ,[VrijemeOtpusta])
+                 VALUES
+                       (@PrijemZaposleniID, @PacijentID, @DoktorID, @Prioritet, @VrijemePrijema, @VrijemeOtpusta)
+                    ";
         }
 
         public string GetSelectQuery()
         {
-            throw new NotImplementedException();
+            return @"
+                        SELECT[PrijemID]
+                          ,[PrijemZaposleniID]
+                          ,[PacijentID]
+                          ,[DoktorID]
+                          ,[Prioritet]
+                          ,[VrijemePrijema]
+                          ,[VrijemeOtpusta]
+                        FROM[dbo].[Recepcija]
+                    ";
+        }
+        public string GetUpdateQuery()
+        {
+            return @"UPDATE [dbo].[Recepcija]
+                   SET [PrijemZaposleniID] = @PrijemZaposleniID
+                      ,[PacijentID] = @PacijentID
+                      ,[DoktorID] = @DoktorID
+                      ,[Prioritet] = @Prioritet
+                      ,[VrijemePrijema] = @VrijemePrijema
+                      ,[VrijemeOtpusta] = @VrijemeOtpusta
+                 WHERE PrijemID = @PrijemID";
         }
 
+        #endregion
+
+        #region Parametri
+        public List<SqlParameter> GetDeleteParameters()
+        {
+            throw new NotImplementedException();
+        }
+        public List<SqlParameter> GetInsertParameters()
+        {
+            throw new NotImplementedException();
+        }
         public List<SqlParameter> GetUpdateParameters()
         {
             throw new NotImplementedException();
         }
-
-        public string GetUpdateQuery()
-        {
-            throw new NotImplementedException();
-        }
-
-
         #endregion
 
     }
