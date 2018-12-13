@@ -104,6 +104,7 @@ namespace DomZdravlja.PropertyClass
         }
         [DisplayName("Osoba ID")]
         [SqlName("OsobaID")]
+        [ForeignKey("dbo.Osoba", "OsobaID")]
         public int OsobaID
         {
             get
@@ -148,7 +149,7 @@ namespace DomZdravlja.PropertyClass
                        [Password]=@Password,
                        [TipZaposlenog]=@TipZaposlenog,
                        [OsobaID]=@OsobaID,
-                   where @ZaposleniID=Zaposleni.ZaposleniID";
+                   where ZaposleniID=@ZaposleniID";
         }
 
         public string GetSelectQuery()
@@ -157,8 +158,8 @@ namespace DomZdravlja.PropertyClass
                         SELECT ZaposleniID
                           ,isnull(Zvanje, '') as Zvanje
                           ,RadnoMjesto
-                          ,KorisnickoIme
-                          ,Password
+                          ,isnull(KorisnickoIme, '') as KorisnickoIme
+                          ,isnull(Password, '') as Password
                           ,TipZaposlenog
                           ,OsobaID
                       FROM dbo.Zaposleni
@@ -172,15 +173,88 @@ namespace DomZdravlja.PropertyClass
         #region Parameter
         public List<SqlParameter> GetDeleteParameters()
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@ZaposleniID", System.Data.SqlDbType.Int);
+                parameter.Value = zaposleniId;
+                list.Add(parameter);
+            }
+            return list;
         }
         public List<SqlParameter> GetInsertParameters()
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@Zvanje", System.Data.SqlDbType.NVarChar);
+                parameter.Value = zvanje;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@RadnoMjesto", System.Data.SqlDbType.NVarChar);
+                parameter.Value = radnoMjesto;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@KorisnickoIme", System.Data.SqlDbType.NVarChar);
+                parameter.Value = korisnickoIme;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@Password", System.Data.SqlDbType.NVarChar);
+                parameter.Value = password;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@TipZaposlenog", System.Data.SqlDbType.NVarChar);
+                parameter.Value = tipZaposlenog;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@OsobaID", System.Data.SqlDbType.Int);
+                parameter.Value = osobaId;
+                list.Add(parameter);
+            }
+            return list;
         }
         public List<SqlParameter> GetUpdateParameters()
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@ZaposleniID", System.Data.SqlDbType.Int);
+                parameter.Value = zaposleniId;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@Zvanje", System.Data.SqlDbType.NVarChar);
+                parameter.Value = zvanje;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@RadnoMjesto", System.Data.SqlDbType.NVarChar);
+                parameter.Value = radnoMjesto;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@KorisnickoIme", System.Data.SqlDbType.NVarChar);
+                parameter.Value = korisnickoIme;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@Password", System.Data.SqlDbType.NVarChar);
+                parameter.Value = password;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@TipZaposlenog", System.Data.SqlDbType.NVarChar);
+                parameter.Value = tipZaposlenog;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@OsobaID", System.Data.SqlDbType.Int);
+                parameter.Value = osobaId;
+                list.Add(parameter);
+            }
+            return list;
         }
         #endregion
     }
