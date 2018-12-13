@@ -58,7 +58,7 @@ namespace DomZdravlja
         private void dugme()
         {
             bool provjera = false;
-
+            if (txtKorisnickoIme.Text != "")   
             foreach (var item in listaZaposlenih)
             {
                 if (item.KorisnickoIme.Equals(txtKorisnickoIme.Text))
