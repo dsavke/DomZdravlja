@@ -19,8 +19,10 @@ namespace DomZdravlja
 
         public Form1()
         {
+
             InitializeComponent();
             ucitajZaposlene();
+
         }
 
         private void ucitajZaposlene()

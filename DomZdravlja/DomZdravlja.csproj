@@ -97,6 +97,7 @@
     <Compile Include="PropertyClass\PropertyZaposleni.cs" />
     <Compile Include="PropertyClass\PropertyKartonDijagnoza.cs" />
     <Compile Include="PropertyInterface.cs" />
+    <Compile Include="State.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
