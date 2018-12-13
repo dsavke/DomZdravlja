@@ -83,43 +83,116 @@ namespace DomZdravlja.PropertyClass
         }
         #endregion
 
-        #region Parametri
-
-        public List<SqlParameter> GetDeleteParameters()
-        {
-            throw new NotImplementedException();
-        }
+        #region Kveriji
 
         public string GetDeleteQuery()
         {
-            throw new NotImplementedException();
-        }
+            return @"USE [Tim4]
+                    GO
 
-        public List<SqlParameter> GetInsertParameters()
-        {
-            throw new NotImplementedException();
+                    DELETE FROM [dbo].[DetaljiRacuna]
+                          WHERE DetaljiRacunaID = @DetaljiRacunaID
+                    GO";
         }
 
         public string GetInsertQuery()
         {
-            throw new NotImplementedException();
+            return @"USE [Tim4]
+                    GO
+
+                    INSERT INTO [dbo].[DetaljiRacuna]
+                               ([RacunID]
+                               ,[CijenaID]
+                               ,[Kolicina])
+                         VALUES(
+                               @RacunID
+                               ,@CijenaID
+                               ,@Kolicina)
+                    GO";
         }
 
         public string GetSelectQuery()
         {
-            throw new NotImplementedException();
-        }
+            return @"USE [Tim4]
+                    GO
 
-        public List<SqlParameter> GetUpdateParameters()
-        {
-            throw new NotImplementedException();
+                    SELECT [DetaljiRacunaID]
+                          ,[RacunID]
+                          ,[CijenaID]
+                          ,[Kolicina]
+                      FROM [dbo].[DetaljiRacuna]
+                    GO";
         }
 
         public string GetUpdateQuery()
         {
-            throw new NotImplementedException();
+            return @"USE [Tim4]
+                    GO
+
+                    UPDATE [dbo].[DetaljiRacuna]
+                       SET [RacunID] = @RacunID
+                          ,[CijenaID] = @CijenaID
+                          ,[Kolicina] = @Kolicina
+                     WHERE DetaljiRacunaID = @DetaljiRacunaID
+                    GO";
         }
 
+        #endregion
+
+        #region Parametri
+
+        public List<SqlParameter> GetDeleteParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+
+            SqlParameter DetaljiRacunaID = new SqlParameter("@DetaljiRacunaID", System.Data.SqlDbType.Int);
+            DetaljiRacunaID.Value = detaljiRacunaID;
+            list.Add(DetaljiRacunaID);
+
+            return list;
+        }
+        
+        public List<SqlParameter> GetInsertParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+
+            SqlParameter RacunID = new SqlParameter("@RacunID", System.Data.SqlDbType.Int);
+            RacunID.Value = racunID;
+            list.Add(RacunID);
+
+            SqlParameter CijenaID = new SqlParameter("@CijenaID", System.Data.SqlDbType.Int);
+            CijenaID.Value = cijenaID;
+            list.Add(CijenaID);
+
+            SqlParameter Kolicina = new SqlParameter("@Kolicina", System.Data.SqlDbType.Int);
+            Kolicina.Value = kolicina;
+            list.Add(Kolicina);
+
+            return list;
+        }
+
+        public List<SqlParameter> GetUpdateParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+
+            SqlParameter RacunID = new SqlParameter("@RacunID", System.Data.SqlDbType.Int);
+            RacunID.Value = racunID;
+            list.Add(RacunID);
+
+            SqlParameter CijenaID = new SqlParameter("@CijenaID", System.Data.SqlDbType.Int);
+            CijenaID.Value = cijenaID;
+            list.Add(CijenaID);
+
+            SqlParameter Kolicina = new SqlParameter("@Kolicina", System.Data.SqlDbType.Int);
+            Kolicina.Value = kolicina;
+            list.Add(Kolicina);
+
+            SqlParameter DetaljiRacunaID = new SqlParameter("@DetaljiRacunaID", System.Data.SqlDbType.Int);
+            DetaljiRacunaID.Value = detaljiRacunaID;
+            list.Add(DetaljiRacunaID);
+
+            return list;
+        }
 
         #endregion
     }

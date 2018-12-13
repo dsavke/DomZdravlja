@@ -65,41 +65,100 @@ namespace DomZdravlja.PropertyClass
         }
         #endregion
 
-        #region Parametri
+        #region Querys
 
-        public List<SqlParameter> GetDeleteParameters()
+        public string GetSelectQuery()
         {
-            throw new NotImplementedException();
-        }
-
-        public string GetDeleteQuery()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<SqlParameter> GetInsertParameters()
-        {
-            throw new NotImplementedException();
+            return @"USE [Tim4]
+                    GO
+                    SELECT [FaktorRizikaID]
+                          ,[NazivRizika]
+                          ,[Opis]
+                      FROM [dbo].[FaktorRizika]
+                    GO";
         }
 
         public string GetInsertQuery()
         {
-            throw new NotImplementedException();
-        }
-
-        public string GetSelectQuery()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<SqlParameter> GetUpdateParameters()
-        {
-            throw new NotImplementedException();
+            return @"USE [Tim4]
+                    GO
+                    INSERT INTO [dbo].[FaktorRizika]
+                               ([NazivRizika]
+                               ,[Opis])
+                         VALUES
+                               @NazivRizika
+                               ,@Opis
+                    GO";
         }
 
         public string GetUpdateQuery()
         {
-            throw new NotImplementedException();
+            return @"USE [Tim4]
+                    GO
+
+                    UPDATE [dbo].[FaktorRizika]
+                       SET [NazivRizika] = @NazivRizika
+                          ,[Opis] = @Opis
+                     WHERE FaktorRizikaID = @FaktorRizikaID
+                    GO";
+        }
+
+        public string GetDeleteQuery()
+        {
+            return @"USE [Tim4]
+                    GO
+                    DELETE FROM [dbo].[FaktorRizika]
+                          WHERE FaktorRizikaID = @FaktorRizikaID
+                    GO";
+        }
+
+        #endregion
+
+        #region Parametri
+
+        public List<SqlParameter> GetDeleteParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+
+            SqlParameter FaktorRizikaID = new SqlParameter("@FaktorRizikaID", System.Data.SqlDbType.Int);
+            FaktorRizikaID.Value = faktorRizikaID;
+            list.Add(FaktorRizikaID);
+
+            return list;
+        }
+
+        public List<SqlParameter> GetInsertParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+
+            SqlParameter NazivRizika = new SqlParameter("@NazivRizika", System.Data.SqlDbType.NVarChar);
+            NazivRizika.Value = nazivRizika;
+            list.Add(NazivRizika);
+
+            SqlParameter Opis = new SqlParameter("@Opis", System.Data.SqlDbType.NVarChar);
+            Opis.Value = opis;
+            list.Add(Opis);
+
+            return list;
+        }
+
+        public List<SqlParameter> GetUpdateParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+
+            SqlParameter FaktorRizikaID = new SqlParameter("@FaktorRizikaID", System.Data.SqlDbType.Int);
+            FaktorRizikaID.Value = faktorRizikaID;
+            list.Add(FaktorRizikaID);
+
+            SqlParameter NazivRizika = new SqlParameter("@NazivRizika", System.Data.SqlDbType.NVarChar);
+            NazivRizika.Value = nazivRizika;
+            list.Add(NazivRizika);
+
+            SqlParameter Opis = new SqlParameter("@Opis", System.Data.SqlDbType.NVarChar);
+            Opis.Value = opis;
+            list.Add(Opis);
+
+            return list;
         }
 
         #endregion

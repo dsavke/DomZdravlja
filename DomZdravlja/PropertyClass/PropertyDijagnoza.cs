@@ -40,7 +40,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Pacijent ID")]
         [SqlName("PacijentID")]
-        
+        [ForeignKey("PacijentID", "dbo.Pacijent")]
 
         public int PacijentID
         {
@@ -56,7 +56,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Doktor ID")]
         [SqlName("DoktorID")]
-        [PrimaryKey]
+        [ForeignKey("ZaposleniID", "dbo.Zaposleni")]
 
         public int DoktorID
         {
@@ -72,8 +72,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Terapija")]
         [SqlName("Terapija")]
-        [PrimaryKey]
-
+        
         public string Terapija
         {
             get
@@ -88,8 +87,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Opis")]
         [SqlName("Opis")]
-        [PrimaryKey]
-
+        
         public string Opis
         {
             get
@@ -109,10 +107,11 @@ namespace DomZdravlja.PropertyClass
         public string GetDeleteQuery()
         {
             return @"  DELETE FROM dbo.Dijagnoza
-                        WHERE DijagnozaID = @dijagnozaID
+                        WHERE DijagnozaID = @DijagnozaID
                     ";
 
         }
+
         public string GetInsertQuery()
         {
             return @"
@@ -122,29 +121,35 @@ namespace DomZdravlja.PropertyClass
                         ,Terapija
                         ,Opis)    
                     VALUES
-                       (@pacijentID,@doktorID,@terapija,@opis)
+                       (@PacijentID,@DoktorID,@Terapija,@Opis)
                     ";
         }
 
         public string GetUpdateQuery()
         {
-            return @"UPDATE dbo.Dijagnoza
-                       set[PacijentID]=@PacijentID,
-                       [DoktorID]=@DoktorID;
-                       [Terapija]=@Terapija;
-                       [Opis]=@Opis;
-                   where @DijagnozaID=Dijagnoza.DijagnozaID";
+            return @"USE [Tim4]
+                    GO
+                    UPDATE [dbo].[Dijagnoza]
+                       SET [PacijentID] = @PacijentID
+                          ,[DoktorID] = @DoktorID
+                          ,[Terapija] = @Terapija
+                          ,[Opis] = @Opis
+                     WHERE [DijagnozaID] = @DijagnozaID
+                    GO";
         }
 
         public string GetSelectQuery()
         {
             return @"
-                       SELECT DijagnozaID
-                       ,PacijentID
-                       ,DoktorID
-                       ,Terapija
-                       ,Opis
-                      FROM dbo.Dijagnoza
+                   USE [Tim4]
+                    GO
+                    SELECT [DijagnozaID]
+                          ,[PacijentID]
+                          ,[DoktorID]
+                          ,[Terapija]
+                          ,[Opis]
+                      FROM [dbo].[Dijagnoza]
+                    GO
                     ";
         }
 
@@ -155,21 +160,67 @@ namespace DomZdravlja.PropertyClass
 
         public List<SqlParameter> GetDeleteParameters()
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+
+            SqlParameter DijagnozaID = new SqlParameter("@DijagnozaID", System.Data.SqlDbType.Int);
+            DijagnozaID.Value = dijagnozaID;
+            list.Add(DijagnozaID);
+
+            return list;
         }
 
        
 
         public List<SqlParameter> GetInsertParameters()
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+
+            SqlParameter PacijentID = new SqlParameter("@PacijentID", System.Data.SqlDbType.Int);
+            PacijentID.Value = pacijentID;
+            list.Add(PacijentID);
+
+            SqlParameter DoktorID = new SqlParameter("@DoktorID", System.Data.SqlDbType.Int);
+            DoktorID.Value = doktorID;
+            list.Add(DoktorID);
+
+            SqlParameter Terapija = new SqlParameter("@Terapija", System.Data.SqlDbType.NVarChar);
+            Terapija.Value = terapija;
+            list.Add(Terapija);
+
+            SqlParameter Opis = new SqlParameter("@Opis", System.Data.SqlDbType.NVarChar);
+            Opis.Value = opis;
+            list.Add(Opis);
+
+            return list;
         }
 
        
 
         public List<SqlParameter> GetUpdateParameters()
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+
+            SqlParameter PacijentID = new SqlParameter("@PacijentID", System.Data.SqlDbType.Int);
+            PacijentID.Value = pacijentID;
+            list.Add(PacijentID);
+
+            SqlParameter DoktorID = new SqlParameter("@DoktorID", System.Data.SqlDbType.Int);
+            DoktorID.Value = doktorID;
+            list.Add(DoktorID);
+
+            SqlParameter Terapija = new SqlParameter("@Terapija", System.Data.SqlDbType.NVarChar);
+            Terapija.Value = terapija;
+            list.Add(Terapija);
+
+            SqlParameter Opis = new SqlParameter("@Opis", System.Data.SqlDbType.NVarChar);
+            Opis.Value = opis;
+            list.Add(Opis);
+
+            SqlParameter DijagnozaID = new SqlParameter("@DijagnozaID", System.Data.SqlDbType.Int);
+            DijagnozaID.Value = dijagnozaID;
+            list.Add(DijagnozaID);
+
+            return list;
         }
         
 

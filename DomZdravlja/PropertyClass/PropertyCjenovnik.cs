@@ -103,13 +103,12 @@ namespace DomZdravlja.PropertyClass
         {
             return @"USE [Tim4]
                     GO
-
                     SELECT [CjenovnikID]
                           ,[NazivUsluge]
                           ,[CijenaUsluge]
-                          ,[DatumUspostavljanjaCijene]
-                          ,[Aktivno]
+                          ,[DatumUspostavljanjaCijene]                          
                       FROM [dbo].[Cjenovnik]
+                    WHERE [AKTIVNO] = 1
                     GO";
         }
 
@@ -126,7 +125,7 @@ namespace DomZdravlja.PropertyClass
                          VALUES
                                @NazivUsluge
                                ,@CijenaUsluge
-                               ,@DatumUspostavljanjaCijene
+                               ,GETDATE()
                                ,1)
                     GO
                     ";
@@ -172,17 +171,47 @@ namespace DomZdravlja.PropertyClass
 
         public List<SqlParameter> GetDeleteParameters()
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+
+            SqlParameter CjenovnikID = new SqlParameter("@CjenovnikID", System.Data.SqlDbType.Int);
+            CjenovnikID.Value = cjenovnikID;
+            list.Add(CjenovnikID);
+
+            return list;
         }        
 
         public List<SqlParameter> GetInsertParameters()
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+
+            SqlParameter NazivUsluge = new SqlParameter("@NazivUsluge", System.Data.SqlDbType.NVarChar);
+            NazivUsluge.Value = nazivUsluge;
+            list.Add(NazivUsluge);
+
+            SqlParameter CijenaUsluge = new SqlParameter("@CijenaUsluge", System.Data.SqlDbType.Money);
+            CijenaUsluge.Value = cijenaUsluge;
+            list.Add(CijenaUsluge);
+
+            return list;
         }        
 
         public List<SqlParameter> GetUpdateParameters()
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+
+            SqlParameter CjenovnikID = new SqlParameter("@CjenovnikID", System.Data.SqlDbType.Int);
+            CjenovnikID.Value = cjenovnikID;
+            list.Add(CjenovnikID);
+
+            SqlParameter NazivUsluge = new SqlParameter("@NazivUsluge", System.Data.SqlDbType.NVarChar);
+            NazivUsluge.Value = nazivUsluge;
+            list.Add(NazivUsluge);
+
+            SqlParameter CijenaUsluge = new SqlParameter("@CijenaUsluge", System.Data.SqlDbType.Money);
+            CijenaUsluge.Value = cijenaUsluge;
+            list.Add(CijenaUsluge);
+
+            return list;
         }
         
         #endregion
