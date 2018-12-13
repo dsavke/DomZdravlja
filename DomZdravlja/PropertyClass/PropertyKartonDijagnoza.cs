@@ -35,6 +35,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Karton ID")]
         [SqlName("KartonID")]
+        [ForeignKey("dbo.Karton", "PacijentID")]
        
         public int KartonID
         {
@@ -50,6 +51,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Dijeagnoza ID")]
         [SqlName("DijagnozaID")]
+        [ForeignKey("dbo.Dijagnoza", "DijagnozaID")]
 
         public int DijagnozaID
         {

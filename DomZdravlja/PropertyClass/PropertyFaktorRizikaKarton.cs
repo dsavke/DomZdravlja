@@ -13,11 +13,9 @@ namespace DomZdravlja.PropertyClass
     {
 
         #region Atributi
-        private int frkid;
+        private int frkID;
         private int faktorRizikaID;
         private int kartonID;
-        private string tipRizika;
-        private string status;
         #endregion
 
         #region Property
@@ -29,16 +27,17 @@ namespace DomZdravlja.PropertyClass
         {
             get
             {
-                return frkid;
+                return frkID;
             }
             set
             {
-                frkid = value;
+                frkID = value;
             }
         }
 
         [DisplayName("Faktor rizika ID")]
         [SqlName("FaktorRizikaID")]
+        [ForeignKey("dbo.FaktorRizika", "FaktorRizikaID")]
         
         public int FaktorRizikaID
         {
@@ -54,6 +53,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Karton ID")]
         [SqlName("KartonID")]
+        [ForeignKey("dbo.Karton", "PacijentID")]
 
         public int KartonID
         {
@@ -67,72 +67,101 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Tip rizika")]
-        [SqlName("TipRizika")]
+        #endregion
 
-        public string TipRizika
+        #region Querys
+
+        public string GetSelectQuery()
         {
-            get
-            {
-                return tipRizika;
-            }
-            set
-            {
-                tipRizika = value;
-            }
+            return @"USE [Tim4]
+                    GO
+                    SELECT [FRKID]
+                          ,[FaktorRizikaID]
+                          ,[KartonID]
+                      FROM [dbo].[FaktorRizikaKarton]
+                    GO";
         }
 
-        [DisplayName("Status")]
-        [SqlName("Status")]
-
-        public string Status
+        public string GetInsertQuery()
         {
-            get
-            {
-                return status;
-            }
-            set
-            {
-                status = value;
-            }
+            return @"USE [Tim4]
+                    GO
+                    INSERT INTO [dbo].[FaktorRizikaKarton]
+                               ([FaktorRizikaID]
+                               ,[KartonID])
+                         VALUES(
+                               @FaktorRizikaID
+                               ,@KartonID)
+                    GO";
         }
+
+        public string GetUpdateQuery()
+        {
+            return @"USE [Tim4]
+                    GO
+                    UPDATE [dbo].[FaktorRizikaKarton]
+                       SET [FaktorRizikaID] = @FaktorRizikaID
+                          ,[KartonID] = @KartonID
+                     WHERE FRKID = @FRKID
+                    GO";
+        }
+
+        public string GetDeleteQuery()
+        {
+            return @"USE [Tim4]
+                    GO
+                    DELETE FROM [dbo].[FaktorRizikaKarton]
+                          WHERE FRKID = @FRKID
+                    GO";
+        }
+
         #endregion
 
         #region Parametri
 
         public List<SqlParameter> GetDeleteParameters()
         {
-            throw new NotImplementedException();
-        }
+            List<SqlParameter> list = new List<SqlParameter>();
 
-        public string GetDeleteQuery()
-        {
-            throw new NotImplementedException();
-        }
+            SqlParameter FRKID = new SqlParameter("@FRKID", System.Data.SqlDbType.Int);
+            FRKID.Value = frkID;
+            list.Add(FRKID);
 
+            return list;
+        }
+        
         public List<SqlParameter> GetInsertParameters()
         {
-            throw new NotImplementedException();
-        }
+            List<SqlParameter> list = new List<SqlParameter>();
 
-        public string GetInsertQuery()
-        {
-            throw new NotImplementedException();
-        }
+            SqlParameter FaktorRizikaID = new SqlParameter("@FaktorRizikaID", System.Data.SqlDbType.Int);
+            FaktorRizikaID.Value = faktorRizikaID;
+            list.Add(FaktorRizikaID);
 
-        public string GetSelectQuery()
-        {
-            throw new NotImplementedException();
+            SqlParameter KartonID = new SqlParameter("@KartonID", System.Data.SqlDbType.Int);
+            KartonID.Value = kartonID;
+            list.Add(KartonID);
+
+            return list;
         }
 
         public List<SqlParameter> GetUpdateParameters()
         {
-            throw new NotImplementedException();
-        }
+            List<SqlParameter> list = new List<SqlParameter>();
 
-        public string GetUpdateQuery()
-        {
-            throw new NotImplementedException();
+            SqlParameter FRKID = new SqlParameter("@FRKID", System.Data.SqlDbType.Int);
+            FRKID.Value = frkID;
+            list.Add(FRKID);
+
+            SqlParameter FaktorRizikaID = new SqlParameter("@FaktorRizikaID", System.Data.SqlDbType.Int);
+            FaktorRizikaID.Value = faktorRizikaID;
+            list.Add(FaktorRizikaID);
+
+            SqlParameter KartonID = new SqlParameter("@KartonID", System.Data.SqlDbType.Int);
+            KartonID.Value = kartonID;
+            list.Add(KartonID);
+
+            return list;
         }
 
         #endregion

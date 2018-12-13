@@ -40,7 +40,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Pacijent ID")]
         [SqlName("PacijentID")]
-        [ForeignKey("PacijentID", "dbo.Pacijent")]
+        [ForeignKey("dbo.Pacijent", "PacijentID")]
 
         public int PacijentID
         {
@@ -56,7 +56,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Doktor ID")]
         [SqlName("DoktorID")]
-        [ForeignKey("ZaposleniID", "dbo.Zaposleni")]
+        [ForeignKey("dbo.Zaposleni", "ZaposleniID")]
 
         public int DoktorID
         {

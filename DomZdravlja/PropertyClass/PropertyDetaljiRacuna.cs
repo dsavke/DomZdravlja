@@ -37,7 +37,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Racun ID")]
         [SqlName("RacunID")]
-        [ForeignKey("RacunID", "dbo.Racun")]
+        [ForeignKey("dbo.Racun", "RacunID")]
       
         public int RacunID
         {
@@ -53,7 +53,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Cijena ID")]
         [SqlName("CijenaID")]
-        [ForeignKey("CjenovnikID", "dbo.Cjenovnik")]
+        [ForeignKey("dbo.Cjenovnik", "CjenovnikID")]
 
         public int CijenaID
         {

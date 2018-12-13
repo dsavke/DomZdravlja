@@ -14,9 +14,7 @@ namespace DomZdravlja.PropertyClass
 
         #region Atributi
         private int pacijentID;
-        private int kartonID;
-        private int dijagnozaID;
-
+        private int brojKartona;
         #endregion
 
         #region Property
@@ -24,6 +22,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Pacijent ID")]
         [SqlName("PacijentID")]
         [PrimaryKey]
+        [ForeignKey("dbo.Pacijent", "PacijentID")]
 
         public int PacijentID
         {
@@ -37,34 +36,18 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Karton ID")]
-        [SqlName("KartonID")]
+        [DisplayName("Broj Kartona")]
+        [SqlName("BrojKartona")]
 
         public int KartonID
         {
             get
             {
-                return kartonID;
+                return brojKartona;
             }
             set
             {
-                kartonID = value;
-            }
-        }
-
-        [DisplayName("Dijagnoza ID")]
-        [SqlName("DijagnozaID")]
-        [PrimaryKey]
-
-        public int DijagnozaID
-        {
-            get
-            {
-                return dijagnozaID;
-            }
-            set
-            {
-                dijagnozaID = value;
+                brojKartona = value;
             }
         }
 
@@ -81,29 +64,35 @@ namespace DomZdravlja.PropertyClass
         public string GetInsertQuery()
         {
             return @"
-                    INSERT INTO dbo.Karton
-                       (KartonID
-                       ,DijagnozaID
-                    VALUES
-                       (@KartonID,@DijagnozaID)
-                    ";
+                   USE [Tim4]
+                    GO
+                    INSERT INTO [dbo].[Karton]
+                               ([PacijentID]
+                               ,[BrojKartona])
+                         VALUES
+                               (@PacijentID
+                               ,@BrojKartona)
+                    GO";
         }
 
         public string GetUpdateQuery()
         {
-            return @"UPDATE dbo.Karton
-                       set[KartonID]=@KartonID,
-                       [DijagnozaID]=@DijagnozaID;
-                   where @PacijentID=Karton.PacijentID";
+            return @"USE [Tim4]
+                    GO
+                    UPDATE [dbo].[Karton]
+                       SET [BrojKartona] = @BrojKartona   
+                     WHERE [PacijentID] = @PacijentID
+                    GO";
         }
 
         public string GetSelectQuery()
         {
-            return @"
-                       SELECT PacijentID
-                       ,KartonID
-                       ,DijagnozaID
-                      FROM dbo.Karton
+            return @"USE [Tim4]
+                    GO
+                    SELECT [PacijentID]
+                          ,[BrojKartona]
+                      FROM [dbo].[Karton]
+                    GO
                     ";
         }
 
@@ -114,20 +103,46 @@ namespace DomZdravlja.PropertyClass
 
         public List<SqlParameter> GetDeleteParameters()
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+
+            SqlParameter PacijentID = new SqlParameter("@PacijentID", System.Data.SqlDbType.Int);
+            PacijentID.Value = pacijentID;
+            list.Add(PacijentID);
+
+            return list;
         }
 
        
 
         public List<SqlParameter> GetInsertParameters()
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+
+            SqlParameter PacijentID = new SqlParameter("@PacijentID", System.Data.SqlDbType.Int);
+            PacijentID.Value = pacijentID;
+            list.Add(PacijentID);
+
+            SqlParameter BrojKartona = new SqlParameter("@BrojKartona", System.Data.SqlDbType.Int);
+            BrojKartona.Value = brojKartona;
+            list.Add(BrojKartona);
+
+            return list;
         }
 
 
         public List<SqlParameter> GetUpdateParameters()
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+
+            SqlParameter PacijentID = new SqlParameter("@PacijentID", System.Data.SqlDbType.Int);
+            PacijentID.Value = pacijentID;
+            list.Add(PacijentID);
+
+            SqlParameter BrojKartona = new SqlParameter("@BrojKartona", System.Data.SqlDbType.Int);
+            BrojKartona.Value = brojKartona;
+            list.Add(BrojKartona);
+
+            return list;
         }
 
       
