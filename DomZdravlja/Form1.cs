@@ -154,8 +154,6 @@ namespace DomZdravlja
                 pomFaktorRizikaKarton.FRKID = (int)dataReader["FRKID"];
                 pomFaktorRizikaKarton.FaktorRizikaID = (int)dataReader["FaktorRizikaID"];
                 pomFaktorRizikaKarton.KartonID = (int)dataReader["KartonID"];
-                pomFaktorRizikaKarton.TipRizika = (string)dataReader["TipRizika"];
-                pomFaktorRizikaKarton.Status = (string)dataReader["Status"];
                 listaFaktorRizikaKarton.Add(pomFaktorRizikaKarton);
             }
         }
@@ -170,7 +168,7 @@ namespace DomZdravlja
                 PropertyKarton pomKarton = new PropertyKarton();
                 pomKarton.PacijentID = (int)dataReader["PacijentID"];
                 pomKarton.KartonID = (int)dataReader["KartonID"];
-                pomKarton.DijagnozaID = (int)dataReader["DijagnozaID"];
+        
                 listaKartona.Add(pomKarton);
             }
         }
@@ -253,7 +251,7 @@ namespace DomZdravlja
             {
                 PropertyRecepcija pomRecepcija = new PropertyRecepcija();
                 pomRecepcija.PrijemID = (int)dataReader["PrijemID"];
-                pomRecepcija.PrijemZaposlenihID = (int)dataReader["PrijemZaposlenihID"];
+                pomRecepcija.PrijemZaposleniID = (int)dataReader["PrijemZaposlenihID"];
                 pomRecepcija.PacijentID = (int)dataReader["PacijentID"];
                 pomRecepcija.DoktorID = (int)dataReader["DoktorID"];
                 pomRecepcija.Prioritet = (int)dataReader["Prioritet"];
