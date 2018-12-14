@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DomZdravlja.PropertyClass
 {
-    public class PropertyKartonDijagnoza:PropertyInterface
+    public class PropertyKartonDijagnoza : PropertyInterface
     {
         #region Atributi
         private int kartonDijagnozaID;
@@ -36,7 +36,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Karton ID")]
         [SqlName("KartonID")]
         [ForeignKey("dbo.Karton", "PacijentID")]
-       
+
         public int KartonID
         {
             get
@@ -66,41 +66,99 @@ namespace DomZdravlja.PropertyClass
         }
         #endregion
 
-        #region Parametri
+        #region Querys
 
-        public List<SqlParameter> GetDeleteParameters()
+        public string GetSelectQuery()
         {
-            throw new NotImplementedException();
-        }
-
-        public string GetDeleteQuery()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<SqlParameter> GetInsertParameters()
-        {
-            throw new NotImplementedException();
+            return @"USE [Tim4]
+                    GO
+                    SELECT [KartonDijagnozaID]
+                          ,[KartonID]
+                          ,[DijagnozaID]
+                      FROM [dbo].[KartonDijagnoza]
+                    GO";
         }
 
         public string GetInsertQuery()
         {
-            throw new NotImplementedException();
-        }
-
-        public string GetSelectQuery()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<SqlParameter> GetUpdateParameters()
-        {
-            throw new NotImplementedException();
+            return @"USE [Tim4]
+                    GO
+                    INSERT INTO [dbo].[KartonDijagnoza]
+                               ([KartonID]
+                               ,[DijagnozaID])
+                         VALUES
+                               (@KartonID
+                               ,@DijagnozaID)
+                    GO";
         }
 
         public string GetUpdateQuery()
         {
-            throw new NotImplementedException();
+            return @"USE [Tim4]
+                    GO
+                    UPDATE [dbo].[KartonDijagnoza]
+                       SET [KartonID] = @KartonID
+                          ,[DijagnozaID] = @DijagnozaID
+                     WHERE KartonDijagnozaID = @KartonDijagnozaID
+                    GO";
+        }
+
+        public string GetDeleteQuery()
+        {
+            return @"USE [Tim4]
+                    GO
+                    DELETE FROM [dbo].[KartonDijagnoza]
+                          WHERE KartonDijagnozaID = @KartonDijagnozaID
+                    GO";
+        }
+
+        #endregion
+
+        #region Parametri
+
+        public List<SqlParameter> GetDeleteParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+
+            SqlParameter KartonDijagnozaID = new SqlParameter("@KartonDijagnozaID", System.Data.SqlDbType.Int);
+            KartonDijagnozaID.Value = kartonDijagnozaID;
+            list.Add(KartonDijagnozaID);
+
+            return list;
+        }
+
+        public List<SqlParameter> GetInsertParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+
+            SqlParameter KartonID = new SqlParameter("@KartonID", System.Data.SqlDbType.Int);
+            KartonID.Value = kartonID;
+            list.Add(KartonID);
+
+            SqlParameter DijagnozaID = new SqlParameter("@DijagnozaID", System.Data.SqlDbType.Int);
+            DijagnozaID.Value = dijagnozaID;
+            list.Add(DijagnozaID);
+
+            return list;
+        }
+
+        public List<SqlParameter> GetUpdateParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+
+            SqlParameter KartonDijagnozaID = new SqlParameter("@KartonDijagnozaID", System.Data.SqlDbType.Int);
+            KartonDijagnozaID.Value = kartonDijagnozaID;
+            list.Add(KartonDijagnozaID);
+
+            SqlParameter KartonID = new SqlParameter("@KartonID", System.Data.SqlDbType.Int);
+            KartonID.Value = kartonID;
+            list.Add(KartonID);
+
+            SqlParameter DijagnozaID = new SqlParameter("@DijagnozaID", System.Data.SqlDbType.Int);
+            DijagnozaID.Value = dijagnozaID;
+            list.Add(DijagnozaID);
+
+            return list;
         }
 
         #endregion

@@ -191,15 +191,15 @@ namespace DomZdravlja.PropertyClass
         public string GetUpdateQuery()
         {
             return @"UPDATE dbo.Osoba
-                       set[Ime]=@Ime,
-                       [Prezime]=@Prezime;
-                       [JMB]=@JMB;
-                       [Adresa]=@Adresa;
-                       [Kontakt]=@Kontakt;
-                       [Pol]=@Pol;
-                       [MjestoRodjenja]=@MjestoRodjenja;
-                       [DatumRodjenja]=@DatumRodjenja;
-                   where @OsobaID=Osoba.OsobaID";
+                       SET [Ime] = @Ime,
+                       [Prezime] = @Prezime;
+                       [JMB] = @JMB;
+                       [Adresa] = @Adresa;
+                       [Kontakt] = @Kontakt;
+                       [Pol] = @Pol;
+                       [MjestoRodjenja] = @MjestoRodjenja;
+                       [DatumRodjenja] = @DatumRodjenja;
+                   where OsobaID = @OsobaID";
         }
 
         public string GetSelectQuery()
@@ -222,25 +222,99 @@ namespace DomZdravlja.PropertyClass
         #endregion
 
         #region Parametri
+
         public List<SqlParameter> GetDeleteParameters()
         {
-            throw new NotImplementedException();
-        }
+            List<SqlParameter> list = new List<SqlParameter>();
 
-       
+            SqlParameter OsobaID = new SqlParameter("@OsobaID", System.Data.SqlDbType.Int);
+            OsobaID.Value = osobaID;
+            list.Add(OsobaID);
+
+            return list;
+        }       
 
         public List<SqlParameter> GetInsertParameters()
         {
-            throw new NotImplementedException();
-        }
+            List<SqlParameter> list = new List<SqlParameter>();
 
-       
+            SqlParameter Ime = new SqlParameter("@Ime", System.Data.SqlDbType.NVarChar);
+            Ime.Value = ime;
+            list.Add(Ime);
+
+            SqlParameter Prezime = new SqlParameter("@Prezime", System.Data.SqlDbType.NVarChar);
+            Prezime.Value = prezime;
+            list.Add(Prezime);
+
+            SqlParameter JMB = new SqlParameter("@JMB", System.Data.SqlDbType.NVarChar);
+            JMB.Value = jmb;
+            list.Add(JMB);
+
+            SqlParameter Adresa = new SqlParameter("@Adresa", System.Data.SqlDbType.NVarChar);
+            Adresa.Value = adresa;
+            list.Add(Adresa);
+
+            SqlParameter Kontakt = new SqlParameter("@Kontakt", System.Data.SqlDbType.NVarChar);
+            Kontakt.Value = kontakt;
+            list.Add(Kontakt);
+
+            SqlParameter Pol = new SqlParameter("@Pol", System.Data.SqlDbType.NChar);
+            Pol.Value = pol;
+            list.Add(Pol);
+
+            SqlParameter MjestoRodjenja = new SqlParameter("@MjestoRodjenja", System.Data.SqlDbType.NVarChar);
+            MjestoRodjenja.Value = mjestoRodjenja;
+            list.Add(MjestoRodjenja);
+
+            SqlParameter DatumRodjenja = new SqlParameter("@DatumRodjenja", System.Data.SqlDbType.Date);
+            DatumRodjenja.Value = datumRodjenja;
+            list.Add(DatumRodjenja);
+
+            return list;
+        }       
        
         public List<SqlParameter> GetUpdateParameters()
         {
-            throw new NotImplementedException();
-        }
+            List<SqlParameter> list = new List<SqlParameter>();
 
+            SqlParameter OsobaID = new SqlParameter("@OsobaID", System.Data.SqlDbType.Int);
+            OsobaID.Value = osobaID;
+            list.Add(OsobaID);
+
+            SqlParameter Ime = new SqlParameter("@Ime", System.Data.SqlDbType.NVarChar);
+            Ime.Value = ime;
+            list.Add(Ime);
+
+            SqlParameter Prezime = new SqlParameter("@Prezime", System.Data.SqlDbType.NVarChar);
+            Prezime.Value = prezime;
+            list.Add(Prezime);
+
+            SqlParameter JMB = new SqlParameter("@JMB", System.Data.SqlDbType.NVarChar);
+            JMB.Value = jmb;
+            list.Add(JMB);
+
+            SqlParameter Adresa = new SqlParameter("@Adresa", System.Data.SqlDbType.NVarChar);
+            Adresa.Value = adresa;
+            list.Add(Adresa);
+
+            SqlParameter Kontakt = new SqlParameter("@Kontakt", System.Data.SqlDbType.NVarChar);
+            Kontakt.Value = kontakt;
+            list.Add(Kontakt);
+
+            SqlParameter Pol = new SqlParameter("@Pol", System.Data.SqlDbType.NChar);
+            Pol.Value = pol;
+            list.Add(Pol);
+
+            SqlParameter MjestoRodjenja = new SqlParameter("@MjestoRodjenja", System.Data.SqlDbType.NVarChar);
+            MjestoRodjenja.Value = mjestoRodjenja;
+            list.Add(MjestoRodjenja);
+
+            SqlParameter DatumRodjenja = new SqlParameter("@DatumRodjenja", System.Data.SqlDbType.Date);
+            DatumRodjenja.Value = datumRodjenja;
+            list.Add(DatumRodjenja);
+
+            return list;
+        }
     
         #endregion
     }
