@@ -35,6 +35,7 @@ namespace DomZdravlja
 
         #endregion
 
+
         public Form1()
         {
 
@@ -122,7 +123,7 @@ namespace DomZdravlja
                 pomDijagnoza.DijagnozaID = (int)dataReader["DijagnozaID"];
                 pomDijagnoza.PacijentID = (int)dataReader["PacijentID"];
                 pomDijagnoza.DoktorID = (int)dataReader["DoktorID"];
-                pomDijagnoza.Terapija = (string)dataReader["Teraoija"];
+                pomDijagnoza.Terapija = (string)dataReader["Terapija"];
                 pomDijagnoza.Opis = (string)dataReader["Opis"];
                 listaDijagnoza.Add(pomDijagnoza);
             }
@@ -326,7 +327,6 @@ namespace DomZdravlja
         {
 
         }
-
 
         private void txtLozinka_KeyPress(object sender, KeyPressEventArgs e)
         {
