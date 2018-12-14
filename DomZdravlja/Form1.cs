@@ -183,7 +183,7 @@ namespace DomZdravlja
             while (dataReader.Read())
             {
                 PropertyKartonDijagnoza pomKartonDijagnoza = new PropertyKartonDijagnoza();
-                pomKartonDijagnoza.KartonDijagnozaID = (int)dataReader["PacijentID"];
+                pomKartonDijagnoza.KartonDijagnozaID = (int)dataReader["KartonDijagnozaID"];
                 pomKartonDijagnoza.KartonID = (int)dataReader["KartonID"];
                 pomKartonDijagnoza.DijagnozaID = (int)dataReader["DijagnozaID"];
                 listaKartonDijagnoza.Add(pomKartonDijagnoza);

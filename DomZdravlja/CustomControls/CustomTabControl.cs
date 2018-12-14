@@ -81,7 +81,7 @@ namespace DomZdravlja.CustomControls
         #region SelektovaniTab
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            predraggedTab = getPointedTab();
+            //predraggedTab = getPointedTab();
             var p = e.Location;
             if (!this.ShowClosingButton)
             {
@@ -99,6 +99,10 @@ namespace DomZdravlja.CustomControls
                     }
                     else
                     {
+                        if(this.TabPages[i].GetType() == typeof(CustomTabPage))
+                        {
+                            if ((this.TabPages[i] as CustomTabPage).State == State.Main) continue;
+                        }
                         this.TabPages.RemoveAt(i);
                     }
                 
@@ -168,8 +172,10 @@ namespace DomZdravlja.CustomControls
                     //button zatvaranje
                     if (this.ShowClosingButton)
                     {
-                        e.Graphics.DrawString("X", Font, ClosingColorBrush, HeaderSize.Right - 26, 11);
-                        
+                        if (this.TabPages[i].GetType() == typeof(CustomTabPage))
+                        {
+                            if ((this.TabPages[i] as CustomTabPage).State != State.Main) e.Graphics.DrawString("X", Font, ClosingColorBrush, HeaderSize.Right - 26, 11); ;
+                        }  
                     }
                 }
                 else
