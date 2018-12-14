@@ -44,6 +44,7 @@ namespace DomZdravlja
 
         }
 
+        #region Ucitavanje
         private void ucitajZaposlene()
         {
             PropertyZaposleni zaposleni = new PropertyZaposleni();
@@ -278,7 +279,7 @@ namespace DomZdravlja
                 listaRezervacija.Add(pomRezervacija);
             }
         }
-
+#endregion
 
         private void btnIzlaz_Click(object sender, EventArgs e)
         {
