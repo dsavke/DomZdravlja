@@ -8,7 +8,7 @@ namespace DomZdravlja
 {
     public enum State
     {
-        Select,
+        Main,
         Insert,
         Lookup
     }

@@ -59,7 +59,7 @@
     <Compile Include="CustomControls\CustomTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CustomTabPage.cs">
+    <Compile Include="CustomControls\CustomTabPage.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form1.cs">
@@ -77,10 +77,10 @@
     <Compile Include="Helpers\DataReaderToDataSource.cs" />
     <Compile Include="Helpers\ReflectionClass.cs" />
     <Compile Include="Helpers\SqlHelper.cs" />
-    <Compile Include="PanelTabControl.cs">
+    <Compile Include="CustomControls\PanelTabControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PanelTabControl.Designer.cs">
+    <Compile Include="CustomControls\PanelTabControl.Designer.cs">
       <DependentUpon>PanelTabControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -107,7 +107,7 @@
     <EmbeddedResource Include="GlavnaForma.resx">
       <DependentUpon>GlavnaForma.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PanelTabControl.resx">
+    <EmbeddedResource Include="CustomControls\PanelTabControl.resx">
       <DependentUpon>PanelTabControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -133,5 +133,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\recepcija.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
