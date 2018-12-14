@@ -36,7 +36,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Doktor ID")]
         [SqlName("DoktorID")]
-        
+        [ForeignKey("dbo.Zaposleni", "ZaposleniID")]
         public int DoktorID
         {
             get
@@ -51,7 +51,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Pacijent ID")]
         [SqlName("PacijentID")]
-
+        [ForeignKey("dbo.Pacijent", "PacijentID")]
         public int PacijentID
         {
             get
@@ -66,7 +66,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Dijagnoza ID")]
         [SqlName("DijagnozaID")]
-
+        [ForeignKey("dbo.Dijagnoza", "DijagnozaID")]
         public int DijagnozaID
         {
             get
@@ -80,49 +80,104 @@ namespace DomZdravlja.PropertyClass
         }
         #endregion
 
-        #region Qurey
-
-
-
-        #endregion
-
-
-
-        #region Paramerti
-
-        public List<SqlParameter> GetDeleteParameters()
-        {
-            throw new NotImplementedException();
-        }
-
+        #region Queries
         public string GetDeleteQuery()
         {
-            throw new NotImplementedException();
+            return @"
+                    DELETE FROM [dbo].[Pregled]
+                    WHERE PregledID = @PregledID
+                    ";
         }
-
-        public List<SqlParameter> GetInsertParameters()
-        {
-            throw new NotImplementedException();
-        }
-
         public string GetInsertQuery()
         {
-            throw new NotImplementedException();
+            return @"
+                  INSERT INTO [dbo].[Pregled]
+                           ([DoktorID]
+                           ,[PacijentID]
+                           ,[DijagnozaID])
+                     VALUES
+                           (@DoktorID, @PacijentID, @DijagnozaID)
+                    ";
         }
 
         public string GetSelectQuery()
         {
-            throw new NotImplementedException();
+            return @"
+                  SELECT [PregledID]
+                      ,[DoktorID]
+                      ,[PacijentID]
+                      ,[DijagnozaID]
+                  FROM [dbo].[Pregled]
+                    ";
         }
-
-        public List<SqlParameter> GetUpdateParameters()
-        {
-            throw new NotImplementedException();
-        }
-
         public string GetUpdateQuery()
         {
-            throw new NotImplementedException();
+            return @"
+                        UPDATE [dbo].[Pregled]
+                           SET [DoktorID] = @DoktorID
+                              ,[PacijentID] = @PacijentID
+                              ,[DijagnozaID] = @DijagnozaID
+                         WHERE   WHERE PregledID = @PregledID";
+        }
+        #endregion
+
+
+
+        #region Parametri
+        public List<SqlParameter> GetDeleteParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@PregledID", System.Data.SqlDbType.Int);
+                parameter.Value = pregledID;
+                list.Add(parameter);
+            }
+            return list;
+        }
+        public List<SqlParameter> GetInsertParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@DoktorID", System.Data.SqlDbType.Int);
+                parameter.Value = doktorID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@PacijentID", System.Data.SqlDbType.Int);
+                parameter.Value = pacijentID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@DijagnozaID", System.Data.SqlDbType.Int);
+                parameter.Value = dijagnozaID;
+                list.Add(parameter);
+            }
+            return list;
+        }
+        public List<SqlParameter> GetUpdateParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@PregledID", System.Data.SqlDbType.Int);
+                parameter.Value = pregledID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@DoktorID", System.Data.SqlDbType.Int);
+                parameter.Value = doktorID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@PacijentID", System.Data.SqlDbType.Int);
+                parameter.Value = pacijentID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@DijagnozaID", System.Data.SqlDbType.Int);
+                parameter.Value = dijagnozaID;
+                list.Add(parameter);
+            }
+            return list;
         }
         #endregion
 

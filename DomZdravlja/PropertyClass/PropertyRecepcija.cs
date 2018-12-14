@@ -41,7 +41,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Prijem zaposleni ID")]
         [SqlName("PrijemZaposleniID")]
         [ForeignKey("dbo.Zaposleni", "ZaposleniID")]
-        public int PrijemZaposlenihID
+        public int PrijemZaposleniID
         {
             get
             {
@@ -181,15 +181,88 @@ namespace DomZdravlja.PropertyClass
         #region Parametri
         public List<SqlParameter> GetDeleteParameters()
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@PrijemID", System.Data.SqlDbType.Int);
+                parameter.Value = prijemID;
+                list.Add(parameter);
+            }
+            return list;
         }
         public List<SqlParameter> GetInsertParameters()
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@PrijemZaposleniID", System.Data.SqlDbType.Int);
+                parameter.Value = prijemZaposleniID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@PacijentID", System.Data.SqlDbType.Int);
+                parameter.Value = pacijentID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@DoktorID", System.Data.SqlDbType.Int);
+                parameter.Value = doktorID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@Prioritet", System.Data.SqlDbType.TinyInt);
+                parameter.Value = prioritet;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@VrijemePrijema", System.Data.SqlDbType.DateTime);
+                parameter.Value = vrijemePrijema;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@VrijemeOtpusta", System.Data.SqlDbType.DateTime);
+                parameter.Value = vrijemeOtpusta;
+                list.Add(parameter);
+            }
+            return list;
         }
         public List<SqlParameter> GetUpdateParameters()
         {
-            throw new NotImplementedException();
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@PrijemID", System.Data.SqlDbType.Int);
+                parameter.Value = prijemID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@PrijemZaposleniID", System.Data.SqlDbType.Int);
+                parameter.Value = prijemZaposleniID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@PacijentID", System.Data.SqlDbType.Int);
+                parameter.Value = pacijentID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@DoktorID", System.Data.SqlDbType.Int);
+                parameter.Value = doktorID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@Prioritet", System.Data.SqlDbType.TinyInt);
+                parameter.Value = prioritet;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@VrijemePrijema", System.Data.SqlDbType.DateTime);
+                parameter.Value = vrijemePrijema;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@VrijemeOtpusta", System.Data.SqlDbType.DateTime);
+                parameter.Value = vrijemeOtpusta;
+                list.Add(parameter);
+            }
+            return list;
         }
         #endregion
 

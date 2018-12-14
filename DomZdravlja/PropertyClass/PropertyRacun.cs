@@ -52,7 +52,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Zaposleni ID")]
         [SqlName("ZaposleniID")]
-
+        [ForeignKey("dbo.Zaposleni", "ZaposleniID")]
         public int ZaposleniID
         {
             get
@@ -82,7 +82,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Pacijent ID")]
         [SqlName("PacijentID")]
-
+        [ForeignKey("dbo.Pacijent", "PacijentID")]
         public int PacijentID
         {
             get
@@ -96,41 +96,113 @@ namespace DomZdravlja.PropertyClass
         }
         #endregion
 
-        #region Paramteri
-
-        public List<SqlParameter> GetDeleteParameters()
-        {
-            throw new NotImplementedException();
-        }
-
+        #region queries
         public string GetDeleteQuery()
         {
-            throw new NotImplementedException();
+            return @"
+                     DELETE FROM [dbo].[Racun]
+                        WHERE RacunID = @RacunID
+                    ";
         }
-
-        public List<SqlParameter> GetInsertParameters()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetInsertQuery()
-        {
-            throw new NotImplementedException();
-        }
-
         public string GetSelectQuery()
         {
-            throw new NotImplementedException();
+            return @"
+                  SELECT [RacunID]
+                      ,[VrijemeIzdavanja]
+                      ,[ZaposleniID]
+                      ,[Popust]
+                      ,[PacijentID]
+                  FROM [dbo].[Racun]
+                    ";
         }
-
-        public List<SqlParameter> GetUpdateParameters()
-        {
-            throw new NotImplementedException();
-        }
-
         public string GetUpdateQuery()
         {
-            throw new NotImplementedException();
+            return @"
+                        UPDATE [dbo].[Racun]
+                           SET [VrijemeIzdavanja] = @VrijemeIzdavanja
+                              ,[ZaposleniID] = @ZaposleniID
+                              ,[Popust] = @Popust
+                              ,[PacijentID] = @PacijentID
+                         WHERE RacunID = @RacunID";
+        }
+        public string GetInsertQuery()
+        {
+            return @"
+                   INSERT INTO [dbo].[Racun]
+                       ([VrijemeIzdavanja]
+                       ,[ZaposleniID]
+                       ,[Popust]
+                       ,[PacijentID])
+                   VALUES
+                        (@VrijemeIzdavanja, @ZaposleniID, @Popust, @PacijentID)";
+        }
+        #endregion
+
+        #region Parameteri
+        public List<SqlParameter> GetDeleteParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@RacunID", System.Data.SqlDbType.Int);
+                parameter.Value = racunID;
+                list.Add(parameter);
+            }
+            return list;
+        }
+        public List<SqlParameter> GetInsertParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@VrijemeIzdavanja", System.Data.SqlDbType.DateTime);
+                parameter.Value = vrijemeIzdavanja;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@ZaposleniID", System.Data.SqlDbType.Int);
+                parameter.Value = zaposleniID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@Popust", System.Data.SqlDbType.Decimal);
+                parameter.Value = popust;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@PacijentID", System.Data.SqlDbType.Int);
+                parameter.Value = pacijentID;
+                list.Add(parameter);
+            }
+            return list;
+        }
+        public List<SqlParameter> GetUpdateParameters()
+        {
+            List<SqlParameter> list = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@RacunID", System.Data.SqlDbType.Int);
+                parameter.Value = racunID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@VrijemeIzdavanja", System.Data.SqlDbType.DateTime);
+                parameter.Value = vrijemeIzdavanja;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@ZaposleniID", System.Data.SqlDbType.Int);
+                parameter.Value = zaposleniID;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@Popust", System.Data.SqlDbType.Decimal);
+                parameter.Value = popust;
+                list.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@PacijentID", System.Data.SqlDbType.Int);
+                parameter.Value = pacijentID;
+                list.Add(parameter);
+            }
+            return list;
         }
         #endregion
     }
