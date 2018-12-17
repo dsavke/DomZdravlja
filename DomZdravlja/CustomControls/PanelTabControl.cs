@@ -13,6 +13,8 @@ namespace DomZdravlja
     public partial class PanelTabControl : UserControl
     {
 
+        public event EventHandler ControlClick;
+
         public Image Ikona
         {
             get
@@ -57,6 +59,12 @@ namespace DomZdravlja
         private void PanelTabControl_MouseLeave(object sender, EventArgs e)
         {
             this.BackColor = Color.FromArgb(0, 67, 127);
+        }
+
+        private void PanelTabControl_Click(object sender, EventArgs e)
+        {
+            if (ControlClick != null)
+                ControlClick(sender, e);
         }
     }
 }

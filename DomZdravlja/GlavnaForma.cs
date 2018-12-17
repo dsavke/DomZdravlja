@@ -16,6 +16,8 @@ namespace DomZdravlja
     public partial class GlavnaForma : Form
     {
 
+        private PropertyInterface myProperty;
+        private CustomToolStrip CustomToolStrip;
         PropertyZaposleni Logovan = new PropertyZaposleni();
 
         public GlavnaForma()
@@ -58,7 +60,24 @@ namespace DomZdravlja
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tabControl.SelectedTab.Controls.Add(new CustomToolStrip());
+            //MessageBox.Show("sda " + tabControl.SelectedIndex);
+            if (tabControl.SelectedIndex != -1)
+            {
+                myProperty = new PropertyZaposleni();
+                CustomToolStrip = new CustomToolStrip(myProperty);
+                CustomToolStrip.DodajClick += CustomToolStrip_DodajClick;
+                tabControl.SelectedTab.Controls.Add(CustomToolStrip);
+            }
+            //tabControl.SelectedTab.Controls.Add(new CustomToolStrip());
+            //tabControl.SelectedTab.Controls.Add(new CustomToolStrip(new PropertyZaposleni()));
+            
+        }
+
+        private void CustomToolStrip_DodajClick(object sender, EventArgs e)
+        {
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Insert, Naziv = "DODAVANJE" };
+            tabControl.TabPages.Add(tabPage);
+            postaviFokus();
         }
 
         private void ucitajOrdinaciju()
@@ -66,7 +85,7 @@ namespace DomZdravlja
             ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
 
             PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POCETNA");
-            panelTabControl.MouseClick += Pocetna_MouseClick;
+           // panelTabControl.MouseClick += Pocetna_MouseClick;
             PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("rezervacija"), "REDOSLIJED DOLAZAKA");
             panelTabControl3.MouseClick += RedoslijedDolazaka_MouseClick;
             PanelTabControl panelTabControl4 = new PanelTabControl((Image)resources.GetObject("karton"), "KARTON");
@@ -94,7 +113,7 @@ namespace DomZdravlja
 
 
             PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POCETNA");
-            panelTabControl.MouseClick += Pocetna_MouseClick;
+            //panelTabControl.MouseClick += Pocetna_MouseClick;
             PanelTabControl panelTabControl1 = new PanelTabControl((Image)resources.GetObject("rezervacija"), "RECEPCIJA");
             panelTabControl1.MouseClick += Recepcija_MouseClick;
             PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("pacijent"), "PACIJENT");
@@ -118,7 +137,8 @@ namespace DomZdravlja
             ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
 
             PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POCETNA");
-            panelTabControl.MouseClick += Pocetna_MouseClick;
+            // panelTabControl.MouseClick += Pocetna_MouseClick;
+            panelTabControl.ControlClick += Pocetna_ControlClick; //Pocetna_MouseClick;
             PanelTabControl panelTabControl1 = new PanelTabControl((Image)resources.GetObject("zaposleni"), "ZAPOSLENI");
             panelTabControl1.MouseClick += Zaposleni_MouseClick;
             PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("pacijent"), "PACIJENT");
@@ -140,14 +160,24 @@ namespace DomZdravlja
 
         }
 
+        private void Pocetna_ControlClick(object sender, EventArgs e)
+        {
+            zatvriSve();
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "POCETNA" };
+            tabControl.Controls.Add(tabPage);
+            postaviFokus();
+        }
+
         private void postaviFokus()
         {
+            //MessageBox.Show("" + (tabControl.TabPages.Count - 1));
             tabControl.TabPages[tabControl.TabPages.Count - 1].Focus();
             tabControl.SelectedIndex = tabControl.TabPages.Count - 1;
         }
 
         private void Cjenovnik_MouseClick(object sender, MouseEventArgs e)
         {
+            zatvriSve();
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "CJENOVNIK" };
             tabControl.Controls.Add(tabPage);
             postaviFokus();
@@ -155,20 +185,22 @@ namespace DomZdravlja
 
         private void Zaposleni_MouseClick(object sender, MouseEventArgs e)
         {
+            zatvriSve();
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "ZAPOSLEN" };
             tabControl.Controls.Add(tabPage);
             postaviFokus();
         }
 
-        private void Pocetna_MouseClick(object sender, MouseEventArgs e)
+        /*private void Pocetna_MouseClick(object sender, MouseEventArgs e)
         {
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "POCETNA" };
             tabControl.Controls.Add(tabPage);
             postaviFokus();
-        }
+        }*/
 
         private void RedoslijedDolazaka_MouseClick(object sender, MouseEventArgs e)
         {
+            zatvriSve();
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "REDOSLJED DOLAZAKA" };
             tabControl.Controls.Add(tabPage);
             postaviFokus();
@@ -176,6 +208,7 @@ namespace DomZdravlja
 
         private void Karton_MouseClick(object sender, MouseEventArgs e)
         {
+            zatvriSve();
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "KARTON" };
             tabControl.Controls.Add(tabPage);
             postaviFokus();
@@ -183,6 +216,7 @@ namespace DomZdravlja
 
         private void Pregled_MouseClick(object sender, MouseEventArgs e)
         {
+            zatvriSve();
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "PREGLED" };
             tabControl.Controls.Add(tabPage);
             postaviFokus();
@@ -201,6 +235,7 @@ namespace DomZdravlja
 
         private void Recepcija_MouseClick(object sender, MouseEventArgs e)
         {
+            zatvriSve();
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "RECEPCIJA" };
             tabControl.Controls.Add(tabPage);
             postaviFokus();
@@ -208,6 +243,7 @@ namespace DomZdravlja
 
         private void Pacijent_MouseClick(object sender, MouseEventArgs e)
         {
+            zatvriSve();
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "PACIJENT" };
             tabControl.Controls.Add(tabPage);
             postaviFokus();
@@ -215,9 +251,19 @@ namespace DomZdravlja
 
         private void Racun_MouseClick(object sender, MouseEventArgs e)
         {
+            zatvriSve();
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "RACUN" };
             tabControl.Controls.Add(tabPage);
             postaviFokus();
+        }
+
+        private void zatvriSve()
+        {
+            for(int i = 0; i < tabControl.TabPages.Count; i++)
+            {
+                tabControl.TabPages.RemoveAt(i);
+                i--;
+            }
         }
 
     }

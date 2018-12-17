@@ -42,6 +42,7 @@
             this.ikonica.Size = new System.Drawing.Size(32, 32);
             this.ikonica.TabIndex = 0;
             this.ikonica.TabStop = false;
+            this.ikonica.Click += new System.EventHandler(this.PanelTabControl_Click);
             this.ikonica.MouseEnter += new System.EventHandler(this.PanelTabControl_MouseEnter);
             this.ikonica.MouseLeave += new System.EventHandler(this.PanelTabControl_MouseLeave);
             // 
@@ -55,6 +56,7 @@
             this.lblNaziv.Size = new System.Drawing.Size(99, 20);
             this.lblNaziv.TabIndex = 1;
             this.lblNaziv.Text = "RECEPCIJA";
+            this.lblNaziv.Click += new System.EventHandler(this.PanelTabControl_Click);
             this.lblNaziv.MouseEnter += new System.EventHandler(this.PanelTabControl_MouseEnter);
             this.lblNaziv.MouseLeave += new System.EventHandler(this.PanelTabControl_MouseLeave);
             // 
@@ -67,6 +69,7 @@
             this.Controls.Add(this.ikonica);
             this.Name = "PanelTabControl";
             this.Size = new System.Drawing.Size(266, 54);
+            this.Click += new System.EventHandler(this.PanelTabControl_Click);
             this.MouseEnter += new System.EventHandler(this.PanelTabControl_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.PanelTabControl_MouseLeave);
             ((System.ComponentModel.ISupportInitialize)(this.ikonica)).EndInit();

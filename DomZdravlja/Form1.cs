@@ -40,7 +40,7 @@ namespace DomZdravlja
         {
 
             InitializeComponent();
-            ucitajZaposlene();
+           // ucitajZaposlene();
 
         }
 
@@ -296,27 +296,33 @@ namespace DomZdravlja
 
         private void dugme()
         {
-            bool provjera = false;
-            if (txtKorisnickoIme.Text != "")   
-            foreach (var item in listaZaposlenih)
-            {
-                if (item.KorisnickoIme.Equals(txtKorisnickoIme.Text))
-                {
-                    if (item.Password.Equals(txtLozinka.Text))
-                    {
-                        GlavnaForma glavnaForma = new GlavnaForma(item);
-                        this.Hide();
-                        glavnaForma.Show();                        
-                    }
-                    else
-                        MessageBox.Show("Pogrešna lozinka!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    provjera = true;
-                    break;
-                }
-            }
-            if (!provjera)
-                MessageBox.Show("Pogrešno korisničko ime!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+            GlavnaForma glavnaForma = new GlavnaForma(new PropertyZaposleni());
+            this.Hide();
+            glavnaForma.Show();
+
+
+            /* bool provjera = false;
+             if (txtKorisnickoIme.Text != "")   
+             foreach (var item in listaZaposlenih)
+             {
+                 if (item.KorisnickoIme.Equals(txtKorisnickoIme.Text))
+                 {
+                     if (item.Password.Equals(txtLozinka.Text))
+                     {
+                         GlavnaForma glavnaForma = new GlavnaForma(item);
+                         this.Hide();
+                         glavnaForma.Show();                        
+                     }
+                     else
+                         MessageBox.Show("Pogrešna lozinka!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                     provjera = true;
+                     break;
+                 }
+             }
+             if (!provjera)
+                 MessageBox.Show("Pogrešno korisničko ime!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+ */
         }
 
         private void btnIzlaz_MouseEnter(object sender, EventArgs e)

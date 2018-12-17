@@ -115,7 +115,7 @@
             this.tsbtnDodaj.Size = new System.Drawing.Size(58, 22);
             this.tsbtnDodaj.Text = "Dodaj";
             this.tsbtnDodaj.ToolTipText = "Dodaj";
-            this.tsbtnDodaj.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.tsbtnDodaj.Click += new System.EventHandler(this.tsbtnDodaj_Click);
             // 
             // tsbtnAzuriraj
             // 

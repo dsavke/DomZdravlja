@@ -12,6 +12,11 @@ namespace DomZdravlja.CustomControls
 {
     public partial class CustomToolStrip : UserControl
     {
+
+        PropertyInterface PropertyInterface;
+
+        public event EventHandler DodajClick;
+
         public CustomToolStrip()
         {
             InitializeComponent();
@@ -19,9 +24,19 @@ namespace DomZdravlja.CustomControls
 
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        public CustomToolStrip(PropertyInterface propertyInterface)
         {
+            InitializeComponent();
+            toolStrip1.GripStyle = ToolStripGripStyle.Hidden;
+            PropertyInterface = propertyInterface;
+        }
 
+        private void tsbtnDodaj_Click(object sender, EventArgs e)
+        {
+            if (DodajClick != null)
+                DodajClick(sender, e);
+            /* tabPage = new CustomTabPage() { State = State.Insert, Naziv = "DODAVANJE"};
+            ((this.Parent as CustomTabPage).Parent as CustomTabControl).TabPages.Add(tabPage);*/
         }
     }
 }
