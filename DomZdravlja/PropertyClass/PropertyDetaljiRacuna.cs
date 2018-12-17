@@ -22,6 +22,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Detalji racuna ID")]
         [SqlName("DetaljiRacunaID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
         public int DetaljiRacunaID
         {
@@ -37,6 +38,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Racun ID")]
         [SqlName("RacunID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.Racun", "RacunID")]
       
         public int RacunID
@@ -53,6 +55,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Cijena ID")]
         [SqlName("CijenaID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.Cjenovnik", "CjenovnikID")]
 
         public int CijenaID
@@ -69,6 +72,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Kolicina")]
         [SqlName("Kolicina")]
+        [GenerateComponent(ComponentType.Tekst)]
 
         public int Kolicina
         {

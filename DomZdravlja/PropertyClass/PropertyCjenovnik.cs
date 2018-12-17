@@ -22,6 +22,7 @@ namespace DomZdravlja.PropertyClass
         #region Property
         [DisplayName("Cjenovnik ID")]
         [SqlName("CjenovnikID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
         public int CjenovnikID
         {
@@ -37,7 +38,8 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Naziv usluge")]
         [SqlName("NazivUsluge")]
-    
+        [GenerateComponent(ComponentType.Tekst)]
+
         public string NazivUsluge
         {
             get
@@ -52,7 +54,8 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Cijena usluge")]
         [SqlName("CijenaUsluge")]
-        
+        [GenerateComponent(ComponentType.Tekst)]
+
         public decimal CijenaUsluge
         {
             get
@@ -67,7 +70,8 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Datum uspostavljanja cijene")]
         [SqlName("DatumUspostavljanjaCijene")]
-      
+        [GenerateComponent(ComponentType.Datum)]
+
         public DateTime DatumUspostavljanjaCijene
         {
             get
@@ -82,6 +86,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Aktivno")]
         [SqlName("Aktivno")]
+        [GenerateComponent(ComponentType.Tekst)]
         [Invisible]
 
         public int Aktivno

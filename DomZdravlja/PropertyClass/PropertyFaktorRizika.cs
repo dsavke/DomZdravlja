@@ -21,6 +21,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Faktor rizika ID")]
         [SqlName("FaktorRizikaID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
         public int FaktorRizikaID
         {
@@ -36,6 +37,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Naziv rizika")]
         [SqlName("NazivRizika")]
+        [GenerateComponent(ComponentType.Tekst)]
 
         public string NazivRizika
         {
@@ -51,6 +53,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Opis")]
         [SqlName("Opis")]
+        [GenerateComponent(ComponentType.Tekst)]
 
         public string Opis
         {

@@ -22,6 +22,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("FRKID")]
         [SqlName("FRKID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
         public int FRKID
         {
@@ -37,6 +38,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Faktor rizika ID")]
         [SqlName("FaktorRizikaID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.FaktorRizika", "FaktorRizikaID")]
         
         public int FaktorRizikaID
@@ -53,6 +55,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Karton ID")]
         [SqlName("KartonID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.Karton", "PacijentID")]
 
         public int KartonID

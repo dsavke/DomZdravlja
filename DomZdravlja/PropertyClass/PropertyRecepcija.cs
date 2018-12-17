@@ -25,6 +25,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Prijem ID")]
         [SqlName("PrijemID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
         public int PrijemID
         {
@@ -40,6 +41,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Prijem zaposleni ID")]
         [SqlName("PrijemZaposleniID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.Zaposleni", "ZaposleniID")]
         public int PrijemZaposleniID
         {
@@ -55,6 +57,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Pacijent ID")]
         [SqlName("PacijentID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.Pacijent", "PacijentID")]
         public int PacijentID
         {
@@ -70,6 +73,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Doktor ID")]
         [SqlName("DoktorID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.Zaposleni", "ZaposleniID")]
         public int DoktorID
         {
@@ -85,6 +89,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Prioritet")]
         [SqlName("Prioritet")]
+        [GenerateComponent(ComponentType.Tekst)]
 
         public int Prioritet
         {
@@ -100,6 +105,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Vrijeme prijema")]
         [SqlName("VrijemePrijema")]
+        [GenerateComponent(ComponentType.Datum)]
 
         public DateTime VrijemePrijema
         {
@@ -115,6 +121,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Vrijeme otpusta")]
         [SqlName("VrijemeOtpusta")]
+        [GenerateComponent(ComponentType.Datum)]
 
         public DateTime VrijemeOtpusta
         {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DomZdravlja.PropertyClass
 {
-    public class PropertyOsoba:PropertyInterface
+    public class PropertyOsoba : PropertyInterface
     {
         #region Atributi
         private int osobaID;
@@ -28,6 +28,7 @@ namespace DomZdravlja.PropertyClass
         #region Property
         [DisplayName("Osoba ID")]
         [SqlName("OsobaID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
 
         public int OsobaID
@@ -44,6 +45,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Ime")]
         [SqlName("Ime")]
+        [GenerateComponent(ComponentType.Tekst)]
 
         public string Ime
         {
@@ -59,6 +61,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Prezime")]
         [SqlName("Prezime")]
+        [GenerateComponent(ComponentType.Tekst)]
 
         public string Prezime
         {
@@ -74,6 +77,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("JMB")]
         [SqlName("JMB")]
+        [GenerateComponent(ComponentType.Tekst)]
 
         public int JMB
         {
@@ -89,6 +93,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Adresa")]
         [SqlName("Adresa")]
+        [GenerateComponent(ComponentType.Tekst)]
 
         public string Adresa
         {
@@ -104,6 +109,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Kontakt")]
         [SqlName("Kontakt")]
+        [GenerateComponent(ComponentType.Tekst)]
 
         public string Kontakt
         {
@@ -119,6 +125,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Pol")]
         [SqlName("Pol")]
+        [GenerateComponent(ComponentType.Tekst)]
 
         public char Pol
         {
@@ -134,6 +141,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Mjesto rodjenja")]
         [SqlName("MjestoRodjenja")]
+        [GenerateComponent(ComponentType.Tekst)]
 
         public string MjestoRodjenja
         {
@@ -149,6 +157,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Datum rodjenja")]
         [SqlName("DatumRodjenja")]
+        [GenerateComponent(ComponentType.Datum)]
 
         public DateTime DatumRodjenja
         {
@@ -164,6 +173,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Zivotni status")]
         [SqlName("ZivotniStatus")]
+        [GenerateComponent(ComponentType.Tekst)]
         [Invisible]
 
         public int ZivotniStatus

@@ -22,6 +22,7 @@ namespace DomZdravlja.PropertyClass
         #region Property
         [DisplayName("Rezervacija ID")]
         [SqlName("RezervacijaID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
         public int RezervacijaID
         {
@@ -37,6 +38,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Pacijent ID")]
         [SqlName("PacijentID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.Pacijent", "PacijentID")]
         public int PacijentID
         {
@@ -52,6 +54,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Vrijeme rezervacije")]
         [SqlName("VrijemeRezervacije")]
+        [GenerateComponent(ComponentType.Datum)]
         public DateTime VrijemeRezervacije
         {
             get
@@ -66,6 +69,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Termin")]
         [SqlName("Termin")]
+        [GenerateComponent(ComponentType.Datum)]
         public DateTime Termin
         {
             get
@@ -80,6 +84,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Doktor ID")]
         [SqlName("DoktorID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.Zaposleni", "ZaposleniID")]
         public int DoktorID
         {
