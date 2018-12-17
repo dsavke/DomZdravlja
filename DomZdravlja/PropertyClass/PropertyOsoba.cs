@@ -46,6 +46,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Ime")]
         [SqlName("Ime")]
         [GenerateComponent(ComponentType.Tekst)]
+        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s]*$")]
 
         public string Ime
         {
@@ -62,6 +63,8 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Prezime")]
         [SqlName("Prezime")]
         [GenerateComponent(ComponentType.Tekst)]
+        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s((\-)?)]*$")]
+
 
         public string Prezime
         {

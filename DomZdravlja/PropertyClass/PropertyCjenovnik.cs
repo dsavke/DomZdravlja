@@ -40,6 +40,8 @@ namespace DomZdravlja.PropertyClass
         [SqlName("NazivUsluge")]
         [GenerateComponent(ComponentType.Tekst)]
 
+        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z0-9\s]*$")]        
+    
         public string NazivUsluge
         {
             get
@@ -56,6 +58,8 @@ namespace DomZdravlja.PropertyClass
         [SqlName("CijenaUsluge")]
         [GenerateComponent(ComponentType.Tekst)]
 
+        [ValidatePattern(@"^[0-9]{1,5}([\.][0-9]{1,5})?$")]
+        
         public decimal CijenaUsluge
         {
             get

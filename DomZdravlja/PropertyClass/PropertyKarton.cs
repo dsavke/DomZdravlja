@@ -24,6 +24,7 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
         [ForeignKey("dbo.Pacijent", "PacijentID")]
+        [ValidatePattern(@"^\d+$")]
 
         public int PacijentID
         {
@@ -40,6 +41,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Broj Kartona")]
         [SqlName("BrojKartona")]
         [GenerateComponent(ComponentType.Tekst)]
+        [ValidatePattern(@"^\d+$")]
 
         public int KartonID
         {

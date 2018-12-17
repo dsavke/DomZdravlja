@@ -40,7 +40,8 @@ namespace DomZdravlja.PropertyClass
         [SqlName("FaktorRizikaID")]
         [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.FaktorRizika", "FaktorRizikaID")]
-        
+        [ValidatePattern(@"^\d+$")]
+
         public int FaktorRizikaID
         {
             get
@@ -57,6 +58,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("KartonID")]
         [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.Karton", "PacijentID")]
+        [ValidatePattern(@"^\d+$")]
 
         public int KartonID
         {
