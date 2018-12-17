@@ -73,7 +73,12 @@ namespace DomZdravlja
             else if (Logovan.RadnoMjesto == "Kancelarija") ucitajKancelariju();
 
             //tabControl.Enabled = false;
+            
+        }
 
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tabControl.SelectedTab.Controls.Add(new CustomToolStrip());
         }
 
         private void ucitajOrdinaciju()
