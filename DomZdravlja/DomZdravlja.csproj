@@ -57,9 +57,6 @@
     <Compile Include="AttributeClass\PrimaryKey.cs" />
     <Compile Include="AttributeClass\SqlName.cs" />
     <Compile Include="AttributeClass\Invisible.cs" />
-    <Compile Include="CustomControls\.Designer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="CustomControls\CustomTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -68,6 +65,9 @@
     </Compile>
     <Compile Include="CustomControls\CustomToolStrip.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\CustomToolStrip.Designer.cs">
+      <DependentUpon>CustomToolStrip.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
