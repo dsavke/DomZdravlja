@@ -164,6 +164,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Zivotni status")]
         [SqlName("ZivotniStatus")]
+        [Invisible]
 
         public int ZivotniStatus
         {
