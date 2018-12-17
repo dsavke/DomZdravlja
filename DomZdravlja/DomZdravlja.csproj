@@ -101,6 +101,30 @@
     <Compile Include="PropertyClass\PropertyKartonDijagnoza.cs" />
     <Compile Include="PropertyInterface.cs" />
     <Compile Include="State.cs" />
+    <Compile Include="UCDatum.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCDatum.Designer.cs">
+      <DependentUpon>UCDatum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCLookup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCLookup.Designer.cs">
+      <DependentUpon>UCLookup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCRadioButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCRadioButton.Designer.cs">
+      <DependentUpon>UCRadioButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCTekst.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCTekst.Designer.cs">
+      <DependentUpon>UCTekst.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -119,6 +143,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UCDatum.resx">
+      <DependentUpon>UCDatum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCLookup.resx">
+      <DependentUpon>UCLookup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCRadioButton.resx">
+      <DependentUpon>UCRadioButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCTekst.resx">
+      <DependentUpon>UCTekst.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
