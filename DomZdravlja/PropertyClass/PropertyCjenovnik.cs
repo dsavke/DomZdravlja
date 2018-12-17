@@ -19,7 +19,6 @@ namespace DomZdravlja.PropertyClass
         private int aktivno;
         #endregion
 
-
         #region Property
         [DisplayName("Cjenovnik ID")]
         [SqlName("CjenovnikID")]
@@ -83,6 +82,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Aktivno")]
         [SqlName("Aktivno")]
+        [Invisible]
 
         public int Aktivno
         {
