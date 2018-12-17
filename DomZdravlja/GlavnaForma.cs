@@ -43,7 +43,7 @@ namespace DomZdravlja
             
             ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
 
-            PanelTabControl panelTabControl =  new PanelTabControl((Image)resources.GetObject("recepcija"), "POCETNA");
+            /*PanelTabControl panelTabControl =  new PanelTabControl((Image)resources.GetObject("recepcija"), "POCETNA");
             PanelTabControl panelTabControl1 = new PanelTabControl((Image)resources.GetObject("recepcija"), "RECEPCIJA");
             PanelTabControl panelTabControl2 = new PanelTabControl((Image)resources.GetObject("recepcija"), "ZAPOSLENI");
             PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("recepcija"), "PACIJENTI");
@@ -55,19 +55,41 @@ namespace DomZdravlja
             panelGlavniTab.Controls.Add(panelTabControl3);
             panelGlavniTab.Controls.Add(panelTabControl4);
 
-            CustomTabPage tabPage = new CustomTabPage() { Naziv = "RECEPCIJA", State = State.Main };
-            CustomTabPage tabPage1 = new CustomTabPage() { Naziv = "PACIJENT", State = State.Insert };
-            CustomTabPage tabPage2= new CustomTabPage() { Naziv = "ZAPOSLENI", State = State.Lookup };
+
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "RECEPCIJA" };
+            CustomTabPage tabPage1 = new CustomTabPage() { State = State.Insert, Naziv = "PACIJENT" };
+            CustomTabPage tabPage2= new CustomTabPage() { State = State.Lookup, Naziv = "ZAPOSLENI" };
 
             tabControl.TabPages.Add(tabPage);
             tabControl.TabPages.Add(tabPage1);
             tabControl.TabPages.Add(tabPage2);
 
             tabControl.TabPages[2].Focus();
-            tabControl.SelectedIndex = 2;
+            tabControl.SelectedIndex = 2;*/
+
+
+            if (Logovan.RadnoMjesto == "Recepcija") ucitajRecepciju();
+            else if (Logovan.RadnoMjesto == "Ordinacija") ucitajOrdinaciju();
+            else if (Logovan.RadnoMjesto == "Kancelarija") ucitajKancelariju();
 
             //tabControl.Enabled = false;
 
         }
+
+        private void ucitajOrdinaciju()
+        {
+
+        }
+
+        private void ucitajRecepciju()
+        {
+
+        }
+
+        private void ucitajKancelariju()
+        {
+
+        }
+
     }
 }

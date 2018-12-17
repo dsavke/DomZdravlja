@@ -15,7 +15,7 @@ namespace DomZdravlja
         public string Naziv
         {
             get { return base.Text; }
-            set { base.Text = value + "     "; }
+            set { base.Text = value + (State == State.Main?"":"     "); }
         }
 
        
