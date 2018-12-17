@@ -132,9 +132,32 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="Resources\recepcija.png" />
+    <None Include="Resources\cjenovnik.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\karton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\odjava.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pacijent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pocetna.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pregled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\racun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rezervacija.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaposleni.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
