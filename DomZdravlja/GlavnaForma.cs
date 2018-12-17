@@ -16,7 +16,7 @@ namespace DomZdravlja
     public partial class GlavnaForma : Form
     {
 
-        PropertyZaposleni Logovan;
+        PropertyZaposleni Logovan = new PropertyZaposleni();
 
         public GlavnaForma()
         {
@@ -68,6 +68,9 @@ namespace DomZdravlja
             tabControl.SelectedIndex = 2;*/
 
 
+            Logovan.RadnoMjesto = "Kancelarija";
+
+
             if (Logovan.RadnoMjesto == "Recepcija") ucitajRecepciju();
             else if (Logovan.RadnoMjesto == "Ordinacija") ucitajOrdinaciju();
             else if (Logovan.RadnoMjesto == "Kancelarija") ucitajKancelariju();
@@ -81,11 +84,17 @@ namespace DomZdravlja
             ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
 
             PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POCETNA");
+            panelTabControl.MouseClick += Pocetna_MouseClick;
             PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("rezervacija"), "REDOSLIJED DOLAZAKA");
-            PanelTabControl panelTabControl4 = new PanelTabControl((Image)resources.GetObject("karton"), "KARTOTEKA");
+            panelTabControl.MouseClick += RedoslijedDolazaka_MouseClick;
+            PanelTabControl panelTabControl4 = new PanelTabControl((Image)resources.GetObject("karton"), "KARTON");
+            panelTabControl.MouseClick += Karton_MouseClick;
             PanelTabControl panelTabControl5 = new PanelTabControl((Image)resources.GetObject("pregled"), "PREGLED");
+            panelTabControl.MouseClick += Pregled_MouseClick;
             PanelTabControl panelTabControl6 = new PanelTabControl((Image)resources.GetObject("odjava"), "ODJAVA");
+            panelTabControl.MouseClick += Odjava_MouseClick;
 
+         
             panelGlavniTab.Controls.Add(panelTabControl);
             panelGlavniTab.Controls.Add(panelTabControl3);
             panelGlavniTab.Controls.Add(panelTabControl4);
@@ -95,28 +104,108 @@ namespace DomZdravlja
 
         }
 
+       
+
         private void ucitajRecepciju()
         {
             ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
 
-            PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POCETNA");
-            PanelTabControl panelTabControl1 = new PanelTabControl((Image)resources.GetObject("recepcija"), "RECEPCIJA");
-            PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("pacijent"), "PACIJENT");
-            PanelTabControl panelTabControl2 = new PanelTabControl((Image)resources.GetObject("racun"), "RACUN");
-            
 
+            PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POCETNA");
+            panelTabControl.MouseClick += Pocetna_MouseClick;
+            PanelTabControl panelTabControl1 = new PanelTabControl((Image)resources.GetObject("rezervacija"), "RECEPCIJA");
+            panelTabControl.MouseClick += Recepcija_MouseClick;
+            PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("pacijent"), "PACIJENT");
+            panelTabControl.MouseClick += Pacijent_MouseClick;
+            PanelTabControl panelTabControl2 = new PanelTabControl((Image)resources.GetObject("racun"), "RACUN");
+            panelTabControl.MouseClick += Racun_MouseClick;
+            PanelTabControl panelTabControl6 = new PanelTabControl((Image)resources.GetObject("odjava"), "ODJAVA");
+            panelTabControl.MouseClick += Odjava_MouseClick;
 
             panelGlavniTab.Controls.Add(panelTabControl);
             panelGlavniTab.Controls.Add(panelTabControl1);
             panelGlavniTab.Controls.Add(panelTabControl3);
             panelGlavniTab.Controls.Add(panelTabControl2);
-            
+            panelGlavniTab.Controls.Add(panelTabControl6);
+
         }
 
+      
         private void ucitajKancelariju()
         {
             ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
 
+            PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POCETNA");
+            panelTabControl.MouseClick += Pocetna_MouseClick;
+            PanelTabControl panelTabControl1 = new PanelTabControl((Image)resources.GetObject("zaposleni"), "ZAPOSLENI");
+            panelTabControl.MouseClick += Zaposleni_MouseClick;
+            PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("pacijent"), "PACIJENT");
+            panelTabControl.MouseClick += Pacijent_MouseClick;
+            PanelTabControl panelTabControl4 = new PanelTabControl((Image)resources.GetObject("cjenovnik"), "CJENOVNIK");
+            panelTabControl.MouseClick += Cjenovnik_MouseClick;
+            PanelTabControl panelTabControl2 = new PanelTabControl((Image)resources.GetObject("racun"), "RACUN");
+            panelTabControl.MouseClick += Racun_MouseClick;
+            PanelTabControl panelTabControl6 = new PanelTabControl((Image)resources.GetObject("odjava"), "ODJAVA");
+            panelTabControl.MouseClick += Odjava_MouseClick;
+
+            panelGlavniTab.Controls.Add(panelTabControl);
+            panelGlavniTab.Controls.Add(panelTabControl1);
+            panelGlavniTab.Controls.Add(panelTabControl3);
+            panelGlavniTab.Controls.Add(panelTabControl4);
+            panelGlavniTab.Controls.Add(panelTabControl2);
+            panelGlavniTab.Controls.Add(panelTabControl6);
+
+
+        }
+
+        private void Cjenovnik_MouseClick(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Zaposleni_MouseClick(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Pocetna_MouseClick(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RedoslijedDolazaka_MouseClick(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Karton_MouseClick(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Pregled_MouseClick(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Odjava_MouseClick(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Recepcija_MouseClick(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Pacijent_MouseClick(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Racun_MouseClick(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
     }
