@@ -21,6 +21,7 @@ namespace DomZdravlja.PropertyClass
         private char pol;
         private string mjestoRodjenja;
         private DateTime datumRodjenja;
+        private int zivotniStatus;
         #endregion
 
 
@@ -160,6 +161,22 @@ namespace DomZdravlja.PropertyClass
                 datumRodjenja = value;
             }
         }
+
+        [DisplayName("Zivotni status")]
+        [SqlName("ZivotniStatus")]
+
+        public int ZivotniStatus
+        {
+            get
+            {
+                return zivotniStatus;
+            }
+            set
+            {
+                zivotniStatus = value;
+            }
+        }
+
         #endregion
 
         #region Query
@@ -182,9 +199,10 @@ namespace DomZdravlja.PropertyClass
                        ,Kontakt
                        ,Pol
                        ,MjestoRodjenja
-                       ,DatumRodjenja)
+                       ,DatumRodjenja
+                       ,ZivotniStatus)
                     VALUES
-                       (@Ime,@Prezime,@JMB,@Adresa,@Kontakt,@Pol,@MjestoRodjenja,@DatumRodjenja)
+                       (@Ime,@Prezime,@JMB,@Adresa,@Kontakt,@Pol,@MjestoRodjenja,@DatumRodjenja,@ZivotniStatus)
                     ";
         }
 
@@ -192,13 +210,14 @@ namespace DomZdravlja.PropertyClass
         {
             return @"UPDATE dbo.Osoba
                        SET [Ime] = @Ime,
-                       [Prezime] = @Prezime;
-                       [JMB] = @JMB;
-                       [Adresa] = @Adresa;
-                       [Kontakt] = @Kontakt;
-                       [Pol] = @Pol;
-                       [MjestoRodjenja] = @MjestoRodjenja;
-                       [DatumRodjenja] = @DatumRodjenja;
+                       [Prezime] = @Prezime,
+                       [JMB] = @JMB,
+                       [Adresa] = @Adresa,
+                       [Kontakt] = @Kontakt,
+                       [Pol] = @Pol,
+                       [MjestoRodjenja] = @MjestoRodjenja,
+                       [DatumRodjenja] = @DatumRodjenja,
+                       [ZivotniStatus] = @ZivotniStatus
                    where OsobaID = @OsobaID";
         }
 
@@ -214,6 +233,7 @@ namespace DomZdravlja.PropertyClass
                        ,Pol
                        ,MjestoRodjenja
                        ,DatumRodjenja
+                       ,ZivotniStatus
                       FROM dbo.Osoba
                     ";
         }
@@ -270,6 +290,10 @@ namespace DomZdravlja.PropertyClass
             DatumRodjenja.Value = datumRodjenja;
             list.Add(DatumRodjenja);
 
+            SqlParameter ZivotniStatus = new SqlParameter("@ZivotniStatus", System.Data.SqlDbType.TinyInt);
+            ZivotniStatus.Value = zivotniStatus;
+            list.Add(ZivotniStatus);
+
             return list;
         }       
        
@@ -312,6 +336,10 @@ namespace DomZdravlja.PropertyClass
             SqlParameter DatumRodjenja = new SqlParameter("@DatumRodjenja", System.Data.SqlDbType.Date);
             DatumRodjenja.Value = datumRodjenja;
             list.Add(DatumRodjenja);
+
+            SqlParameter ZivotniStatus = new SqlParameter("@ZivotniStatus", System.Data.SqlDbType.TinyInt);
+            ZivotniStatus.Value = zivotniStatus;
+            list.Add(ZivotniStatus);
 
             return list;
         }
