@@ -30,21 +30,22 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomToolStrip));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsbtnDodaj = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnAzuriraj = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnPretraga = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnObrisi = new System.Windows.Forms.ToolStripButton();
             this.tsbtnZadnji = new System.Windows.Forms.ToolStripButton();
             this.tsbtnDOle = new System.Windows.Forms.ToolStripButton();
             this.tsbtnGore = new System.Windows.Forms.ToolStripButton();
             this.tsbtnPrvi = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbtnDodaj = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnAzuriraj = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnPretraga = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnObrisi = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
             this.toolStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbtnZadnji,
@@ -62,40 +63,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(395, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // tsbtnDodaj
-            // 
-            this.tsbtnDodaj.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnDodaj.Image")));
-            this.tsbtnDodaj.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnDodaj.Name = "tsbtnDodaj";
-            this.tsbtnDodaj.Size = new System.Drawing.Size(58, 22);
-            this.tsbtnDodaj.Text = "Dodaj";
-            this.tsbtnDodaj.ToolTipText = "Dodaj";
-            this.tsbtnDodaj.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // tsbtnAzuriraj
-            // 
-            this.tsbtnAzuriraj.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnAzuriraj.Image")));
-            this.tsbtnAzuriraj.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnAzuriraj.Name = "tsbtnAzuriraj";
-            this.tsbtnAzuriraj.Size = new System.Drawing.Size(67, 22);
-            this.tsbtnAzuriraj.Text = "Ažuriraj";
-            // 
-            // tsbtnPretraga
-            // 
-            this.tsbtnPretraga.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnPretraga.Image")));
-            this.tsbtnPretraga.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnPretraga.Name = "tsbtnPretraga";
-            this.tsbtnPretraga.Size = new System.Drawing.Size(71, 22);
-            this.tsbtnPretraga.Text = "Pretraga";
-            // 
-            // tsbtnObrisi
-            // 
-            this.tsbtnObrisi.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnObrisi.Image")));
-            this.tsbtnObrisi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnObrisi.Name = "tsbtnObrisi";
-            this.tsbtnObrisi.Size = new System.Drawing.Size(58, 22);
-            this.tsbtnObrisi.Text = "Obriši";
             // 
             // tsbtnZadnji
             // 
@@ -139,6 +106,40 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsbtnDodaj
+            // 
+            this.tsbtnDodaj.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnDodaj.Image")));
+            this.tsbtnDodaj.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnDodaj.Name = "tsbtnDodaj";
+            this.tsbtnDodaj.Size = new System.Drawing.Size(58, 22);
+            this.tsbtnDodaj.Text = "Dodaj";
+            this.tsbtnDodaj.ToolTipText = "Dodaj";
+            this.tsbtnDodaj.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // tsbtnAzuriraj
+            // 
+            this.tsbtnAzuriraj.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnAzuriraj.Image")));
+            this.tsbtnAzuriraj.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnAzuriraj.Name = "tsbtnAzuriraj";
+            this.tsbtnAzuriraj.Size = new System.Drawing.Size(67, 22);
+            this.tsbtnAzuriraj.Text = "Ažuriraj";
+            // 
+            // tsbtnPretraga
+            // 
+            this.tsbtnPretraga.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnPretraga.Image")));
+            this.tsbtnPretraga.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnPretraga.Name = "tsbtnPretraga";
+            this.tsbtnPretraga.Size = new System.Drawing.Size(71, 22);
+            this.tsbtnPretraga.Text = "Pretraga";
+            // 
+            // tsbtnObrisi
+            // 
+            this.tsbtnObrisi.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnObrisi.Image")));
+            this.tsbtnObrisi.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnObrisi.Name = "tsbtnObrisi";
+            this.tsbtnObrisi.Size = new System.Drawing.Size(58, 22);
+            this.tsbtnObrisi.Text = "Obriši";
             // 
             // CustomToolStrip
             // 
