@@ -41,9 +41,9 @@ namespace DomZdravlja
         {
             //provjera koje je radno mjesto pa na osnovu radnog mjesta generise tabPanel
             
-            ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
+            /*ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
 
-            /*PanelTabControl panelTabControl =  new PanelTabControl((Image)resources.GetObject("recepcija"), "POCETNA");
+            PanelTabControl panelTabControl =  new PanelTabControl((Image)resources.GetObject("recepcija"), "POCETNA");
             PanelTabControl panelTabControl1 = new PanelTabControl((Image)resources.GetObject("recepcija"), "RECEPCIJA");
             PanelTabControl panelTabControl2 = new PanelTabControl((Image)resources.GetObject("recepcija"), "ZAPOSLENI");
             PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("recepcija"), "PACIJENTI");
@@ -65,8 +65,8 @@ namespace DomZdravlja
             tabControl.TabPages.Add(tabPage2);
 
             tabControl.TabPages[2].Focus();
-            tabControl.SelectedIndex = 2;*/
-
+            tabControl.SelectedIndex = 2;
+            */
 
             if (Logovan.RadnoMjesto == "Recepcija") ucitajRecepciju();
             else if (Logovan.RadnoMjesto == "Ordinacija") ucitajOrdinaciju();
