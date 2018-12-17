@@ -21,6 +21,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Pacijent ID")]
         [SqlName("PacijentID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
         [ForeignKey("dbo.Pacijent", "PacijentID")]
 
@@ -38,6 +39,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Broj Kartona")]
         [SqlName("BrojKartona")]
+        [GenerateComponent(ComponentType.Tekst)]
 
         public int KartonID
         {

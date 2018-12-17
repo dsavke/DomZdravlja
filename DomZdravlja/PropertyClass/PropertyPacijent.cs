@@ -23,6 +23,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Pacijent ID")]
         [SqlName("PacijentID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
         public int PacijentID
         {
@@ -38,7 +39,8 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Doktor ID")]
         [SqlName("DoktorID")]
-        
+        [GenerateComponent(ComponentType.Tekst)]
+
         public int DoktorID
         {
             get
@@ -53,6 +55,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Osoba ID")]
         [SqlName("OsobaID")]
+        [GenerateComponent(ComponentType.Tekst)]
 
         public int OsobaID
         {
@@ -68,6 +71,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Broj kartona")]
         [SqlName("BrojKartona")]
+        [GenerateComponent(ComponentType.Tekst)]
 
         public int BrojKartona
         {
@@ -83,6 +87,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Osiguran")]
         [SqlName("Osiguran")]
+        [GenerateComponent(ComponentType.Tekst)]
 
         public int Osiguran
         {

@@ -21,6 +21,7 @@ namespace DomZdravlja.PropertyClass
         #region Property
         [DisplayName("Pregled ID")]
         [SqlName("PregledID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
         public int PregledID
         {
@@ -36,6 +37,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Doktor ID")]
         [SqlName("DoktorID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.Zaposleni", "ZaposleniID")]
         public int DoktorID
         {
@@ -51,6 +53,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Pacijent ID")]
         [SqlName("PacijentID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.Pacijent", "PacijentID")]
         public int PacijentID
         {
@@ -66,6 +69,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Dijagnoza ID")]
         [SqlName("DijagnozaID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.Dijagnoza", "DijagnozaID")]
         public int DijagnozaID
         {

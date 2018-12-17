@@ -304,7 +304,7 @@ namespace DomZdravlja
                 {
                     if (item.Password.Equals(txtLozinka.Text))
                     {
-                        GlavnaForma glavnaForma = new GlavnaForma();
+                        GlavnaForma glavnaForma = new GlavnaForma(item);
                         this.Hide();
                         glavnaForma.Show();                        
                     }

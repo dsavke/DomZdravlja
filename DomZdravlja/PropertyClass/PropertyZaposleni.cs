@@ -24,6 +24,7 @@ namespace DomZdravlja.PropertyClass
         #region Property
         [DisplayName("Zaposleni ID")]
         [SqlName("ZaposleniID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
         public int ZaposleniID
         {
@@ -39,6 +40,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Zvanje")]
         [SqlName("Zvanje")]
+        [GenerateComponent(ComponentType.Tekst)]
         public string Zvanje
         {
             get
@@ -52,6 +54,7 @@ namespace DomZdravlja.PropertyClass
         }
         [DisplayName("Radno mjesto")]
         [SqlName("RadnoMjesto")]
+        [GenerateComponent(ComponentType.Tekst)]
         public string RadnoMjesto
         {
             get
@@ -65,6 +68,7 @@ namespace DomZdravlja.PropertyClass
         }
         [DisplayName("Korisnicko ime")]
         [SqlName("KorisnickoIme")]
+        [GenerateComponent(ComponentType.Tekst)]
         public string KorisnickoIme
         {
             get
@@ -78,6 +82,7 @@ namespace DomZdravlja.PropertyClass
         }
         [DisplayName("Password")]
         [SqlName("Password")]
+        [GenerateComponent(ComponentType.Tekst)]
         public string Password
         {
             get
@@ -91,6 +96,7 @@ namespace DomZdravlja.PropertyClass
         }
         [DisplayName("Tip Zaposlenog")]
         [SqlName("TipZaposlenog")]
+        [GenerateComponent(ComponentType.Tekst)]
         public string TipZaposlenog
         {
             get
@@ -104,6 +110,7 @@ namespace DomZdravlja.PropertyClass
         }
         [DisplayName("Osoba ID")]
         [SqlName("OsobaID")]
+        [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.Osoba", "OsobaID")]
         public int OsobaID
         {
