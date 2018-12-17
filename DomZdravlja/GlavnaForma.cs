@@ -78,16 +78,44 @@ namespace DomZdravlja
 
         private void ucitajOrdinaciju()
         {
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
+
+            PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POCETNA");
+            PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("rezervacija"), "REDOSLIJED DOLAZAKA");
+            PanelTabControl panelTabControl4 = new PanelTabControl((Image)resources.GetObject("karton"), "KARTOTEKA");
+            PanelTabControl panelTabControl5 = new PanelTabControl((Image)resources.GetObject("pregled"), "PREGLED");
+            PanelTabControl panelTabControl6 = new PanelTabControl((Image)resources.GetObject("odjava"), "ODJAVA");
+
+            panelGlavniTab.Controls.Add(panelTabControl);
+            panelGlavniTab.Controls.Add(panelTabControl3);
+            panelGlavniTab.Controls.Add(panelTabControl4);
+            panelGlavniTab.Controls.Add(panelTabControl5);
+            panelGlavniTab.Controls.Add(panelTabControl6);
+
 
         }
 
         private void ucitajRecepciju()
         {
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
 
+            PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POCETNA");
+            PanelTabControl panelTabControl1 = new PanelTabControl((Image)resources.GetObject("recepcija"), "RECEPCIJA");
+            PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("pacijent"), "PACIJENT");
+            PanelTabControl panelTabControl2 = new PanelTabControl((Image)resources.GetObject("racun"), "RACUN");
+            
+
+
+            panelGlavniTab.Controls.Add(panelTabControl);
+            panelGlavniTab.Controls.Add(panelTabControl1);
+            panelGlavniTab.Controls.Add(panelTabControl3);
+            panelGlavniTab.Controls.Add(panelTabControl2);
+            
         }
 
         private void ucitajKancelariju()
         {
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
 
         }
 
