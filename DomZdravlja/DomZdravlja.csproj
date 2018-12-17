@@ -63,6 +63,12 @@
     <Compile Include="CustomControls\CustomTabPage.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CustomControls\CustomToolStrip.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\CustomToolStrip.Designer.cs">
+      <DependentUpon>CustomToolStrip.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     <Compile Include="UCTekst.Designer.cs">
       <DependentUpon>UCTekst.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CustomControls\CustomToolStrip.resx">
+      <DependentUpon>CustomToolStrip.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

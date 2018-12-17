@@ -119,6 +119,7 @@
             this.tabControl.ShowClosingMessage = false;
             this.tabControl.Size = new System.Drawing.Size(908, 800);
             this.tabControl.TabIndex = 1;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // GlavnaForma
             // 
