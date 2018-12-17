@@ -40,33 +40,6 @@ namespace DomZdravlja
         private void GlavnaForma_Load(object sender, EventArgs e)
         {
             //provjera koje je radno mjesto pa na osnovu radnog mjesta generise tabPanel
-            
-            /*ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
-
-            PanelTabControl panelTabControl =  new PanelTabControl((Image)resources.GetObject("recepcija"), "POCETNA");
-            PanelTabControl panelTabControl1 = new PanelTabControl((Image)resources.GetObject("recepcija"), "RECEPCIJA");
-            PanelTabControl panelTabControl2 = new PanelTabControl((Image)resources.GetObject("recepcija"), "ZAPOSLENI");
-            PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("recepcija"), "PACIJENTI");
-            PanelTabControl panelTabControl4 = new PanelTabControl((Image)resources.GetObject("recepcija"), "KARTOTEKA");
-
-            panelGlavniTab.Controls.Add(panelTabControl);
-            panelGlavniTab.Controls.Add(panelTabControl1);
-            panelGlavniTab.Controls.Add(panelTabControl2);
-            panelGlavniTab.Controls.Add(panelTabControl3);
-            panelGlavniTab.Controls.Add(panelTabControl4);
-
-
-            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "RECEPCIJA" };
-            CustomTabPage tabPage1 = new CustomTabPage() { State = State.Insert, Naziv = "PACIJENT" };
-            CustomTabPage tabPage2= new CustomTabPage() { State = State.Lookup, Naziv = "ZAPOSLENI" };
-
-            tabControl.TabPages.Add(tabPage);
-            tabControl.TabPages.Add(tabPage1);
-            tabControl.TabPages.Add(tabPage2);
-
-            tabControl.TabPages[2].Focus();
-            tabControl.SelectedIndex = 2;
-            */
 
             Logovan.RadnoMjesto = "Kancelarija";
 
@@ -75,8 +48,12 @@ namespace DomZdravlja
             else if (Logovan.RadnoMjesto == "Ordinacija") ucitajOrdinaciju();
             else if (Logovan.RadnoMjesto == "Kancelarija") ucitajKancelariju();
 
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "POCETNA" };
+            tabControl.Controls.Add(tabPage);
+            tabControl.TabPages[tabControl.TabPages.Count - 1].Focus();
+
             //tabControl.Enabled = false;
-            
+
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -91,13 +68,13 @@ namespace DomZdravlja
             PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POCETNA");
             panelTabControl.MouseClick += Pocetna_MouseClick;
             PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("rezervacija"), "REDOSLIJED DOLAZAKA");
-            panelTabControl.MouseClick += RedoslijedDolazaka_MouseClick;
+            panelTabControl3.MouseClick += RedoslijedDolazaka_MouseClick;
             PanelTabControl panelTabControl4 = new PanelTabControl((Image)resources.GetObject("karton"), "KARTON");
-            panelTabControl.MouseClick += Karton_MouseClick;
+            panelTabControl4.MouseClick += Karton_MouseClick;
             PanelTabControl panelTabControl5 = new PanelTabControl((Image)resources.GetObject("pregled"), "PREGLED");
-            panelTabControl.MouseClick += Pregled_MouseClick;
+            panelTabControl5.MouseClick += Pregled_MouseClick;
             PanelTabControl panelTabControl6 = new PanelTabControl((Image)resources.GetObject("odjava"), "ODJAVA");
-            panelTabControl.MouseClick += Odjava_MouseClick;
+            panelTabControl6.MouseClick += Odjava_MouseClick;
 
          
             panelGlavniTab.Controls.Add(panelTabControl);
@@ -119,13 +96,13 @@ namespace DomZdravlja
             PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POCETNA");
             panelTabControl.MouseClick += Pocetna_MouseClick;
             PanelTabControl panelTabControl1 = new PanelTabControl((Image)resources.GetObject("rezervacija"), "RECEPCIJA");
-            panelTabControl.MouseClick += Recepcija_MouseClick;
+            panelTabControl1.MouseClick += Recepcija_MouseClick;
             PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("pacijent"), "PACIJENT");
-            panelTabControl.MouseClick += Pacijent_MouseClick;
+            panelTabControl3.MouseClick += Pacijent_MouseClick;
             PanelTabControl panelTabControl2 = new PanelTabControl((Image)resources.GetObject("racun"), "RACUN");
-            panelTabControl.MouseClick += Racun_MouseClick;
+            panelTabControl2.MouseClick += Racun_MouseClick;
             PanelTabControl panelTabControl6 = new PanelTabControl((Image)resources.GetObject("odjava"), "ODJAVA");
-            panelTabControl.MouseClick += Odjava_MouseClick;
+            panelTabControl6.MouseClick += Odjava_MouseClick;
 
             panelGlavniTab.Controls.Add(panelTabControl);
             panelGlavniTab.Controls.Add(panelTabControl1);
@@ -143,15 +120,15 @@ namespace DomZdravlja
             PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POCETNA");
             panelTabControl.MouseClick += Pocetna_MouseClick;
             PanelTabControl panelTabControl1 = new PanelTabControl((Image)resources.GetObject("zaposleni"), "ZAPOSLENI");
-            panelTabControl.MouseClick += Zaposleni_MouseClick;
+            panelTabControl1.MouseClick += Zaposleni_MouseClick;
             PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("pacijent"), "PACIJENT");
-            panelTabControl.MouseClick += Pacijent_MouseClick;
+            panelTabControl3.MouseClick += Pacijent_MouseClick;
             PanelTabControl panelTabControl4 = new PanelTabControl((Image)resources.GetObject("cjenovnik"), "CJENOVNIK");
-            panelTabControl.MouseClick += Cjenovnik_MouseClick;
+            panelTabControl4.MouseClick += Cjenovnik_MouseClick;
             PanelTabControl panelTabControl2 = new PanelTabControl((Image)resources.GetObject("racun"), "RACUN");
-            panelTabControl.MouseClick += Racun_MouseClick;
+            panelTabControl2.MouseClick += Racun_MouseClick;
             PanelTabControl panelTabControl6 = new PanelTabControl((Image)resources.GetObject("odjava"), "ODJAVA");
-            panelTabControl.MouseClick += Odjava_MouseClick;
+            panelTabControl6.MouseClick += Odjava_MouseClick;
 
             panelGlavniTab.Controls.Add(panelTabControl);
             panelGlavniTab.Controls.Add(panelTabControl1);
@@ -163,54 +140,84 @@ namespace DomZdravlja
 
         }
 
+        private void postaviFokus()
+        {
+            tabControl.TabPages[tabControl.TabPages.Count - 1].Focus();
+            tabControl.SelectedIndex = tabControl.TabPages.Count - 1;
+        }
+
         private void Cjenovnik_MouseClick(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "CJENOVNIK" };
+            tabControl.Controls.Add(tabPage);
+            postaviFokus();
         }
 
         private void Zaposleni_MouseClick(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "ZAPOSLEN" };
+            tabControl.Controls.Add(tabPage);
+            postaviFokus();
         }
 
         private void Pocetna_MouseClick(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "POCETNA" };
+            tabControl.Controls.Add(tabPage);
+            postaviFokus();
         }
 
         private void RedoslijedDolazaka_MouseClick(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "REDOSLJED DOLAZAKA" };
+            tabControl.Controls.Add(tabPage);
+            postaviFokus();
         }
 
         private void Karton_MouseClick(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "KARTON" };
+            tabControl.Controls.Add(tabPage);
+            postaviFokus();
         }
 
         private void Pregled_MouseClick(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "PREGLED" };
+            tabControl.Controls.Add(tabPage);
+            postaviFokus();
         }
 
         private void Odjava_MouseClick(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            DialogResult dialogResult = MessageBox.Show("Da li zelite izaci iz programa?", "Warnning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if(dialogResult == DialogResult.Yes)
+            {
+                this.Hide();
+                Form1 form1 = new Form1();
+                form1.Show();
+            }
         }
 
         private void Recepcija_MouseClick(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "RECEPCIJA" };
+            tabControl.Controls.Add(tabPage);
+            postaviFokus();
         }
 
         private void Pacijent_MouseClick(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "PACIJENT" };
+            tabControl.Controls.Add(tabPage);
+            postaviFokus();
         }
 
         private void Racun_MouseClick(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "RACUN" };
+            tabControl.Controls.Add(tabPage);
+            postaviFokus();
         }
 
     }
