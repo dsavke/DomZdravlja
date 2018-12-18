@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="AttributeClass\ForeignKey.cs" />
     <Compile Include="AttributeClass\GenerateComponent.cs" />
+    <Compile Include="AttributeClass\MainSearch.cs" />
     <Compile Include="AttributeClass\PrimaryKey.cs" />
     <Compile Include="AttributeClass\SqlName.cs" />
     <Compile Include="AttributeClass\Invisible.cs" />

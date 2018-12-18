@@ -9,13 +9,14 @@ namespace DomZdravlja.AttributeClass
     [AttributeUsage(AttributeTargets.Property)]
     public class ForeignKey : Attribute
     {
-        public string referencedTable;
-        public string referencedColumn;
+        public string ReferencedTable { get; set; }
+        public string ReferencedColumn { get; set; }
 
         public ForeignKey(string referencedTable, string referencedColumn)
         {
-            this.referencedTable = referencedTable;
-            this.referencedColumn = referencedColumn;
+            this.ReferencedTable = referencedTable;
+            this.ReferencedColumn = referencedColumn;
         }
+
     }
 }
