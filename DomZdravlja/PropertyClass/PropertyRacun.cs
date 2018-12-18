@@ -56,6 +56,8 @@ namespace DomZdravlja.PropertyClass
         [SqlName("ZaposleniID")]
         [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.Zaposleni", "ZaposleniID")]
+        [ValidatePattern(@"^\d+$")]
+
         public int ZaposleniID
         {
             get
@@ -71,6 +73,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Popust")]
         [SqlName("Popust")]
         [GenerateComponent(ComponentType.Tekst)]
+        [ValidatePattern(@"^\d+$")]
 
         public decimal Popust
         {
@@ -88,6 +91,8 @@ namespace DomZdravlja.PropertyClass
         [SqlName("PacijentID")]
         [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.Pacijent", "PacijentID")]
+        [ValidatePattern(@"^\d+$")]
+
         public int PacijentID
         {
             get

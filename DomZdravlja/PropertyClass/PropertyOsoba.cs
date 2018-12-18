@@ -80,6 +80,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("JMB")]
         [SqlName("JMB")]
+        [ValidatePattern(@"^[A-Za-z0-9]{5,13}$")]
         [GenerateComponent(ComponentType.Tekst)]
 
         public int JMB
@@ -95,10 +96,12 @@ namespace DomZdravlja.PropertyClass
         }
 
         [DisplayName("Adresa")]
-        [SqlName("Adresa")]
+        [SqlName("Adresa")] 
+        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z0-9\s((\-)?)\/\.]*$")]
+        
         [GenerateComponent(ComponentType.Tekst)]
 
-        public string Adresa
+    public string Adresa
         {
             get
             {
@@ -129,6 +132,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Pol")]
         [SqlName("Pol")]
         [GenerateComponent(ComponentType.Tekst)]
+        [ValidatePattern(@"^[A-Z]{1}$")]
 
         public char Pol
         {
@@ -145,6 +149,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Mjesto rodjenja")]
         [SqlName("MjestoRodjenja")]
         [GenerateComponent(ComponentType.Tekst)]
+        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s((\-)?)]*$")]
 
         public string MjestoRodjenja
         {

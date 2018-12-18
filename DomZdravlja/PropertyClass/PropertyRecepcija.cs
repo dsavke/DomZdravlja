@@ -43,6 +43,8 @@ namespace DomZdravlja.PropertyClass
         [SqlName("PrijemZaposleniID")]
         [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.Zaposleni", "ZaposleniID")]
+        [ValidatePattern(@"^\d+$")]
+
         public int PrijemZaposleniID
         {
             get
@@ -59,6 +61,8 @@ namespace DomZdravlja.PropertyClass
         [SqlName("PacijentID")]
         [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.Pacijent", "PacijentID")]
+        [ValidatePattern(@"^\d+$")]
+
         public int PacijentID
         {
             get
@@ -75,6 +79,8 @@ namespace DomZdravlja.PropertyClass
         [SqlName("DoktorID")]
         [GenerateComponent(ComponentType.Tekst)]
         [ForeignKey("dbo.Zaposleni", "ZaposleniID")]
+        [ValidatePattern(@"^\d+$")]
+
         public int DoktorID
         {
             get
@@ -89,6 +95,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Prioritet")]
         [SqlName("Prioritet")]
+        [ValidatePattern(@"^\d+$")]
         [GenerateComponent(ComponentType.Tekst)]
 
         public int Prioritet
