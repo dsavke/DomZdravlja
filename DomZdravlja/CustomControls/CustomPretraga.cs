@@ -7,55 +7,58 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DomZdravlja.AttributeClass;
 
 namespace DomZdravlja.CustomControls
 {
     public partial class CustomPretraga : UserControl
     {
-        public string tabName;
+        private PropertyInterface myProperty;
+        private MainSearch search;
 
         public CustomPretraga()
         {
             InitializeComponent();
         }
-        public CustomPretraga(string tabName)
+        public CustomPretraga(PropertyInterface property, MainSearch search)
         {
             InitializeComponent();
-            this.tabName = tabName;
+            this.myProperty = property;
+            this.search = search;
         }
 
         private void CustomPretraga_Load(object sender, EventArgs e)
         {
-            if (tabName == "ZAPOSLENI" || tabName == "PACIJENT")
-            {
-                UCTekst ucIme = new UCTekst();
-                ucIme.Naziv = "Ime";
-                flowLayoutPanel.Controls.Add(ucIme);
+            //if (tabName == "ZAPOSLENI" || tabName == "PACIJENT")
+            //{
+            //    UCTekst ucIme = new UCTekst();
+            //    ucIme.Naziv = "Ime";
+            //    flowLayoutPanel.Controls.Add(ucIme);
 
-                UCTekst ucPrezime = new UCTekst();
-                ucPrezime.Naziv = "Prezime";
-                flowLayoutPanel.Controls.Add(ucPrezime);
+            //    UCTekst ucPrezime = new UCTekst();
+            //    ucPrezime.Naziv = "Prezime";
+            //    flowLayoutPanel.Controls.Add(ucPrezime);
 
-                UCDatum ucDatum = new UCDatum();
-                ucDatum.Naziv = "Datum rodjenja";
-                flowLayoutPanel.Controls.Add(ucDatum);
-            }
-            else if ( tabName == "RACUN")
-            {
-                UCDatum ucDatum = new UCDatum();
-                ucDatum.Naziv = "Datum";
-                flowLayoutPanel.Controls.Add(ucDatum);
-            }
-            else if (tabName == "CJENOVNIK")
-            {
-                UCTekst ucNaziv = new UCTekst();
-                ucNaziv.Naziv = "Naziv usluge";
-                flowLayoutPanel.Controls.Add(ucNaziv);
-            }
-            else
-            {
-                lblPretraga.Visible = false;
-            }
+            //    UCDatum ucDatum = new UCDatum();
+            //    ucDatum.Naziv = "Datum rodjenja";
+            //    flowLayoutPanel.Controls.Add(ucDatum);
+            //}
+            //else if ( tabName == "RACUN")
+            //{
+            //    UCDatum ucDatum = new UCDatum();
+            //    ucDatum.Naziv = "Datum";
+            //    flowLayoutPanel.Controls.Add(ucDatum);
+            //}
+            //else if (tabName == "CJENOVNIK")
+            //{
+            //    UCTekst ucNaziv = new UCTekst();
+            //    ucNaziv.Naziv = "Naziv usluge";
+            //    flowLayoutPanel.Controls.Add(ucNaziv);
+            //}
+            //else
+            //{
+            //    lblPretraga.Visible = false;
+            //}
 
         }
     }

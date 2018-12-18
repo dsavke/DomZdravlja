@@ -26,6 +26,7 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
         [Invisible]
+        [MainSearch(null)]
         public int RacunID
         {
             get
@@ -40,6 +41,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Vrijeme izdavanja")]
         [SqlName("VrijemeIzdavanja")]
+        [MainSearch(null)]
         [GenerateComponent(ComponentType.Datum)]
 
         public DateTime VrijemeIzdavanja

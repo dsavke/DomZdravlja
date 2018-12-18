@@ -13,6 +13,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DomZdravlja.AttributeClass;
+using System.Reflection;
 
 namespace DomZdravlja
 {
@@ -313,7 +315,59 @@ namespace DomZdravlja
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-              
+            
+        }
+
+        private void dodajPoljaZaPretragu()
+        {
+            if (tabControl.SelectedIndex != -1 && myProperty != null)
+            {
+                
+                FlowLayoutPanel flowLayoutPanel = new FlowLayoutPanel();
+                flowLayoutPanel.Location = new Point(0, 34);
+                flowLayoutPanel.Width = 908;
+                flowLayoutPanel.Height = 766;
+                tabControl.SelectedTab.Controls.Add(flowLayoutPanel);
+
+                var type = myProperty.GetType();
+                var properties = type.GetProperties();
+
+                foreach (PropertyInfo property in properties)
+                {
+                    if (property.IsDefined(typeof(MainSearch)))
+                    {
+                        
+                        ComponentType componentType;
+                        componentType = property.GetCustomAttribute<GenerateComponent>().ComponentType;
+
+
+                        if (componentType == ComponentType.Tekst)
+                        {
+                            UCTekst uCTekst = new UCTekst();
+                            uCTekst.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                            flowLayoutPanel.Controls.Add(uCTekst);
+                        }
+                        else if (componentType == ComponentType.Datum)
+                        {
+                            UCDatum uCDatum = new UCDatum();
+                            uCDatum.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                            flowLayoutPanel.Controls.Add(uCDatum);
+                        }
+                        else if (componentType == ComponentType.RadioButton)
+                        {
+                            UCRadioButton uCRadioButton = new UCRadioButton();
+                            uCRadioButton.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                            flowLayoutPanel.Controls.Add(uCRadioButton);
+                        }
+                        else if (componentType == ComponentType.Lookup)
+                        {
+                            UCLookup uCLookup = new UCLookup();
+                            uCLookup.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                            flowLayoutPanel.Controls.Add(uCLookup);
+                        }
+                    }
+                }
+            }
         }
 
         private void kreirajToolStrip()
@@ -325,6 +379,7 @@ namespace DomZdravlja
                 tabControl.SelectedTab.Controls.Add(CustomToolStrip);
             }
         }
+       
 
         private void CustomToolStrip_DodajClick(object sender, EventArgs e)
         {
@@ -455,6 +510,7 @@ namespace DomZdravlja
 
         }
 
+
         private void Pocetna_ControlClick(object sender, EventArgs e)
         {
             zatvoriSve();
@@ -489,6 +545,7 @@ namespace DomZdravlja
             postaviFokus();
             myProperty = new PropertyZaposleni();
             kreirajToolStrip();
+            dodajPoljaZaPretragu();
         }
 
         private void RedoslijedDolazaka_ControlClick(object sender, EventArgs e)
@@ -499,6 +556,7 @@ namespace DomZdravlja
             postaviFokus();
             myProperty = null;
             kreirajToolStrip();
+            dodajPoljaZaPretragu();
         }
 
         private void Karton_ControlClick(object sender, EventArgs e)
@@ -509,6 +567,7 @@ namespace DomZdravlja
             postaviFokus();
             myProperty = new PropertyKarton();
             kreirajToolStrip();
+            dodajPoljaZaPretragu();
         }
 
         private void Pregled_ControlClick(object sender, EventArgs e)
@@ -519,6 +578,7 @@ namespace DomZdravlja
             postaviFokus();
             myProperty = new PropertyPregled();
             kreirajToolStrip();
+            dodajPoljaZaPretragu();
         }
 
         private void Odjava_ControlClick(object sender, EventArgs e)
@@ -540,6 +600,7 @@ namespace DomZdravlja
             postaviFokus();
             myProperty = new PropertyRecepcija();
             kreirajToolStrip();
+            dodajPoljaZaPretragu();
         }
 
         private void Pacijent_ControlClick(object sender, EventArgs e)
@@ -550,6 +611,7 @@ namespace DomZdravlja
             postaviFokus();
             myProperty = new PropertyPacijent();
             kreirajToolStrip();
+            dodajPoljaZaPretragu();
         }
 
         private void Racun_ControlClick(object sender, EventArgs e)
@@ -560,6 +622,7 @@ namespace DomZdravlja
             postaviFokus();
             myProperty = new PropertyRacun();
             kreirajToolStrip();
+            dodajPoljaZaPretragu();
         }
 
         private void zatvoriSve()
