@@ -24,6 +24,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("CjenovnikID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
+        [Invisible]
         public int CjenovnikID
         {
             get

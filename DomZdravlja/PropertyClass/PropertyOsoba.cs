@@ -30,7 +30,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("OsobaID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
-
+        [Invisible]
         public int OsobaID
         {
             get

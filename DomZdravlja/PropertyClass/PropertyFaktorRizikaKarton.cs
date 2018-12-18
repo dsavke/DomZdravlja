@@ -24,6 +24,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("FRKID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
+        [Invisible]
         public int FRKID
         {
             get
@@ -38,7 +39,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Faktor rizika ID")]
         [SqlName("FaktorRizikaID")]
-        [GenerateComponent(ComponentType.Tekst)]
+        [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyFaktorRizika", "FaktorRizikaID")]
         [ValidatePattern(@"^\d+$")]
 
@@ -56,7 +57,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Karton ID")]
         [SqlName("KartonID")]
-        [GenerateComponent(ComponentType.Tekst)]
+        [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyKarton", "PacijentID")]
         [ValidatePattern(@"^\d+$")]
 

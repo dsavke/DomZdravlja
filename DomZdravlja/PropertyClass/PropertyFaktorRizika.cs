@@ -23,6 +23,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("FaktorRizikaID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
+        [Invisible]
         public int FaktorRizikaID
         {
             get

@@ -26,6 +26,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("ZaposleniID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
+        [Invisible]
         public int ZaposleniID
         {
             get
@@ -120,7 +121,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Osoba ID")]
         [SqlName("OsobaID")]
-        [GenerateComponent(ComponentType.Tekst)]
+        [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyOsoba", "OsobaID")]
 
         public int OsobaID
