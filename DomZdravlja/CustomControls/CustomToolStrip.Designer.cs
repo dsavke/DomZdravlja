@@ -72,7 +72,7 @@
             this.tsbtnZadnji.Name = "tsbtnZadnji";
             this.tsbtnZadnji.Size = new System.Drawing.Size(23, 22);
             this.tsbtnZadnji.Text = "Zadnji";
-            this.tsbtnZadnji.ToolTipText = "ZADNJI";
+            this.tsbtnZadnji.ToolTipText = "Zadnji";
             // 
             // tsbtnDOle
             // 
@@ -100,7 +100,7 @@
             this.tsbtnPrvi.Name = "tsbtnPrvi";
             this.tsbtnPrvi.Size = new System.Drawing.Size(23, 22);
             this.tsbtnPrvi.Text = "Prvi";
-            this.tsbtnPrvi.ToolTipText = "PRVI";
+            this.tsbtnPrvi.ToolTipText = "Prvi";
             // 
             // toolStripSeparator1
             // 

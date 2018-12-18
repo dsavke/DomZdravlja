@@ -61,6 +61,12 @@
     <Compile Include="AttributeClass\Invisible.cs" />
     <Compile Include="AttributeClass\ValidatePattern.cs" />
     <Compile Include="ComponentType.cs" />
+    <Compile Include="CustomControls\CustomPretraga.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\CustomPretraga.Designer.cs">
+      <DependentUpon>CustomPretraga.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\CustomTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     <Compile Include="UCTekst.Designer.cs">
       <DependentUpon>UCTekst.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CustomControls\CustomPretraga.resx">
+      <DependentUpon>CustomPretraga.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\CustomToolStrip.resx">
       <DependentUpon>CustomToolStrip.cs</DependentUpon>
     </EmbeddedResource>

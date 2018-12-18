@@ -295,8 +295,8 @@ namespace DomZdravlja
         private void GlavnaForma_Load(object sender, EventArgs e)
         {
             //provjera koje je radno mjesto pa na osnovu radnog mjesta generise tabPanel
-
-           // Logovan.RadnoMjesto = "Kancelarija";
+            
+            //Logovan.RadnoMjesto = "Kancelarija";
 
 
             if (Logovan.RadnoMjesto == "Recepcija") ucitajRecepciju();
