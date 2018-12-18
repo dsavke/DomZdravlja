@@ -1,4 +1,5 @@
-﻿using DomZdravlja.CustomControls;
+﻿using DomZdravlja.AttributeClass;
+using DomZdravlja.CustomControls;
 using DomZdravlja.Properties;
 using DomZdravlja.PropertyClass;
 using System;
@@ -8,6 +9,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -329,6 +331,49 @@ namespace DomZdravlja
             CustomTabPage tabPage = new CustomTabPage() { State = State.Insert, Naziv = "DODAVANJE" };
             tabControl.TabPages.Add(tabPage);
             postaviFokus();
+
+            FlowLayoutPanel flowLayoutPanel = new FlowLayoutPanel();
+            flowLayoutPanel.Width = 908;
+            flowLayoutPanel.Height = 800;
+            tabControl.SelectedTab.Controls.Add(flowLayoutPanel);
+
+            var type = myProperty.GetType();
+            var properties = type.GetProperties();
+
+            foreach(PropertyInfo property in properties)
+            {
+
+                ComponentType componentType;
+                componentType = property.GetCustomAttribute<GenerateComponent>().ComponentType;
+
+ 
+                    if(componentType == ComponentType.Tekst)
+                    {
+                        UCTekst uCTekst = new UCTekst();
+                        uCTekst.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                        flowLayoutPanel.Controls.Add(uCTekst);
+                    }
+                    else if (componentType == ComponentType.Datum)
+                    {
+                        UCDatum uCDatum = new UCDatum();
+                        uCDatum.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                        flowLayoutPanel.Controls.Add(uCDatum);
+                    }
+                    else if (componentType == ComponentType.RadioButton)
+                    {
+                        UCRadioButton uCRadioButton = new UCRadioButton();
+                        uCRadioButton.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                        flowLayoutPanel.Controls.Add(uCRadioButton);
+                    }
+                    else if(componentType == ComponentType.Lookup)
+                    {
+                        UCLookup uCLookup = new UCLookup();
+                        uCLookup.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                        flowLayoutPanel.Controls.Add(uCLookup);
+                    }
+               
+            }
+
         }
 
         private void ucitajOrdinaciju()

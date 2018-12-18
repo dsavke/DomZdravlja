@@ -35,17 +35,19 @@
             // lblNaziv
             // 
             this.lblNaziv.AutoSize = true;
-            this.lblNaziv.Location = new System.Drawing.Point(12, 12);
+            this.lblNaziv.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNaziv.Location = new System.Drawing.Point(12, 15);
             this.lblNaziv.Name = "lblNaziv";
-            this.lblNaziv.Size = new System.Drawing.Size(35, 13);
+            this.lblNaziv.Size = new System.Drawing.Size(45, 16);
             this.lblNaziv.TabIndex = 0;
             this.lblNaziv.Text = "label1";
             // 
             // txtValue
             // 
-            this.txtValue.Location = new System.Drawing.Point(107, 8);
+            this.txtValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValue.Location = new System.Drawing.Point(200, 13);
             this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(200, 20);
+            this.txtValue.Size = new System.Drawing.Size(290, 21);
             this.txtValue.TabIndex = 1;
             // 
             // UCTekst
@@ -55,7 +57,7 @@
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.lblNaziv);
             this.Name = "UCTekst";
-            this.Size = new System.Drawing.Size(317, 36);
+            this.Size = new System.Drawing.Size(908, 50);
             this.ResumeLayout(false);
             this.PerformLayout();
 

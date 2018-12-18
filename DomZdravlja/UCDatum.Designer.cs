@@ -35,19 +35,21 @@
             // lblNaziv
             // 
             this.lblNaziv.AutoSize = true;
-            this.lblNaziv.Location = new System.Drawing.Point(13, 11);
+            this.lblNaziv.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNaziv.Location = new System.Drawing.Point(13, 15);
             this.lblNaziv.Name = "lblNaziv";
-            this.lblNaziv.Size = new System.Drawing.Size(35, 13);
+            this.lblNaziv.Size = new System.Drawing.Size(45, 16);
             this.lblNaziv.TabIndex = 0;
             this.lblNaziv.Text = "label1";
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yy hh:mm";
+            this.dateTimePicker1.CustomFormat = "dd/MM/yy ";
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(154, 6);
+            this.dateTimePicker1.Location = new System.Drawing.Point(200, 13);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(153, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(290, 21);
             this.dateTimePicker1.TabIndex = 1;
             // 
             // UCDatum
@@ -57,7 +59,7 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.lblNaziv);
             this.Name = "UCDatum";
-            this.Size = new System.Drawing.Size(317, 36);
+            this.Size = new System.Drawing.Size(908, 50);
             this.ResumeLayout(false);
             this.PerformLayout();
 

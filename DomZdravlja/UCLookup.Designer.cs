@@ -37,16 +37,17 @@
             // lblNaziv
             // 
             this.lblNaziv.AutoSize = true;
-            this.lblNaziv.Location = new System.Drawing.Point(12, 10);
+            this.lblNaziv.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNaziv.Location = new System.Drawing.Point(12, 15);
             this.lblNaziv.Name = "lblNaziv";
-            this.lblNaziv.Size = new System.Drawing.Size(35, 13);
+            this.lblNaziv.Size = new System.Drawing.Size(45, 16);
             this.lblNaziv.TabIndex = 0;
             this.lblNaziv.Text = "label1";
             // 
             // btnLookUP
             // 
             this.btnLookUP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLookUP.Location = new System.Drawing.Point(119, 5);
+            this.btnLookUP.Location = new System.Drawing.Point(258, 12);
             this.btnLookUP.Name = "btnLookUP";
             this.btnLookUP.Size = new System.Drawing.Size(31, 23);
             this.btnLookUP.TabIndex = 1;
@@ -55,16 +56,18 @@
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(60, 8);
+            this.txtID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtID.Location = new System.Drawing.Point(200, 12);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(43, 20);
+            this.txtID.Size = new System.Drawing.Size(43, 21);
             this.txtID.TabIndex = 2;
             // 
             // txtNaziv
             // 
-            this.txtNaziv.Location = new System.Drawing.Point(169, 7);
+            this.txtNaziv.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNaziv.Location = new System.Drawing.Point(304, 12);
             this.txtNaziv.Name = "txtNaziv";
-            this.txtNaziv.Size = new System.Drawing.Size(135, 20);
+            this.txtNaziv.Size = new System.Drawing.Size(186, 21);
             this.txtNaziv.TabIndex = 3;
             // 
             // UCLookup
@@ -76,7 +79,7 @@
             this.Controls.Add(this.btnLookUP);
             this.Controls.Add(this.lblNaziv);
             this.Name = "UCLookup";
-            this.Size = new System.Drawing.Size(317, 36);
+            this.Size = new System.Drawing.Size(908, 50);
             this.ResumeLayout(false);
             this.PerformLayout();
 
