@@ -121,7 +121,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Osoba ID")]
         [SqlName("OsobaID")]
         [GenerateComponent(ComponentType.Tekst)]
-        [ForeignKey("dbo.Osoba", "OsobaID")]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyOsoba", "OsobaID")]
 
         public int OsobaID
         {

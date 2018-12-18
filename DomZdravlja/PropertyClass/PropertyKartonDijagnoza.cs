@@ -37,7 +37,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Karton ID")]
         [SqlName("KartonID")]
         [GenerateComponent(ComponentType.Tekst)]
-        [ForeignKey("dbo.Karton", "PacijentID")]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyKarton", "PacijentID")]
         [ValidatePattern(@"^\d+$")]
 
         public int KartonID
@@ -55,7 +55,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Dijeagnoza ID")]
         [SqlName("DijagnozaID")]
         [GenerateComponent(ComponentType.Tekst)]
-        [ForeignKey("dbo.Dijagnoza", "DijagnozaID")]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyDijagnoza", "DijagnozaID")]
         [ValidatePattern(@"^\d+$")]
 
         public int DijagnozaID
