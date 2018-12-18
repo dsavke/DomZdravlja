@@ -16,6 +16,7 @@ namespace DomZdravlja.PropertyClass
         private int racunID;
         private int cijenaID;
         private int kolicina;
+        private decimal sumaLinije;
         #endregion
 
         #region Property
@@ -88,6 +89,22 @@ namespace DomZdravlja.PropertyClass
                 kolicina = value;
             }
         }
+
+        [DisplayName("Suma linije")]
+        [SqlName("SumaLinije")]
+        [GenerateComponent(ComponentType.Tekst)]
+
+        public decimal SumaLinije
+        {
+            get
+            {
+                return sumaLinije;
+            }
+            set
+            {
+                sumaLinije = value;
+            }
+        }
         #endregion
 
         #region Kveriji
@@ -110,11 +127,13 @@ namespace DomZdravlja.PropertyClass
                     INSERT INTO [dbo].[DetaljiRacuna]
                                ([RacunID]
                                ,[CijenaID]
-                               ,[Kolicina])
+                               ,[Kolicina]
+                               ,[SumaLinije])
                          VALUES(
                                @RacunID
                                ,@CijenaID
-                               ,@Kolicina)
+                               ,@Kolicina
+                               ,@SumaLinije)
                     GO";
         }
 
@@ -127,6 +146,7 @@ namespace DomZdravlja.PropertyClass
                           ,[RacunID]
                           ,[CijenaID]
                           ,[Kolicina]
+                          ,[SumaLinije]
                       FROM [dbo].[DetaljiRacuna]
                     GO";
         }
@@ -140,6 +160,7 @@ namespace DomZdravlja.PropertyClass
                        SET [RacunID] = @RacunID
                           ,[CijenaID] = @CijenaID
                           ,[Kolicina] = @Kolicina
+                          ,[SumaLinije] = @SumaLinije
                      WHERE DetaljiRacunaID = @DetaljiRacunaID
                     GO";
         }
@@ -175,6 +196,10 @@ namespace DomZdravlja.PropertyClass
             Kolicina.Value = kolicina;
             list.Add(Kolicina);
 
+            SqlParameter SumaLinije = new SqlParameter("@SumaLinije", System.Data.SqlDbType.Money);
+            SumaLinije.Value = sumaLinije;
+            list.Add(SumaLinije);
+
             return list;
         }
 
@@ -197,6 +222,10 @@ namespace DomZdravlja.PropertyClass
             SqlParameter DetaljiRacunaID = new SqlParameter("@DetaljiRacunaID", System.Data.SqlDbType.Int);
             DetaljiRacunaID.Value = detaljiRacunaID;
             list.Add(DetaljiRacunaID);
+
+            SqlParameter SumaLinije = new SqlParameter("@SumaLinije", System.Data.SqlDbType.Money);
+            SumaLinije.Value = sumaLinije;
+            list.Add(SumaLinije);
 
             return list;
         }

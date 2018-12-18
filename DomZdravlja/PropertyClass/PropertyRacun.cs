@@ -17,6 +17,7 @@ namespace DomZdravlja.PropertyClass
         private int zaposleniID;
         private decimal popust;
         private int pacijentID;
+        private decimal sumaRacuna;
         #endregion
 
         #region Property
@@ -104,6 +105,22 @@ namespace DomZdravlja.PropertyClass
                 pacijentID = value;
             }
         }
+
+        [DisplayName("Suma racuna")]
+        [SqlName("SumaRacuna")]
+        [GenerateComponent(ComponentType.Tekst)]
+
+        public decimal SumaRacuna
+        {
+            get
+            {
+                return sumaRacuna;
+            }
+            set
+            {
+                sumaRacuna = value;
+            }
+        }
         #endregion
 
         #region queries
@@ -122,6 +139,7 @@ namespace DomZdravlja.PropertyClass
                       ,[ZaposleniID]
                       ,[Popust]
                       ,[PacijentID]
+                      ,[SumaRacuna]
                   FROM [dbo].[Racun]
                     ";
         }
@@ -133,6 +151,7 @@ namespace DomZdravlja.PropertyClass
                               ,[ZaposleniID] = @ZaposleniID
                               ,[Popust] = @Popust
                               ,[PacijentID] = @PacijentID
+                              ,[SumaRacuna] = @SumaRacuna
                          WHERE RacunID = @RacunID";
         }
         public string GetInsertQuery()
@@ -142,9 +161,10 @@ namespace DomZdravlja.PropertyClass
                        ([VrijemeIzdavanja]
                        ,[ZaposleniID]
                        ,[Popust]
-                       ,[PacijentID])
+                       ,[PacijentID]
+                       ,[SumaRacuna])
                    VALUES
-                        (@VrijemeIzdavanja, @ZaposleniID, @Popust, @PacijentID)";
+                        (@VrijemeIzdavanja, @ZaposleniID, @Popust, @PacijentID, @SumaRacuna)";
         }
         #endregion
 
@@ -182,6 +202,11 @@ namespace DomZdravlja.PropertyClass
                 parameter.Value = pacijentID;
                 list.Add(parameter);
             }
+            {
+                SqlParameter SumaRacuna = new SqlParameter("@SumaRacuna", System.Data.SqlDbType.Money);
+                SumaRacuna.Value = sumaRacuna;
+                list.Add(SumaRacuna);
+            }
             return list;
         }
         public List<SqlParameter> GetUpdateParameters()
@@ -211,6 +236,11 @@ namespace DomZdravlja.PropertyClass
                 SqlParameter parameter = new SqlParameter("@PacijentID", System.Data.SqlDbType.Int);
                 parameter.Value = pacijentID;
                 list.Add(parameter);
+            }
+            {
+                SqlParameter SumaRacuna = new SqlParameter("@SumaRacuna", System.Data.SqlDbType.Money);
+                SumaRacuna.Value = sumaRacuna;
+                list.Add(SumaRacuna);
             }
             return list;
         }
