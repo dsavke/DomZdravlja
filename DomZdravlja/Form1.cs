@@ -40,7 +40,7 @@ namespace DomZdravlja
         {
 
             InitializeComponent();
-           // ucitajZaposlene();
+            ucitajZaposlene();
 
         }
 
@@ -297,12 +297,7 @@ namespace DomZdravlja
         private void dugme()
         {
 
-            GlavnaForma glavnaForma = new GlavnaForma(new PropertyZaposleni());
-            this.Hide();
-            glavnaForma.Show();
-
-
-            /* bool provjera = false;
+             bool provjera = false;
              if (txtKorisnickoIme.Text != "")   
              foreach (var item in listaZaposlenih)
              {
@@ -322,7 +317,7 @@ namespace DomZdravlja
              }
              if (!provjera)
                  MessageBox.Show("Pogrešno korisničko ime!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
- */
+ 
         }
 
         private void btnIzlaz_MouseEnter(object sender, EventArgs e)
