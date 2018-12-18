@@ -131,7 +131,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Pol")]
         [SqlName("Pol")]
-        [GenerateComponent(ComponentType.Tekst)]
+        [GenerateComponent(ComponentType.RadioButton)]
         [ValidatePattern(@"^[A-Z]{1}$")]
 
         public char Pol

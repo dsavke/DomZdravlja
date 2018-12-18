@@ -78,7 +78,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Doktor ID")]
         [SqlName("DoktorID")]
-        [GenerateComponent(ComponentType.Tekst)]
+        [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "ZaposleniID")]
         [ValidatePattern(@"^\d+$")]
 
@@ -97,7 +97,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Prioritet")]
         [SqlName("Prioritet")]
         [ValidatePattern(@"^\d+$")]
-        [GenerateComponent(ComponentType.Tekst)]
+        [GenerateComponent(ComponentType.RadioButton)]
 
         public int Prioritet
         {

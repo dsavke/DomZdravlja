@@ -93,7 +93,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Osiguran")]
         [SqlName("Osiguran")]
-        [GenerateComponent(ComponentType.Tekst)]
+        [GenerateComponent(ComponentType.RadioButton)]
         [ValidatePattern(@"^\d+$")]
 
         public int Osiguran
