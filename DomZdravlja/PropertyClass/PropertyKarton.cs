@@ -19,7 +19,7 @@ namespace DomZdravlja.PropertyClass
 
         #region Property
 
-        [DisplayName("Pacijent ID")]
+        [DisplayName("Sifra pacijenta")]
         [SqlName("PacijentID")]
         [GenerateComponent(ComponentType.Lookup)]
         [PrimaryKey]

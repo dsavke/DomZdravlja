@@ -20,7 +20,7 @@ namespace DomZdravlja.PropertyClass
         #endregion
 
         #region Property
-        [DisplayName("Rezervacija ID")]
+        [DisplayName("Sifra rezervacije")]
         [SqlName("RezervacijaID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
@@ -37,7 +37,7 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Pacijent ID")]
+        [DisplayName("Sifra pacijenta")]
         [SqlName("PacijentID")]
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyPacijent", "PacijentID")]
@@ -87,7 +87,7 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Doktor ID")]
+        [DisplayName("Sifra doktora")]
         [SqlName("DoktorID")]
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "ZaposleniID")]

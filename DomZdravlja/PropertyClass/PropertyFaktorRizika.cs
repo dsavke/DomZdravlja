@@ -19,7 +19,7 @@ namespace DomZdravlja.PropertyClass
 
         #region Property
 
-        [DisplayName("Faktor rizika ID")]
+        [DisplayName("Sifra faktor rizika")]
         [SqlName("FaktorRizikaID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]

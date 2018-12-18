@@ -20,7 +20,7 @@ namespace DomZdravlja.PropertyClass
         #endregion
 
         #region Property
-        [DisplayName("Cjenovnik ID")]
+        [DisplayName("Sifra cjenovnika")]
         [SqlName("CjenovnikID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]

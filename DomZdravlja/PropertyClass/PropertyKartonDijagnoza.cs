@@ -18,7 +18,7 @@ namespace DomZdravlja.PropertyClass
         #endregion
 
         #region Property 
-        [DisplayName("Karton dijagnoza ID")]
+        [DisplayName("Sifra karton dijagnoza")]
         [SqlName("KartonDijagnozaID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
@@ -35,7 +35,7 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Karton ID")]
+        [DisplayName("Sifra kartona")]
         [SqlName("KartonID")]
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyKarton", "PacijentID")]
@@ -53,7 +53,7 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Dijeagnoza ID")]
+        [DisplayName("Sifra dijagnoze")]
         [SqlName("DijagnozaID")]
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyDijagnoza", "DijagnozaID")]

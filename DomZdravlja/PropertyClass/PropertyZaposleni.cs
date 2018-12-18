@@ -22,7 +22,7 @@ namespace DomZdravlja.PropertyClass
         #endregion
 
         #region Property
-        [DisplayName("Zaposleni ID")]
+        [DisplayName("Sifra zaposlenog")]
         [SqlName("ZaposleniID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
@@ -119,7 +119,7 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Osoba ID")]
+        [DisplayName("Sifra osobe")]
         [SqlName("OsobaID")]
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyOsoba", "OsobaID")]

@@ -26,7 +26,7 @@ namespace DomZdravlja.PropertyClass
 
 
         #region Property
-        [DisplayName("Osoba ID")]
+        [DisplayName("Sifra osobe")]
         [SqlName("OsobaID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
