@@ -40,9 +40,9 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Naziv usluge")]
         [SqlName("NazivUsluge")]
         [GenerateComponent(ComponentType.Tekst)]
-
-        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z0-9\s]*$")]        
-    
+        
+        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z0-9\s]*$")]
+        [MainSearch(null)]
         public string NazivUsluge
         {
             get

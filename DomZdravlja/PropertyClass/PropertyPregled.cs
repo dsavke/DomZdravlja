@@ -24,6 +24,7 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
         [Invisible]
+        [MainSearch(null)]
         public int PregledID
         {
             get

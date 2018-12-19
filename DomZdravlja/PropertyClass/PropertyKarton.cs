@@ -42,6 +42,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("BrojKartona")]
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"^\d+$")]
+        [MainSearch(null)]
 
         public int KartonID
         {

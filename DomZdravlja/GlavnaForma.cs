@@ -535,6 +535,7 @@ namespace DomZdravlja
             postaviFokus();
             myProperty = new PropertyCjenovnik();
             kreirajToolStrip();
+            dodajPoljaZaPretragu();
         }
 
         private void Zaposleni_ControlClick(object sender, EventArgs e)
