@@ -88,7 +88,7 @@
             // 
             // btnSacuvajPromjene
             // 
-            this.btnSacuvajPromjene.Location = new System.Drawing.Point(81, 215);
+            this.btnSacuvajPromjene.Location = new System.Drawing.Point(81, 207);
             this.btnSacuvajPromjene.Name = "btnSacuvajPromjene";
             this.btnSacuvajPromjene.Size = new System.Drawing.Size(211, 33);
             this.btnSacuvajPromjene.TabIndex = 6;
@@ -97,7 +97,7 @@
             // 
             // tbPonovljenaSifra
             // 
-            this.tbPonovljenaSifra.Location = new System.Drawing.Point(204, 154);
+            this.tbPonovljenaSifra.Location = new System.Drawing.Point(204, 149);
             this.tbPonovljenaSifra.Name = "tbPonovljenaSifra";
             this.tbPonovljenaSifra.PasswordChar = '●';
             this.tbPonovljenaSifra.Size = new System.Drawing.Size(153, 20);
@@ -105,7 +105,7 @@
             // 
             // tbNovaSifra
             // 
-            this.tbNovaSifra.Location = new System.Drawing.Point(204, 100);
+            this.tbNovaSifra.Location = new System.Drawing.Point(204, 96);
             this.tbNovaSifra.Name = "tbNovaSifra";
             this.tbNovaSifra.PasswordChar = '●';
             this.tbNovaSifra.Size = new System.Drawing.Size(153, 20);
@@ -123,7 +123,8 @@
             // 
             this.lblPonovljenaSifra.AutoSize = true;
             this.lblPonovljenaSifra.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPonovljenaSifra.Location = new System.Drawing.Point(31, 153);
+            this.lblPonovljenaSifra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(128)))), ((int)(((byte)(196)))));
+            this.lblPonovljenaSifra.Location = new System.Drawing.Point(31, 147);
             this.lblPonovljenaSifra.Name = "lblPonovljenaSifra";
             this.lblPonovljenaSifra.Size = new System.Drawing.Size(168, 20);
             this.lblPonovljenaSifra.TabIndex = 2;
@@ -133,7 +134,8 @@
             // 
             this.lblNovaSifra.AutoSize = true;
             this.lblNovaSifra.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNovaSifra.Location = new System.Drawing.Point(31, 100);
+            this.lblNovaSifra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(128)))), ((int)(((byte)(196)))));
+            this.lblNovaSifra.Location = new System.Drawing.Point(31, 94);
             this.lblNovaSifra.Name = "lblNovaSifra";
             this.lblNovaSifra.Size = new System.Drawing.Size(94, 20);
             this.lblNovaSifra.TabIndex = 1;
@@ -143,6 +145,7 @@
             // 
             this.lblStaraSifra.AutoSize = true;
             this.lblStaraSifra.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStaraSifra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(128)))), ((int)(((byte)(196)))));
             this.lblStaraSifra.Location = new System.Drawing.Point(31, 40);
             this.lblStaraSifra.Name = "lblStaraSifra";
             this.lblStaraSifra.Size = new System.Drawing.Size(126, 20);
@@ -163,6 +166,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(128)))), ((int)(((byte)(196)))));
             this.label4.Location = new System.Drawing.Point(300, 135);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(135, 20);
@@ -173,6 +177,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(128)))), ((int)(((byte)(196)))));
             this.label3.Location = new System.Drawing.Point(300, 103);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 20);
@@ -184,6 +189,7 @@
             this.label2.AutoSize = true;
             this.label2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(128)))), ((int)(((byte)(196)))));
             this.label2.Location = new System.Drawing.Point(300, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 20);
@@ -194,6 +200,7 @@
             // 
             this.lblTipZaposlenog.AutoSize = true;
             this.lblTipZaposlenog.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTipZaposlenog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(128)))), ((int)(((byte)(196)))));
             this.lblTipZaposlenog.Location = new System.Drawing.Point(453, 135);
             this.lblTipZaposlenog.Name = "lblTipZaposlenog";
             this.lblTipZaposlenog.Size = new System.Drawing.Size(51, 20);
@@ -204,6 +211,7 @@
             // 
             this.lblPrezime.AutoSize = true;
             this.lblPrezime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrezime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(128)))), ((int)(((byte)(196)))));
             this.lblPrezime.Location = new System.Drawing.Point(453, 103);
             this.lblPrezime.Name = "lblPrezime";
             this.lblPrezime.Size = new System.Drawing.Size(51, 20);
@@ -214,6 +222,7 @@
             // 
             this.lblIme.AutoSize = true;
             this.lblIme.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(128)))), ((int)(((byte)(196)))));
             this.lblIme.Location = new System.Drawing.Point(453, 71);
             this.lblIme.Name = "lblIme";
             this.lblIme.Size = new System.Drawing.Size(51, 20);
@@ -224,7 +233,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Cornsilk;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(128)))), ((int)(((byte)(196)))));
             this.label1.Location = new System.Drawing.Point(252, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(178, 20);
