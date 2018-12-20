@@ -31,6 +31,15 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PocetnaStrana));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnSacuvajPromjene = new System.Windows.Forms.Button();
+            this.tbPonovljenaSifra = new System.Windows.Forms.TextBox();
+            this.tbNovaSifra = new System.Windows.Forms.TextBox();
+            this.tbStaraSifra = new System.Windows.Forms.TextBox();
+            this.lblPonovljenaSifra = new System.Windows.Forms.Label();
+            this.lblNovaSifra = new System.Windows.Forms.Label();
+            this.lblStaraSifra = new System.Windows.Forms.Label();
+            this.btnSifra = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,19 +48,10 @@
             this.lblIme = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnSifra = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lblStaraSifra = new System.Windows.Forms.Label();
-            this.lblNovaSifra = new System.Windows.Forms.Label();
-            this.lblPonovljenaSifra = new System.Windows.Forms.Label();
-            this.tbStaraSifra = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tbNovaSifra = new System.Windows.Forms.TextBox();
-            this.tbPonovljenaSifra = new System.Windows.Forms.TextBox();
-            this.btnSacuvajPromjene = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -70,6 +70,94 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(902, 701);
             this.panel1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btnSacuvajPromjene);
+            this.panel2.Controls.Add(this.tbPonovljenaSifra);
+            this.panel2.Controls.Add(this.tbNovaSifra);
+            this.panel2.Controls.Add(this.tbStaraSifra);
+            this.panel2.Controls.Add(this.lblPonovljenaSifra);
+            this.panel2.Controls.Add(this.lblNovaSifra);
+            this.panel2.Controls.Add(this.lblStaraSifra);
+            this.panel2.Location = new System.Drawing.Point(52, 291);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(378, 261);
+            this.panel2.TabIndex = 9;
+            this.panel2.Visible = false;
+            // 
+            // btnSacuvajPromjene
+            // 
+            this.btnSacuvajPromjene.Location = new System.Drawing.Point(81, 215);
+            this.btnSacuvajPromjene.Name = "btnSacuvajPromjene";
+            this.btnSacuvajPromjene.Size = new System.Drawing.Size(211, 33);
+            this.btnSacuvajPromjene.TabIndex = 6;
+            this.btnSacuvajPromjene.Text = "Sačuvajte promjene";
+            this.btnSacuvajPromjene.UseVisualStyleBackColor = true;
+            // 
+            // tbPonovljenaSifra
+            // 
+            this.tbPonovljenaSifra.Location = new System.Drawing.Point(204, 154);
+            this.tbPonovljenaSifra.Name = "tbPonovljenaSifra";
+            this.tbPonovljenaSifra.PasswordChar = '●';
+            this.tbPonovljenaSifra.Size = new System.Drawing.Size(153, 20);
+            this.tbPonovljenaSifra.TabIndex = 5;
+            // 
+            // tbNovaSifra
+            // 
+            this.tbNovaSifra.Location = new System.Drawing.Point(204, 100);
+            this.tbNovaSifra.Name = "tbNovaSifra";
+            this.tbNovaSifra.PasswordChar = '●';
+            this.tbNovaSifra.Size = new System.Drawing.Size(153, 20);
+            this.tbNovaSifra.TabIndex = 4;
+            // 
+            // tbStaraSifra
+            // 
+            this.tbStaraSifra.Location = new System.Drawing.Point(204, 43);
+            this.tbStaraSifra.Name = "tbStaraSifra";
+            this.tbStaraSifra.PasswordChar = '●';
+            this.tbStaraSifra.Size = new System.Drawing.Size(153, 20);
+            this.tbStaraSifra.TabIndex = 3;
+            // 
+            // lblPonovljenaSifra
+            // 
+            this.lblPonovljenaSifra.AutoSize = true;
+            this.lblPonovljenaSifra.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPonovljenaSifra.Location = new System.Drawing.Point(31, 153);
+            this.lblPonovljenaSifra.Name = "lblPonovljenaSifra";
+            this.lblPonovljenaSifra.Size = new System.Drawing.Size(168, 20);
+            this.lblPonovljenaSifra.TabIndex = 2;
+            this.lblPonovljenaSifra.Text = "Potvrdite novu šifru:";
+            // 
+            // lblNovaSifra
+            // 
+            this.lblNovaSifra.AutoSize = true;
+            this.lblNovaSifra.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNovaSifra.Location = new System.Drawing.Point(31, 100);
+            this.lblNovaSifra.Name = "lblNovaSifra";
+            this.lblNovaSifra.Size = new System.Drawing.Size(94, 20);
+            this.lblNovaSifra.TabIndex = 1;
+            this.lblNovaSifra.Text = "Nova šifra:";
+            // 
+            // lblStaraSifra
+            // 
+            this.lblStaraSifra.AutoSize = true;
+            this.lblStaraSifra.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStaraSifra.Location = new System.Drawing.Point(31, 40);
+            this.lblStaraSifra.Name = "lblStaraSifra";
+            this.lblStaraSifra.Size = new System.Drawing.Size(126, 20);
+            this.lblStaraSifra.TabIndex = 0;
+            this.lblStaraSifra.Text = "Trenutna šifra:";
+            // 
+            // btnSifra
+            // 
+            this.btnSifra.Location = new System.Drawing.Point(52, 218);
+            this.btnSifra.Name = "btnSifra";
+            this.btnSifra.Size = new System.Drawing.Size(112, 35);
+            this.btnSifra.TabIndex = 8;
+            this.btnSifra.Text = "Promijeniti šifru";
+            this.btnSifra.UseVisualStyleBackColor = true;
+            this.btnSifra.Click += new System.EventHandler(this.btnSifra_Click);
             // 
             // label4
             // 
@@ -136,6 +224,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Cornsilk;
             this.label1.Location = new System.Drawing.Point(252, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(178, 20);
@@ -152,98 +241,10 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // btnSifra
-            // 
-            this.btnSifra.Location = new System.Drawing.Point(52, 218);
-            this.btnSifra.Name = "btnSifra";
-            this.btnSifra.Size = new System.Drawing.Size(112, 35);
-            this.btnSifra.TabIndex = 8;
-            this.btnSifra.Text = "Promijeniti šifru";
-            this.btnSifra.UseVisualStyleBackColor = true;
-            this.btnSifra.Click += new System.EventHandler(this.btnSifra_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnSacuvajPromjene);
-            this.panel2.Controls.Add(this.tbPonovljenaSifra);
-            this.panel2.Controls.Add(this.tbNovaSifra);
-            this.panel2.Controls.Add(this.tbStaraSifra);
-            this.panel2.Controls.Add(this.lblPonovljenaSifra);
-            this.panel2.Controls.Add(this.lblNovaSifra);
-            this.panel2.Controls.Add(this.lblStaraSifra);
-            this.panel2.Location = new System.Drawing.Point(52, 291);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(378, 261);
-            this.panel2.TabIndex = 9;
-            this.panel2.Visible = false;
-            // 
-            // lblStaraSifra
-            // 
-            this.lblStaraSifra.AutoSize = true;
-            this.lblStaraSifra.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStaraSifra.Location = new System.Drawing.Point(31, 40);
-            this.lblStaraSifra.Name = "lblStaraSifra";
-            this.lblStaraSifra.Size = new System.Drawing.Size(126, 20);
-            this.lblStaraSifra.TabIndex = 0;
-            this.lblStaraSifra.Text = "Trenutna šifra:";
-            // 
-            // lblNovaSifra
-            // 
-            this.lblNovaSifra.AutoSize = true;
-            this.lblNovaSifra.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNovaSifra.Location = new System.Drawing.Point(31, 100);
-            this.lblNovaSifra.Name = "lblNovaSifra";
-            this.lblNovaSifra.Size = new System.Drawing.Size(94, 20);
-            this.lblNovaSifra.TabIndex = 1;
-            this.lblNovaSifra.Text = "Nova šifra:";
-            // 
-            // lblPonovljenaSifra
-            // 
-            this.lblPonovljenaSifra.AutoSize = true;
-            this.lblPonovljenaSifra.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPonovljenaSifra.Location = new System.Drawing.Point(31, 153);
-            this.lblPonovljenaSifra.Name = "lblPonovljenaSifra";
-            this.lblPonovljenaSifra.Size = new System.Drawing.Size(168, 20);
-            this.lblPonovljenaSifra.TabIndex = 2;
-            this.lblPonovljenaSifra.Text = "Potvrdite novu šifru:";
-            // 
-            // tbStaraSifra
-            // 
-            this.tbStaraSifra.Location = new System.Drawing.Point(204, 43);
-            this.tbStaraSifra.Name = "tbStaraSifra";
-            this.tbStaraSifra.PasswordChar = '●';
-            this.tbStaraSifra.Size = new System.Drawing.Size(153, 20);
-            this.tbStaraSifra.TabIndex = 3;
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // tbNovaSifra
-            // 
-            this.tbNovaSifra.Location = new System.Drawing.Point(204, 100);
-            this.tbNovaSifra.Name = "tbNovaSifra";
-            this.tbNovaSifra.PasswordChar = '●';
-            this.tbNovaSifra.Size = new System.Drawing.Size(153, 20);
-            this.tbNovaSifra.TabIndex = 4;
-            // 
-            // tbPonovljenaSifra
-            // 
-            this.tbPonovljenaSifra.Location = new System.Drawing.Point(204, 154);
-            this.tbPonovljenaSifra.Name = "tbPonovljenaSifra";
-            this.tbPonovljenaSifra.PasswordChar = '●';
-            this.tbPonovljenaSifra.Size = new System.Drawing.Size(153, 20);
-            this.tbPonovljenaSifra.TabIndex = 5;
-            // 
-            // btnSacuvajPromjene
-            // 
-            this.btnSacuvajPromjene.Location = new System.Drawing.Point(81, 215);
-            this.btnSacuvajPromjene.Name = "btnSacuvajPromjene";
-            this.btnSacuvajPromjene.Size = new System.Drawing.Size(211, 33);
-            this.btnSacuvajPromjene.TabIndex = 6;
-            this.btnSacuvajPromjene.Text = "Sačuvajte promjene";
-            this.btnSacuvajPromjene.UseVisualStyleBackColor = true;
             // 
             // PocetnaStrana
             // 
@@ -254,9 +255,9 @@
             this.Size = new System.Drawing.Size(908, 800);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
