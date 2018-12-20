@@ -76,46 +76,42 @@ namespace DomZdravlja.PropertyClass
 
         public string GetSelectQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
                     SELECT [KartonDijagnozaID]
                           ,[KartonID]
                           ,[DijagnozaID]
                       FROM [dbo].[KartonDijagnoza]
-                    GO";
+                    ";
         }
 
         public string GetInsertQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
                     INSERT INTO [dbo].[KartonDijagnoza]
                                ([KartonID]
                                ,[DijagnozaID])
                          VALUES
                                (@KartonID
                                ,@DijagnozaID)
-                    GO";
+                    ";
         }
 
         public string GetUpdateQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
                     UPDATE [dbo].[KartonDijagnoza]
                        SET [KartonID] = @KartonID
                           ,[DijagnozaID] = @DijagnozaID
                      WHERE KartonDijagnozaID = @KartonDijagnozaID
-                    GO";
+                    ";
         }
 
         public string GetDeleteQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
                     DELETE FROM [dbo].[KartonDijagnoza]
                           WHERE KartonDijagnozaID = @KartonDijagnozaID
-                    GO";
+                    ";
         }
 
         #endregion

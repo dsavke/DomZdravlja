@@ -75,47 +75,43 @@ namespace DomZdravlja.PropertyClass
 
         public string GetSelectQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
                     SELECT [FaktorRizikaID]
                           ,[NazivRizika]
                           ,[Opis]
                       FROM [dbo].[FaktorRizika]
-                    GO";
+                    ";
         }
 
         public string GetInsertQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
                     INSERT INTO [dbo].[FaktorRizika]
                                ([NazivRizika]
                                ,[Opis])
                          VALUES
                                @NazivRizika
                                ,@Opis
-                    GO";
+                    ";
         }
 
         public string GetUpdateQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
 
                     UPDATE [dbo].[FaktorRizika]
                        SET [NazivRizika] = @NazivRizika
                           ,[Opis] = @Opis
                      WHERE FaktorRizikaID = @FaktorRizikaID
-                    GO";
+                    ";
         }
 
         public string GetDeleteQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
                     DELETE FROM [dbo].[FaktorRizika]
                           WHERE FaktorRizikaID = @FaktorRizikaID
-                    GO";
+                    ";
         }
 
         #endregion

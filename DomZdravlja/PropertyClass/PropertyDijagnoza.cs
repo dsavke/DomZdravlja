@@ -137,29 +137,27 @@ namespace DomZdravlja.PropertyClass
 
         public string GetUpdateQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
                     UPDATE [dbo].[Dijagnoza]
                        SET [PacijentID] = @PacijentID
                           ,[DoktorID] = @DoktorID
                           ,[Terapija] = @Terapija
                           ,[Opis] = @Opis
                      WHERE [DijagnozaID] = @DijagnozaID
-                    GO";
+                    ";
         }
 
         public string GetSelectQuery()
         {
             return @"
-                   USE [Tim4]
-                    GO
+                   
                     SELECT [DijagnozaID]
                           ,[PacijentID]
                           ,[DoktorID]
                           ,[Terapija]
                           ,[Opis]
                       FROM [dbo].[Dijagnoza]
-                    GO
+                    
                     ";
         }
 

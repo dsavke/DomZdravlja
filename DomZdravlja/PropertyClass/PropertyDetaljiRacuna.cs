@@ -112,19 +112,16 @@ namespace DomZdravlja.PropertyClass
 
         public string GetDeleteQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
 
                     DELETE FROM [dbo].[DetaljiRacuna]
                           WHERE DetaljiRacunaID = @DetaljiRacunaID
-                    GO";
+                    ";
         }
 
         public string GetInsertQuery()
         {
-            return @"USE [Tim4]
-                    GO
-
+            return @"
                     INSERT INTO [dbo].[DetaljiRacuna]
                                ([RacunID]
                                ,[CijenaID]
@@ -135,13 +132,12 @@ namespace DomZdravlja.PropertyClass
                                ,@CijenaID
                                ,@Kolicina
                                ,@SumaLinije)
-                    GO";
+                    ";
         }
 
         public string GetSelectQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
 
                     SELECT [DetaljiRacunaID]
                           ,[RacunID]
@@ -149,13 +145,12 @@ namespace DomZdravlja.PropertyClass
                           ,[Kolicina]
                           ,[SumaLinije]
                       FROM [dbo].[DetaljiRacuna]
-                    GO";
+                    ";
         }
 
         public string GetUpdateQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
 
                     UPDATE [dbo].[DetaljiRacuna]
                        SET [RacunID] = @RacunID
@@ -163,7 +158,7 @@ namespace DomZdravlja.PropertyClass
                           ,[Kolicina] = @Kolicina
                           ,[SumaLinije] = @SumaLinije
                      WHERE DetaljiRacunaID = @DetaljiRacunaID
-                    GO";
+                    ";
         }
 
         #endregion

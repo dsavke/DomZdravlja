@@ -111,21 +111,19 @@ namespace DomZdravlja.PropertyClass
         #region Kveriji
         public string GetSelectQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
                     SELECT [CjenovnikID]
                           ,[NazivUsluge]
                           ,[CijenaUsluge]
                           ,[DatumUspostavljanjaCijene]                          
                       FROM [dbo].[Cjenovnik]
                     WHERE [AKTIVNO] = 1
-                    GO";
+                    ";
         }
 
         public string GetInsertQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
 
                     INSERT INTO [dbo].[Cjenovnik]
                                ([NazivUsluge]
@@ -137,19 +135,18 @@ namespace DomZdravlja.PropertyClass
                                ,@CijenaUsluge
                                ,GETDATE()
                                ,1)
-                    GO
+                    
                     ";
         }
 
         public string GetUpdateQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
 
                     UPDATE [dbo].[Cjenovnik]
                        SET [Aktivno] = 0
                      WHERE CjenovnikID = @CjenovnikID
-                    GO
+                    
 
                     INSERT INTO [dbo].[Cjenovnik]
                                ([NazivUsluge]
@@ -161,19 +158,18 @@ namespace DomZdravlja.PropertyClass
                                ,@CijenaUsluge
                                ,GETDATE()
                                ,1)
-                    GO
+                    
                     ";
         }
 
         public string GetDeleteQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
 
                     UPDATE [dbo].[Cjenovnik]
                        SET [Aktivno] = 0
                      WHERE CjenovnikID = @CjenovnikID
-                    GO";
+                    ";
         }
         #endregion
 

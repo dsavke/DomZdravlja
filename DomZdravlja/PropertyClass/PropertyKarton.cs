@@ -69,35 +69,32 @@ namespace DomZdravlja.PropertyClass
         public string GetInsertQuery()
         {
             return @"
-                   USE [Tim4]
-                    GO
+                   
                     INSERT INTO [dbo].[Karton]
                                ([PacijentID]
                                ,[BrojKartona])
                          VALUES
                                (@PacijentID
                                ,@BrojKartona)
-                    GO";
+                    ";
         }
 
         public string GetUpdateQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
                     UPDATE [dbo].[Karton]
                        SET [BrojKartona] = @BrojKartona   
                      WHERE [PacijentID] = @PacijentID
-                    GO";
+                    ";
         }
 
         public string GetSelectQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
                     SELECT [PacijentID]
                           ,[BrojKartona]
                       FROM [dbo].[Karton]
-                    GO
+                    
                     ";
         }
 
