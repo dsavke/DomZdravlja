@@ -114,17 +114,15 @@ namespace DomZdravlja.PropertyClass
 
         public string GetDeleteQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
                     DELETE FROM [dbo].[Pacijent]
                           WHERE PacijentID = @PacijentID
-                    GO";
+                    ";
         }
 
         public string GetInsertQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
                     INSERT INTO [dbo].[Pacijent]
                                ([DoktorID]
                                ,[OsobaID]
@@ -135,7 +133,7 @@ namespace DomZdravlja.PropertyClass
                                ,@OsobaID
                                ,@BrojKartona
                                ,@Osiguran)
-                    GO";
+                    ";
         }
 
         public string GetSelectQuery()
@@ -154,15 +152,14 @@ namespace DomZdravlja.PropertyClass
 
         public string GetUpdateQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
                     UPDATE [dbo].[Pacijent]
                        SET [DoktorID] = @DoktorID
                           ,[OsobaID] = @OsobaID
                           ,[BrojKartona] = @BrojKartona
                           ,[Osiguran] = @Osiguran
                      WHERE PacijentID = @PacijentID
-                    GO";
+                    ";
         }
 
         #endregion
