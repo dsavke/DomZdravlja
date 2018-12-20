@@ -61,7 +61,7 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyOsoba", "OsobaID")]
         [ValidatePattern(@"^\d+$")]
-
+        [MainSearch(null)]
         public int OsobaID
         {
             get

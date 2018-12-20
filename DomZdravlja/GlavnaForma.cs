@@ -329,14 +329,24 @@ namespace DomZdravlja
                 flowLayoutPanel.Height = 766;
                 tabControl.SelectedTab.Controls.Add(flowLayoutPanel);
 
-                var type = myProperty.GetType();
-                var properties = type.GetProperties();
 
-                foreach (PropertyInfo property in properties)
-                {
+                kreirajPoljaZaPretragu(myProperty, flowLayoutPanel);
+
+            }
+        }
+
+        private void kreirajPoljaZaPretragu(PropertyInterface myProperty, FlowLayoutPanel flowLayoutPanel)
+        {
+
+            var type = myProperty.GetType();
+            var properties = type.GetProperties();
+
+            foreach (PropertyInfo property in properties)
+            {
+               
                     if (property.IsDefined(typeof(MainSearch)))
                     {
-                        
+
                         ComponentType componentType;
                         componentType = property.GetCustomAttribute<GenerateComponent>().ComponentType;
 
@@ -362,13 +372,18 @@ namespace DomZdravlja
                         else if (componentType == ComponentType.Lookup)
                         {
                             UCLookup uCLookup = new UCLookup();
-                            uCLookup.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
-                            flowLayoutPanel.Controls.Add(uCLookup);
+                            //uCLookup.Naziv = property.GetCustomAttribute<ForeignKey>().ReferencedTable;
+                            //flowLayoutPanel.Controls.Add(uCLookup);
+
+                            var pomProperty = Activator.CreateInstance(Type.GetType(property.GetCustomAttribute<ForeignKey>().ReferencedTable));
+                            
+                            kreirajPoljaZaPretragu((PropertyInterface)pomProperty, flowLayoutPanel);
+
                         }
                     }
-                }
             }
         }
+
 
         private void kreirajToolStrip()
         {

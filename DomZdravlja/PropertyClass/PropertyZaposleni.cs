@@ -123,7 +123,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("OsobaID")]
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyOsoba", "OsobaID")]
-
+        [MainSearch(null)]
         public int OsobaID
         {
             get
