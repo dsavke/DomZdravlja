@@ -53,12 +53,14 @@
             this.btnLookUP.TabIndex = 1;
             this.btnLookUP.Text = "...";
             this.btnLookUP.UseVisualStyleBackColor = true;
+            this.btnLookUP.Click += new System.EventHandler(this.btnLookUP_Click);
             // 
             // txtID
             // 
             this.txtID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtID.Location = new System.Drawing.Point(200, 12);
             this.txtID.Name = "txtID";
+            this.txtID.ReadOnly = true;
             this.txtID.Size = new System.Drawing.Size(43, 21);
             this.txtID.TabIndex = 2;
             // 
@@ -67,6 +69,7 @@
             this.txtNaziv.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNaziv.Location = new System.Drawing.Point(304, 12);
             this.txtNaziv.Name = "txtNaziv";
+            this.txtNaziv.ReadOnly = true;
             this.txtNaziv.Size = new System.Drawing.Size(186, 21);
             this.txtNaziv.TabIndex = 3;
             // 

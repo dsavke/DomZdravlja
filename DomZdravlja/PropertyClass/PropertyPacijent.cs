@@ -94,6 +94,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Osiguran")]
         [SqlName("Osiguran")]
         [GenerateComponent(ComponentType.RadioButton)]
+        [RadioButton("Da", "Ne")]
         [ValidatePattern(@"^\d+$")]
 
         public int Osiguran
@@ -139,15 +140,15 @@ namespace DomZdravlja.PropertyClass
 
         public string GetSelectQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
+                  
                     SELECT [PacijentID]
                           ,[DoktorID]
                           ,[OsobaID]
                           ,[BrojKartona]
                           ,[Osiguran]
                       FROM [dbo].[Pacijent]
-                    GO
+                   
                     ";
         }
 

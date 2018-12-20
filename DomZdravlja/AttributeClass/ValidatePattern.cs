@@ -19,6 +19,10 @@ namespace DomZdravlja.AttributeClass
             Regex = new Regex(pattern);
         }
 
+        public ValidatePattern()
+        {
+        }
+
         public override bool IsValid(object value)
         {
             return Regex.IsMatch(value.ToString().Trim());
