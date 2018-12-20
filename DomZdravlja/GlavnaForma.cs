@@ -665,13 +665,14 @@ namespace DomZdravlja
             var objekat = Activator.CreateInstance(Type.GetType(property.GetCustomAttribute<ForeignKey>().ReferencedTable));
 
             DataGridView data = new DataGridView();
-            data.Width = 908;
-            data.Height = 700;
+            /*data.Width = 908;
+            data.Height = 700;*/
             ucitaj(vratiIndex(objekat));
             
             data = vratiTablu(objekat);
             
             tabControl.SelectedTab.Controls.Add(data);
+            data.Focus();
 
 
 
@@ -679,9 +680,8 @@ namespace DomZdravlja
 
         public DataGridView vratiTablu(object objekat)
         {
-            DataGridView dgv = new DataGridView();
-            dgv.Width = 908;
-            dgv.Height = 700;
+            DataGridView dgv = izgled();
+            
             if (objekat.GetType() == typeof(PropertyZaposleni)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyZaposleni>().ToList();
             else if (objekat.GetType() == typeof(PropertyPacijent)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyPacijent>().ToList();
             else if (objekat.GetType() == typeof(PropertyCjenovnik)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyCjenovnik>().ToList();
@@ -699,6 +699,27 @@ namespace DomZdravlja
             return dgv;
         }
 
+        private DataGridView izgled()
+        {
+            DataGridView dataGridView = new DataGridView();
+            dataGridView.Width = 950;
+            dataGridView.Height = 400;
+            dataGridView.Font = new Font("Century Gothic", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+            dataGridView.MultiSelect = false;
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+             dataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
+            //dataGridView.AutoSize = false;
+            
+         
+
+            dataGridView.RowsDefaultCellStyle.BackColor = Color.White;
+            dataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(227, 234, 244);
+            dataGridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(51, 128, 196);
+            dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            return dataGridView;
+        }
 
         #endregion
 
