@@ -335,6 +335,25 @@ namespace DomZdravlja
             }
         }
 
+        private void kreirajTabove()
+        {
+            if (tabControl.SelectedIndex != -1 && myProperty != null)
+            {
+                TabControl tab = new TabControl();
+                tab.Location = new Point(0, 200);
+                tab.Width = 908;
+                tab.Height = 250;
+                tabControl.SelectedTab.Controls.Add(tab);
+
+                CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "POCETNA" };
+                tabControl.Controls.Add(tabPage);
+                tab.Controls.Add(tabPage);
+
+               
+            }
+        }
+
+
         private void kreirajPoljaZaPretragu(PropertyInterface myProperty, FlowLayoutPanel flowLayoutPanel)
         {
 
@@ -551,6 +570,7 @@ namespace DomZdravlja
             myProperty = new PropertyCjenovnik();
             kreirajToolStrip();
             dodajPoljaZaPretragu();
+            kreirajTabove();
         }
 
         private void Zaposleni_ControlClick(object sender, EventArgs e)
@@ -562,6 +582,7 @@ namespace DomZdravlja
             myProperty = new PropertyZaposleni();
             kreirajToolStrip();
             dodajPoljaZaPretragu();
+            kreirajTabove();
         }
 
         private void RedoslijedDolazaka_ControlClick(object sender, EventArgs e)
