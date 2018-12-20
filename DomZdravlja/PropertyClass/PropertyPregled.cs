@@ -132,8 +132,6 @@ namespace DomZdravlja.PropertyClass
         }
         #endregion
 
-
-
         #region Parametri
         public List<SqlParameter> GetDeleteParameters()
         {

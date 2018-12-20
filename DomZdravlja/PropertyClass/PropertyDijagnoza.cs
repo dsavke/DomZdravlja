@@ -19,7 +19,6 @@ namespace DomZdravlja.PropertyClass
         private string opis;
         #endregion
 
-
         #region Property
 
         [DisplayName("Sifra dijagnoze")]

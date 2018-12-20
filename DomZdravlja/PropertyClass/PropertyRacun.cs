@@ -39,23 +39,7 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Vrijeme izdavanja")]
-        [SqlName("VrijemeIzdavanja")]
-        [MainSearch(null)]
-        [GenerateComponent(ComponentType.Datum)]
-
-        public DateTime VrijemeIzdavanja
-        {
-            get
-            {
-                return vrijemeIzdavanja;
-            }
-            set
-            {
-                vrijemeIzdavanja = value;
-            }
-        }
-
+      
         [DisplayName("Sifra zaposlenog")]
         [SqlName("ZaposleniID")]
         [GenerateComponent(ComponentType.Lookup)]
@@ -71,23 +55,6 @@ namespace DomZdravlja.PropertyClass
             set
             {
                 zaposleniID = value;
-            }
-        }
-
-        [DisplayName("Popust")]
-        [SqlName("Popust")]
-        [GenerateComponent(ComponentType.Tekst)]
-        [ValidatePattern(@"^\d+$")]
-
-        public decimal Popust
-        {
-            get
-            {
-                return popust;
-            }
-            set
-            {
-                popust = value;
             }
         }
 
@@ -109,6 +76,25 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
+        [DisplayName("Popust")]
+        [SqlName("Popust")]
+        [GenerateComponent(ComponentType.Tekst)]
+        [ValidatePattern(@"^\d+$")]
+
+        public decimal Popust
+        {
+            get
+            {
+                return popust;
+            }
+            set
+            {
+                popust = value;
+            }
+        }
+
+        
+
         [DisplayName("Suma racuna")]
         [SqlName("SumaRacuna")]
         [GenerateComponent(ComponentType.Tekst)]
@@ -123,7 +109,26 @@ namespace DomZdravlja.PropertyClass
             {
                 sumaRacuna = value;
             }
+        }   
+
+
+        [DisplayName("Vrijeme izdavanja")]
+        [SqlName("VrijemeIzdavanja")]
+        [MainSearch(null)]
+        [GenerateComponent(ComponentType.Datum)]
+
+        public DateTime VrijemeIzdavanja
+        {
+            get
+            {
+                return vrijemeIzdavanja;
+            }
+            set
+            {
+                vrijemeIzdavanja = value;
+            }
         }
+
         #endregion
 
         #region queries

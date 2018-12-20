@@ -24,7 +24,6 @@ namespace DomZdravlja.PropertyClass
         private int zivotniStatus;
         #endregion
 
-
         #region Property
         [DisplayName("Sifra osobe")]
         [SqlName("OsobaID")]
