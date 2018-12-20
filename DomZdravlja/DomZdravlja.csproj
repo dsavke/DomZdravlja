@@ -57,6 +57,7 @@
     <Compile Include="AttributeClass\GenerateComponent.cs" />
     <Compile Include="AttributeClass\MainSearch.cs" />
     <Compile Include="AttributeClass\PrimaryKey.cs" />
+    <Compile Include="AttributeClass\RadioButton.cs" />
     <Compile Include="AttributeClass\SqlName.cs" />
     <Compile Include="AttributeClass\Invisible.cs" />
     <Compile Include="AttributeClass\ValidatePattern.cs" />

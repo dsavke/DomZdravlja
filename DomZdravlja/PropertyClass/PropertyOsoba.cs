@@ -45,7 +45,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Ime")]
         [SqlName("Ime")]
         [GenerateComponent(ComponentType.Tekst)]
-        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s]*$")]
+        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s]+$")]
         [MainSearch(null)]
         public string Ime
         {
@@ -62,7 +62,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Prezime")]
         [SqlName("Prezime")]
         [GenerateComponent(ComponentType.Tekst)]
-        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s((\-)?)]*$")]
+        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s((\-)?)]+$")]
         [MainSearch(null)]
 
         public string Prezime
@@ -131,6 +131,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Pol")]
         [SqlName("Pol")]
         [GenerateComponent(ComponentType.RadioButton)]
+        [RadioButton("Muško", "Žansko")]
         [ValidatePattern(@"^[A-Z]{1}$")]
 
         public string Pol
@@ -180,7 +181,8 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Zivotni status")]
         [SqlName("ZivotniStatus")]
-        [GenerateComponent(ComponentType.Tekst)]
+        [GenerateComponent(ComponentType.RadioButton)]
+        [RadioButton("Živ", "Mrtav")]
         [Invisible]
 
         public int ZivotniStatus

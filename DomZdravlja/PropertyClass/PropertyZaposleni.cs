@@ -42,6 +42,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Zvanje")]
         [SqlName("Zvanje")]
         [GenerateComponent(ComponentType.Tekst)]
+        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[a-z\s(\.?)]*$")]
 
         public string Zvanje
         {
@@ -58,6 +59,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Radno mjesto")]
         [SqlName("RadnoMjesto")]
         [GenerateComponent(ComponentType.Tekst)]
+        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s]+$")]
 
         public string RadnoMjesto
         {
@@ -74,6 +76,8 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Korisnicko ime")]
         [SqlName("KorisnickoIme")]
         [GenerateComponent(ComponentType.Tekst)]
+        [ValidatePattern(@"^([a-z0-9]{3,15}(([\._][a-z0-9]{3,16})?))*$")]
+       
 
         public string KorisnickoIme
         {
@@ -90,6 +94,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Password")]
         [SqlName("Password")]
         [GenerateComponent(ComponentType.Tekst)]
+        [ValidatePattern(@"^([a-z0-9\.]{5,16})*$")]
 
         public string Password
         {
@@ -106,6 +111,8 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Tip Zaposlenog")]
         [SqlName("TipZaposlenog")]
         [GenerateComponent(ComponentType.Tekst)]
+        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z0-9\s\.]*$")]
+
 
         public string TipZaposlenog
         {
@@ -123,6 +130,8 @@ namespace DomZdravlja.PropertyClass
         [SqlName("OsobaID")]
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyOsoba", "OsobaID")]
+        [ValidatePattern(@"^\d+$")]
+
         [MainSearch(null)]
         public int OsobaID
         {

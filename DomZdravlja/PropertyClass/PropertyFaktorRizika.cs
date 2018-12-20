@@ -39,7 +39,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Naziv rizika")]
         [SqlName("NazivRizika")]
         [GenerateComponent(ComponentType.Tekst)]
-        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s]*$")]
+        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s]+$")]
 
         public string NazivRizika
         {
