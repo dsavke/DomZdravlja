@@ -310,7 +310,7 @@ namespace DomZdravlja
             tabControl.TabPages[tabControl.TabPages.Count - 1].Focus();
 
             //tabControl.Enabled = false;
-
+            postaviPocetnu();
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
