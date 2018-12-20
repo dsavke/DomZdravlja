@@ -140,15 +140,15 @@ namespace DomZdravlja.PropertyClass
 
         public string GetSelectQuery()
         {
-            return @"USE [Tim4]
-                    GO
+            return @"
+                  
                     SELECT [PacijentID]
                           ,[DoktorID]
                           ,[OsobaID]
                           ,[BrojKartona]
                           ,[Osiguran]
                       FROM [dbo].[Pacijent]
-                    GO
+                   
                     ";
         }
 

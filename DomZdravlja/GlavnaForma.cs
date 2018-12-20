@@ -26,13 +26,18 @@ namespace DomZdravlja
         PropertyZaposleni Logovan = new PropertyZaposleni();
 
         List<PropertyInterface>[] propertyInterfaces = new List<PropertyInterface>[14];
-        
+  
         private void dodajList()
         {
-            for(int i = 0; i < 14; i++)
+            
+            //propertyInterfacesi.Add(new List<PropertyZaposleni>());
+            for (int i = 0; i < 14; i++)
             {
                 propertyInterfaces[i] = new List<PropertyInterface>();
             }
+
+            //propertyInterfaces[0] = new List<PropertyZaposleni>();
+
         }
 
         #region Ucitavanje
@@ -60,7 +65,6 @@ namespace DomZdravlja
         {
             PropertyPacijent pacijenti = new PropertyPacijent();
             SqlDataReader dataReader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, pacijenti.GetSelectQuery());
-
             while (dataReader.Read())
             {
                 PropertyPacijent pomPacijenti = new PropertyPacijent();
@@ -273,6 +277,75 @@ namespace DomZdravlja
         }
         #endregion
 
+        private void ucitaj(int index)
+        {
+            switch (index)
+            {
+                case 0:
+                    ucitajZaposlene();
+                    break;
+                case 1:
+                    ucitajPacijente();
+                    break;
+                case 2:
+                    ucitajCijenu();
+                    break;
+                case 3:
+                    ucitajDetaljeRacuna();
+                    break;
+                case 4:
+                    ucitajDijagnozu();
+                    break;
+                case 5:
+                    ucitajFaktorRizika();
+                    break;
+                case 6:
+                    ucitajFaktorRizikaKarton();
+                    break;
+                case 7:
+                    ucitajKarton();
+                    break;
+                case 8:
+                    ucitajKartonDijagnoza();
+                    break;
+                case 9:
+                    ucitajOsobu();
+                    break;
+                case 10:
+                    ucitajPregled();
+                    break;
+                case 11:
+                    ucitajRacun();
+                    break;
+                case 12:
+                    ucitajEvidenciju();
+                    break;
+                case 13:
+                    ucitajRezervaciju();
+                    break;
+            }
+        }
+
+        private int vratiIndex(object objekat)
+        {
+            int index = -1;
+            if (objekat.GetType() == typeof(PropertyZaposleni)) index = 0;
+            else if (objekat.GetType() == typeof(PropertyPacijent)) index = 1;
+            else if (objekat.GetType() == typeof(PropertyCjenovnik)) index = 2;
+            else if (objekat.GetType() == typeof(PropertyDetaljiRacuna)) index = 3;
+            else if (objekat.GetType() == typeof(PropertyDijagnoza)) index = 4;
+            else if (objekat.GetType() == typeof(PropertyFaktorRizika)) index = 5;
+            else if (objekat.GetType() == typeof(PropertyFaktorRizikaKarton)) index = 6;
+            else if (objekat.GetType() == typeof(PropertyKarton)) index = 7;
+            else if (objekat.GetType() == typeof(PropertyKartonDijagnoza)) index = 8;
+            else if (objekat.GetType() == typeof(PropertyOsoba)) index = 9;
+            else if (objekat.GetType() == typeof(PropertyPregled)) index = 10;
+            else if (objekat.GetType() == typeof(PropertyRacun)) index = 11;
+            else if (objekat.GetType() == typeof(PropertyRecepcija)) index = 12;
+            else if (objekat.GetType() == typeof(PropertyRezervacije)) index = 13;
+            return index;
+        }
+
         public GlavnaForma()
         {
             InitializeComponent();
@@ -284,6 +357,8 @@ namespace DomZdravlja
             Logovan = logovan;
             dodajList();
             myProperty = null;
+            ucitajPacijente();
+            //ucitaj(1);//for (int i = 0; i < 14; i++) ucitaj(i);
         }
 
 
@@ -297,9 +372,6 @@ namespace DomZdravlja
         private void GlavnaForma_Load(object sender, EventArgs e)
         {
             //provjera koje je radno mjesto pa na osnovu radnog mjesta generise tabPanel
-            
-            //Logovan.RadnoMjesto = "Kancelarija";
-
 
             if (Logovan.RadnoMjesto == "Recepcija") ucitajRecepciju();
             else if (Logovan.RadnoMjesto == "Ordinacija") ucitajOrdinaciju();
@@ -318,6 +390,7 @@ namespace DomZdravlja
             
         }
 
+        #region PoljaZaPretragu
         private void dodajPoljaZaPretragu()
         {
             if (tabControl.SelectedIndex != -1 && myProperty != null)
@@ -383,6 +456,7 @@ namespace DomZdravlja
                     }
             }
         }
+        #endregion
 
 
         private void kreirajToolStrip()
@@ -394,8 +468,8 @@ namespace DomZdravlja
                 tabControl.SelectedTab.Controls.Add(CustomToolStrip);
             }
         }
-       
 
+        #region EventDodaj
         private void CustomToolStrip_DodajClick(object sender, EventArgs e)
         {
             CustomTabPage tabPage = new CustomTabPage() { State = State.Insert, Naziv = "DODAVANJE" };
@@ -404,7 +478,7 @@ namespace DomZdravlja
 
             FlowLayoutPanel flowLayoutPanel = new FlowLayoutPanel();
             flowLayoutPanel.Width = 908;
-            flowLayoutPanel.Height = 800;
+            flowLayoutPanel.Height = 600;
             tabControl.SelectedTab.Controls.Add(flowLayoutPanel);
 
             var type = myProperty.GetType();
@@ -439,13 +513,196 @@ namespace DomZdravlja
                     {
                         UCLookup uCLookup = new UCLookup();
                         uCLookup.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                    uCLookup.LookupClick += UCLookup_LookupClick;
                         flowLayoutPanel.Controls.Add(uCLookup);
-                    }
-               
+                    }  
             }
+
+            Panel panel = new Panel();
+            //panel.BackColor = Color.Red;
+            panel.Location = new Point(0, 600);
+            panel.Width = 908;
+            panel.Height = 160;
+
+            Button btnSacuvaj = new Button();
+            btnSacuvaj.Text = "Sacuvaj";
+            btnSacuvaj.Location = new Point(710, 100);
+            btnSacuvaj.Click += BtnSacuvaj_Click;
+
+            Button btnOdustani = new Button();
+            btnOdustani.Text = "Odustani";
+            btnOdustani.Location = new Point(795, 100);
+            btnOdustani.Click += BtnOdustani_Click;
+
+            panel.Controls.Add(btnSacuvaj);
+            panel.Controls.Add(btnOdustani);
+
+            tabControl.SelectedTab.Controls.Add(panel);
 
         }
 
+        #endregion
+
+        private void BtnOdustani_Click(object sender, EventArgs e)
+        {
+            tabControl.TabPages.Remove(tabControl.SelectedTab);
+            tabControl.SelectedIndex = 0;
+        }
+
+        #region SacuvajDodavanje
+        private void BtnSacuvaj_Click(object sender, EventArgs e)
+        {
+
+            var type = myProperty.GetType();
+            var properties = type.GetProperties();
+            bool proslo = true;
+
+            foreach(Control control in tabControl.SelectedTab.Controls[0].Controls)
+            {
+
+                PropertyInfo property = null;
+                ValidatePattern pattern = new ValidatePattern();
+
+                if(control.GetType() == typeof(UCTekst))
+                {
+                    property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == (control as UCTekst).Naziv).FirstOrDefault();
+                    if (property.IsDefined(typeof(ValidatePattern)))
+                    {
+                        string rez = (control as UCTekst).Value;
+                        if (property.GetCustomAttribute<ValidatePattern>().IsValid(rez))
+                        {
+                            (control as UCTekst).BackColor = Color.Blue;
+                            if (property.PropertyType == typeof(int)) {
+                                property.SetValue(myProperty, Convert.ToInt32(rez));
+                            }
+                            else if(property.PropertyType == typeof(Decimal))
+                            {
+                                property.SetValue(myProperty, Convert.ToDecimal(rez));
+                            }
+                            else if(property.PropertyType == typeof(String))
+                            {
+                                property.SetValue(myProperty, rez);
+                            }
+                            else
+                            {
+                                MessageBox.Show("" + property.PropertyType);
+                            }
+                        }
+                        else
+                        {
+                            (control as UCTekst).BackColor = Color.DarkGray;
+                            proslo = false;
+                        }
+                    }
+                }
+                else if(control.GetType() == typeof(UCDatum))
+                {
+                    property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == (control as UCDatum).Naziv).FirstOrDefault();
+                    if (property.IsDefined(typeof(ValidatePattern)))
+                    {
+                        DateTime rez = (control as UCDatum).Value;
+                        if (property.GetCustomAttribute<ValidatePattern>().IsValid(rez))
+                        {
+                            (control as UCDatum).BackColor = Color.Blue;
+                            property.SetValue(myProperty, rez);
+                        }
+                        else
+                        {
+                            (control as UCDatum).BackColor = Color.DarkGray;
+                            proslo = false;
+                        }
+                    }
+                }
+                else if (control.GetType() == typeof(UCRadioButton))
+                {
+                    property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == (control as UCRadioButton).Naziv).FirstOrDefault();
+                }
+                else if (control.GetType() == typeof(UCLookup))
+                {
+                    property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == (control as UCLookup).Naziv).FirstOrDefault();
+                    if (property.IsDefined(typeof(ValidatePattern)))
+                    {
+                       
+                        string rez = (control as UCLookup).Value;
+                        if (property.GetCustomAttribute<ValidatePattern>().IsValid(rez))
+                        {
+                            (control as UCLookup).BackColor = Color.Blue;
+                            property.SetValue(myProperty, Convert.ToInt32(rez));
+                        }
+                        else
+                        {
+                            (control as UCLookup).BackColor = Color.DarkGray;
+                            proslo = false;
+                        }
+                    }
+                }
+
+            }
+            if (proslo)
+            {
+                //ispunjeni svi uslovi moze dodati
+                MessageBox.Show("Proslo");
+            }
+            else
+            {
+                //nisu ispunjeni uslovi
+                MessageBox.Show("Nije proslo");
+            }
+        }
+        #endregion
+
+        #region Lookup
+        private void UCLookup_LookupClick(object sender, EventArgs e)
+        {
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Lookup, Naziv = "LOOKUP" };
+            tabControl.TabPages.Add(tabPage);
+            postaviFokus();
+
+            var properties = myProperty.GetType().GetProperties();
+
+            PropertyInfo property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == ((sender as Button).Parent as UCLookup).Naziv).FirstOrDefault();
+
+            var objekat = Activator.CreateInstance(Type.GetType(property.GetCustomAttribute<ForeignKey>().ReferencedTable));
+
+            DataGridView data = new DataGridView();
+            data.Width = 908;
+            data.Height = 700;
+            ucitaj(vratiIndex(objekat));
+            
+            data = vratiTablu(objekat);
+            
+            tabControl.SelectedTab.Controls.Add(data);
+
+
+
+        }
+
+        public DataGridView vratiTablu(object objekat)
+        {
+            DataGridView dgv = new DataGridView();
+            dgv.Width = 908;
+            dgv.Height = 700;
+            if (objekat.GetType() == typeof(PropertyZaposleni)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyZaposleni>().ToList();
+            else if (objekat.GetType() == typeof(PropertyPacijent)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyPacijent>().ToList();
+            else if (objekat.GetType() == typeof(PropertyCjenovnik)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyCjenovnik>().ToList();
+            else if (objekat.GetType() == typeof(PropertyDetaljiRacuna)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyDetaljiRacuna>().ToList();
+            else if (objekat.GetType() == typeof(PropertyDijagnoza)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyDijagnoza>().ToList();
+            else if (objekat.GetType() == typeof(PropertyFaktorRizika)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyFaktorRizika>().ToList();
+            else if (objekat.GetType() == typeof(PropertyFaktorRizikaKarton)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyFaktorRizikaKarton>().ToList();
+            else if (objekat.GetType() == typeof(PropertyKarton)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyKarton>().ToList();
+            else if (objekat.GetType() == typeof(PropertyKartonDijagnoza)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyKartonDijagnoza>().ToList();
+            else if (objekat.GetType() == typeof(PropertyOsoba)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyOsoba>().ToList();
+            else if (objekat.GetType() == typeof(PropertyPregled)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyPregled>().ToList();
+            else if (objekat.GetType() == typeof(PropertyRacun)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyRacun>().ToList();
+            else if (objekat.GetType() == typeof(PropertyRecepcija)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyRecepcija>().ToList();
+            else if (objekat.GetType() == typeof(PropertyRezervacije)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyRezervacije>().ToList();
+            return dgv;
+        }
+
+
+        #endregion
+
+        #region UcitavanjeTabControl
         private void ucitajOrdinaciju()
         {
             ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
@@ -540,8 +797,15 @@ namespace DomZdravlja
 
 
         }
+        #endregion
 
+        private void postaviFokus()
+        {
+            tabControl.TabPages[tabControl.TabPages.Count - 1].Focus();
+            tabControl.SelectedIndex = tabControl.TabPages.Count - 1;
+        }
 
+        #region ControlClickMetode
         private void Pocetna_ControlClick(object sender, EventArgs e)
         {
             zatvoriSve();
@@ -550,12 +814,6 @@ namespace DomZdravlja
             postaviFokus();
             myProperty = null;
             postaviPocetnu();
-        }
-
-        private void postaviFokus()
-        {
-            tabControl.TabPages[tabControl.TabPages.Count - 1].Focus();
-            tabControl.SelectedIndex = tabControl.TabPages.Count - 1;
         }
 
         private void Cjenovnik_ControlClick(object sender, EventArgs e)
@@ -656,14 +914,15 @@ namespace DomZdravlja
             kreirajToolStrip();
             dodajPoljaZaPretragu();
         }
+        #endregion
 
         private void zatvoriSve()
         {
-            /*for(int i = 0; i < tabControl.TabPages.Count; i++)
+            for(int i = 0; i < tabControl.TabPages.Count; i++)
             {
                 tabControl.TabPages.RemoveAt(i);
                 i--;
-            }*/
+            }
         }
 
     }
