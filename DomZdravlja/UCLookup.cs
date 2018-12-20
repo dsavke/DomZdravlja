@@ -23,7 +23,24 @@ namespace DomZdravlja
             set { lblNaziv.Text = value; }
         }
 
-        
+        public string Value
+        {
+            get { return txtID.Text; }
+            set { txtID.Text = value; }
+        }
 
+        public string Info
+        {
+            get { return txtNaziv.Text; }
+            set { txtNaziv.Text = value; }
+        }
+
+        public event EventHandler LookupClick;
+
+        private void btnLookUP_Click(object sender, EventArgs e)
+        {
+            if (LookupClick != null)
+                LookupClick(sender, e);
+        }
     }
 }
