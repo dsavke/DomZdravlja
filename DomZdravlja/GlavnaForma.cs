@@ -684,16 +684,62 @@ namespace DomZdravlja
             var objekat = Activator.CreateInstance(Type.GetType(property.GetCustomAttribute<ForeignKey>().ReferencedTable));
 
             DataGridView data = new DataGridView();
-            /*data.Width = 908;
-            data.Height = 700;*/
+       
             ucitaj(vratiIndex(objekat));
-            
-            data = vratiTablu(objekat);
             
             tabControl.SelectedTab.Controls.Add(data);
             data.Focus();
 
+            data = vratiTablu(objekat);
+            data.Location = new Point(20, 20);
 
+            tabControl.SelectedTab.Controls.Add(data);
+
+            Panel panel = new Panel();
+            panel.Location = new Point(20, 620);
+            panel.Width = 908;
+            panel.Height = 160;
+
+            Button btnVrati = new Button();
+            btnVrati.Text = "Vrati";
+            btnVrati.Location = new Point(710, 100);
+            //btnVrati.Click += BtnVrati_Click;
+            //button.Click += (sender, EventArgs) => { buttonNext_Click(sender, EventArgs, item.NextTabIndex); };
+            UCLookup uCLookup = (sender as Button).Parent as UCLookup;
+            
+           // string referencedColumn = property.GetCustomAttribute<ForeignKey>().ReferencedTable;
+            btnVrati.Click += (send, EventArgs) => { BtnVrati_Click(send, EventArgs, property, uCLookup, data); };
+
+            Button btnOdustani = new Button();
+            btnOdustani.Text = "Odustani";
+            btnOdustani.Location = new Point(795, 100);
+            btnOdustani.Click += BtnOdustaniLookup_Click; ;
+
+            panel.Controls.Add(btnVrati);
+            panel.Controls.Add(btnOdustani);
+
+            tabControl.SelectedTab.Controls.Add(panel);
+
+            lookupTab();
+
+            data.Focus();
+
+        }
+
+        private void BtnOdustaniLookup_Click(object sender, EventArgs e)
+        {
+            rijesiLookup();
+        }
+
+        private void BtnVrati_Click(object sender, EventArgs e, PropertyInfo property, UCLookup uC, DataGridView data)
+        {
+            rijesiLookup();
+
+            DataGridViewRow row = data.SelectedRows[0];
+
+            int id = Convert.ToInt32(row.Cells[property.GetCustomAttribute<ForeignKey>().ReferencedColumn]);
+
+            uC.Value = id.ToString();
 
         }
 
@@ -964,6 +1010,31 @@ namespace DomZdravlja
             {
                 tabControl.TabPages.RemoveAt(i);
                 i--;
+            }
+        }
+
+        private void tabControl_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (e.TabPage.Enabled)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void lookupTab()
+        {
+            foreach (CustomTabPage tabPage in tabControl.TabPages)
+            {
+                tabPage.Enabled = false;
+            }
+            tabControl.SelectedTab.Enabled = true;
+        }
+
+        private void rijesiLookup()
+        {
+            foreach (CustomTabPage tabPage in tabControl.TabPages)
+            {
+                tabPage.Enabled = true;
             }
         }
 
