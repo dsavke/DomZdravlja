@@ -471,7 +471,24 @@ namespace DomZdravlja
 
         }
 
-       
+        private void postaviPocetnu()
+        {
+            ucitajOsobu();
+            PocetnaStrana pocetna = new PocetnaStrana();
+            tabControl.SelectedTab.Controls.Add(pocetna);
+            foreach (PropertyOsoba item in propertyInterfaces[9])
+            {
+                if (item.OsobaID == Logovan.OsobaID)
+                {
+
+                    pocetna.Ime = item.Ime;
+                    pocetna.Prezime = item.Prezime;
+                }
+            }
+            pocetna.TipZaposlenog = Logovan.TipZaposlenog;
+
+
+        }
 
         private void ucitajRecepciju()
         {
@@ -494,7 +511,6 @@ namespace DomZdravlja
             panelGlavniTab.Controls.Add(panelTabControl3);
             panelGlavniTab.Controls.Add(panelTabControl2);
             panelGlavniTab.Controls.Add(panelTabControl6);
-
         }
 
       
@@ -533,7 +549,7 @@ namespace DomZdravlja
             tabControl.Controls.Add(tabPage);
             postaviFokus();
             myProperty = null;
-            kreirajToolStrip();
+            postaviPocetnu();
         }
 
         private void postaviFokus()

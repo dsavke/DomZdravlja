@@ -37,11 +37,14 @@
       <HintPath>E:\Akademija\WIF UI components\Bunifu_UI_v1.5.3.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,6 +54,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AttributeClass\ForeignKey.cs" />
@@ -79,6 +83,12 @@
     </Compile>
     <Compile Include="CustomControls\CustomToolStrip.Designer.cs">
       <DependentUpon>CustomToolStrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\PocetnaStrana.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\PocetnaStrana.Designer.cs">
+      <DependentUpon>PocetnaStrana.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -148,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\CustomToolStrip.resx">
       <DependentUpon>CustomToolStrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\PocetnaStrana.resx">
+      <DependentUpon>PocetnaStrana.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
