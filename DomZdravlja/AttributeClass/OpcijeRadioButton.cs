@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace DomZdravlja.AttributeClass
 {
     [AttributeUsage(AttributeTargets.Property)]
-    public class RadioButton : Attribute
+    public class OpcijeRadioButton : Attribute
     {
-        public string Param1;
-        public string Param2;
+        public string Param1 { get; set; }
+        public string Param2 { get; set; }
 
-        public RadioButton(string Param1, string Param2)
+        public OpcijeRadioButton(string Param1, string Param2)
         {
             this.Param1 = Param1;
             this.Param2 = Param2;

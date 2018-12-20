@@ -44,6 +44,8 @@ namespace DomZdravlja
         private void ucitajZaposlene()
         {
 
+            propertyInterfaces[0] = new List<PropertyInterface>();
+
             PropertyZaposleni zaposleni = new PropertyZaposleni();
             SqlDataReader dataReader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, zaposleni.GetSelectQuery());
 
@@ -63,6 +65,8 @@ namespace DomZdravlja
 
         private void ucitajPacijente()
         {
+            propertyInterfaces[1] = new List<PropertyInterface>();
+
             PropertyPacijent pacijenti = new PropertyPacijent();
             SqlDataReader dataReader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, pacijenti.GetSelectQuery());
             while (dataReader.Read())
@@ -79,6 +83,7 @@ namespace DomZdravlja
 
         private void ucitajCijenu()
         {
+            propertyInterfaces[2] = new List<PropertyInterface>();
             PropertyCjenovnik cijena = new PropertyCjenovnik();
             SqlDataReader dataReader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, cijena.GetSelectQuery());
 
@@ -95,6 +100,7 @@ namespace DomZdravlja
 
         private void ucitajDetaljeRacuna()
         {
+            propertyInterfaces[3] = new List<PropertyInterface>();
             PropertyDetaljiRacuna detaljiRacuna = new PropertyDetaljiRacuna();
             SqlDataReader dataReader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, detaljiRacuna.GetSelectQuery());
 
@@ -111,6 +117,7 @@ namespace DomZdravlja
 
         private void ucitajDijagnozu()
         {
+            propertyInterfaces[4] = new List<PropertyInterface>();
             PropertyDijagnoza dijagnoza = new PropertyDijagnoza();
             SqlDataReader dataReader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, dijagnoza.GetSelectQuery());
 
@@ -128,6 +135,7 @@ namespace DomZdravlja
 
         private void ucitajFaktorRizika()
         {
+            propertyInterfaces[5] = new List<PropertyInterface>();
             PropertyFaktorRizika faktorRizika = new PropertyFaktorRizika();
             SqlDataReader dataReader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, faktorRizika.GetSelectQuery());
 
@@ -143,6 +151,7 @@ namespace DomZdravlja
 
         private void ucitajFaktorRizikaKarton()
         {
+            propertyInterfaces[6] = new List<PropertyInterface>();
             PropertyFaktorRizikaKarton faktorRizikaKarton = new PropertyFaktorRizikaKarton();
             SqlDataReader dataReader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, faktorRizikaKarton.GetSelectQuery());
 
@@ -158,6 +167,7 @@ namespace DomZdravlja
 
         private void ucitajKarton()
         {
+            propertyInterfaces[7] = new List<PropertyInterface>();
             PropertyKarton karton = new PropertyKarton();
             SqlDataReader dataReader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, karton.GetSelectQuery());
 
@@ -173,6 +183,7 @@ namespace DomZdravlja
 
         private void ucitajKartonDijagnoza()
         {
+            propertyInterfaces[8] = new List<PropertyInterface>();
             PropertyKartonDijagnoza kartonDijagnoza = new PropertyKartonDijagnoza();
             SqlDataReader dataReader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, kartonDijagnoza.GetSelectQuery());
 
@@ -188,6 +199,7 @@ namespace DomZdravlja
 
         private void ucitajOsobu()
         {
+            propertyInterfaces[9] = new List<PropertyInterface>();
             PropertyOsoba osoba = new PropertyOsoba();
             SqlDataReader dataReader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, osoba.GetSelectQuery());
 
@@ -209,6 +221,7 @@ namespace DomZdravlja
 
         private void ucitajPregled()
         {
+            propertyInterfaces[10] = new List<PropertyInterface>();
             PropertyPregled pregled = new PropertyPregled();
             SqlDataReader dataReader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, pregled.GetSelectQuery());
 
@@ -225,6 +238,7 @@ namespace DomZdravlja
 
         private void ucitajRacun()
         {
+            propertyInterfaces[11] = new List<PropertyInterface>();
             PropertyRacun racun = new PropertyRacun();
             SqlDataReader dataReader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, racun.GetSelectQuery());
 
@@ -242,6 +256,7 @@ namespace DomZdravlja
 
         private void ucitajEvidenciju()
         {
+            propertyInterfaces[12] = new List<PropertyInterface>();
             PropertyRecepcija recepcija = new PropertyRecepcija();
             SqlDataReader dataReader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, recepcija.GetSelectQuery());
 
@@ -261,6 +276,7 @@ namespace DomZdravlja
 
         private void ucitajRezervaciju()
         {
+            propertyInterfaces[13] = new List<PropertyInterface>();
             PropertyRezervacije rezervacija = new PropertyRezervacije();
             SqlDataReader dataReader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, rezervacija.GetSelectQuery());
 
@@ -387,7 +403,7 @@ namespace DomZdravlja
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            if ((tabControl.SelectedTab as CustomTabPage).State != State.Lookup) rijesiLookup();
         }
 
         #region PoljaZaPretragu
@@ -399,11 +415,30 @@ namespace DomZdravlja
                 FlowLayoutPanel flowLayoutPanel = new FlowLayoutPanel();
                 flowLayoutPanel.Location = new Point(0, 34);
                 flowLayoutPanel.Width = 908;
-                flowLayoutPanel.Height = 766;
+                flowLayoutPanel.Height = 364;
                 tabControl.SelectedTab.Controls.Add(flowLayoutPanel);
 
 
                 kreirajPoljaZaPretragu(myProperty, flowLayoutPanel);
+
+                Panel panel = new Panel();
+                panel.Location = new Point(0, 400);
+                panel.Width = 908;
+                panel.Height = 400;
+
+                CustomTabControl tabControl2 = new CustomTabControl();
+                tabControl2.Location = new Point(0, 0);
+                tabControl2.Width = 908;
+                tabControl2.Height = 400;
+
+                CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "" + (tabControl.SelectedTab as CustomTabPage).Naziv };
+                tabControl2.TabPages.Add(tabPage);
+
+                panel.Controls.Add(tabControl2);
+
+                tabControl.SelectedTab.Controls.Add(panel);
+
+                tabPage.Focus();
 
             }
         }
@@ -475,18 +510,62 @@ namespace DomZdravlja
                     }
             }
         }
+
         #endregion
 
-
+        #region CustomToolStrip
         private void kreirajToolStrip()
         {
             if (tabControl.SelectedIndex != -1 && myProperty != null)
             {
                 CustomToolStrip = new CustomToolStrip(myProperty);
                 CustomToolStrip.DodajClick += CustomToolStrip_DodajClick;
+                CustomToolStrip.AzurirajClick += CustomToolStrip_AzurirajClick;
+                CustomToolStrip.PretragaClick += CustomToolStrip_PretragaClick;
+                CustomToolStrip.ObrisiClick += CustomToolStrip_ObrisiClick;
+                CustomToolStrip.GoreClick += CustomToolStrip_GoreClick;
+                CustomToolStrip.DoleClick += CustomToolStrip_DoleClick;
+                CustomToolStrip.PrviClick += CustomToolStrip_PrviClick;
+                CustomToolStrip.ZadnjiClick += CustomToolStrip_ZadnjiClick;
                 tabControl.SelectedTab.Controls.Add(CustomToolStrip);
             }
         }
+
+        private void CustomToolStrip_ZadnjiClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CustomToolStrip_PrviClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CustomToolStrip_DoleClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CustomToolStrip_GoreClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CustomToolStrip_ObrisiClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CustomToolStrip_PretragaClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CustomToolStrip_AzurirajClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
         #region EventDodaj
         private void CustomToolStrip_DodajClick(object sender, EventArgs e)
@@ -526,13 +605,15 @@ namespace DomZdravlja
                     {
                         UCRadioButton uCRadioButton = new UCRadioButton();
                         uCRadioButton.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                        uCRadioButton.NazivOpcije1 = property.GetCustomAttribute<OpcijeRadioButton>().Param1;
+                        uCRadioButton.NazivOpcije2 = property.GetCustomAttribute<OpcijeRadioButton>().Param2;
                         flowLayoutPanel.Controls.Add(uCRadioButton);
                     }
                     else if(componentType == ComponentType.Lookup)
                     {
                         UCLookup uCLookup = new UCLookup();
                         uCLookup.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
-                    uCLookup.LookupClick += UCLookup_LookupClick;
+                        uCLookup.LookupClick += UCLookup_LookupClick;
                         flowLayoutPanel.Controls.Add(uCLookup);
                     }  
             }
@@ -580,7 +661,6 @@ namespace DomZdravlja
             {
 
                 PropertyInfo property = null;
-                ValidatePattern pattern = new ValidatePattern();
 
                 if(control.GetType() == typeof(UCTekst))
                 {
@@ -660,12 +740,13 @@ namespace DomZdravlja
             if (proslo)
             {
                 //ispunjeni svi uslovi moze dodati
-                MessageBox.Show("Proslo");
+                SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, myProperty.GetInsertQuery());
+                MessageBox.Show("Uspjesno ste dodali!");
             }
             else
             {
                 //nisu ispunjeni uslovi
-                MessageBox.Show("Nije proslo");
+                MessageBox.Show("Dodavanje nije proslo");
             }
         }
         #endregion
@@ -690,7 +771,7 @@ namespace DomZdravlja
             tabControl.SelectedTab.Controls.Add(data);
             data.Focus();
 
-            data = vratiTablu(objekat);
+            data = vratiTablu(objekat, propertyInterfaces[vratiIndex(objekat)]);
             data.Location = new Point(20, 20);
 
             tabControl.SelectedTab.Controls.Add(data);
@@ -708,7 +789,7 @@ namespace DomZdravlja
             UCLookup uCLookup = (sender as Button).Parent as UCLookup;
             
            // string referencedColumn = property.GetCustomAttribute<ForeignKey>().ReferencedTable;
-            btnVrati.Click += (send, EventArgs) => { BtnVrati_Click(send, EventArgs, property, uCLookup, data); };
+            btnVrati.Click += (send, EventArgs) => { BtnVrati_Click(send, EventArgs, property, uCLookup, data, objekat); };
 
             Button btnOdustani = new Button();
             btnOdustani.Text = "Odustani";
@@ -731,23 +812,32 @@ namespace DomZdravlja
             rijesiLookup();
         }
 
-        private void BtnVrati_Click(object sender, EventArgs e, PropertyInfo property, UCLookup uC, DataGridView data)
+        private void BtnVrati_Click(object sender, EventArgs e, PropertyInfo property, UCLookup uC, DataGridView data, object objekat)
         {
-            rijesiLookup();
+            if (data.SelectedRows.Count > 0)
+            {
+                rijesiLookup();
 
-            DataGridViewRow row = data.SelectedRows[0];
+                DataGridViewRow row = data.SelectedRows[0];
 
-            int id = Convert.ToInt32(row.Cells[property.GetCustomAttribute<ForeignKey>().ReferencedColumn]);
+                int id = Convert.ToInt32(row.Cells[property.GetCustomAttribute<ForeignKey>().ReferencedColumn]);
 
-            uC.Value = id.ToString();
+                uC.Value = id.ToString();
+
+                //uC.Info = objekat.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Greska. Niste nista selektovali!");
+            }
 
         }
 
-        public DataGridView vratiTablu(object objekat)
+        public DataGridView vratiTablu(object objekat, List<PropertyInterface> list)
         {
             DataGridView dgv = izgled();
-            
-            if (objekat.GetType() == typeof(PropertyZaposleni)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyZaposleni>().ToList();
+
+            /* if(objekat.GetType() == typeof(PropertyZaposleni)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyZaposleni>().ToList();
             else if (objekat.GetType() == typeof(PropertyPacijent)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyPacijent>().ToList();
             else if (objekat.GetType() == typeof(PropertyCjenovnik)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyCjenovnik>().ToList();
             else if (objekat.GetType() == typeof(PropertyDetaljiRacuna)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyDetaljiRacuna>().ToList();
@@ -761,6 +851,22 @@ namespace DomZdravlja
             else if (objekat.GetType() == typeof(PropertyRacun)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyRacun>().ToList();
             else if (objekat.GetType() == typeof(PropertyRecepcija)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyRecepcija>().ToList();
             else if (objekat.GetType() == typeof(PropertyRezervacije)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyRezervacije>().ToList();
+           */
+            if (objekat.GetType() == typeof(PropertyZaposleni)) dgv.DataSource = list.Cast<PropertyZaposleni>().ToList();
+            else if (objekat.GetType() == typeof(PropertyPacijent)) dgv.DataSource = list.Cast<PropertyPacijent>().ToList();
+            else if (objekat.GetType() == typeof(PropertyCjenovnik)) dgv.DataSource = list.Cast<PropertyCjenovnik>().ToList();
+            else if (objekat.GetType() == typeof(PropertyDetaljiRacuna)) dgv.DataSource = list.Cast<PropertyDetaljiRacuna>().ToList();
+            else if (objekat.GetType() == typeof(PropertyDijagnoza)) dgv.DataSource = list.Cast<PropertyDijagnoza>().ToList();
+            else if (objekat.GetType() == typeof(PropertyFaktorRizika)) dgv.DataSource = list.Cast<PropertyFaktorRizika>().ToList();
+            else if (objekat.GetType() == typeof(PropertyFaktorRizikaKarton)) dgv.DataSource = list.Cast<PropertyFaktorRizikaKarton>().ToList();
+            else if (objekat.GetType() == typeof(PropertyKarton)) dgv.DataSource = list.Cast<PropertyKarton>().ToList();
+            else if (objekat.GetType() == typeof(PropertyKartonDijagnoza)) dgv.DataSource = list.Cast<PropertyKartonDijagnoza>().ToList();
+            else if (objekat.GetType() == typeof(PropertyOsoba)) dgv.DataSource = list.Cast<PropertyOsoba>().ToList();
+            else if (objekat.GetType() == typeof(PropertyPregled)) dgv.DataSource = list.Cast<PropertyPregled>().ToList();
+            else if (objekat.GetType() == typeof(PropertyRacun)) dgv.DataSource = list.Cast<PropertyRacun>().ToList();
+            else if (objekat.GetType() == typeof(PropertyRecepcija)) dgv.DataSource = list.Cast<PropertyRecepcija>().ToList();
+            else if (objekat.GetType() == typeof(PropertyRezervacije)) dgv.DataSource = list.Cast<PropertyRezervacije>().ToList();
+
             return dgv;
         }
 
@@ -769,15 +875,12 @@ namespace DomZdravlja
             DataGridView dataGridView = new DataGridView();
             dataGridView.Width = 950;
             dataGridView.Height = 400;
-            dataGridView.Font = new Font("Century Gothic", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridView.Font = new Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
             dataGridView.MultiSelect = false;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-             dataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
-            //dataGridView.AutoSize = false;
-            
-         
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
 
             dataGridView.RowsDefaultCellStyle.BackColor = Color.White;
             dataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(227, 234, 244);
