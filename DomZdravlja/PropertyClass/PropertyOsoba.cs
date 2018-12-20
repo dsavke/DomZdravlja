@@ -15,10 +15,10 @@ namespace DomZdravlja.PropertyClass
         private int osobaID;
         private string ime;
         private string prezime;
-        private int jmb;
+        private string jmb;
         private string adresa;
         private string kontakt;
-        private char pol;
+        private string pol;
         private string mjestoRodjenja;
         private DateTime datumRodjenja;
         private int zivotniStatus;
@@ -82,7 +82,7 @@ namespace DomZdravlja.PropertyClass
         [ValidatePattern(@"^[A-Za-z0-9]{5,13}$")]
         [GenerateComponent(ComponentType.Tekst)]
         [MainSearch(null)]
-        public int JMB
+        public string JMB
         {
             get
             {
@@ -133,7 +133,7 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.RadioButton)]
         [ValidatePattern(@"^[A-Z]{1}$")]
 
-        public char Pol
+        public string Pol
         {
             get
             {

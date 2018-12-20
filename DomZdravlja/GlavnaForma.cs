@@ -45,13 +45,13 @@ namespace DomZdravlja
             while (dataReader.Read())
             {
                 PropertyZaposleni pomZaposleni = new PropertyZaposleni();
-                pomZaposleni.ZaposleniID = (int)dataReader["ZaposleniID"];
-                pomZaposleni.Zvanje = (string)dataReader["Zvanje"];
-                pomZaposleni.RadnoMjesto = (string)dataReader["RadnoMjesto"];
-                pomZaposleni.KorisnickoIme = (string)dataReader["KorisnickoIme"];
-                pomZaposleni.Password = (string)dataReader["Password"];
-                pomZaposleni.TipZaposlenog = (string)dataReader["TipZaposlenog"];
-                pomZaposleni.OsobaID = (int)dataReader["OsobaID"];
+                pomZaposleni.ZaposleniID = Convert.ToInt32(dataReader["ZaposleniID"]);
+                pomZaposleni.Zvanje = dataReader["Zvanje"].ToString();
+                pomZaposleni.RadnoMjesto = dataReader["RadnoMjesto"].ToString();
+                pomZaposleni.KorisnickoIme =dataReader["KorisnickoIme"].ToString();
+                pomZaposleni.Password = dataReader["Password"].ToString();
+                pomZaposleni.TipZaposlenog = dataReader["TipZaposlenog"].ToString();
+                pomZaposleni.OsobaID =Convert.ToInt32(dataReader["OsobaID"]);
                 propertyInterfaces[0].Add(pomZaposleni);
             }
         }
@@ -64,11 +64,11 @@ namespace DomZdravlja
             while (dataReader.Read())
             {
                 PropertyPacijent pomPacijenti = new PropertyPacijent();
-                pomPacijenti.PacijentID = (int)dataReader["PacijentID"];
-                pomPacijenti.DoktorID = (int)dataReader["DoktorID"];
-                pomPacijenti.OsobaID = (int)dataReader["OsobaID"];
-                pomPacijenti.BrojKartona = (int)dataReader["BrojKartona"];
-                pomPacijenti.Osiguran = (int)dataReader["Osiguran"];
+                pomPacijenti.PacijentID =Convert.ToInt32(dataReader["PacijentID"]);
+                pomPacijenti.DoktorID = Convert.ToInt32(dataReader["DoktorID"]);
+                pomPacijenti.OsobaID = Convert.ToInt32(dataReader["OsobaID"]);
+                pomPacijenti.BrojKartona = Convert.ToInt32(dataReader["BrojKartona"]);
+                pomPacijenti.Osiguran = Convert.ToInt32(dataReader["Osiguran"]);
                 propertyInterfaces[1].Add(pomPacijenti);
             }
         }
@@ -81,10 +81,10 @@ namespace DomZdravlja
             while (dataReader.Read())
             {
                 PropertyCjenovnik pomCijena = new PropertyCjenovnik();
-                pomCijena.CjenovnikID = (int)dataReader["CjenovnikID"];
-                pomCijena.NazivUsluge = (string)dataReader["NazivUsluge"];
-                pomCijena.CijenaUsluge = (decimal)dataReader["CijenaUsluge"];
-                pomCijena.DatumUspostavljanjaCijene = (DateTime)dataReader["DatumUspostavljanjaCijene"];
+                pomCijena.CjenovnikID = Convert.ToInt32(dataReader["CjenovnikID"]);
+                pomCijena.NazivUsluge = dataReader["NazivUsluge"].ToString();
+                pomCijena.CijenaUsluge = Convert.ToDecimal(dataReader["CijenaUsluge"]);
+                pomCijena.DatumUspostavljanjaCijene =Convert.ToDateTime(dataReader["DatumUspostavljanjaCijene"]);
                 propertyInterfaces[2].Add(pomCijena);
             }
         }
@@ -97,10 +97,10 @@ namespace DomZdravlja
             while (dataReader.Read())
             {
                 PropertyDetaljiRacuna pomDetaljiRacuna = new PropertyDetaljiRacuna();
-                pomDetaljiRacuna.DetaljiRacunaID = (int)dataReader["DetaljiRacunaID"];
-                pomDetaljiRacuna.RacunID = (int)dataReader["RacunID"];
-                pomDetaljiRacuna.CijenaID = (int)dataReader["CijenaID"];
-                pomDetaljiRacuna.Kolicina = (int)dataReader["Kolicina"];
+                pomDetaljiRacuna.DetaljiRacunaID = Convert.ToInt32(dataReader["DetaljiRacunaID"]);
+                pomDetaljiRacuna.RacunID = Convert.ToInt32(dataReader["RacunID"]);
+                pomDetaljiRacuna.CijenaID = Convert.ToInt32(dataReader["CijenaID"]);
+                pomDetaljiRacuna.Kolicina = Convert.ToInt32(dataReader["Kolicina"]);
                 propertyInterfaces[3].Add(pomDetaljiRacuna);
             }
         }
@@ -113,11 +113,11 @@ namespace DomZdravlja
             while (dataReader.Read())
             {
                 PropertyDijagnoza pomDijagnoza = new PropertyDijagnoza();
-                pomDijagnoza.DijagnozaID = (int)dataReader["DijagnozaID"];
-                pomDijagnoza.PacijentID = (int)dataReader["PacijentID"];
-                pomDijagnoza.DoktorID = (int)dataReader["DoktorID"];
-                pomDijagnoza.Terapija = (string)dataReader["Terapija"];
-                pomDijagnoza.Opis = (string)dataReader["Opis"];
+                pomDijagnoza.DijagnozaID = Convert.ToInt32(dataReader["DijagnozaID"]);
+                pomDijagnoza.PacijentID = Convert.ToInt32(dataReader["PacijentID"]);
+                pomDijagnoza.DoktorID = Convert.ToInt32(dataReader["DoktorID"]);
+                pomDijagnoza.Terapija =dataReader["Terapija"].ToString();
+                pomDijagnoza.Opis = dataReader["Opis"].ToString();
                 propertyInterfaces[4].Add(pomDijagnoza);
             }
         }
@@ -130,9 +130,9 @@ namespace DomZdravlja
             while (dataReader.Read())
             {
                 PropertyFaktorRizika pomFaktorRizika = new PropertyFaktorRizika();
-                pomFaktorRizika.FaktorRizikaID = (int)dataReader["FaktorRizikaID"];
-                pomFaktorRizika.NazivRizika = (string)dataReader["NazivRizika"];
-                pomFaktorRizika.Opis = (string)dataReader["Opis"];
+                pomFaktorRizika.FaktorRizikaID = Convert.ToInt32(dataReader["FaktorRizikaID"]);
+                pomFaktorRizika.NazivRizika = dataReader["NazivRizika"].ToString();
+                pomFaktorRizika.Opis = dataReader["Opis"].ToString();
                 propertyInterfaces[5].Add(pomFaktorRizika);
             }
         }
@@ -145,9 +145,9 @@ namespace DomZdravlja
             while (dataReader.Read())
             {
                 PropertyFaktorRizikaKarton pomFaktorRizikaKarton = new PropertyFaktorRizikaKarton();
-                pomFaktorRizikaKarton.FRKID = (int)dataReader["FRKID"];
-                pomFaktorRizikaKarton.FaktorRizikaID = (int)dataReader["FaktorRizikaID"];
-                pomFaktorRizikaKarton.KartonID = (int)dataReader["KartonID"];
+                pomFaktorRizikaKarton.FRKID = Convert.ToInt32(dataReader["FRKID"]);
+                pomFaktorRizikaKarton.FaktorRizikaID = Convert.ToInt32(dataReader["FaktorRizikaID"]);
+                pomFaktorRizikaKarton.KartonID = Convert.ToInt32(dataReader["KartonID"]);
                 propertyInterfaces[6].Add(pomFaktorRizikaKarton);
             }
         }
@@ -160,8 +160,8 @@ namespace DomZdravlja
             while (dataReader.Read())
             {
                 PropertyKarton pomKarton = new PropertyKarton();
-                pomKarton.PacijentID = (int)dataReader["PacijentID"];
-                pomKarton.KartonID = (int)dataReader["KartonID"];
+                pomKarton.PacijentID = Convert.ToInt32(dataReader["PacijentID"]);
+                pomKarton.KartonID = Convert.ToInt32(dataReader["KartonID"]);
 
                 propertyInterfaces[7].Add(pomKarton);
             }
@@ -175,9 +175,9 @@ namespace DomZdravlja
             while (dataReader.Read())
             {
                 PropertyKartonDijagnoza pomKartonDijagnoza = new PropertyKartonDijagnoza();
-                pomKartonDijagnoza.KartonDijagnozaID = (int)dataReader["KartonDijagnozaID"];
-                pomKartonDijagnoza.KartonID = (int)dataReader["KartonID"];
-                pomKartonDijagnoza.DijagnozaID = (int)dataReader["DijagnozaID"];
+                pomKartonDijagnoza.KartonDijagnozaID = Convert.ToInt32(dataReader["KartonDijagnozaID"]);
+                pomKartonDijagnoza.KartonID = Convert.ToInt32(dataReader["KartonID"]);
+                pomKartonDijagnoza.DijagnozaID = Convert.ToInt32(dataReader["DijagnozaID"]);
                 propertyInterfaces[8].Add(pomKartonDijagnoza);
             }
         }
@@ -190,15 +190,15 @@ namespace DomZdravlja
             while (dataReader.Read())
             {
                 PropertyOsoba pomOsoba = new PropertyOsoba();
-                pomOsoba.OsobaID = (int)dataReader["OsobaID"];
-                pomOsoba.Ime = (string)dataReader["Ime"];
-                pomOsoba.Prezime = (string)dataReader["Prezime"];
-                pomOsoba.JMB = (int)dataReader["JMB"];
-                pomOsoba.Adresa = (string)dataReader["Adresa"];
-                pomOsoba.Kontakt = (string)dataReader["Kontakt"];
-                pomOsoba.Pol = (char)dataReader["Pol"];
-                pomOsoba.MjestoRodjenja = (string)dataReader["MjestoRodjenja"];
-                pomOsoba.DatumRodjenja = (DateTime)dataReader["DatumRodjenja"];
+                pomOsoba.OsobaID = Convert.ToInt32(dataReader["OsobaID"]);
+                pomOsoba.Ime = dataReader["Ime"].ToString();
+                pomOsoba.Prezime = dataReader["Prezime"].ToString();
+                pomOsoba.JMB = dataReader["JMB"].ToString();
+                pomOsoba.Adresa = dataReader["Adresa"].ToString();
+                pomOsoba.Kontakt = dataReader["Kontakt"].ToString();
+                pomOsoba.Pol = dataReader["Pol"].ToString();
+                pomOsoba.MjestoRodjenja = dataReader["MjestoRodjenja"].ToString();
+                pomOsoba.DatumRodjenja = Convert.ToDateTime(dataReader["DatumRodjenja"]);
                 propertyInterfaces[9].Add(pomOsoba);
             }
         }
@@ -211,10 +211,10 @@ namespace DomZdravlja
             while (dataReader.Read())
             {
                 PropertyPregled pomPregled = new PropertyPregled();
-                pomPregled.PregledID = (int)dataReader["PregledID"];
-                pomPregled.DoktorID = (int)dataReader["DoktorID"];
-                pomPregled.PacijentID = (int)dataReader["PacijentID"];
-                pomPregled.DijagnozaID = (int)dataReader["DijagnozaID"];
+                pomPregled.PregledID = Convert.ToInt32(dataReader["PregledID"]);
+                pomPregled.DoktorID = Convert.ToInt32(dataReader["DoktorID"]);
+                pomPregled.PacijentID = Convert.ToInt32(dataReader["PacijentID"]);
+                pomPregled.DijagnozaID = Convert.ToInt32(dataReader["DijagnozaID"]);
                 propertyInterfaces[10].Add(pomPregled);
             }
         }
@@ -227,11 +227,11 @@ namespace DomZdravlja
             while (dataReader.Read())
             {
                 PropertyRacun pomRacun = new PropertyRacun();
-                pomRacun.RacunID = (int)dataReader["RacunID"];
-                pomRacun.VrijemeIzdavanja = (DateTime)dataReader["VrijemeIzdavanja"];
-                pomRacun.ZaposleniID = (int)dataReader["ZaposleniID"];
-                pomRacun.Popust = (decimal)dataReader["Popust"];
-                pomRacun.PacijentID = (int)dataReader["PacijentID"];
+                pomRacun.RacunID = Convert.ToInt32(dataReader["RacunID"]);
+                pomRacun.VrijemeIzdavanja = Convert.ToDateTime(dataReader["VrijemeIzdavanja"]);
+                pomRacun.ZaposleniID = Convert.ToInt32(dataReader["ZaposleniID"]);
+                pomRacun.Popust = Convert.ToDecimal(dataReader["Popust"]);
+                pomRacun.PacijentID = Convert.ToInt32(dataReader["PacijentID"]);
                 propertyInterfaces[11].Add(pomRacun);
             }
         }
@@ -244,13 +244,13 @@ namespace DomZdravlja
             while (dataReader.Read())
             {
                 PropertyRecepcija pomRecepcija = new PropertyRecepcija();
-                pomRecepcija.PrijemID = (int)dataReader["PrijemID"];
-                pomRecepcija.PrijemZaposleniID = (int)dataReader["PrijemZaposlenihID"];
-                pomRecepcija.PacijentID = (int)dataReader["PacijentID"];
-                pomRecepcija.DoktorID = (int)dataReader["DoktorID"];
-                pomRecepcija.Prioritet = (int)dataReader["Prioritet"];
-                pomRecepcija.VrijemePrijema = (DateTime)dataReader["VrijemePrijema"];
-                pomRecepcija.VrijemeOtpusta = (DateTime)dataReader["VrijemeOtpusta"];
+                pomRecepcija.PrijemID = Convert.ToInt32(dataReader["PrijemID"]);
+                pomRecepcija.PrijemZaposleniID = Convert.ToInt32(dataReader["PrijemZaposlenihID"]);
+                pomRecepcija.PacijentID = Convert.ToInt32(dataReader["PacijentID"]);
+                pomRecepcija.DoktorID = Convert.ToInt32(dataReader["DoktorID"]);
+                pomRecepcija.Prioritet = Convert.ToInt32(dataReader["Prioritet"]);
+                pomRecepcija.VrijemePrijema = Convert.ToDateTime(dataReader["VrijemePrijema"]);
+                pomRecepcija.VrijemeOtpusta = Convert.ToDateTime(dataReader["VrijemeOtpusta"]);
                 propertyInterfaces[12].Add(pomRecepcija);
             }
         }
@@ -263,11 +263,11 @@ namespace DomZdravlja
             while (dataReader.Read())
             {
                 PropertyRezervacije pomRezervacija = new PropertyRezervacije();
-                pomRezervacija.RezervacijaID = (int)dataReader["RezervacijaID"];
-                pomRezervacija.PacijentID = (int)dataReader["PacijentID"];
-                pomRezervacija.VrijemeRezervacije = (DateTime)dataReader["VrijemeRezervacije"];
-                pomRezervacija.Termin = (DateTime)dataReader["Termin"];
-                pomRezervacija.DoktorID = (int)dataReader["DoktorID"];
+                pomRezervacija.RezervacijaID = Convert.ToInt32(dataReader["RezervacijaID"]);
+                pomRezervacija.PacijentID = Convert.ToInt32(dataReader["PacijentID"]);
+                pomRezervacija.VrijemeRezervacije = Convert.ToDateTime(dataReader["VrijemeRezervacije"]);
+                pomRezervacija.Termin = Convert.ToDateTime(dataReader["Termin"]);
+                pomRezervacija.DoktorID = Convert.ToInt32(dataReader["DoktorID"]);
                 propertyInterfaces[13].Add(pomRezervacija);
             }
         }
