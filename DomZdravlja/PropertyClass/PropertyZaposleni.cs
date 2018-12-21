@@ -22,7 +22,7 @@ namespace DomZdravlja.PropertyClass
         #endregion
 
         #region Property
-        [DisplayName("Sifra zaposlenog")]
+        [DisplayName("Šifra zaposlenog")]
         [SqlName("ZaposleniID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
@@ -73,7 +73,7 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Korisnicko ime")]
+        [DisplayName("Korisničko ime")]
         [SqlName("KorisnickoIme")]
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"^([a-z0-9]{3,15}(([\._][a-z0-9]{3,16})?))*$")]
@@ -126,7 +126,7 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Sifra osobe")]
+        [DisplayName("Šifra osobe")]
         [SqlName("OsobaID")]
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyOsoba", "OsobaID")]

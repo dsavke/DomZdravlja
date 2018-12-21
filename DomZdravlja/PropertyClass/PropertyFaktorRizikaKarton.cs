@@ -20,7 +20,7 @@ namespace DomZdravlja.PropertyClass
 
         #region Property
 
-        [DisplayName("Sifra faktor rizika karton")]
+        [DisplayName("Šifra faktor rizika karton")]
         [SqlName("FRKID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
@@ -37,7 +37,7 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Sifra faktor rizika")]
+        [DisplayName("Šifra faktor rizika")]
         [SqlName("FaktorRizikaID")]
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyFaktorRizika", "FaktorRizikaID")]
@@ -55,7 +55,7 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Sifra kartona")]
+        [DisplayName("Šifra kartona")]
         [SqlName("KartonID")]
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyKarton", "PacijentID")]

@@ -911,13 +911,13 @@ namespace DomZdravlja
             ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
 
 
-            PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POCETNA");
+            PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POČETNA");
             panelTabControl.ControlClick += Pocetna_ControlClick;
             PanelTabControl panelTabControl1 = new PanelTabControl((Image)resources.GetObject("rezervacija"), "RECEPCIJA");
             panelTabControl1.ControlClick += Recepcija_ControlClick;
             PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("pacijent"), "PACIJENT");
             panelTabControl3.ControlClick += Pacijent_ControlClick;
-            PanelTabControl panelTabControl2 = new PanelTabControl((Image)resources.GetObject("racun"), "RACUN");
+            PanelTabControl panelTabControl2 = new PanelTabControl((Image)resources.GetObject("racun"), "RAČUN");
             panelTabControl2.ControlClick += Racun_ControlClick;
             PanelTabControl panelTabControl6 = new PanelTabControl((Image)resources.GetObject("odjava"), "ODJAVA");
             panelTabControl6.ControlClick += Odjava_ControlClick;
@@ -934,7 +934,7 @@ namespace DomZdravlja
         {
             ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
 
-            PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POCETNA");
+            PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POČETNA");
             panelTabControl.ControlClick += Pocetna_ControlClick; 
             PanelTabControl panelTabControl1 = new PanelTabControl((Image)resources.GetObject("zaposleni"), "ZAPOSLENI");
             panelTabControl1.ControlClick += Zaposleni_ControlClick;
@@ -942,7 +942,7 @@ namespace DomZdravlja
             panelTabControl3.ControlClick += Pacijent_ControlClick;
             PanelTabControl panelTabControl4 = new PanelTabControl((Image)resources.GetObject("cjenovnik"), "CJENOVNIK");
             panelTabControl4.ControlClick += Cjenovnik_ControlClick;
-            PanelTabControl panelTabControl2 = new PanelTabControl((Image)resources.GetObject("racun"), "RACUN");
+            PanelTabControl panelTabControl2 = new PanelTabControl((Image)resources.GetObject("racun"), "RAČUN");
             panelTabControl2.ControlClick += Racun_ControlClick;
             PanelTabControl panelTabControl6 = new PanelTabControl((Image)resources.GetObject("odjava"), "ODJAVA");
             panelTabControl6.ControlClick += Odjava_ControlClick;
@@ -1038,7 +1038,7 @@ namespace DomZdravlja
 
         private void Odjava_ControlClick(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Da li zelite izaci iz programa?", "Warnning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult dialogResult = MessageBox.Show("Da li zelite izaći iz programa?", "Warnning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if(dialogResult == DialogResult.Yes)
             {
                 this.Hide();
@@ -1073,7 +1073,7 @@ namespace DomZdravlja
         private void Racun_ControlClick(object sender, EventArgs e)
         {
             zatvoriSve();
-            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "RACUN" };
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "RAČUN" };
             tabControl.Controls.Add(tabPage);
             postaviFokus();
             myProperty = new PropertyRacun();

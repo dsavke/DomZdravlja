@@ -21,7 +21,7 @@ namespace DomZdravlja.PropertyClass
 
         #region Property
 
-        [DisplayName("Sifra dijagnoze")]
+        [DisplayName("Šifra dijagnoze")]
         [SqlName("DijagnozaID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
@@ -38,7 +38,7 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Sifra pacijenta")]
+        [DisplayName("Šifra pacijenta")]
         [SqlName("PacijentID")]
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyPacijent", "PacijentID")]
@@ -56,7 +56,7 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Sifra doktora")]
+        [DisplayName("Šifra doktora")]
         [SqlName("DoktorID")]
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "ZaposleniID")]

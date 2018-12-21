@@ -25,7 +25,7 @@ namespace DomZdravlja.PropertyClass
         #endregion
 
         #region Property
-        [DisplayName("Sifra osobe")]
+        [DisplayName("Šifra osobe")]
         [SqlName("OsobaID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
@@ -131,7 +131,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Pol")]
         [SqlName("Pol")]
         [GenerateComponent(ComponentType.RadioButton)]
-        [OpcijeRadioButton("Muško", "Žansko")]
+        [RadioButton("Muško", "Žensko")]
         [ValidatePattern(@"^[A-Z]{1}$")]
 
         public string Pol
@@ -146,7 +146,7 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Mjesto rodjenja")]
+        [DisplayName("Mjesto rođenja")]
         [SqlName("MjestoRodjenja")]
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s((\-)?)]*$")]
@@ -163,7 +163,7 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Datum rodjenja")]
+        [DisplayName("Datum rođenja")]
         [SqlName("DatumRodjenja")]
         [GenerateComponent(ComponentType.Datum)]
 
@@ -179,7 +179,7 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Zivotni status")]
+        [DisplayName("Životni status")]
         [SqlName("ZivotniStatus")]
         [GenerateComponent(ComponentType.RadioButton)]
         [OpcijeRadioButton("Živ", "Mrtav")]
