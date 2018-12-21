@@ -418,24 +418,8 @@ namespace DomZdravlja
 
                 kreirajPoljaZaPretragu(myProperty, flowLayoutPanel);
 
-                Panel panel = new Panel();
-                panel.Location = new Point(0, 400);
-                panel.Width = 908;
-                panel.Height = 400;
-
-                CustomTabControl tabControl2 = new CustomTabControl();
-                tabControl2.Location = new Point(0, 0);
-                tabControl2.Width = 908;
-                tabControl2.Height = 400;
-
-                CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "" + (tabControl.SelectedTab as CustomTabPage).Naziv };
-                tabControl2.TabPages.Add(tabPage);
-
-                panel.Controls.Add(tabControl2);
-
-                tabControl.SelectedTab.Controls.Add(panel);
-
-                tabPage.Focus();
+                
+            
 
             }
         }
@@ -444,14 +428,24 @@ namespace DomZdravlja
         {
             if (tabControl.SelectedIndex != -1 && myProperty != null)
             {
-                CustomTabControl noviTabControl = new CustomTabControl();
-                noviTabControl.Location = new Point(0, 250);
+                CustomTabControl noviTabControl = new CustomTabControl() { HeaderColor = Color.FromArgb(255, 255, 255)};
+                noviTabControl.Location = new Point(5, 300);
                 noviTabControl.Width = 890;
                 noviTabControl.Height = 400;
                 CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv =tabControl.SelectedTab.Text };
 
                 noviTabControl.TabPages.Add(tabPage);
                 tabControl.SelectedTab.Controls.Add(noviTabControl);
+
+                DataGridView data = new DataGridView();
+                ucitaj(vratiIndex(myProperty));
+                data = vratiTablu(myProperty, propertyInterfaces[vratiIndex(myProperty)]);
+                tabPage.Controls.Add(data);
+                data.Dock = DockStyle.Fill;
+                data.BorderStyle = BorderStyle.None;
+                data.BackgroundColor = Color.FromArgb(255, 255, 255);
+                data.Focus();
+
             }
         }
 

@@ -22,6 +22,7 @@ namespace DomZdravlja.CustomControls
         #region Atributi
         private Color backTabColor = Color.FromArgb(255, 255, 255);
         private Color closingButtonColor = Color.FromArgb(51, 128, 196);
+        private Color headerColor = SystemColors.Control;
         private TabPage predraggedTab;
         public bool ShowClosingButton { get; set; }
         public Color selectedTextColor = Color.FromArgb(51, 128, 196);
@@ -77,6 +78,11 @@ namespace DomZdravlja.CustomControls
             Alignment = TabAlignment.Top;
         }
 
+        public Color HeaderColor
+        {
+            get { return headerColor; }
+            set { headerColor = value; }
+        }
 
         #region SelektovaniTab
         protected override void OnMouseDown(MouseEventArgs e)
@@ -122,7 +128,7 @@ namespace DomZdravlja.CustomControls
             Drawer.SmoothingMode = SmoothingMode.HighQuality;
             Drawer.PixelOffsetMode = PixelOffsetMode.HighQuality;
             Drawer.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
-            Drawer.Clear(SystemColors.Control);
+            Drawer.Clear(HeaderColor);
             try
             {
                 SelectedTab.BackColor = this.backTabColor;
