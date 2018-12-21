@@ -131,7 +131,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Pol")]
         [SqlName("Pol")]
         [GenerateComponent(ComponentType.RadioButton)]
-        [RadioButton("Muško", "Žansko")]
+        [OpcijeRadioButton("Muško", "Žansko")]
         [ValidatePattern(@"^[A-Z]{1}$")]
 
         public string Pol
@@ -182,7 +182,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Zivotni status")]
         [SqlName("ZivotniStatus")]
         [GenerateComponent(ComponentType.RadioButton)]
-        [RadioButton("Živ", "Mrtav")]
+        [OpcijeRadioButton("Živ", "Mrtav")]
         [Invisible]
 
         public int ZivotniStatus

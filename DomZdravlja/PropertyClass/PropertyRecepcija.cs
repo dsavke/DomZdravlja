@@ -98,7 +98,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("Prioritet")]
         [ValidatePattern(@"^\d+$")]
         [GenerateComponent(ComponentType.RadioButton)]
-        [RadioButton("Ima", "Nema")]
+        [OpcijeRadioButton("Ima", "Nema")]
 
         public int Prioritet
         {

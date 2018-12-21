@@ -29,14 +29,12 @@ namespace DomZdravlja
   
         private void dodajList()
         {
-            
-            //propertyInterfacesi.Add(new List<PropertyZaposleni>());
+       
             for (int i = 0; i < 14; i++)
             {
                 propertyInterfaces[i] = new List<PropertyInterface>();
             }
 
-            //propertyInterfaces[0] = new List<PropertyZaposleni>();
 
         }
 
@@ -374,7 +372,6 @@ namespace DomZdravlja
             dodajList();
             myProperty = null;
             ucitajPacijente();
-            //ucitaj(1);//for (int i = 0; i < 14; i++) ucitaj(i);
         }
 
 
@@ -397,13 +394,13 @@ namespace DomZdravlja
             tabControl.Controls.Add(tabPage);
             tabControl.TabPages[tabControl.TabPages.Count - 1].Focus();
 
-            //tabControl.Enabled = false;
             postaviPocetnu();
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((tabControl.SelectedTab as CustomTabPage).State != State.Lookup) rijesiLookup();
+            if ((sender as CustomTabControl).TabPages.Count > 0)
+                if ((tabControl.SelectedTab as CustomTabPage).State != State.Lookup) rijesiLookup();
         }
 
         #region PoljaZaPretragu
@@ -764,9 +761,6 @@ namespace DomZdravlja
             DataGridView data = new DataGridView();
        
             ucitaj(vratiIndex(objekat));
-            
-            tabControl.SelectedTab.Controls.Add(data);
-            data.Focus();
 
             data = vratiTablu(objekat, propertyInterfaces[vratiIndex(objekat)]);
             data.Location = new Point(20, 20);
@@ -781,12 +775,10 @@ namespace DomZdravlja
             Button btnVrati = new Button();
             btnVrati.Text = "Vrati";
             btnVrati.Location = new Point(710, 100);
-            //btnVrati.Click += BtnVrati_Click;
-            //button.Click += (sender, EventArgs) => { buttonNext_Click(sender, EventArgs, item.NextTabIndex); };
+
             UCLookup uCLookup = (sender as Button).Parent as UCLookup;
-            
-           // string referencedColumn = property.GetCustomAttribute<ForeignKey>().ReferencedTable;
-            btnVrati.Click += (send, EventArgs) => { BtnVrati_Click(send, EventArgs, property, uCLookup, data, objekat); };
+         
+            btnVrati.Click += (send, EventArgs) => { BtnVrati_Click(send, EventArgs, property, uCLookup, data, objekat, tabPage); };
 
             Button btnOdustani = new Button();
             btnOdustani.Text = "Odustani";
@@ -809,7 +801,7 @@ namespace DomZdravlja
             rijesiLookup();
         }
 
-        private void BtnVrati_Click(object sender, EventArgs e, PropertyInfo property, UCLookup uC, DataGridView data, object objekat)
+        private void BtnVrati_Click(object sender, EventArgs e, PropertyInfo property, UCLookup uC, DataGridView data, object objekat, CustomTabPage tabPage)
         {
             if (data.SelectedRows.Count > 0)
             {
@@ -817,9 +809,11 @@ namespace DomZdravlja
 
                 DataGridViewRow row = data.SelectedRows[0];
 
-                int id = Convert.ToInt32(row.Cells[property.GetCustomAttribute<ForeignKey>().ReferencedColumn]);
+                int id = Convert.ToInt32(row.Cells[property.GetCustomAttribute<ForeignKey>().ReferencedColumn].Value);
 
                 uC.Value = id.ToString();
+
+                tabControl.TabPages.Remove(tabControl.SelectedTab);
 
                 //uC.Info = objekat.ToString();
             }
@@ -833,22 +827,7 @@ namespace DomZdravlja
         public DataGridView vratiTablu(object objekat, List<PropertyInterface> list)
         {
             DataGridView dgv = izgled();
-
-            /* if(objekat.GetType() == typeof(PropertyZaposleni)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyZaposleni>().ToList();
-            else if (objekat.GetType() == typeof(PropertyPacijent)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyPacijent>().ToList();
-            else if (objekat.GetType() == typeof(PropertyCjenovnik)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyCjenovnik>().ToList();
-            else if (objekat.GetType() == typeof(PropertyDetaljiRacuna)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyDetaljiRacuna>().ToList();
-            else if (objekat.GetType() == typeof(PropertyDijagnoza)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyDijagnoza>().ToList();
-            else if (objekat.GetType() == typeof(PropertyFaktorRizika)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyFaktorRizika>().ToList();
-            else if (objekat.GetType() == typeof(PropertyFaktorRizikaKarton)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyFaktorRizikaKarton>().ToList();
-            else if (objekat.GetType() == typeof(PropertyKarton)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyKarton>().ToList();
-            else if (objekat.GetType() == typeof(PropertyKartonDijagnoza)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyKartonDijagnoza>().ToList();
-            else if (objekat.GetType() == typeof(PropertyOsoba)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyOsoba>().ToList();
-            else if (objekat.GetType() == typeof(PropertyPregled)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyPregled>().ToList();
-            else if (objekat.GetType() == typeof(PropertyRacun)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyRacun>().ToList();
-            else if (objekat.GetType() == typeof(PropertyRecepcija)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyRecepcija>().ToList();
-            else if (objekat.GetType() == typeof(PropertyRezervacije)) dgv.DataSource = propertyInterfaces[vratiIndex(objekat)].Cast<PropertyRezervacije>().ToList();
-           */
+            
             if (objekat.GetType() == typeof(PropertyZaposleni)) dgv.DataSource = list.Cast<PropertyZaposleni>().ToList();
             else if (objekat.GetType() == typeof(PropertyPacijent)) dgv.DataSource = list.Cast<PropertyPacijent>().ToList();
             else if (objekat.GetType() == typeof(PropertyCjenovnik)) dgv.DataSource = list.Cast<PropertyCjenovnik>().ToList();
@@ -870,7 +849,7 @@ namespace DomZdravlja
         private DataGridView izgled()
         {
             DataGridView dataGridView = new DataGridView();
-            dataGridView.Width = 950;
+            dataGridView.Width = 880;
             dataGridView.Height = 400;
             dataGridView.Font = new Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
@@ -1122,9 +1101,15 @@ namespace DomZdravlja
 
         private void tabControl_Selecting(object sender, TabControlCancelEventArgs e)
         {
-            if (e.TabPage.Enabled)
+            if (!provjeriLookup()) rijesiLookup();
+            if ((sender as CustomTabControl).TabPages.Count > 0)
             {
-                e.Cancel = true;
+                {
+                    if (!e.TabPage.Enabled)
+                    {
+                        e.Cancel = true;
+                    }
+                }
             }
         }
 
@@ -1143,6 +1128,15 @@ namespace DomZdravlja
             {
                 tabPage.Enabled = true;
             }
+        }
+
+        private bool provjeriLookup()
+        {
+            foreach(CustomTabPage tabPage in tabControl.TabPages)
+            {
+                if (tabPage.State == State.Lookup) return true;
+            }
+            return false;
         }
 
     }

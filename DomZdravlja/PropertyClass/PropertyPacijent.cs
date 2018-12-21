@@ -94,7 +94,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Osiguran")]
         [SqlName("Osiguran")]
         [GenerateComponent(ComponentType.RadioButton)]
-        [RadioButton("Da", "Ne")]
+        [OpcijeRadioButton("Da", "Ne")]
         [ValidatePattern(@"^\d+$")]
 
         public int Osiguran
