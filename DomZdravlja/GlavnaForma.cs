@@ -415,7 +415,7 @@ namespace DomZdravlja
                 FlowLayoutPanel flowLayoutPanel = new FlowLayoutPanel();
                 flowLayoutPanel.Location = new Point(0, 34);
                 flowLayoutPanel.Width = 908;
-                flowLayoutPanel.Height = 364;
+                flowLayoutPanel.Height = 200;
                 tabControl.SelectedTab.Controls.Add(flowLayoutPanel);
 
 
@@ -447,17 +447,14 @@ namespace DomZdravlja
         {
             if (tabControl.SelectedIndex != -1 && myProperty != null)
             {
-                TabControl tab = new TabControl();
-                tab.Location = new Point(0, 200);
-                tab.Width = 908;
-                tab.Height = 250;
-                tabControl.SelectedTab.Controls.Add(tab);
+                CustomTabControl noviTabControl = new CustomTabControl();
+                noviTabControl.Location = new Point(0, 250);
+                noviTabControl.Width = 890;
+                noviTabControl.Height = 400;
+                CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv =tabControl.SelectedTab.Text };
 
-                CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "POCETNA" };
-                tabControl.Controls.Add(tabPage);
-                tab.Controls.Add(tabPage);
-
-               
+                noviTabControl.TabPages.Add(tabPage);
+                tabControl.SelectedTab.Controls.Add(noviTabControl);
             }
         }
 
@@ -1003,6 +1000,7 @@ namespace DomZdravlja
             postaviFokus();
             myProperty = null;
             postaviPocetnu();
+        
         }
 
         private void Cjenovnik_ControlClick(object sender, EventArgs e)
@@ -1038,6 +1036,7 @@ namespace DomZdravlja
             myProperty = null;
             kreirajToolStrip();
             dodajPoljaZaPretragu();
+            kreirajTabove();
         }
 
         private void Karton_ControlClick(object sender, EventArgs e)
@@ -1049,6 +1048,7 @@ namespace DomZdravlja
             myProperty = new PropertyKarton();
             kreirajToolStrip();
             dodajPoljaZaPretragu();
+            kreirajTabove();
         }
 
         private void Pregled_ControlClick(object sender, EventArgs e)
@@ -1060,6 +1060,7 @@ namespace DomZdravlja
             myProperty = new PropertyPregled();
             kreirajToolStrip();
             dodajPoljaZaPretragu();
+            kreirajTabove();
         }
 
         private void Odjava_ControlClick(object sender, EventArgs e)
@@ -1093,6 +1094,7 @@ namespace DomZdravlja
             myProperty = new PropertyPacijent();
             kreirajToolStrip();
             dodajPoljaZaPretragu();
+            kreirajTabove();
         }
 
         private void Racun_ControlClick(object sender, EventArgs e)
@@ -1104,11 +1106,13 @@ namespace DomZdravlja
             myProperty = new PropertyRacun();
             kreirajToolStrip();
             dodajPoljaZaPretragu();
+            kreirajTabove();
         }
         #endregion
 
         private void zatvoriSve()
         {
+            
             for(int i = 0; i < tabControl.TabPages.Count; i++)
             {
                 tabControl.TabPages.RemoveAt(i);
