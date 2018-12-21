@@ -173,7 +173,7 @@ namespace DomZdravlja
             {
                 PropertyKarton pomKarton = new PropertyKarton();
                 pomKarton.PacijentID = Convert.ToInt32(dataReader["PacijentID"]);
-                pomKarton.KartonID = Convert.ToInt32(dataReader["KartonID"]);
+                pomKarton.KartonID = Convert.ToInt32(dataReader["BrojKartona"]);
 
                 propertyInterfaces[7].Add(pomKarton);
             }
