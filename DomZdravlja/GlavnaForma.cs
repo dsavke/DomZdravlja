@@ -446,6 +446,15 @@ namespace DomZdravlja
                 data.BackgroundColor = Color.FromArgb(255, 255, 255);
                 data.Focus();
 
+                if (data.Rows.Count == 0 || data.Rows.Count == 1)
+                {
+                    CustomToolStrip.Gore = false;
+                    CustomToolStrip.Prvi = false;
+                    CustomToolStrip.Dole = false;
+                    CustomToolStrip.Zadnji = false;
+                }
+
+
             }
         }
 
@@ -803,7 +812,7 @@ namespace DomZdravlja
             data.Location = new Point(20, 20);
 
             tabControl.SelectedTab.Controls.Add(data);
-
+           
             Panel panel = new Panel();
             panel.Location = new Point(20, 620);
             panel.Width = 908;
@@ -910,28 +919,40 @@ namespace DomZdravlja
         private void DataGridView_SelectionChanged(object sender, EventArgs e)
         {
             DataGridView dgv = sender as DataGridView;
+            try
+            {
+                //if (dgv.Rows.Count == 0 || dgv.Rows.Count == 1)
+                //{
+                //    return;
+                //}
+                if (dgv.SelectedRows[0] == dgv.Rows[0])
+                {
+                    CustomToolStrip.Gore = false;
+                    CustomToolStrip.Prvi = false;
+                    CustomToolStrip.Dole = true;
+                    CustomToolStrip.Zadnji = true;
+                }
+                else if (dgv.SelectedRows[0] == dgv.Rows[dgv.Rows.Count - 1])
+                {
+                    CustomToolStrip.Gore = true;
+                    CustomToolStrip.Prvi = true;
+                    CustomToolStrip.Dole = false;
+                    CustomToolStrip.Zadnji = false;
+                }
+                else
+                {
+                    CustomToolStrip.Gore = true;
+                    CustomToolStrip.Prvi = true;
+                    CustomToolStrip.Dole = true;
+                    CustomToolStrip.Zadnji = true;
+                }
+            }
+            catch (Exception)
+            {
 
-            if (dgv.SelectedRows[0] == dgv.Rows[0])
-            {
-                CustomToolStrip.Gore = false;
-                CustomToolStrip.Prvi = false;
-                CustomToolStrip.Dole = true;
-                CustomToolStrip.Zadnji = true;
+               
             }
-            else if (dgv.SelectedRows[0] == dgv.Rows[dgv.Rows.Count - 1])
-            {
-                CustomToolStrip.Gore = true;
-                CustomToolStrip.Prvi = true;
-                CustomToolStrip.Dole = false;
-                CustomToolStrip.Zadnji = false;
-            }
-            else
-            {
-                CustomToolStrip.Gore = true;
-                CustomToolStrip.Prvi = true;
-                CustomToolStrip.Dole = true;
-                CustomToolStrip.Zadnji = true;
-            }
+            
         }
 
         #endregion
