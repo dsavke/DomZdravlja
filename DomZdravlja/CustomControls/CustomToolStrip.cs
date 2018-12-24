@@ -25,6 +25,30 @@ namespace DomZdravlja.CustomControls
         public event EventHandler GoreClick;
         public event EventHandler ZadnjiClick;
 
+        public bool Gore
+        {
+            get { return tsbtnGore.Enabled; }
+            set { tsbtnGore.Enabled = value; }
+        }
+
+        public bool Dole
+        {
+            get { return tsbtnDOle.Enabled; }
+            set { tsbtnDOle.Enabled = value; }
+        }
+
+        public bool Prvi
+        {
+            get { return tsbtnPrvi.Enabled; }
+            set { tsbtnPrvi.Enabled = value; }
+        }
+
+        public bool Zadnji
+        {
+            get { return tsbtnZadnji.Enabled; }
+            set { tsbtnZadnji.Enabled = value; }
+        }
+
         public CustomToolStrip()
         {
             InitializeComponent();

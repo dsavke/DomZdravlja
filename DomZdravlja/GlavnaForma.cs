@@ -26,10 +26,10 @@ namespace DomZdravlja
         PropertyZaposleni Logovan = new PropertyZaposleni();
 
         List<PropertyInterface>[] propertyInterfaces = new List<PropertyInterface>[14];
-  
+
         private void dodajList()
         {
-       
+
             for (int i = 0; i < 14; i++)
             {
                 propertyInterfaces[i] = new List<PropertyInterface>();
@@ -53,10 +53,10 @@ namespace DomZdravlja
                 pomZaposleni.ZaposleniID = Convert.ToInt32(dataReader["ZaposleniID"]);
                 pomZaposleni.Zvanje = dataReader["Zvanje"].ToString();
                 pomZaposleni.RadnoMjesto = dataReader["RadnoMjesto"].ToString();
-                pomZaposleni.KorisnickoIme =dataReader["KorisnickoIme"].ToString();
+                pomZaposleni.KorisnickoIme = dataReader["KorisnickoIme"].ToString();
                 pomZaposleni.Password = dataReader["Password"].ToString();
                 pomZaposleni.TipZaposlenog = dataReader["TipZaposlenog"].ToString();
-                pomZaposleni.OsobaID =Convert.ToInt32(dataReader["OsobaID"]);
+                pomZaposleni.OsobaID = Convert.ToInt32(dataReader["OsobaID"]);
                 propertyInterfaces[0].Add(pomZaposleni);
             }
         }
@@ -70,7 +70,7 @@ namespace DomZdravlja
             while (dataReader.Read())
             {
                 PropertyPacijent pomPacijenti = new PropertyPacijent();
-                pomPacijenti.PacijentID =Convert.ToInt32(dataReader["PacijentID"]);
+                pomPacijenti.PacijentID = Convert.ToInt32(dataReader["PacijentID"]);
                 pomPacijenti.DoktorID = Convert.ToInt32(dataReader["DoktorID"]);
                 pomPacijenti.OsobaID = Convert.ToInt32(dataReader["OsobaID"]);
                 pomPacijenti.BrojKartona = Convert.ToInt32(dataReader["BrojKartona"]);
@@ -91,7 +91,7 @@ namespace DomZdravlja
                 pomCijena.CjenovnikID = Convert.ToInt32(dataReader["CjenovnikID"]);
                 pomCijena.NazivUsluge = dataReader["NazivUsluge"].ToString();
                 pomCijena.CijenaUsluge = Convert.ToDecimal(dataReader["CijenaUsluge"]);
-                pomCijena.DatumUspostavljanjaCijene =Convert.ToDateTime(dataReader["DatumUspostavljanjaCijene"]);
+                pomCijena.DatumUspostavljanjaCijene = Convert.ToDateTime(dataReader["DatumUspostavljanjaCijene"]);
                 propertyInterfaces[2].Add(pomCijena);
             }
         }
@@ -125,7 +125,7 @@ namespace DomZdravlja
                 pomDijagnoza.DijagnozaID = Convert.ToInt32(dataReader["DijagnozaID"]);
                 pomDijagnoza.PacijentID = Convert.ToInt32(dataReader["PacijentID"]);
                 pomDijagnoza.DoktorID = Convert.ToInt32(dataReader["DoktorID"]);
-                pomDijagnoza.Terapija =dataReader["Terapija"].ToString();
+                pomDijagnoza.Terapija = dataReader["Terapija"].ToString();
                 pomDijagnoza.Opis = dataReader["Opis"].ToString();
                 propertyInterfaces[4].Add(pomDijagnoza);
             }
@@ -408,7 +408,7 @@ namespace DomZdravlja
         {
             if (tabControl.SelectedIndex != -1 && myProperty != null)
             {
-                
+
                 FlowLayoutPanel flowLayoutPanel = new FlowLayoutPanel();
                 flowLayoutPanel.Location = new Point(0, 34);
                 flowLayoutPanel.Width = 908;
@@ -418,8 +418,8 @@ namespace DomZdravlja
 
                 kreirajPoljaZaPretragu(myProperty, flowLayoutPanel);
 
-                
-            
+
+
 
             }
         }
@@ -428,11 +428,11 @@ namespace DomZdravlja
         {
             if (tabControl.SelectedIndex != -1 && myProperty != null)
             {
-                CustomTabControl noviTabControl = new CustomTabControl() { HeaderColor = Color.FromArgb(255, 255, 255)};
+                CustomTabControl noviTabControl = new CustomTabControl() { HeaderColor = Color.FromArgb(255, 255, 255) };
                 noviTabControl.Location = new Point(5, 300);
                 noviTabControl.Width = 890;
                 noviTabControl.Height = 400;
-                CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv =tabControl.SelectedTab.Text };
+                CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = tabControl.SelectedTab.Text };
 
                 noviTabControl.TabPages.Add(tabPage);
                 tabControl.SelectedTab.Controls.Add(noviTabControl);
@@ -458,44 +458,44 @@ namespace DomZdravlja
 
             foreach (PropertyInfo property in properties)
             {
-               
-                    if (property.IsDefined(typeof(MainSearch)))
+
+                if (property.IsDefined(typeof(MainSearch)))
+                {
+
+                    ComponentType componentType;
+                    componentType = property.GetCustomAttribute<GenerateComponent>().ComponentType;
+
+
+                    if (componentType == ComponentType.Tekst)
                     {
-
-                        ComponentType componentType;
-                        componentType = property.GetCustomAttribute<GenerateComponent>().ComponentType;
-
-
-                        if (componentType == ComponentType.Tekst)
-                        {
-                            UCTekst uCTekst = new UCTekst();
-                            uCTekst.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
-                            flowLayoutPanel.Controls.Add(uCTekst);
-                        }
-                        else if (componentType == ComponentType.Datum)
-                        {
-                            UCDatum uCDatum = new UCDatum();
-                            uCDatum.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
-                            flowLayoutPanel.Controls.Add(uCDatum);
-                        }
-                        else if (componentType == ComponentType.RadioButton)
-                        {
-                            UCRadioButton uCRadioButton = new UCRadioButton();
-                            uCRadioButton.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
-                            flowLayoutPanel.Controls.Add(uCRadioButton);
-                        }
-                        else if (componentType == ComponentType.Lookup)
-                        {
-                            UCLookup uCLookup = new UCLookup();
-                            //uCLookup.Naziv = property.GetCustomAttribute<ForeignKey>().ReferencedTable;
-                            //flowLayoutPanel.Controls.Add(uCLookup);
-
-                            var pomProperty = Activator.CreateInstance(Type.GetType(property.GetCustomAttribute<ForeignKey>().ReferencedTable));
-                            
-                            kreirajPoljaZaPretragu((PropertyInterface)pomProperty, flowLayoutPanel);
-
-                        }
+                        UCTekst uCTekst = new UCTekst();
+                        uCTekst.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                        flowLayoutPanel.Controls.Add(uCTekst);
                     }
+                    else if (componentType == ComponentType.Datum)
+                    {
+                        UCDatum uCDatum = new UCDatum();
+                        uCDatum.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                        flowLayoutPanel.Controls.Add(uCDatum);
+                    }
+                    else if (componentType == ComponentType.RadioButton)
+                    {
+                        UCRadioButton uCRadioButton = new UCRadioButton();
+                        uCRadioButton.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                        flowLayoutPanel.Controls.Add(uCRadioButton);
+                    }
+                    else if (componentType == ComponentType.Lookup)
+                    {
+                        UCLookup uCLookup = new UCLookup();
+                        //uCLookup.Naziv = property.GetCustomAttribute<ForeignKey>().ReferencedTable;
+                        //flowLayoutPanel.Controls.Add(uCLookup);
+
+                        var pomProperty = Activator.CreateInstance(Type.GetType(property.GetCustomAttribute<ForeignKey>().ReferencedTable));
+
+                        kreirajPoljaZaPretragu((PropertyInterface)pomProperty, flowLayoutPanel);
+
+                    }
+                }
             }
         }
 
@@ -516,27 +516,69 @@ namespace DomZdravlja
                 CustomToolStrip.PrviClick += CustomToolStrip_PrviClick;
                 CustomToolStrip.ZadnjiClick += CustomToolStrip_ZadnjiClick;
                 tabControl.SelectedTab.Controls.Add(CustomToolStrip);
+                //CustomToolStrip.Gore = false;
+
             }
         }
 
         private void CustomToolStrip_ZadnjiClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            foreach (Control control in tabControl.SelectedTab.Controls)
+            {
+                if (control.GetType() == typeof(CustomTabControl))
+                {
+                    CustomTabControl tabDonji = control as CustomTabControl;
+                    DataGridView dgv = tabDonji.SelectedTab.Controls[0] as DataGridView;
+                    dgv.Rows[dgv.Rows.Count - 1].Selected = true;
+                    dgv.CurrentCell = dgv.Rows[dgv.SelectedRows[0].Index].Cells[0];
+                }
+            }
         }
 
         private void CustomToolStrip_PrviClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            foreach (Control control in tabControl.SelectedTab.Controls)
+            {
+                if (control.GetType() == typeof(CustomTabControl))
+                {
+                    CustomTabControl tabDonji = control as CustomTabControl;
+                    DataGridView dgv = tabDonji.SelectedTab.Controls[0] as DataGridView;
+                    dgv.Rows[0].Selected = true;
+                    dgv.CurrentCell = dgv.Rows[dgv.SelectedRows[0].Index].Cells[0];
+                }
+            }
         }
 
         private void CustomToolStrip_DoleClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            foreach (Control control in tabControl.SelectedTab.Controls)
+            {
+                if (control.GetType() == typeof(CustomTabControl))
+                {
+                    CustomTabControl tabDonji = control as CustomTabControl;
+                    DataGridView dgv = tabDonji.SelectedTab.Controls[0] as DataGridView;
+                    if (dgv.Rows[0].Index == dgv.Rows.Count - 1)
+                    { }
+                    dgv.Rows[dgv.SelectedRows[0].Index + 1].Selected = true;
+                    dgv.CurrentCell = dgv.Rows[dgv.SelectedRows[0].Index].Cells[0];
+                }
+            }
         }
 
         private void CustomToolStrip_GoreClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            foreach (Control control in tabControl.SelectedTab.Controls)
+            {
+                if (control.GetType() == typeof(CustomTabControl))
+                {
+                    CustomTabControl tabDonji = control as CustomTabControl;
+                    DataGridView dgv = tabDonji.SelectedTab.Controls[0] as DataGridView;
+                    if (dgv.Rows[0].Index == dgv.Rows.Count + 1)
+                    { }
+                    dgv.Rows[dgv.SelectedRows[0].Index - 1].Selected = true;
+                    dgv.CurrentCell = dgv.Rows[dgv.SelectedRows[0].Index].Cells[0];
+                }
+            }
         }
 
         private void CustomToolStrip_ObrisiClick(object sender, EventArgs e)
@@ -570,40 +612,40 @@ namespace DomZdravlja
             var type = myProperty.GetType();
             var properties = type.GetProperties();
 
-            foreach(PropertyInfo property in properties)
+            foreach (PropertyInfo property in properties)
             {
 
                 ComponentType componentType;
                 componentType = property.GetCustomAttribute<GenerateComponent>().ComponentType;
 
- 
-                    if(componentType == ComponentType.Tekst)
-                    {
-                        UCTekst uCTekst = new UCTekst();
-                        uCTekst.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
-                        flowLayoutPanel.Controls.Add(uCTekst);
-                    }
-                    else if (componentType == ComponentType.Datum)
-                    {
-                        UCDatum uCDatum = new UCDatum();
-                        uCDatum.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
-                        flowLayoutPanel.Controls.Add(uCDatum);
-                    }
-                    else if (componentType == ComponentType.RadioButton)
-                    {
-                        UCRadioButton uCRadioButton = new UCRadioButton();
-                        uCRadioButton.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
-                        uCRadioButton.NazivOpcije1 = property.GetCustomAttribute<OpcijeRadioButton>().Param1;
-                        uCRadioButton.NazivOpcije2 = property.GetCustomAttribute<OpcijeRadioButton>().Param2;
-                        flowLayoutPanel.Controls.Add(uCRadioButton);
-                    }
-                    else if(componentType == ComponentType.Lookup)
-                    {
-                        UCLookup uCLookup = new UCLookup();
-                        uCLookup.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
-                        uCLookup.LookupClick += UCLookup_LookupClick;
-                        flowLayoutPanel.Controls.Add(uCLookup);
-                    }  
+
+                if (componentType == ComponentType.Tekst)
+                {
+                    UCTekst uCTekst = new UCTekst();
+                    uCTekst.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                    flowLayoutPanel.Controls.Add(uCTekst);
+                }
+                else if (componentType == ComponentType.Datum)
+                {
+                    UCDatum uCDatum = new UCDatum();
+                    uCDatum.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                    flowLayoutPanel.Controls.Add(uCDatum);
+                }
+                else if (componentType == ComponentType.RadioButton)
+                {
+                    UCRadioButton uCRadioButton = new UCRadioButton();
+                    uCRadioButton.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                    uCRadioButton.NazivOpcije1 = property.GetCustomAttribute<OpcijeRadioButton>().Param1;
+                    uCRadioButton.NazivOpcije2 = property.GetCustomAttribute<OpcijeRadioButton>().Param2;
+                    flowLayoutPanel.Controls.Add(uCRadioButton);
+                }
+                else if (componentType == ComponentType.Lookup)
+                {
+                    UCLookup uCLookup = new UCLookup();
+                    uCLookup.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                    uCLookup.LookupClick += UCLookup_LookupClick;
+                    flowLayoutPanel.Controls.Add(uCLookup);
+                }
             }
 
             Panel panel = new Panel();
@@ -645,12 +687,12 @@ namespace DomZdravlja
             var properties = type.GetProperties();
             bool proslo = true;
 
-            foreach(Control control in tabControl.SelectedTab.Controls[0].Controls)
+            foreach (Control control in tabControl.SelectedTab.Controls[0].Controls)
             {
 
                 PropertyInfo property = null;
 
-                if(control.GetType() == typeof(UCTekst))
+                if (control.GetType() == typeof(UCTekst))
                 {
                     property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == (control as UCTekst).Naziv).FirstOrDefault();
                     if (property.IsDefined(typeof(ValidatePattern)))
@@ -659,14 +701,15 @@ namespace DomZdravlja
                         if (property.GetCustomAttribute<ValidatePattern>().IsValid(rez))
                         {
                             (control as UCTekst).BackColor = Color.Blue;
-                            if (property.PropertyType == typeof(int)) {
+                            if (property.PropertyType == typeof(int))
+                            {
                                 property.SetValue(myProperty, Convert.ToInt32(rez));
                             }
-                            else if(property.PropertyType == typeof(Decimal))
+                            else if (property.PropertyType == typeof(Decimal))
                             {
                                 property.SetValue(myProperty, Convert.ToDecimal(rez));
                             }
-                            else if(property.PropertyType == typeof(String))
+                            else if (property.PropertyType == typeof(String))
                             {
                                 property.SetValue(myProperty, rez);
                             }
@@ -682,7 +725,7 @@ namespace DomZdravlja
                         }
                     }
                 }
-                else if(control.GetType() == typeof(UCDatum))
+                else if (control.GetType() == typeof(UCDatum))
                 {
                     property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == (control as UCDatum).Naziv).FirstOrDefault();
                     if (property.IsDefined(typeof(ValidatePattern)))
@@ -709,7 +752,7 @@ namespace DomZdravlja
                     property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == (control as UCLookup).Naziv).FirstOrDefault();
                     if (property.IsDefined(typeof(ValidatePattern)))
                     {
-                       
+
                         string rez = (control as UCLookup).Value;
                         if (property.GetCustomAttribute<ValidatePattern>().IsValid(rez))
                         {
@@ -753,7 +796,7 @@ namespace DomZdravlja
             var objekat = Activator.CreateInstance(Type.GetType(property.GetCustomAttribute<ForeignKey>().ReferencedTable));
 
             DataGridView data = new DataGridView();
-       
+
             ucitaj(vratiIndex(objekat));
 
             data = vratiTablu(objekat, propertyInterfaces[vratiIndex(objekat)]);
@@ -771,7 +814,7 @@ namespace DomZdravlja
             btnVrati.Location = new Point(710, 100);
 
             UCLookup uCLookup = (sender as Button).Parent as UCLookup;
-         
+
             btnVrati.Click += (send, EventArgs) => { BtnVrati_Click(send, EventArgs, property, uCLookup, data, objekat, tabPage); };
 
             Button btnOdustani = new Button();
@@ -821,7 +864,7 @@ namespace DomZdravlja
         public DataGridView vratiTablu(object objekat, List<PropertyInterface> list)
         {
             DataGridView dgv = izgled();
-            
+
             if (objekat.GetType() == typeof(PropertyZaposleni)) dgv.DataSource = list.Cast<PropertyZaposleni>().ToList();
             else if (objekat.GetType() == typeof(PropertyPacijent)) dgv.DataSource = list.Cast<PropertyPacijent>().ToList();
             else if (objekat.GetType() == typeof(PropertyCjenovnik)) dgv.DataSource = list.Cast<PropertyCjenovnik>().ToList();
@@ -856,7 +899,39 @@ namespace DomZdravlja
             dataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(227, 234, 244);
             dataGridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(51, 128, 196);
             dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
+
+            dataGridView.SelectionChanged += DataGridView_SelectionChanged;
+
+
             return dataGridView;
+
+        }
+
+        private void DataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            DataGridView dgv = sender as DataGridView;
+
+            if (dgv.SelectedRows[0] == dgv.Rows[0])
+            {
+                CustomToolStrip.Gore = false;
+                CustomToolStrip.Prvi = false;
+                CustomToolStrip.Dole = true;
+                CustomToolStrip.Zadnji = true;
+            }
+            else if (dgv.SelectedRows[0] == dgv.Rows[dgv.Rows.Count - 1])
+            {
+                CustomToolStrip.Gore = true;
+                CustomToolStrip.Prvi = true;
+                CustomToolStrip.Dole = false;
+                CustomToolStrip.Zadnji = false;
+            }
+            else
+            {
+                CustomToolStrip.Gore = true;
+                CustomToolStrip.Prvi = true;
+                CustomToolStrip.Dole = true;
+                CustomToolStrip.Zadnji = true;
+            }
         }
 
         #endregion
@@ -929,13 +1004,13 @@ namespace DomZdravlja
             panelGlavniTab.Controls.Add(panelTabControl6);
         }
 
-      
+
         private void ucitajKancelariju()
         {
             ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
 
             PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POČETNA");
-            panelTabControl.ControlClick += Pocetna_ControlClick; 
+            panelTabControl.ControlClick += Pocetna_ControlClick;
             PanelTabControl panelTabControl1 = new PanelTabControl((Image)resources.GetObject("zaposleni"), "ZAPOSLENI");
             panelTabControl1.ControlClick += Zaposleni_ControlClick;
             PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("pacijent"), "PACIJENT");
@@ -973,7 +1048,7 @@ namespace DomZdravlja
             postaviFokus();
             myProperty = null;
             postaviPocetnu();
-        
+
         }
 
         private void Cjenovnik_ControlClick(object sender, EventArgs e)
@@ -1039,7 +1114,7 @@ namespace DomZdravlja
         private void Odjava_ControlClick(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Da li zelite izaći iz programa?", "Warnning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if(dialogResult == DialogResult.Yes)
+            if (dialogResult == DialogResult.Yes)
             {
                 this.Hide();
                 Form1 form1 = new Form1();
@@ -1085,8 +1160,8 @@ namespace DomZdravlja
 
         private void zatvoriSve()
         {
-            
-            for(int i = 0; i < tabControl.TabPages.Count; i++)
+
+            for (int i = 0; i < tabControl.TabPages.Count; i++)
             {
                 tabControl.TabPages.RemoveAt(i);
                 i--;
@@ -1126,7 +1201,7 @@ namespace DomZdravlja
 
         private bool provjeriLookup()
         {
-            foreach(CustomTabPage tabPage in tabControl.TabPages)
+            foreach (CustomTabPage tabPage in tabControl.TabPages)
             {
                 if (tabPage.State == State.Lookup) return true;
             }
