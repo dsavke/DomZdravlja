@@ -11,11 +11,19 @@ namespace DomZdravlja.AttributeClass
     {
         public string ReferencedTable { get; set; }
         public string ReferencedColumn { get; set; }
+        public Tip Tip { get; set; }
 
         public ForeignKey(string referencedTable, string referencedColumn)
         {
             this.ReferencedTable = referencedTable;
             this.ReferencedColumn = referencedColumn;
+        }
+
+        public ForeignKey(string referencedTable, string referencedColumn, Tip tip)
+        {
+            this.ReferencedTable = referencedTable;
+            this.ReferencedColumn = referencedColumn;
+            Tip = tip;
         }
 
     }

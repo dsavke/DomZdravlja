@@ -129,6 +129,7 @@
     <Compile Include="PropertyClass\PropertyKartonDijagnoza.cs" />
     <Compile Include="PropertyInterface.cs" />
     <Compile Include="State.cs" />
+    <Compile Include="Tip.cs" />
     <Compile Include="UCDatum.cs">
       <SubType>UserControl</SubType>
     </Compile>

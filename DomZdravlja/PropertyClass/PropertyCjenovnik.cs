@@ -115,7 +115,8 @@ namespace DomZdravlja.PropertyClass
                     SELECT [CjenovnikID]
                           ,[NazivUsluge]
                           ,[CijenaUsluge]
-                          ,[DatumUspostavljanjaCijene]                          
+                          ,[DatumUspostavljanjaCijene] 
+                          ,[Aktivno]  
                       FROM [dbo].[Cjenovnik]
                     WHERE [AKTIVNO] = 1
                     ";

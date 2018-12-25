@@ -21,6 +21,7 @@ namespace DomZdravlja
     public partial class GlavnaForma : Form
     {
 
+        private Tip Tip;
         private PropertyInterface myProperty;
         private CustomToolStrip CustomToolStrip;
         PropertyZaposleni Logovan = new PropertyZaposleni();
@@ -93,6 +94,7 @@ namespace DomZdravlja
                 pomCijena.NazivUsluge = dataReader["NazivUsluge"].ToString();
                 pomCijena.CijenaUsluge = Convert.ToDecimal(dataReader["CijenaUsluge"]);
                 pomCijena.DatumUspostavljanjaCijene = Convert.ToDateTime(dataReader["DatumUspostavljanjaCijene"]);
+                pomCijena.Aktivno = Convert.ToInt32(dataReader["Aktivno"]);
                 propertyInterfaces[2].Add(pomCijena);
             }
         }
@@ -441,9 +443,18 @@ namespace DomZdravlja
                 tabControl.SelectedTab.Controls.Add(noviTabControl);
 
                 DataGridView data = new DataGridView();
-                ucitaj(vratiIndex(myProperty));
-                data = vratiTablu(myProperty, propertyInterfaces[vratiIndex(myProperty)]);
+                // ucitaj(vratiIndex(myProperty));
+                data = vratiPodatke();//vratiTablu(myProperty, propertyInterfaces[vratiIndex(myProperty)]);
+                
                 tabPage.Controls.Add(data);
+                //MessageBox.Show("" + data.Columns.Count);
+
+                foreach(DataGridViewColumn column in data.Columns)
+                {
+                    column.HeaderText = column.HeaderText.Replace("_", " ");
+                    if (column.HeaderText.Contains("Sifra")) column.Visible = false;
+                }
+
                 data.Dock = DockStyle.Fill;
                 data.BorderStyle = BorderStyle.None;
                 data.BackgroundColor = Color.FromArgb(255, 255, 255);
@@ -835,13 +846,25 @@ namespace DomZdravlja
 
             DataGridView data = new DataGridView();
 
-            ucitaj(vratiIndex(objekat));
+            Tip tip = Tip;
 
-            data = vratiTablu(objekat, propertyInterfaces[vratiIndex(objekat)]);
+            Tip = property.GetCustomAttribute<ForeignKey>().Tip;
+
+            //ucitaj(vratiIndex(objekat));
+
+            data = vratiPodatke(); //vratiTablu(objekat, propertyInterfaces[vratiIndex(objekat)]);
+
             data.Location = new Point(20, 20);
 
+            Tip = tip;
+
             tabControl.SelectedTab.Controls.Add(data);
-           
+            foreach (DataGridViewColumn column in data.Columns)
+            {
+                column.HeaderText = column.HeaderText.Replace("_", " ");
+                if (column.HeaderText.Contains("Sifra")) column.Visible = false;
+            }
+
             Panel panel = new Panel();
             panel.Location = new Point(20, 620);
             panel.Width = 908;
@@ -1105,6 +1128,7 @@ namespace DomZdravlja
             zatvoriSve();
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "POCETNA" };
             tabControl.Controls.Add(tabPage);
+            Tip = Tip.Pocetna;
             postaviFokus(State.Main);
             myProperty = null;
             postaviPocetnu();
@@ -1116,6 +1140,7 @@ namespace DomZdravlja
             zatvoriSve();
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "CJENOVNIK" };
             tabControl.Controls.Add(tabPage);
+            Tip = Tip.Cjenovnik;
             postaviFokus(State.Main);
             myProperty = new PropertyCjenovnik();
             kreirajToolStrip();
@@ -1128,6 +1153,7 @@ namespace DomZdravlja
             zatvoriSve();
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "ZAPOSLENI" };
             tabControl.Controls.Add(tabPage);
+            Tip = Tip.Zaposleni;
             postaviFokus(State.Main);
             myProperty = new PropertyZaposleni();
             kreirajToolStrip();
@@ -1140,6 +1166,7 @@ namespace DomZdravlja
             zatvoriSve();
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "REDOSLIJED DOLAZAKA" };
             tabControl.Controls.Add(tabPage);
+            Tip = Tip.RedosljedDolazaka;
             postaviFokus(State.Main);
             myProperty = null;
             kreirajToolStrip();
@@ -1152,6 +1179,7 @@ namespace DomZdravlja
             zatvoriSve();
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "KARTON" };
             tabControl.Controls.Add(tabPage);
+            Tip = Tip.Karton;
             postaviFokus(State.Main);
             myProperty = new PropertyKarton();
             kreirajToolStrip();
@@ -1164,6 +1192,7 @@ namespace DomZdravlja
             zatvoriSve();
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "PREGLED" };
             tabControl.Controls.Add(tabPage);
+            Tip = Tip.Pregled;
             postaviFokus(State.Main);
             myProperty = new PropertyPregled();
             kreirajToolStrip();
@@ -1187,6 +1216,7 @@ namespace DomZdravlja
             zatvoriSve();
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "RECEPCIJA" };
             tabControl.Controls.Add(tabPage);
+            Tip = Tip.Recepcija;
             postaviFokus(State.Main);
             myProperty = new PropertyRecepcija();
             kreirajToolStrip();
@@ -1198,6 +1228,7 @@ namespace DomZdravlja
             zatvoriSve();
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "PACIJENT" };
             tabControl.Controls.Add(tabPage);
+            Tip = Tip.Pacijent;
             postaviFokus(State.Main);
             myProperty = new PropertyPacijent();
             kreirajToolStrip();
@@ -1210,6 +1241,7 @@ namespace DomZdravlja
             zatvoriSve();
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "RAČUN" };
             tabControl.Controls.Add(tabPage);
+            Tip = Tip.Racun;
             postaviFokus(State.Main);
             myProperty = new PropertyRacun();
             kreirajToolStrip();
@@ -1268,6 +1300,165 @@ namespace DomZdravlja
             }
             return false;
         }
+
+
+        #region Podaci
+        private DataGridView vratiPodatke()
+        {
+            DataGridView data = izgled();
+            switch (Tip)
+            {
+                /*case Tip.Pocetna:
+                    break;*/
+                case Tip.Karton:
+                    ucitaj(7);
+                    ucitaj(1);
+                    ucitaj(9);
+                    ucitaj(0);
+                    var query = (
+                                    from p in (propertyInterfaces[7].Cast<PropertyKarton>())
+                                        join pacijent in (propertyInterfaces[1].Cast<PropertyPacijent>())
+                                        on p.PacijentID equals pacijent.PacijentID
+                                        join osoba in (propertyInterfaces[9].Cast<PropertyOsoba>())
+                                        on pacijent.OsobaID equals osoba.OsobaID
+                                        join doktor in (propertyInterfaces[0].Cast<PropertyZaposleni>())
+                                        on pacijent.DoktorID equals doktor.ZaposleniID
+                                        join osoba1 in (propertyInterfaces[9].Cast<PropertyOsoba>())
+                                        on doktor.OsobaID equals osoba1.OsobaID
+                                    select new {Sifra_kartona = p.KartonID, Sifra_pacijenta = p.PacijentID,
+                                                Ime = osoba.Ime, Prezime = osoba.Prezime, JMB = osoba.JMB, Pol = osoba.Pol, Datum_rodjenja = osoba.DatumRodjenja,
+                                                Ime_doktora = osoba1.Ime, Prezime_doktora = osoba1.Prezime}
+                                );
+
+                    data.DataSource = query.ToList();
+
+                    break;
+                case Tip.Pacijent:
+                    ucitaj(1);
+                    ucitaj(9);
+                    var queryPacijent = (
+                                        from p in (propertyInterfaces[1].Cast<PropertyPacijent>())
+                                        join osoba in (propertyInterfaces[9].Cast<PropertyOsoba>())
+                                        on p.OsobaID equals osoba.OsobaID
+                                        select new {Sifra_pacijent = p.PacijentID, Osiguran = p.Osiguran, Ime = osoba.Ime, Prezime = osoba.Prezime, JMB = osoba.JMB,
+                                        osoba.Pol, Mjesto_rodjenja = osoba.MjestoRodjenja, Datum_rodjenja =osoba.DatumRodjenja, Adresa = osoba.Adresa, osoba.Kontakt, osoba.ZivotniStatus}
+                                        );
+
+                    data.DataSource = queryPacijent.ToList();
+
+                    break;
+                case Tip.Zaposleni:
+                    ucitaj(0);
+                    ucitaj(9);
+                    var queryZaposleni = (
+                                        from p in (propertyInterfaces[0].Cast<PropertyZaposleni>())
+                                        join osoba in (propertyInterfaces[9].Cast<PropertyOsoba>())
+                                        on p.OsobaID equals osoba.OsobaID
+                                        select new
+                                        {
+                                            Sifra_zaposleni = p.ZaposleniID,
+                                            p.Zvanje,
+                                            //p.RadnoMjesto,
+                                            Vrsta_posla = p.TipZaposlenog,
+                                            Ime = osoba.Ime,
+                                            Prezime = osoba.Prezime,
+                                            JMB = osoba.JMB,
+                                            osoba.Pol,
+                                            Mjesto_rodjenja = osoba.MjestoRodjenja,
+                                            Datum_rodjenja = osoba.DatumRodjenja,
+                                            Adresa = osoba.Adresa
+
+                                        }
+                                        );
+
+                    data.DataSource = queryZaposleni.ToList();
+                    break;
+                case Tip.Recepcija:
+                    ucitaj(12);
+                    ucitaj(0);
+                    ucitaj(9);
+                    ucitaj(1);
+                    var queryRecepcija = (
+                                            from recepcija in (propertyInterfaces[12].Cast<PropertyRecepcija>())
+                                            join prijem in (propertyInterfaces[0].Cast<PropertyZaposleni>())
+                                            on recepcija.DoktorID equals prijem.ZaposleniID
+                                            join osoba1 in (propertyInterfaces[9].Cast<PropertyOsoba>())
+                                            on prijem.OsobaID equals osoba1.OsobaID
+                                            join pacijent in (propertyInterfaces[1].Cast<PropertyPacijent>())
+                                            on recepcija.PacijentID equals pacijent.PacijentID
+                                            join osoba2 in (propertyInterfaces[9].Cast<PropertyOsoba>())
+                                            on pacijent.OsobaID equals osoba2.OsobaID
+                                            select new {Sifra_prijem_zaposleni = recepcija.PrijemZaposleniID, Sifra_doktor = recepcija.DoktorID, Sifra_pacijent = recepcija.PacijentID, Vrijeme_prijema = recepcija.VrijemePrijema, Vrijeme_otpusta = recepcija.VrijemeOtpusta,
+                                            Ime_i_prezime_doktora = (osoba1.Ime + " " + osoba1.Prezime), Ime_i_prezime_pacijenta = (osoba2.Ime + " " + osoba2.Prezime)}
+                                         );
+                    data.DataSource = queryRecepcija.ToList();
+                    break;
+                case Tip.Pregled:
+                    ucitaj(10);
+                    ucitaj(1);
+                    ucitaj(0);
+                    ucitaj(9);
+                    ucitaj(4);
+                    var queryPregled = (
+                                        from pregled in (propertyInterfaces[10].Cast<PropertyPregled>())
+                                        join pacijent in (propertyInterfaces[1].Cast<PropertyPacijent>())
+                                        on pregled.PacijentID equals pacijent.PacijentID
+                                        join osoba2 in (propertyInterfaces[9].Cast<PropertyOsoba>())
+                                            on pacijent.OsobaID equals osoba2.OsobaID
+                                        join prijem in (propertyInterfaces[0].Cast<PropertyZaposleni>())
+                                        on pregled.DoktorID equals prijem.ZaposleniID
+                                        join osoba1 in (propertyInterfaces[9].Cast<PropertyOsoba>())
+                                            on prijem.OsobaID equals osoba1.OsobaID
+                                        join dijagnoza in (propertyInterfaces[4].Cast<PropertyDijagnoza>())
+                                        on pregled.DijagnozaID equals dijagnoza.DijagnozaID
+                                        select new {Sifra_pregleda = pregled.PregledID, Sifra_doktora = pregled.DoktorID, Sifra_pacijenta = pregled.PacijentID,
+                                        Sifra_dijagnoza = pregled.DijagnozaID,
+                                            Ime_i_prezime_pacijenta = (osoba2.Ime + " " + osoba2.Prezime),
+                                            Ime_i_prezime_doktora = (osoba1.Ime + " " + osoba1.Prezime),
+                                            dijagnoza.Opis, dijagnoza.Terapija
+                                        }
+                                       );
+                    data.DataSource = queryPregled.ToList();
+                    break;
+                case Tip.Racun:
+                    ucitaj(11);
+                    ucitaj(1);
+                    ucitaj(0);
+                    ucitaj(9);
+                    var queryRacun = (
+                                        from racun in (propertyInterfaces[11].Cast<PropertyRacun>())
+                                        join pacijent in (propertyInterfaces[1].Cast<PropertyPacijent>())
+                                       on racun.PacijentID equals pacijent.PacijentID
+                                        join osoba2 in (propertyInterfaces[9].Cast<PropertyOsoba>())
+                                            on pacijent.OsobaID equals osoba2.OsobaID
+                                        join prijem in (propertyInterfaces[0].Cast<PropertyZaposleni>())
+                                        on racun.ZaposleniID equals prijem.ZaposleniID
+                                        join osoba1 in (propertyInterfaces[9].Cast<PropertyOsoba>())
+                                            on prijem.OsobaID equals osoba1.OsobaID
+                                        select new {Sifra_racuna = racun.RacunID, Sifra_zaposleni = racun.ZaposleniID, Sifra_pacijenta = racun.PacijentID, Suma_racuna = racun.SumaRacuna, Vrijeme_izdavanja = racun.VrijemeIzdavanja,
+                                            Ime_i_prezime_pacijenta = (osoba2.Ime + " " + osoba2.Prezime),
+                                            Ime_i_prezime_doktora = (osoba1.Ime + " " + osoba1.Prezime)
+                                        }
+                                     );
+                    data.DataSource = queryRacun.ToList();
+                    break;
+                /*case Tip.RedosljedDolazaka:
+                    
+                    break;*/
+                case Tip.Cjenovnik:
+                    ucitaj(2);
+                    var queryCjenovnik = (
+                                            from cjenovnik in (propertyInterfaces[2].Cast<PropertyCjenovnik>())
+                                            where cjenovnik.Aktivno == 1
+                                            select new {Sifra_cjenovnika = cjenovnik.CjenovnikID, Naziv_usluge = cjenovnik.NazivUsluge, Cijena_usluge = cjenovnik.CijenaUsluge}
+                                         );
+                    data.DataSource = queryCjenovnik.ToList();
+                    break;
+            }
+
+            return data;
+        }
+        #endregion
 
     }
 }
