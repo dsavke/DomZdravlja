@@ -131,7 +131,7 @@ namespace DomZdravlja.PropertyClass
                                ,[DatumUspostavljanjaCijene]
                                ,[Aktivno])
                          VALUES
-                               @NazivUsluge
+                               (@NazivUsluge
                                ,@CijenaUsluge
                                ,GETDATE()
                                ,1)
