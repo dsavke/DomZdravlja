@@ -16,6 +16,9 @@ namespace DomZdravlja
         Racun,
         Pregled,
         Cjenovnik,
-        RedosljedDolazaka
+        RedoslijedDolazaka,
+        MedicinskaSestra,
+        Doktori,
+        MSD
     }
 }
