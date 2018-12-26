@@ -10,6 +10,7 @@ namespace DomZdravlja
     {
         Main,
         Insert,
-        Lookup
+        Lookup,
+        Search
     }
 }

@@ -112,7 +112,7 @@ namespace DomZdravlja.PropertyClass
         }   
 
 
-        [DisplayName("Vrijeme izdavanja")]
+        [DisplayName("Datum i vrijeme izdavanja")]
         [SqlName("VrijemeIzdavanja")]
         [MainSearch(null)]
         [GenerateComponent(ComponentType.Datum)]

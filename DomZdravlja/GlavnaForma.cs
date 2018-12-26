@@ -13,8 +13,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DomZdravlja.AttributeClass;
-using System.Reflection;
 
 namespace DomZdravlja
 {
@@ -433,7 +431,8 @@ namespace DomZdravlja
         {
             if (tabControl.SelectedIndex != -1 && myProperty != null)
             {
-                CustomTabControl noviTabControl = new CustomTabControl() { HeaderColor = Color.FromArgb(255, 255, 255) };
+                CustomTabControl noviTabControl = new CustomTabControl() { HeaderColor = Color.FromArgb(255, 255, 255)};
+                noviTabControl.ShowClosingButton = true;
                 noviTabControl.Location = new Point(5, 300);
                 noviTabControl.Width = 890;
                 noviTabControl.Height = 400;
@@ -611,7 +610,124 @@ namespace DomZdravlja
 
         private void CustomToolStrip_PretragaClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var items = tabControl.SelectedTab.Controls;
+            FlowLayoutPanel pomPretraga = null;
+            CustomTabControl pomTabControl = null;
+
+            foreach (var item in items)
+            {
+                
+                if(item.GetType().Equals(typeof(FlowLayoutPanel)))
+                {
+                    pomPretraga = item as FlowLayoutPanel;
+                }
+                if (item.GetType().Equals(typeof(CustomTabControl)))
+                {
+                    pomTabControl = item as CustomTabControl;
+                }
+            }
+            UCTekst pom = null;
+            bool postoji = false;
+            var itemsPretraga = pomPretraga.Controls;
+            List<UCDatum> listaDatuma = new List<UCDatum>();
+            UCTekst[] listaTxt = { null, null, null };
+
+
+            foreach (var item in itemsPretraga)
+            {
+                if(item.GetType().Equals(typeof(UCDatum)))
+                {
+                    postoji = true;
+                    listaDatuma.Add(item as UCDatum);
+                }
+                else
+                {
+                    pom = item as UCTekst;
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (listaTxt[i] == null)
+                        {
+                            listaTxt[i] = pom;
+                            break;
+                        }
+                    }
+                    if (!string.IsNullOrWhiteSpace(pom.Controls[0].Text))
+                    {
+                        postoji = true;
+                    }
+                }
+            }
+            if (!postoji)
+                return;
+            
+
+            CustomTabPage noviPage = new CustomTabPage() { State = State.Search, Naziv = "PRETRAGA" };
+            pomTabControl.TabPages.Add(noviPage);
+            pomTabControl.SelectedTab = noviPage;
+
+            DataGridView data = new DataGridView();
+            ucitaj(vratiIndex(myProperty));
+            data = vratiTablu(myProperty, propertyInterfaces[vratiIndex(myProperty)]);
+            noviPage.Controls.Add(data);
+            data.Dock = DockStyle.Fill;
+            data.BorderStyle = BorderStyle.None;
+            data.BackgroundColor = Color.FromArgb(255, 255, 255);
+            data.Focus();
+
+            var query = (from p in (propertyInterfaces[0].Cast<PropertyZaposleni>())
+                         join osoba in propertyInterfaces[9].Cast<PropertyOsoba>()
+                         on p.OsobaID equals osoba.OsobaID
+                         select new { Sifra_osobe = p.OsobaID, Ime = osoba.Ime, Prezime = osoba.Prezime, JMB = osoba.JMB});
+
+            data.DataSource = query.ToList();
+
+
+            List<string> listaStringova = new List<string>();
+
+
+            CustomTabPage noviPage1 = new CustomTabPage() { State = State.Search, Naziv = "PRETRAGA" };
+            pomTabControl.TabPages.Add(noviPage1);
+            pomTabControl.SelectedTab = noviPage1;
+
+
+            DataGridView dgvNovi = izgled();
+            dgvNovi.Dock = DockStyle.Fill;
+            dgvNovi.BorderStyle = BorderStyle.None;
+            dgvNovi.BackgroundColor = Color.FromArgb(255, 255, 255);
+            dgvNovi.Focus();
+
+            foreach (DataGridViewColumn item in data.Columns)
+            {
+                dgvNovi.Columns.Add((DataGridViewColumn)item.Clone());
+            }
+
+            foreach (UCTekst txt in listaTxt)
+            {
+                foreach (DataGridViewColumn item in data.Columns)
+                {
+                    if (txt.Naziv.Equals(item.HeaderText))
+                    {
+                        listaStringova.Add(txt.Value);
+
+                    }
+                }
+            }
+
+            foreach (DataGridViewRow row in data.Rows)
+            {
+                if ( ((listaTxt[0] == null) ? true : (row.Cells[listaTxt[0].Naziv].Value.ToString().ToLower().Contains(listaTxt[0].Value.ToLower()))) &&
+                    ((listaTxt[1] == null) ? true : (row.Cells[listaTxt[1].Naziv].Value.ToString().ToLower().Contains(listaTxt[1].Value.ToLower()))) &&
+                    ((listaTxt[2] == null) ? true : (row.Cells[listaTxt[2].Naziv].Value.ToString().ToLower().Contains(listaTxt[2].Value.ToLower()))) )
+                {
+                    int index = dgvNovi.Rows.Add(row.Clone() as DataGridViewRow);
+                    foreach (DataGridViewCell o in row.Cells)
+                    {
+                        dgvNovi.Rows[index].Cells[o.ColumnIndex].Value = o.Value;
+                    }
+                }
+            }
+
+            noviPage1.Controls.Add(dgvNovi);
         }
 
         private void CustomToolStrip_AzurirajClick(object sender, EventArgs e)
