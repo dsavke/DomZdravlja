@@ -659,9 +659,9 @@ namespace DomZdravlja
             }
             if (!postoji)
                 return;
-            
 
-            CustomTabPage noviPage = new CustomTabPage() { State = State.Search, Naziv = "PRETRAGA" };
+
+            /*CustomTabPage noviPage = new CustomTabPage() { State = State.Search, Naziv = "PRETRAGA" };
             pomTabControl.TabPages.Add(noviPage);
             pomTabControl.SelectedTab = noviPage;
 
@@ -682,12 +682,18 @@ namespace DomZdravlja
             data.DataSource = query.ToList();
 
 
-            List<string> listaStringova = new List<string>();
+
+            */
+           // List<string> listaStringova = new List<string>();
+
+            DataGridView data = vratiPodatke(Tip);
+
 
 
             CustomTabPage noviPage1 = new CustomTabPage() { State = State.Search, Naziv = "PRETRAGA" };
             pomTabControl.TabPages.Add(noviPage1);
             pomTabControl.SelectedTab = noviPage1;
+            noviPage1.Controls.Add(data);
 
 
             DataGridView dgvNovi = izgled();
@@ -701,17 +707,31 @@ namespace DomZdravlja
                 dgvNovi.Columns.Add((DataGridViewColumn)item.Clone());
             }
 
-            foreach (UCTekst txt in listaTxt)
-            {
-                foreach (DataGridViewColumn item in data.Columns)
-                {
-                    if (txt.Naziv.Equals(item.HeaderText))
-                    {
-                        listaStringova.Add(txt.Value);
+            //foreach (UCTekst txt in listaTxt)
+            //{
+            //    foreach (DataGridViewColumn item in data.Columns)
+            //    {
+            //        if (txt.Naziv.Equals(item.HeaderText))
+            //        {
+            //            listaStringova.Add(txt.Value);
 
-                    }
-                }
+            //        }
+            //    }
+            //}
+            /*foreach (DataGridViewColumn column in dgvNovi.Columns)
+            {
+                column.HeaderText = column.HeaderText.Replace("_", " ");
+                if (column.HeaderText.Contains("Sifra")) column.Visible = false;
+            }*/
+
+            foreach (DataGridViewColumn column in data.Columns)
+            {
+                column.Name = column.Name.Replace("_", " ");
+                column.HeaderText = column.HeaderText.Replace("_", " ");
+                if (column.HeaderText.Contains("Sifra")) column.Visible = false;
             }
+
+           // MessageBox.Show("" + data.Columns[0].HeaderText);
 
             foreach (DataGridViewRow row in data.Rows)
             {
@@ -726,8 +746,18 @@ namespace DomZdravlja
                     }
                 }
             }
-
+            noviPage1.Controls.Remove(data);
             noviPage1.Controls.Add(dgvNovi);
+
+            foreach (DataGridViewColumn column in dgvNovi.Columns)
+            {
+                column.HeaderText = column.HeaderText.Replace("_", " ");
+                if (column.HeaderText.Contains("Sifra")) column.Visible = false;
+            }
+
+
+
+            //noviPage1.Controls.Add(dgvNovi);
         }
 
         private void CustomToolStrip_AzurirajClick(object sender, EventArgs e)
@@ -1581,12 +1611,12 @@ namespace DomZdravlja
                                         on racun.ZaposleniID equals prijem.ZaposleniID
                                         join osoba1 in (propertyInterfaces[9].Cast<PropertyOsoba>())
                                             on prijem.OsobaID equals osoba1.OsobaID
-                                        select new { 
+                                        select new {
                                             Ime_i_prezime_pacijenta = (osoba2.Ime + " " + osoba2.Prezime),
                                             Ime_i_prezime_doktora = (osoba1.Ime + " " + osoba1.Prezime),
                                             Suma_racuna = racun.SumaRacuna,
                                             Vrijeme_izdavanja = racun.VrijemeIzdavanja,
-                                            Sifra_racuna = racun.RacunID,
+                                            Broj_računa = racun.RacunID,
                                             Sifra_zaposleni = racun.ZaposleniID,
                                             Sifra_pacijenta = racun.PacijentID,
                                         }

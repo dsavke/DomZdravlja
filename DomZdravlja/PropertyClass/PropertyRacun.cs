@@ -21,7 +21,7 @@ namespace DomZdravlja.PropertyClass
         #endregion
 
         #region Property
-        [DisplayName("Šifra računa")]
+        [DisplayName("Broj računa")]
         [SqlName("RacunID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
