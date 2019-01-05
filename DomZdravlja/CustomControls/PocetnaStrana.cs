@@ -43,7 +43,18 @@ namespace DomZdravlja.CustomControls
 
         private void btnSifra_Click(object sender, EventArgs e)
         {
-            panel2.Visible = true;
+            panel2.Show();
+            btnSifra.Click -= btnSifra_Click;
+            btnSifra.Click += BtnSifraSakrij_Click;
+            btnSifra.Text = "Sakrij sifru";
+        }
+
+        private void BtnSifraSakrij_Click(object sender, EventArgs e)
+        {
+            panel2.Hide();
+            btnSifra.Text = "Promijeni sifru";
+            btnSifra.Click -= BtnSifraSakrij_Click;
+            btnSifra.Click += btnSifra_Click;
         }
     }
 }

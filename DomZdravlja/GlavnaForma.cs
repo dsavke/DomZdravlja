@@ -264,7 +264,7 @@ namespace DomZdravlja
             {
                 PropertyRecepcija pomRecepcija = new PropertyRecepcija();
                 pomRecepcija.PrijemID = Convert.ToInt32(dataReader["PrijemID"]);
-                pomRecepcija.PrijemZaposleniID = Convert.ToInt32(dataReader["PrijemZaposlenihID"]);
+                pomRecepcija.PrijemZaposleniID = Convert.ToInt32(dataReader["PrijemZaposleniID"]);
                 pomRecepcija.PacijentID = Convert.ToInt32(dataReader["PacijentID"]);
                 pomRecepcija.DoktorID = Convert.ToInt32(dataReader["DoktorID"]);
                 pomRecepcija.Prioritet = Convert.ToInt32(dataReader["Prioritet"]);
@@ -784,16 +784,214 @@ namespace DomZdravlja
             tabControl.TabPages.Add(tabPage);
             postaviFokus(State.Insert);
 
+            dodajMetoda(sender, e, myProperty);
+        }
+
+        private void UCLookupInsert_DodajControlClick(object sender, EventArgs e)
+        {
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Lookup, Naziv = "KREIRAJ" };
+            trenutnoStanje = State.Lookup;
+            tabControl.TabPages.Add(tabPage);
+            postaviFokus(State.Lookup);
+
+            var property = myProperty.GetType().GetProperties().Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == ((sender as Button).Parent as UCLookupInsert).Naziv).FirstOrDefault();
+            var objekat = Activator.CreateInstance(Type.GetType(property.GetCustomAttribute<ForeignKey>().ReferencedTable));
+
+            dodajMetoda(sender, e, (objekat as PropertyInterface));
+            lookupTab();
+        }
+
+        private void UCLookupInsert_LookupControlClick(object sender, EventArgs e)
+        {
+            PropertyInfo property = myProperty.GetType().GetProperties().Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == ((sender as Button).Parent as UCLookupInsert).Naziv).FirstOrDefault();
+            lookupMetoda(sender, e, property);
+        }
+
+        #endregion
+
+        private void BtnOdustani_Click(object sender, EventArgs e)
+        {
+            tabControl.TabPages.Remove(tabControl.SelectedTab);
+            postaviFokus(State.Main);
+        }
+
+        #region SacuvajDodavanje
+        private void BtnSacuvaj_Click(object sender, EventArgs e, PropertyInterface propertyInterface)
+        {
+
+
+
+            var type = propertyInterface.GetType();
+            var properties = type.GetProperties();
+            bool proslo = true;
+
+            foreach (Control control in tabControl.SelectedTab.Controls[0].Controls)
+            {
+                try
+                {
+                    PropertyInfo property = null;
+
+                    if (control.GetType() == typeof(UCTekst))
+                    {
+                        property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == (control as UCTekst).Naziv).FirstOrDefault();
+                        string rez = (control as UCTekst).Value;
+
+                        if (property.IsDefined(typeof(ValidatePattern)))
+                        {
+                            if (property.GetCustomAttribute<ValidatePattern>().IsValid(rez))
+                            {
+                                if (property.PropertyType == typeof(int))
+                                {
+                                    property.SetValue(propertyInterface, Convert.ToInt32(rez));
+                                    MessageBox.Show("" + property.GetValue(propertyInterface));
+                                }
+                                else if (property.PropertyType == typeof(Decimal))
+                                {
+                                    property.SetValue(propertyInterface, Convert.ToDecimal(rez));
+                                    MessageBox.Show("" + property.GetValue(propertyInterface));
+                                }
+                                else if (property.PropertyType == typeof(String))
+                                {
+                                    property.SetValue(propertyInterface, rez);
+                                    MessageBox.Show("" + property.GetValue(propertyInterface));
+                                }
+                            }
+                            else
+                            {
+                                (control as UCTekst).BackColor = Color.DarkGray;
+                                proslo = false;
+                            }
+                        }
+                        else
+                        {
+                            if (string.IsNullOrWhiteSpace(rez))
+                            {
+                                property.SetValue(myProperty, null);
+                                MessageBox.Show("Vrijednost je null");
+                            }
+                            else if (property.PropertyType == typeof(int))
+                            {
+                                property.SetValue(propertyInterface, Convert.ToInt32(rez));
+                                MessageBox.Show("" + property.GetValue(propertyInterface));
+                            }
+                            else if (property.PropertyType == typeof(Decimal))
+                            {
+                                property.SetValue(propertyInterface, Convert.ToDecimal(rez));
+                                MessageBox.Show("" + property.GetValue(propertyInterface));
+                            }
+                            else if (property.PropertyType == typeof(String))
+                            {
+                                property.SetValue(propertyInterface, rez);
+                                MessageBox.Show("" + property.GetValue(propertyInterface));
+                            }
+                        }
+                    }
+                    else if (control.GetType() == typeof(UCDatum))
+                    {
+                        property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == (control as UCDatum).Naziv).FirstOrDefault();
+                        DateTime rez = (control as UCDatum).Value;
+                        property.SetValue(propertyInterface, rez);
+                        MessageBox.Show("" + property.GetValue(propertyInterface));
+
+                    }
+                    else if (control.GetType() == typeof(UCRadioButton))
+                    {
+                        property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == (control as UCRadioButton).Naziv).FirstOrDefault();
+                        if ((control as UCRadioButton).Vrijednost)
+                        {
+                            property.SetValue(propertyInterface, Convert.ChangeType(property.GetCustomAttribute<OpcijeRadioButton>().Vrijednost1, property.PropertyType));
+                        }
+                        else
+                        {
+                            property.SetValue(propertyInterface, Convert.ChangeType(property.GetCustomAttribute<OpcijeRadioButton>().Vrijednost2, property.PropertyType));
+                        }
+                        MessageBox.Show("" + property.GetValue(propertyInterface));
+                    }
+                    else if (control.GetType() == typeof(UCLookup))
+                    {
+                        property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == (control as UCLookup).Naziv).FirstOrDefault();
+                        if (property.IsDefined(typeof(ValidatePattern)))
+                        {
+
+                            string rez = (control as UCLookup).Value;
+                            if (property.GetCustomAttribute<ValidatePattern>().IsValid(rez))
+                            {
+                                //(control as UCLookup).BackColor = Color.Blue;
+                                property.SetValue(propertyInterface, Convert.ToInt32(rez));
+                                MessageBox.Show("" + property.GetValue(propertyInterface));
+                            }
+                            else
+                            {
+                                (control as UCLookup).BackColor = Color.DarkGray;
+                                proslo = false;
+                            }
+                        }
+                    }
+                    else if (control.GetType() == typeof(UCLookupInsert))
+                    {
+                        property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == (control as UCLookupInsert).Naziv).FirstOrDefault();
+                        if (property.IsDefined(typeof(ValidatePattern)))
+                        {
+
+                            string rez = (control as UCLookupInsert).Value;
+                            if (property.GetCustomAttribute<ValidatePattern>().IsValid(rez))
+                            {
+                                //(control as UCLookup).BackColor = Color.Blue;
+                                property.SetValue(propertyInterface, Convert.ToInt32(rez));
+                                MessageBox.Show("" + property.GetValue(propertyInterface));
+                            }
+                            else
+                            {
+                                (control as UCLookupInsert).BackColor = Color.DarkGray;
+                                proslo = false;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Puklo " + ex.ToString());
+                }
+
+            }
+            if (proslo)
+            {
+                try
+                {
+                    SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, propertyInterface.GetInsertQuery(), propertyInterface.GetInsertParameters().ToArray());
+                    MessageBox.Show("Uspjesno ste dodali!");
+                    tabControl.TabPages.Remove(tabControl.SelectedTab);
+                    postaviFokus(State.Main);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("" + ex.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Dodavanje nije proslo");
+            }
+
+        }
+        #endregion
+
+        #region MedjusobneMetode
+
+        private void dodajMetoda(object sender, EventArgs e, PropertyInterface propertyInterface)
+        {
             FlowLayoutPanel flowLayoutPanel = new FlowLayoutPanel();
             flowLayoutPanel.Width = 908;
             flowLayoutPanel.Height = 600;
             tabControl.SelectedTab.Controls.Add(flowLayoutPanel);
 
-            var type = myProperty.GetType();
+            var type = propertyInterface.GetType();
             var properties = type.GetProperties();
 
             foreach (PropertyInfo property in properties)
             {
+
+                if (property.IsDefined(typeof(Invisible))) continue;
 
                 ComponentType componentType;
                 componentType = property.GetCustomAttribute<GenerateComponent>().ComponentType;
@@ -826,17 +1024,29 @@ namespace DomZdravlja
                     uCLookup.LookupClick += UCLookup_LookupClick;
                     flowLayoutPanel.Controls.Add(uCLookup);
                 }
+                else if (componentType == ComponentType.InsertLookup)
+                {
+                    UCLookupInsert uCLookupInsert = new UCLookupInsert();
+                    uCLookupInsert.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                    uCLookupInsert.LookupControlClick += UCLookupInsert_LookupControlClick;
+                    uCLookupInsert.DodajControlClick += UCLookupInsert_DodajControlClick;
+                    flowLayoutPanel.Controls.Add(uCLookupInsert);
+                }
             }
 
             Panel panel = new Panel();
-            panel.Location = new Point(0, 600);
+            //panel.Location = new Point(0, 600);//ovo vratiti
+            panel.Location = new Point(0, 500);
             panel.Width = 908;
             panel.Height = 160;
 
             Button btnSacuvaj = new Button();
             btnSacuvaj.Text = "Sacuvaj";
             btnSacuvaj.Location = new Point(710, 100);
-            btnSacuvaj.Click += BtnSacuvaj_Click;
+            btnSacuvaj.Click += (send, EventArgs) => { BtnSacuvaj_Click(send, EventArgs, propertyInterface); };//BtnSacuvaj_Click ;
+
+          //  (send, EventArgs) => { BtnVrati_Click(send, EventArgs, property, (sender as Button).Parent, data, objekat, tabPage); };
+
 
             Button btnOdustani = new Button();
             btnOdustani.Text = "Odustani";
@@ -847,147 +1057,9 @@ namespace DomZdravlja
             panel.Controls.Add(btnOdustani);
 
             tabControl.SelectedTab.Controls.Add(panel);
-
         }
 
-        #endregion
-
-        private void BtnOdustani_Click(object sender, EventArgs e)
-        {
-            tabControl.TabPages.Remove(tabControl.SelectedTab);
-            tabControl.SelectedIndex = 0;
-        }
-
-        #region SacuvajDodavanje
-        private void BtnSacuvaj_Click(object sender, EventArgs e)
-        {
-
-            var type = myProperty.GetType();
-            var properties = type.GetProperties();
-            bool proslo = true;
-
-            foreach (Control control in tabControl.SelectedTab.Controls[0].Controls)
-            {
-                try
-                {
-                    PropertyInfo property = null;
-
-                    if (control.GetType() == typeof(UCTekst))
-                    {
-                        property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == (control as UCTekst).Naziv).FirstOrDefault();
-                        string rez = (control as UCTekst).Value;
-
-                        if (property.IsDefined(typeof(ValidatePattern)))
-                        {
-                            if (property.GetCustomAttribute<ValidatePattern>().IsValid(rez))
-                            {
-                                if (property.PropertyType == typeof(int))
-                                {
-                                    property.SetValue(myProperty, Convert.ToInt32(rez));
-                                    MessageBox.Show("" + property.GetValue(myProperty));
-                                }
-                                else if (property.PropertyType == typeof(Decimal))
-                                {
-                                    property.SetValue(myProperty, Convert.ToDecimal(rez));
-                                    MessageBox.Show("" + property.GetValue(myProperty));
-                                }
-                                else if (property.PropertyType == typeof(String))
-                                {
-                                    property.SetValue(myProperty, rez);
-                                    MessageBox.Show("" + property.GetValue(myProperty));
-                                }
-                            }
-                            else
-                            {
-                                (control as UCTekst).BackColor = Color.DarkGray;
-                                proslo = false;
-                            }
-                        }
-                        else
-                        {
-                            if (string.IsNullOrWhiteSpace(rez))
-                            {
-                                property.SetValue(myProperty, null);
-                                MessageBox.Show("Vrijednost je null");
-                            }
-                            else if (property.PropertyType == typeof(int))
-                            {
-                                property.SetValue(myProperty, Convert.ToInt32(rez));
-                                MessageBox.Show("" + property.GetValue(myProperty));
-                            }
-                            else if (property.PropertyType == typeof(Decimal))
-                            {
-                                property.SetValue(myProperty, Convert.ToDecimal(rez));
-                                MessageBox.Show("" + property.GetValue(myProperty));
-                            }
-                            else if (property.PropertyType == typeof(String))
-                            {
-                                property.SetValue(myProperty, rez);
-                                MessageBox.Show("" + property.GetValue(myProperty));
-                            }
-                        }
-                    }
-                    else if (control.GetType() == typeof(UCDatum))
-                    {
-                        property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == (control as UCDatum).Naziv).FirstOrDefault();
-                        DateTime rez = (control as UCDatum).Value;
-                        property.SetValue(myProperty, rez);
-                        MessageBox.Show("" + property.GetValue(myProperty));
-
-                    }
-                    else if (control.GetType() == typeof(UCRadioButton))
-                    {
-                        property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == (control as UCRadioButton).Naziv).FirstOrDefault();
-                    }
-                    else if (control.GetType() == typeof(UCLookup))
-                    {
-                        property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == (control as UCLookup).Naziv).FirstOrDefault();
-                        if (property.IsDefined(typeof(ValidatePattern)))
-                        {
-
-                            string rez = (control as UCLookup).Value;
-                            if (property.GetCustomAttribute<ValidatePattern>().IsValid(rez))
-                            {
-                                //(control as UCLookup).BackColor = Color.Blue;
-                                property.SetValue(myProperty, Convert.ToInt32(rez));
-                                MessageBox.Show("" + property.GetValue(myProperty));
-                            }
-                            else
-                            {
-                                (control as UCLookup).BackColor = Color.DarkGray;
-                                proslo = false;
-                            }
-                        }
-                    }
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show("Puklo " + ex.ToString());
-                }
-
-            }
-            if (proslo)
-            {
-                try
-                {
-                    SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, myProperty.GetInsertQuery(), myProperty.GetInsertParameters().ToArray());
-                    MessageBox.Show("Uspjesno ste dodali!");
-                    tabControl.TabPages.Remove(tabControl.SelectedTab);
-                    postaviFokus(State.Main);
-                }catch(Exception ex)
-                {
-                    MessageBox.Show("" + ex.ToString());
-                }
-            }
-            else
-            {
-                MessageBox.Show("Dodavanje nije proslo");
-            }
-        }
-        #endregion
-
-        #region Lookup
-        private void UCLookup_LookupClick(object sender, EventArgs e)
+        private void lookupMetoda(object sender, EventArgs e, PropertyInfo propertyForward)
         {
             CustomTabPage tabPage = new CustomTabPage() { State = State.Lookup, Naziv = "LOOKUP" };
             trenutnoStanje = State.Lookup;
@@ -996,35 +1068,29 @@ namespace DomZdravlja
 
             var properties = myProperty.GetType().GetProperties();
 
-            PropertyInfo property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == ((sender as Button).Parent as UCLookup).Naziv).FirstOrDefault();
+            PropertyInfo property = propertyForward;
 
             var objekat = Activator.CreateInstance(Type.GetType(property.GetCustomAttribute<ForeignKey>().ReferencedTable));
 
             DataGridView data = new DataGridView();
 
-           // Tip tip = Tip;
-
-            //Tip = property.GetCustomAttribute<ForeignKey>().Tip;
-
-            //ucitaj(vratiIndex(objekat));
-
-            data = vratiPodatke(property.GetCustomAttribute<ForeignKey>().Tip); //vratiTablu(objekat, propertyInterfaces[vratiIndex(objekat)]);
+            data = vratiPodatke(property.GetCustomAttribute<ForeignKey>().Tip);
 
             data.Location = new Point(20, 20);
 
             data.BackgroundColor = Color.White;
 
-            //Tip = tip;
-
             tabControl.SelectedTab.Controls.Add(data);
             foreach (DataGridViewColumn column in data.Columns)
             {
                 column.HeaderText = column.HeaderText.Replace("_", " ");
+                column.Name = column.Name.Replace("_", " ");
                 if (column.HeaderText.Contains("Sifra")) column.Visible = false;
             }
 
             Panel panel = new Panel();
-            panel.Location = new Point(20, 620);
+            //panel.Location = new Point(20, 620); //ovo vratiti
+            panel.Location = new Point(20, 520);
             panel.Width = 908;
             panel.Height = 160;
 
@@ -1032,9 +1098,9 @@ namespace DomZdravlja
             btnVrati.Text = "Vrati";
             btnVrati.Location = new Point(710, 100);
 
-            UCLookup uCLookup = (sender as Button).Parent as UCLookup;
+           // UCLookup uCLookup = (sender as Button).Parent as UCLookup;
 
-            btnVrati.Click += (send, EventArgs) => { BtnVrati_Click(send, EventArgs, property, uCLookup, data, objekat, tabPage); };
+            btnVrati.Click += (send, EventArgs) => { BtnVrati_Click(send, EventArgs, property, (sender as Button).Parent, data, objekat, tabPage); };
 
             Button btnOdustani = new Button();
             btnOdustani.Text = "Odustani";
@@ -1049,6 +1115,15 @@ namespace DomZdravlja
             lookupTab();
 
             data.Focus();
+        }
+        #endregion
+
+        #region Lookup
+        private void UCLookup_LookupClick(object sender, EventArgs e)
+        {
+            PropertyInfo property = myProperty.GetType().GetProperties().Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == ((sender as Button).Parent as UCLookup).Naziv).FirstOrDefault();
+
+            lookupMetoda(sender, e, property);
 
         }
 
@@ -1057,7 +1132,7 @@ namespace DomZdravlja
             rijesiLookup();
         }
 
-        private void BtnVrati_Click(object sender, EventArgs e, PropertyInfo property, UCLookup uC, DataGridView data, object objekat, CustomTabPage tabPage)
+        private void BtnVrati_Click(object sender, EventArgs e, PropertyInfo property, Control uC, DataGridView data, object objekat, CustomTabPage tabPage)
         {
             if (data.SelectedRows.Count > 0)
             {
@@ -1067,7 +1142,28 @@ namespace DomZdravlja
 
                 int id = Convert.ToInt32(row.Cells[property.GetCustomAttribute<ForeignKey>().ReferencedColumn].Value);
 
-                uC.Value = id.ToString();
+                object col1 = property.GetCustomAttribute<ForeignKey>().BackCol1;
+                object col2 = property.GetCustomAttribute<ForeignKey>().BackCol2; 
+
+                if (uC.GetType() == typeof(UCLookup))
+                {
+
+
+
+                    (uC as UCLookup).Value = id.ToString();
+
+                    (uC as UCLookup).Info = row.Cells[col1.ToString()].Value + " "
+                            +  (col2.ToString() != ""? row.Cells[col2.ToString()].Value : "");
+
+                }
+                else
+                {
+                    (uC as UCLookupInsert).Value = id.ToString();
+
+                    (uC as UCLookupInsert).Info = row.Cells[col1.ToString()].Value + " "
+                            + (col2.ToString() != ""? row.Cells[col2.ToString()].Value : "");
+
+                }
 
                 tabControl.TabPages.Remove(tabControl.SelectedTab);
 
@@ -1272,8 +1368,6 @@ namespace DomZdravlja
 
         private void postaviFokus(State stanje)
         {
-            /*tabControl.TabPages[tabControl.TabPages.Count - 1].Focus();
-            tabControl.SelectedIndex = tabControl.TabPages.Count - 1;*/
 
             for(int i = 0; i < tabControl.TabPages.Count; i++)
             {
@@ -1510,7 +1604,7 @@ namespace DomZdravlja
                                         select new {Ime = osoba.Ime, Prezime = osoba.Prezime, JMB = osoba.JMB,
                                         osoba.Pol, Mjesto_rodjenja = osoba.MjestoRodjenja, Datum_rodjenja =osoba.DatumRodjenja, Adresa = osoba.Adresa, osoba.Kontakt,
                                             Osiguran = p.Osiguran, Sifra_statusa = osoba.ZivotniStatus,
-                                            Sifra_pacijent = p.PacijentID
+                                            Sifra_pacijenta = p.PacijentID
                                         }
                                         );
 
@@ -1612,11 +1706,11 @@ namespace DomZdravlja
                                         join osoba1 in (propertyInterfaces[9].Cast<PropertyOsoba>())
                                             on prijem.OsobaID equals osoba1.OsobaID
                                         select new {
+                                            Broj_računa = racun.RacunID,
                                             Ime_i_prezime_pacijenta = (osoba2.Ime + " " + osoba2.Prezime),
                                             Ime_i_prezime_doktora = (osoba1.Ime + " " + osoba1.Prezime),
                                             Suma_racuna = racun.SumaRacuna,
                                             Vrijeme_izdavanja = racun.VrijemeIzdavanja,
-                                            Broj_računa = racun.RacunID,
                                             Sifra_zaposleni = racun.ZaposleniID,
                                             Sifra_pacijenta = racun.PacijentID,
                                         }
@@ -1735,6 +1829,46 @@ namespace DomZdravlja
                                         );
 
                     data.DataSource = queryMSD.ToList();
+                    break;
+                case Tip.Osoba:
+                    ucitaj(9);
+                    ucitaj(1);
+
+                    var queryOsobaNijePacijent = (
+                        //ovdje pisi
+                                                        from o in (propertyInterfaces[9].Cast<PropertyOsoba>())
+                                                        where !(from pacijent in propertyInterfaces[1].Cast<PropertyPacijent>()
+                                                                select pacijent.OsobaID).Contains(o.OsobaID)
+                                                        select new
+                                                        {
+                                                            o.Ime
+                                                            , o.Prezime
+                                                            , o.JMB
+                                                            , o.Pol
+                                                            , Mjesto_rodjenja = o.MjestoRodjenja
+                                                            , Datum_rodjenja = o.DatumRodjenja
+                                                            , o.Adresa
+                                                            , o.Kontakt
+                                                            , Sifra_osobe = o.OsobaID
+                                                        }
+                                                 );
+
+                    data.DataSource = queryOsobaNijePacijent.ToList();
+                    break;
+                case Tip.Dijagnoze:
+                    ucitaj(4);
+
+                    var queryDijagnoza = (
+                                                from dijagnoza in (propertyInterfaces[4].Cast<PropertyDijagnoza>())
+                                                select new
+                                                {
+                                                    dijagnoza.Opis
+                                                    , dijagnoza.Terapija
+                                                    , Sifra_dijagnoze = dijagnoza.DijagnozaID
+                                                }
+                                         );
+
+                    data.DataSource = queryDijagnoza.ToList();
                     break;
 
             }

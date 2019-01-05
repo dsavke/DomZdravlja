@@ -11,6 +11,7 @@ namespace DomZdravlja
         Datum,
         RadioButton,
         Tekst,
-        Lookup
+        Lookup,
+        InsertLookup
     }
 }

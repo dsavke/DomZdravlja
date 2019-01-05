@@ -19,6 +19,8 @@ namespace DomZdravlja
         RedoslijedDolazaka,
         MedicinskaSestra,
         Doktori,
-        MSD
+        MSD,
+        Osoba,
+        Dijagnoze
     }
 }

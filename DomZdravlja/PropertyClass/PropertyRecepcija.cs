@@ -43,7 +43,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Šifra prijem zaposlenih")]
         [SqlName("PrijemZaposleniID")]
         [GenerateComponent(ComponentType.Lookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "ZaposleniID", Tip.MedicinskaSestra)]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "Sifra zaposleni", Tip.MedicinskaSestra, "Ime", "Prezime", false)]
         [ValidatePattern(@"^\d+$")]
 
         public int PrijemZaposleniID
@@ -61,7 +61,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Šifra pacijenta")]
         [SqlName("PacijentID")]
         [GenerateComponent(ComponentType.Lookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyPacijent", "PacijentID", Tip.Pacijent)]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyPacijent", "Sifra pacijenta", Tip.Pacijent, "Ime", "Prezime", false)]
         [ValidatePattern(@"^\d+$")]
 
         public int PacijentID
@@ -79,7 +79,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Šifra doktora")]
         [SqlName("DoktorID")]
         [GenerateComponent(ComponentType.Lookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "ZaposleniID",Tip.Doktori)]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "Sifra zaposleni",Tip.Doktori, "Ime", "Prezime", false)]
         [ValidatePattern(@"^\d+$")]
 
         public int DoktorID
@@ -98,7 +98,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("Prioritet")]
         [ValidatePattern(@"^\d+$")]
         [GenerateComponent(ComponentType.RadioButton)]
-        [OpcijeRadioButton("Ima", "Nema")]
+        [OpcijeRadioButton("Ima", "Nema", 1, 0)]
 
         public int Prioritet
         {

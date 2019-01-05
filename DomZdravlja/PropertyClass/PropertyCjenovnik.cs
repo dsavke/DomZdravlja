@@ -40,7 +40,6 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Naziv usluge")]
         [SqlName("NazivUsluge")]
         [GenerateComponent(ComponentType.Tekst)]
-        
         [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z0-9\s]+$")]
         [MainSearch(null)]
         public string NazivUsluge
@@ -58,7 +57,6 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Cijena usluge")]
         [SqlName("CijenaUsluge")]
         [GenerateComponent(ComponentType.Tekst)]
-
         [ValidatePattern(@"^[0-9]{1,5}([\.][0-9]{1,5})?$")]
         
         public decimal CijenaUsluge
@@ -76,7 +74,6 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Datum uspostavljanja cijene")]
         [SqlName("DatumUspostavljanjaCijene")]
         [GenerateComponent(ComponentType.Datum)]
-
         public DateTime DatumUspostavljanjaCijene
         {
             get
@@ -93,7 +90,6 @@ namespace DomZdravlja.PropertyClass
         [SqlName("Aktivno")]
         [GenerateComponent(ComponentType.Tekst)]
         [Invisible]
-
         public int Aktivno
         {
             get

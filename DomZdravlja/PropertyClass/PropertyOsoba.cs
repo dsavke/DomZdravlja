@@ -100,7 +100,7 @@ namespace DomZdravlja.PropertyClass
         
         [GenerateComponent(ComponentType.Tekst)]
 
-    public string Adresa
+        public string Adresa
         {
             get
             {
@@ -131,7 +131,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Pol")]
         [SqlName("Pol")]
         [GenerateComponent(ComponentType.RadioButton)]
-        [OpcijeRadioButton("Muško", "Žensko")]
+        [OpcijeRadioButton("Muško", "Žensko", 'M', 'Ž')]
         [ValidatePattern(@"^[A-Z]{1}$")]
 
         public string Pol
@@ -182,7 +182,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Životni status")]
         [SqlName("ZivotniStatus")]
         [GenerateComponent(ComponentType.RadioButton)]
-        [OpcijeRadioButton("Živ", "Mrtav")]
+        [OpcijeRadioButton("Živ", "Mrtav", 1, 0)]
         [Invisible]
 
         public int ZivotniStatus

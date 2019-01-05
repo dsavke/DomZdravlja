@@ -43,7 +43,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Šifra zaposlenog")]
         [SqlName("ZaposleniID")]
         [GenerateComponent(ComponentType.Lookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "ZaposleniID", Tip.MSD)]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "Sifra zaposleni", Tip.MSD, "Ime", "Prezime", false)]
         [ValidatePattern(@"^\d+$")]
 
         public int ZaposleniID
@@ -61,7 +61,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Šifra pacijenta")]
         [SqlName("PacijentID")]
         [GenerateComponent(ComponentType.Lookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyPacijent", "PacijentID", Tip.Pacijent)]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyPacijent", "Sifra pacijenta", Tip.Pacijent, "Ime", "Prezime", false)]
         [ValidatePattern(@"^\d+$")]
 
         public int PacijentID

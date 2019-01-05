@@ -11,6 +11,7 @@ namespace DomZdravlja
         Main,
         Insert,
         Lookup,
-        Search
+        Search,
+        InsertL
     }
 }

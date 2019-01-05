@@ -23,7 +23,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("PacijentID")]
         [GenerateComponent(ComponentType.Lookup)]
         [PrimaryKey]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyPacijent", "PacijentID")]
+        //[ForeignKey("DomZdravlja.PropertyClass.PropertyPacijent", "Sifra pacijenta")]
         [ValidatePattern(@"^\d+$")]
 
         public int PacijentID

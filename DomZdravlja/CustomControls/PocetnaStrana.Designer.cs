@@ -88,6 +88,7 @@
             // 
             // btnSacuvajPromjene
             // 
+            this.btnSacuvajPromjene.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(128)))), ((int)(((byte)(196)))));
             this.btnSacuvajPromjene.Location = new System.Drawing.Point(81, 207);
             this.btnSacuvajPromjene.Name = "btnSacuvajPromjene";
             this.btnSacuvajPromjene.Size = new System.Drawing.Size(211, 33);
@@ -154,6 +155,7 @@
             // 
             // btnSifra
             // 
+            this.btnSifra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(128)))), ((int)(((byte)(196)))));
             this.btnSifra.Location = new System.Drawing.Point(52, 218);
             this.btnSifra.Name = "btnSifra";
             this.btnSifra.Size = new System.Drawing.Size(112, 35);

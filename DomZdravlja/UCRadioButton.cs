@@ -15,6 +15,7 @@ namespace DomZdravlja
         public UCRadioButton()
         {
             InitializeComponent();
+            rbOpcija1.Checked = true;
         }
 
         public string Naziv
@@ -35,23 +36,21 @@ namespace DomZdravlja
             set { rbOpcija2.Text = value; }
         }
 
-        public string Vrijednost
+        public bool Vrijednost
         {
-            get; set;
+            get; private set;
         }
 
         private void rbOpcija1_CheckedChanged(object sender, EventArgs e)
         {
-
-            Vrijednost = rbOpcija1.Text;
-            rbOpcija2.Checked = false;
-            
+            Vrijednost = true;
+           // rbOpcija2.Checked = false;
         }
 
         private void rbOpcija2_CheckedChanged(object sender, EventArgs e)
         {
-            Vrijednost = rbOpcija2.Text;
-            rbOpcija1.Checked = false;
+            Vrijednost = false;
+            //rbOpcija1.Checked = false;
         }
     }
 }

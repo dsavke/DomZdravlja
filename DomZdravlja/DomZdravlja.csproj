@@ -142,6 +142,12 @@
     <Compile Include="UCLookup.Designer.cs">
       <DependentUpon>UCLookup.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCLookupInsert.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCLookupInsert.Designer.cs">
+      <DependentUpon>UCLookupInsert.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCRadioButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -186,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCLookup.resx">
       <DependentUpon>UCLookup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCLookupInsert.resx">
+      <DependentUpon>UCLookupInsert.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCRadioButton.resx">
       <DependentUpon>UCRadioButton.cs</DependentUpon>

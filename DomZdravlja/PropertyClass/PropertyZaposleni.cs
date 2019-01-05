@@ -128,8 +128,8 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Šifra osobe")]
         [SqlName("OsobaID")]
-        [GenerateComponent(ComponentType.Lookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyOsoba", "OsobaID")]
+        [GenerateComponent(ComponentType.InsertLookup)]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyOsoba", "Sifra osobe", Tip.Osoba, "Ime", "Prezime", true)]
         [ValidatePattern(@"^\d+$")]
 
         [MainSearch(null)]
