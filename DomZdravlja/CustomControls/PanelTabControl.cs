@@ -15,6 +15,11 @@ namespace DomZdravlja
 
         public event EventHandler ControlClick;
 
+        public bool Selektovan
+        {
+            get;set;
+        }
+
         public Image Ikona
         {
             get
@@ -39,6 +44,12 @@ namespace DomZdravlja
             }
         }
 
+        public Color BackgroundColor
+        {
+            get { return this.BackColor; }
+            set { this.BackColor = value; }
+        }
+
         public PanelTabControl()
         {
             InitializeComponent();
@@ -58,6 +69,7 @@ namespace DomZdravlja
 
         private void PanelTabControl_MouseLeave(object sender, EventArgs e)
         {
+            if(!Selektovan)
             this.BackColor = Color.FromArgb(0, 67, 127);
         }
 

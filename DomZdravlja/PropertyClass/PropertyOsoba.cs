@@ -29,7 +29,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("OsobaID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
-        [Invisible]
+        [Invisible(Use.Insert)]
         public int OsobaID
         {
             get
@@ -97,7 +97,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Adresa")]
         [SqlName("Adresa")] 
         [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z0-9\s((\-)?)\/\.]*$")]
-        
+        [Editing(Use.Update)]
         [GenerateComponent(ComponentType.Tekst)]
 
         public string Adresa
@@ -115,7 +115,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Kontakt")]
         [SqlName("Kontakt")]
         [GenerateComponent(ComponentType.Tekst)]
-
+        [Editing(Use.Update)]
         public string Kontakt
         {
             get
@@ -183,8 +183,8 @@ namespace DomZdravlja.PropertyClass
         [SqlName("ZivotniStatus")]
         [GenerateComponent(ComponentType.RadioButton)]
         [OpcijeRadioButton("Živ", "Mrtav", 1, 0)]
-        [Invisible]
-
+        [Invisible(Use.Insert)]
+        [Editing(Use.Update)]
         public int ZivotniStatus
         {
             get

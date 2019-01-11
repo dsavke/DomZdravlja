@@ -24,7 +24,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("CjenovnikID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
-        [Invisible]
+        [Invisible(Use.Insert)]
         public int CjenovnikID
         {
             get
@@ -58,7 +58,6 @@ namespace DomZdravlja.PropertyClass
         [SqlName("CijenaUsluge")]
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"^[0-9]{1,5}([\.][0-9]{1,5})?$")]
-        
         public decimal CijenaUsluge
         {
             get
@@ -89,7 +88,8 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Aktivno")]
         [SqlName("Aktivno")]
         [GenerateComponent(ComponentType.Tekst)]
-        [Invisible]
+        [Invisible(Use.Insert)]
+        [Editing(Use.Update)]
         public int Aktivno
         {
             get

@@ -25,7 +25,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("PacijentID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
-        [Invisible]
+        [Invisible(Use.Insert)]
         public int PacijentID
         {
             get
@@ -41,9 +41,9 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Šifra doktora")]
         [SqlName("DoktorID")]
         [GenerateComponent(ComponentType.Lookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "Sifra zaposleni", Tip.Doktori, "Ime", "Prezime", false)]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "Šifra zaposlenog", Tip.Doktori, "Ime", "Prezime", false)]
         [ValidatePattern(@"^\d+$")]
-
+        [Editing(Use.Update)]
         public int DoktorID
         {
             get
@@ -59,7 +59,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Šifra osobe")]
         [SqlName("OsobaID")]
         [GenerateComponent(ComponentType.InsertLookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyOsoba", "Sifra osobe", Tip.Osoba, "Ime", "Prezime", true)]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyOsoba", "Šifra osobe", Tip.Osoba, "Ime", "Prezime", true)]
         [ValidatePattern(@"^\d+$")]
         [MainSearch(null)]
         public int OsobaID
@@ -96,7 +96,7 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.RadioButton)]
         [OpcijeRadioButton("Da", "Ne", 1, 0)]
         [ValidatePattern(@"^\d+$")]
-
+        [Editing(Use.Update)]
         public int Osiguran
         {
             get

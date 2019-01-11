@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace DomZdravlja.AttributeClass
 {
     [AttributeUsage(AttributeTargets.Property)]
-    public class Invisible:Attribute
+    public class Editing:Attribute
     {
-
         public Use Use { get; set; }
 
-        public Invisible(Use use)
+        public Editing(Use use)
         {
             Use = use;
         }
+
     }
 }

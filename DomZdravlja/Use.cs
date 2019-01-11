@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace DomZdravlja
 {
-    public enum State
+    public enum Use
     {
-        Main,
         Insert,
-        Lookup,
-        Search,
-        Update
+        Update,
+        InsertAndUpdate
     }
 }

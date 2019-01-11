@@ -26,7 +26,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("ZaposleniID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
-        [Invisible]
+        [Invisible(Use.Insert)]
         public int ZaposleniID
         {
             get
@@ -43,7 +43,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("Zvanje")]
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[a-z\s(\.?)]*$")]
-
+        [Editing(Use.Update)]
         public string Zvanje
         {
             get
@@ -60,7 +60,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("RadnoMjesto")]
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s]+$")]
-
+        [Editing(Use.Update)]
         public string RadnoMjesto
         {
             get
@@ -77,8 +77,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("KorisnickoIme")]
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"^([a-z0-9]{3,15}(([\._][a-z0-9]{3,16})?))*$")]
-       
-
+        [Editing(Use.Update)]
         public string KorisnickoIme
         {
             get
@@ -95,7 +94,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("Password")]
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"^([a-z0-9\.]{5,16})*$")]
-
+        [Editing(Use.Update)]
         public string Password
         {
             get
@@ -112,8 +111,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("TipZaposlenog")]
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z0-9\s\.]*$")]
-
-
+        [Editing(Use.Update)]
         public string TipZaposlenog
         {
             get
@@ -129,7 +127,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Šifra osobe")]
         [SqlName("OsobaID")]
         [GenerateComponent(ComponentType.InsertLookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyOsoba", "Sifra osobe", Tip.Osoba, "Ime", "Prezime", true)]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyOsoba", "Šifra osobe", Tip.OsobaBezPosla, "Ime", "Prezime", true)]
         [ValidatePattern(@"^\d+$")]
 
         [MainSearch(null)]

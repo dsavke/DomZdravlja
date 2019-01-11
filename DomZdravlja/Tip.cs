@@ -21,6 +21,7 @@ namespace DomZdravlja
         Doktori,
         MSD,
         Osoba,
-        Dijagnoze
+        Dijagnoze,
+        OsobaBezPosla
     }
 }

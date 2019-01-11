@@ -41,6 +41,12 @@ namespace DomZdravlja
             get; private set;
         }
 
+        public void postavi(int i)
+        {
+            if (i == 1) rbOpcija1.Checked = true;
+            else rbOpcija2.Checked = true;
+        }
+
         private void rbOpcija1_CheckedChanged(object sender, EventArgs e)
         {
             Vrijednost = true;

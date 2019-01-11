@@ -38,7 +38,7 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Broj Kartona")]
+        [DisplayName("Broj kartona")]
         [SqlName("BrojKartona")]
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"^\d+$")]

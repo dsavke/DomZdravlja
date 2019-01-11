@@ -25,7 +25,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("RacunID")]
         [GenerateComponent(ComponentType.Tekst)]
         [PrimaryKey]
-        [Invisible]
+        [Invisible(Use.Insert)]
         [MainSearch(null)]
         public int RacunID
         {
@@ -43,7 +43,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Šifra zaposlenog")]
         [SqlName("ZaposleniID")]
         [GenerateComponent(ComponentType.Lookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "Sifra zaposleni", Tip.MSD, "Ime", "Prezime", false)]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "Šifra zaposlenog", Tip.MSD, "Ime", "Prezime", false)]
         [ValidatePattern(@"^\d+$")]
 
         public int ZaposleniID
@@ -61,7 +61,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Šifra pacijenta")]
         [SqlName("PacijentID")]
         [GenerateComponent(ComponentType.Lookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyPacijent", "Sifra pacijenta", Tip.Pacijent, "Ime", "Prezime", false)]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyPacijent", "Šifra pacijenta", Tip.Pacijent, "Ime", "Prezime", false)]
         [ValidatePattern(@"^\d+$")]
 
         public int PacijentID
@@ -80,7 +80,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("Popust")]
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"^\d+$")]
-
+        [Editing(Use.Update)]
         public decimal Popust
         {
             get

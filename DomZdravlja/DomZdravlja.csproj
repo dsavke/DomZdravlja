@@ -57,6 +57,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttributeClass\Editing.cs" />
     <Compile Include="AttributeClass\ForeignKey.cs" />
     <Compile Include="AttributeClass\GenerateComponent.cs" />
     <Compile Include="AttributeClass\MainSearch.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="UCTekst.Designer.cs">
       <DependentUpon>UCTekst.cs</DependentUpon>
     </Compile>
+    <Compile Include="Use.cs" />
     <EmbeddedResource Include="CustomControls\CustomPretraga.resx">
       <DependentUpon>CustomPretraga.cs</DependentUpon>
     </EmbeddedResource>
