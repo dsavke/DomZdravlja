@@ -38,12 +38,13 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Šifra računa")]
+        [DisplayName("Broj računa")]
         [SqlName("RacunID")]
-        [GenerateComponent(ComponentType.Lookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyRacun", "Šifra računa", Tip.Racun, "", "", false)]
+        [GenerateComponent(ComponentType.InsertLookup)]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyRacun", "Broj računa", Tip.NoviRacun, "Ime i prezime pacijenta", "Šifra pacijenta", true)]
         [ValidatePattern(@"^\d+$")]
-      
+        [MainSearch(null)]
+        [Editing(Use.Insert)]
         public int RacunID
         {
             get
@@ -56,12 +57,12 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Šifra cijene")]
+        [DisplayName("Šifra cjenovnika")]
         [SqlName("CijenaID")]
         [GenerateComponent(ComponentType.Lookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyCjenovnik", "Šifra cijene", Tip.Cjenovnik, "", "", false)]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyCjenovnik", "Šifra cjenovnika", Tip.Cjenovnik, "Naziv usluge", "", false)]
         [ValidatePattern(@"^\d+$")]
-
+        [Editing(Use.Insert)]
         public int CijenaID
         {
             get
@@ -78,7 +79,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("Kolicina")]
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"^\d+$")]
-
+        [Editing(Use.Insert)]
         public int Kolicina
         {
             get
@@ -94,7 +95,6 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Suma linije")]
         [SqlName("SumaLinije")]
         [GenerateComponent(ComponentType.Tekst)]
-
         public decimal SumaLinije
         {
             get
@@ -131,7 +131,11 @@ namespace DomZdravlja.PropertyClass
                                @RacunID
                                ,@CijenaID
                                ,@Kolicina
-                               ,@SumaLinije)
+                               ,@SumaLinije);
+
+                    UPDATE [dbo].[Racun]
+                           SET [SumaRacuna] = @SumaLinije - (SELECT dbo.Racun.Popust FROM dbo.Racun WHERE RacunID = @RacunID)
+                         WHERE RacunID = @RacunID
                     ";
         }
 

@@ -42,7 +42,7 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyPacijent", "Šifra pacijenta", Tip.Pacijent, "Ime", "Prezime", false)]
         [ValidatePattern(@"^\d+$")]
-
+        [Editing(Use.Insert)]
         public int PacijentID
         {
             get
@@ -57,6 +57,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Vrijeme rezervacije")]
         [SqlName("VrijemeRezervacije")]
+        [Editing(Use.Insert)]
         [GenerateComponent(ComponentType.Datum)]
         
         public DateTime VrijemeRezervacije
@@ -74,7 +75,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Termin")]
         [SqlName("Termin")]
         [GenerateComponent(ComponentType.Datum)]
-        [Editing(Use.Update)]
+        [Editing(Use.InsertAndUpdate)]
         public DateTime Termin
         {
             get
@@ -92,7 +93,7 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "Šifra zaposlenog", Tip.Doktori, "Ime", "Prezime", false)]
         [ValidatePattern(@"^\d+$")]
-
+        [Editing(Use.Insert)]
         public int DoktorID
         {
             get

@@ -61,7 +61,8 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "Šifra doktora", Tip.Doktori)]
         [ValidatePattern(@"^\d+$")]
-
+        [DefaultPropertValue(TargetValue.LoginUser, "")]
+        [Editing(Use.Insert)]
         public int DoktorID
         {
             get
@@ -77,9 +78,8 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Terapija")]
         [SqlName("Terapija")]
         [GenerateComponent(ComponentType.Tekst)]
-
         [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z0-9\s\.]*$")]
-        
+        [Editing(Use.InsertAndUpdate)]
         public string Terapija
         {
             get
@@ -95,9 +95,8 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Opis")]
         [SqlName("Opis")]
         [GenerateComponent(ComponentType.Tekst)]
-
         [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z0-9\s\.]*$")]
-
+        [Editing(Use.InsertAndUpdate)]
         public string Opis
         {
             get

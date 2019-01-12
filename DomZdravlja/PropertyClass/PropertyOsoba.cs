@@ -47,6 +47,7 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s]+$")]
         [MainSearch(null)]
+        [Editing(Use.Insert)]
         public string Ime
         {
             get
@@ -64,7 +65,7 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s((\-)?)]+$")]
         [MainSearch(null)]
-
+        [Editing(Use.Insert)]
         public string Prezime
         {
             get
@@ -82,6 +83,7 @@ namespace DomZdravlja.PropertyClass
         [ValidatePattern(@"^[A-Za-z0-9]{5,13}$")]
         [GenerateComponent(ComponentType.Tekst)]
         [MainSearch(null)]
+        [Editing(Use.InsertAndUpdate)]
         public string JMB
         {
             get
@@ -97,9 +99,8 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Adresa")]
         [SqlName("Adresa")] 
         [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z0-9\s((\-)?)\/\.]*$")]
-        [Editing(Use.Update)]
+        [Editing(Use.InsertAndUpdate)]
         [GenerateComponent(ComponentType.Tekst)]
-
         public string Adresa
         {
             get
@@ -115,7 +116,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Kontakt")]
         [SqlName("Kontakt")]
         [GenerateComponent(ComponentType.Tekst)]
-        [Editing(Use.Update)]
+        [Editing(Use.InsertAndUpdate)]
         public string Kontakt
         {
             get
@@ -133,7 +134,7 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.RadioButton)]
         [OpcijeRadioButton("Muško", "Žensko", 'M', 'Ž')]
         [ValidatePattern(@"^[A-Z]{1}$")]
-
+        [Editing(Use.Insert)]
         public string Pol
         {
             get
@@ -150,7 +151,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("MjestoRodjenja")]
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s((\-)?)]*$")]
-
+        [Editing(Use.Insert)]
         public string MjestoRodjenja
         {
             get
@@ -166,7 +167,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Datum rođenja")]
         [SqlName("DatumRodjenja")]
         [GenerateComponent(ComponentType.Datum)]
-
+        [Editing(Use.Insert)]
         public DateTime DatumRodjenja
         {
             get

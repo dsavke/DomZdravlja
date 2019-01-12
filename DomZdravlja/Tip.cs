@@ -22,6 +22,8 @@ namespace DomZdravlja
         MSD,
         Osoba,
         Dijagnoze,
-        OsobaBezPosla
+        OsobaBezPosla,
+        SveOsobe,
+        NoviRacun
     }
 }

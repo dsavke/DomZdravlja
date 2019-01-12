@@ -35,12 +35,29 @@ namespace DomZdravlja
             set { txtNaziv.Text = value; }
         }
 
+        public string ThisTable
+        {
+            get; set;
+        }
+
+        public string ThisColumn
+        {
+            get; set;
+        }
+
         public event EventHandler LookupClick;
+        public event EventHandler LookupTextChanged;
 
         private void btnLookUP_Click(object sender, EventArgs e)
         {
             if (LookupClick != null)
                 LookupClick(sender, e);
+        }
+
+        private void txtID_TextChanged(object sender, EventArgs e)
+        {
+            if (LookupTextChanged != null)
+                LookupTextChanged(sender, e);
         }
     }
 }

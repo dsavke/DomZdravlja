@@ -45,7 +45,8 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "Šifra zaposlenog", Tip.MSD, "Ime", "Prezime", false)]
         [ValidatePattern(@"^\d+$")]
-
+        [DefaultPropertValue(TargetValue.LoginUser, "")]
+        [Editing(Use.Insert)]
         public int ZaposleniID
         {
             get
@@ -63,7 +64,7 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyPacijent", "Šifra pacijenta", Tip.Pacijent, "Ime", "Prezime", false)]
         [ValidatePattern(@"^\d+$")]
-
+        [Editing(Use.Insert)]
         public int PacijentID
         {
             get
@@ -80,7 +81,8 @@ namespace DomZdravlja.PropertyClass
         [SqlName("Popust")]
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"^\d+$")]
-        [Editing(Use.Update)]
+        [Editing(Use.InsertAndUpdate)]
+        [DefaultPropertValue(TargetValue.StartPrize, 0)]
         public decimal Popust
         {
             get
@@ -93,12 +95,10 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        
-
         [DisplayName("Suma računa")]
         [SqlName("SumaRacuna")]
         [GenerateComponent(ComponentType.Tekst)]
-
+        [DefaultPropertValue(TargetValue.StartPrize, 0)]
         public decimal SumaRacuna
         {
             get
@@ -116,7 +116,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("VrijemeIzdavanja")]
         [MainSearch(null)]
         [GenerateComponent(ComponentType.Datum)]
-
+        [DefaultPropertValue(TargetValue.Today, "")]
         public DateTime VrijemeIzdavanja
         {
             get

@@ -57,6 +57,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttributeClass\DefaultPropertValue.cs" />
     <Compile Include="AttributeClass\Editing.cs" />
     <Compile Include="AttributeClass\ForeignKey.cs" />
     <Compile Include="AttributeClass\GenerateComponent.cs" />
@@ -104,6 +105,7 @@
       <DependentUpon>GlavnaForma.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DataReaderToDataSource.cs" />
+    <Compile Include="Helpers\ListToDataTable.cs" />
     <Compile Include="Helpers\ReflectionClass.cs" />
     <Compile Include="Helpers\SqlHelper.cs" />
     <Compile Include="CustomControls\PanelTabControl.cs">
@@ -130,6 +132,7 @@
     <Compile Include="PropertyClass\PropertyKartonDijagnoza.cs" />
     <Compile Include="PropertyInterface.cs" />
     <Compile Include="State.cs" />
+    <Compile Include="TargetValue.cs" />
     <Compile Include="Tip.cs" />
     <Compile Include="UCDatum.cs">
       <SubType>UserControl</SubType>

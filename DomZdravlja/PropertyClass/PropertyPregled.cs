@@ -42,7 +42,8 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "Šifra zaposlenog", Tip.Doktori, "Ime", "Prezime", false)]
         [ValidatePattern(@"^\d+$")]
-
+        [DefaultPropertValue(TargetValue.LoginUser, "")]
+        [Editing(Use.Insert)]
         public int DoktorID
         {
             get
@@ -60,7 +61,7 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyPacijent", "Šifra pacijenta", Tip.Pacijent, "Ime", "Prezime", false)]
         [ValidatePattern(@"^\d+$")]
-
+        [Editing(Use.Insert)]
         public int PacijentID
         {
             get
@@ -78,7 +79,7 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.InsertLookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyDijagnoza", "Šifra dijagnoze", Tip.Dijagnoze, "Opis", "", true)]
         [ValidatePattern(@"^\d+$")]
-
+        [Editing(Use.Insert)]
         public int DijagnozaID
         {
             get

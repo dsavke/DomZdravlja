@@ -63,6 +63,7 @@
             this.txtID.ReadOnly = true;
             this.txtID.Size = new System.Drawing.Size(43, 21);
             this.txtID.TabIndex = 2;
+            this.txtID.TextChanged += new System.EventHandler(this.txtID_TextChanged);
             // 
             // txtNaziv
             // 

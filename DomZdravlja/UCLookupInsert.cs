@@ -35,7 +35,15 @@ namespace DomZdravlja
             set { txtNaziv.Text = value; }
         }
 
-        //dugme za dodaj i luukap
+        public string ThisTable
+        {
+            get; set;
+        }
+
+        public string ThisColumn
+        {
+            get; set;
+        }
 
         public event EventHandler LookupControlClick;
 

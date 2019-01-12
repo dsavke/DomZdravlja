@@ -30,6 +30,12 @@ namespace DomZdravlja
             set { txtValue.Text = value; }
         }
 
+        public event EventHandler UCTekstTextChanged;
 
+        private void txtValue_TextChanged(object sender, EventArgs e)
+        {
+            if (UCTekstTextChanged != null)
+                UCTekstTextChanged(sender, e);
+        }
     }
 }
