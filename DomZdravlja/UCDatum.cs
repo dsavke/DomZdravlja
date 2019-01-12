@@ -28,5 +28,17 @@ namespace DomZdravlja
             get { return dateTimePicker1.Value; }
             set { dateTimePicker1.Value = value; }
         }
+
+        public bool Greska
+        {
+            get { return lblGreska.Visible; }
+            set { lblGreska.Visible = value; }
+        }
+
+        public void setReadOnly()
+        {
+            dateTimePicker1.Enabled = false;
+        }
+
     }
 }

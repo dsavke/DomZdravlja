@@ -773,9 +773,9 @@ namespace DomZdravlja
                             {
                                 if(property.GetCustomAttribute<Editing>().Use == Use.Insert)
                                 {
-                                    (c as UCDatum).Enabled = false;
+                                    (c as UCDatum).setReadOnly();
                                 }
-                            }else (c as UCDatum).Enabled = false;
+                            }else (c as UCDatum).setReadOnly();
                         }
                     }
                     else
@@ -797,10 +797,10 @@ namespace DomZdravlja
                             {
                                 if (property.GetCustomAttribute<Editing>().Use == Use.Insert)
                                 {
-                                    (c as UCTekst).Enabled = false;
+                                    (c as UCTekst).setReadOnly();
                                 }
                             }
-                            else (c as UCTekst).Enabled = false;
+                            else (c as UCTekst).setReadOnly();
                         }
                     }
                     else
@@ -831,10 +831,10 @@ namespace DomZdravlja
                             {
                                 if (property.GetCustomAttribute<Editing>().Use == Use.Insert)
                                 {
-                                    (c as UCRadioButton).Enabled = false;
+                                    (c as UCRadioButton).setReadOnly();
                                 }
                             }
-                            else (c as UCRadioButton).Enabled = false;
+                            else (c as UCRadioButton).setReadOnly();
                         }
 
                     }
@@ -876,10 +876,10 @@ namespace DomZdravlja
                             {
                                 if (property.GetCustomAttribute<Editing>().Use == Use.Insert)
                                 {
-                                    (c as UCLookup).Enabled = false;
+                                    (c as UCLookup).setReadOnly();
                                 }
                             }
-                            else (c as UCLookup).Enabled = false;
+                            else (c as UCLookup).setReadOnly();
                         }
                     }
                     else
@@ -926,10 +926,10 @@ namespace DomZdravlja
                             {
                                 if (property.GetCustomAttribute<Editing>().Use == Use.Insert)
                                 {
-                                    (c as UCLookupInsert).Enabled = false;
+                                    (c as UCLookupInsert).setReadOnly();
                                 }
                             }
-                            else (c as UCLookupInsert).Enabled = false;
+                            else (c as UCLookupInsert).setReadOnly();
                         }
                     }
                     else
@@ -1036,22 +1036,20 @@ namespace DomZdravlja
                                 if (property.PropertyType == typeof(int))
                                 {
                                     property.SetValue(propertyInterface, Convert.ToInt32(rez));
-                                    MessageBox.Show("" + property.GetValue(propertyInterface));
                                 }
                                 else if (property.PropertyType == typeof(Decimal))
                                 {
                                     property.SetValue(propertyInterface, Convert.ToDecimal(rez));
-                                    MessageBox.Show("" + property.GetValue(propertyInterface));
                                 }
                                 else if (property.PropertyType == typeof(String))
                                 {
                                     property.SetValue(propertyInterface, rez);
-                                    MessageBox.Show("" + property.GetValue(propertyInterface));
                                 }
+                                (control as UCTekst).Greska = false;
                             }
                             else
                             {
-                                (control as UCTekst).BackColor = Color.DarkGray;
+                                (control as UCTekst).Greska = true;
                                 proslo = false;
                             }
                         }
@@ -1059,24 +1057,21 @@ namespace DomZdravlja
                         {
                             if (string.IsNullOrWhiteSpace(rez))
                             {
-                                property.SetValue(myProperty, null);
-                                MessageBox.Show("Vrijednost je null");
+                                property.SetValue(propertyInterface, "Nema");
                             }
                             else if (property.PropertyType == typeof(int))
                             {
                                 property.SetValue(propertyInterface, Convert.ToInt32(rez));
-                                MessageBox.Show("" + property.GetValue(propertyInterface));
                             }
                             else if (property.PropertyType == typeof(Decimal))
                             {
                                 property.SetValue(propertyInterface, Convert.ToDecimal(rez));
-                                MessageBox.Show("" + property.GetValue(propertyInterface));
                             }
                             else if (property.PropertyType == typeof(String))
                             {
                                 property.SetValue(propertyInterface, rez);
-                                MessageBox.Show("" + property.GetValue(propertyInterface));
                             }
+                            (control as UCTekst).Greska = false;
                         }
                     }
                     else if (control.GetType() == typeof(UCDatum))
@@ -1084,8 +1079,6 @@ namespace DomZdravlja
                         property = properties.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == (control as UCDatum).Naziv).FirstOrDefault();
                         DateTime rez = (control as UCDatum).Value;
                         property.SetValue(propertyInterface, rez);
-                        MessageBox.Show("" + property.GetValue(propertyInterface));
-
                     }
                     else if (control.GetType() == typeof(UCRadioButton))
                     {
@@ -1098,7 +1091,6 @@ namespace DomZdravlja
                         {
                             property.SetValue(propertyInterface, Convert.ChangeType(property.GetCustomAttribute<OpcijeRadioButton>().Vrijednost2, property.PropertyType));
                         }
-                        MessageBox.Show("" + property.GetValue(propertyInterface));
                     }
                     else if (control.GetType() == typeof(UCLookup))
                     {
@@ -1110,11 +1102,11 @@ namespace DomZdravlja
                             if (property.GetCustomAttribute<ValidatePattern>().IsValid(rez))
                             {
                                 property.SetValue(propertyInterface, Convert.ToInt32(rez));
-                                MessageBox.Show("" + property.GetValue(propertyInterface));
+                                (control as UCLookup).Greska = false;
                             }
                             else
                             {
-                                (control as UCLookup).BackColor = Color.DarkGray;
+                                (control as UCLookup).Greska = true;
                                 proslo = false;
                             }
                         }
@@ -1129,11 +1121,11 @@ namespace DomZdravlja
                             if (property.GetCustomAttribute<ValidatePattern>().IsValid(rez))
                             {
                                 property.SetValue(propertyInterface, Convert.ToInt32(rez));
-                                MessageBox.Show("" + property.GetValue(propertyInterface));
+                                (control as UCLookupInsert).Greska = false;
                             }
                             else
                             {
-                                (control as UCLookupInsert).BackColor = Color.DarkGray;
+                                (control as UCLookupInsert).Greska = true;
                                 proslo = false;
                             }
                         }
@@ -1156,8 +1148,6 @@ namespace DomZdravlja
                             var id = SqlHelper.ExecuteScalar(SqlHelper.GetConnectionString(), CommandType.Text, propertyInterface.GetInsertQuery() + "SELECT SCOPE_IDENTITY()", propertyInterface.GetInsertParameters().ToArray());
                             MessageBox.Show("Uspjesno ste dodali!");
 
-                            //Šifra
-
                             PropertyInfo prop = myProperty.GetType().GetProperties().Where(prope => prope.GetCustomAttribute<DisplayNameAttribute>().DisplayName == cLookupInsert.Naziv).FirstOrDefault();
 
                             string col1 = prop.GetCustomAttribute<ForeignKey>().BackCol1;
@@ -1167,8 +1157,6 @@ namespace DomZdravlja
 
                             if (col2.Contains("Šifra"))
                             {
-                                /*cLookupInsert.Info = propCol1.GetValue(propertyInterface) + " "
-                                       + (col2 != "" ? propCol2.GetValue(propertyInterface) : "");*/
 
                                 foreach(Control control in (sender as Button).Parent.Parent.Controls[0].Controls)
                                 {
@@ -1258,12 +1246,12 @@ namespace DomZdravlja
                     {
                         if (property.GetCustomAttribute<Editing>().Use == Use.Update)
                         {
-                            uCTekst.Enabled = false;
+                            uCTekst.setReadOnly();
                         }
                     }
-                    else uCTekst.Enabled = false;
+                    else uCTekst.setReadOnly();
 
-                    if(propertyInterface.GetType() == typeof(PropertyDetaljiRacuna))
+                    if (propertyInterface.GetType() == typeof(PropertyDetaljiRacuna))
                     {
                         if(uCTekst.Naziv == "Količina")
                         {
@@ -1283,10 +1271,10 @@ namespace DomZdravlja
                     {
                         if (property.GetCustomAttribute<Editing>().Use == Use.Update)
                         {
-                            uCDatum.Enabled = false;
+                            uCDatum.setReadOnly();
                         }
                     }
-                    else uCDatum.Enabled = false;
+                    else uCDatum.setReadOnly();
                 }
                 else if (componentType == ComponentType.RadioButton)
                 {
@@ -1301,10 +1289,10 @@ namespace DomZdravlja
                     {
                         if (property.GetCustomAttribute<Editing>().Use == Use.Update)
                         {
-                            uCRadioButton.Enabled = false;
+                            uCRadioButton.setReadOnly();
                         }
                     }
-                    else uCRadioButton.Enabled = false;
+                    else uCRadioButton.setReadOnly();
                 }
                 else if (componentType == ComponentType.Lookup)
                 {
@@ -1320,10 +1308,10 @@ namespace DomZdravlja
                     {
                         if (property.GetCustomAttribute<Editing>().Use == Use.Update)
                         {
-                            uCLookup.Enabled = false;
+                            uCLookup.setReadOnly();
                         }
                     }
-                    else uCLookup.Enabled = false;
+                    else uCLookup.setReadOnly();
 
                     if (propertyInterface.GetType() == typeof(PropertyDetaljiRacuna))
                     {
@@ -1349,10 +1337,10 @@ namespace DomZdravlja
                     {
                         if (property.GetCustomAttribute<Editing>().Use == Use.Update)
                         {
-                            uCLookupInsert.Enabled = false;
+                            uCLookupInsert.setReadOnly();
                         }
                     }
-                    else uCLookupInsert.Enabled = false;
+                    else uCLookupInsert.setReadOnly();
                 }
             }
 

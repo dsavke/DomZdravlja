@@ -32,6 +32,7 @@
             this.btnLookUP = new System.Windows.Forms.Button();
             this.txtID = new System.Windows.Forms.TextBox();
             this.txtNaziv = new System.Windows.Forms.TextBox();
+            this.lblGreska = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblNaziv
@@ -74,10 +75,22 @@
             this.txtNaziv.Size = new System.Drawing.Size(186, 21);
             this.txtNaziv.TabIndex = 3;
             // 
+            // lblGreska
+            // 
+            this.lblGreska.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGreska.ForeColor = System.Drawing.Color.Red;
+            this.lblGreska.Location = new System.Drawing.Point(500, 15);
+            this.lblGreska.Name = "lblGreska";
+            this.lblGreska.Size = new System.Drawing.Size(200, 16);
+            this.lblGreska.TabIndex = 4;
+            this.lblGreska.Text = "X";
+            this.lblGreska.Visible = false;
+            // 
             // UCLookup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblGreska);
             this.Controls.Add(this.txtNaziv);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.btnLookUP);
@@ -95,5 +108,6 @@
         private System.Windows.Forms.Button btnLookUP;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.TextBox txtNaziv;
+        private System.Windows.Forms.Label lblGreska;
     }
 }

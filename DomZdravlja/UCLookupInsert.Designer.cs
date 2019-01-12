@@ -33,6 +33,7 @@
             this.btnLookUP = new System.Windows.Forms.Button();
             this.lblNaziv = new System.Windows.Forms.Label();
             this.btnDodaj = new System.Windows.Forms.Button();
+            this.lblGreska = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtNaziv
@@ -85,10 +86,22 @@
             this.btnDodaj.UseVisualStyleBackColor = true;
             this.btnDodaj.Click += new System.EventHandler(this.btnDodaj_Click);
             // 
+            // lblGreska
+            // 
+            this.lblGreska.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGreska.ForeColor = System.Drawing.Color.Red;
+            this.lblGreska.Location = new System.Drawing.Point(500, 15);
+            this.lblGreska.Name = "lblGreska";
+            this.lblGreska.Size = new System.Drawing.Size(200, 16);
+            this.lblGreska.TabIndex = 9;
+            this.lblGreska.Text = "X";
+            this.lblGreska.Visible = false;
+            // 
             // UCLookupInsert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblGreska);
             this.Controls.Add(this.btnDodaj);
             this.Controls.Add(this.txtNaziv);
             this.Controls.Add(this.txtID);
@@ -108,5 +121,6 @@
         private System.Windows.Forms.Button btnLookUP;
         private System.Windows.Forms.Label lblNaziv;
         private System.Windows.Forms.Button btnDodaj;
+        private System.Windows.Forms.Label lblGreska;
     }
 }

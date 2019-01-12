@@ -47,6 +47,12 @@ namespace DomZdravlja
             else rbOpcija2.Checked = true;
         }
 
+        public void setReadOnly()
+        {
+            rbOpcija1.Enabled = false;
+            rbOpcija2.Enabled = false;
+        }
+
         private void rbOpcija1_CheckedChanged(object sender, EventArgs e)
         {
             Vrijednost = true;

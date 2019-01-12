@@ -30,6 +30,7 @@
         {
             this.lblNaziv = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.lblGreska = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblNaziv
@@ -52,10 +53,22 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(290, 21);
             this.dateTimePicker1.TabIndex = 1;
             // 
+            // lblGreska
+            // 
+            this.lblGreska.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGreska.ForeColor = System.Drawing.Color.Red;
+            this.lblGreska.Location = new System.Drawing.Point(500, 15);
+            this.lblGreska.Name = "lblGreska";
+            this.lblGreska.Size = new System.Drawing.Size(200, 16);
+            this.lblGreska.TabIndex = 3;
+            this.lblGreska.Text = "X";
+            this.lblGreska.Visible = false;
+            // 
             // UCDatum
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblGreska);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.lblNaziv);
             this.Name = "UCDatum";
@@ -69,5 +82,6 @@
 
         private System.Windows.Forms.Label lblNaziv;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label lblGreska;
     }
 }

@@ -45,6 +45,12 @@ namespace DomZdravlja
             get; set;
         }
 
+        public bool Greska
+        {
+            get { return lblGreska.Visible; }
+            set { lblGreska.Visible = value; }
+        }
+
         public event EventHandler LookupClick;
         public event EventHandler LookupTextChanged;
 
@@ -59,5 +65,11 @@ namespace DomZdravlja
             if (LookupTextChanged != null)
                 LookupTextChanged(sender, e);
         }
+
+        public void setReadOnly()
+        {
+            btnLookUP.Enabled = false;
+        }
+
     }
 }
