@@ -16,6 +16,8 @@ namespace DomZdravlja
         public UCTekst()
         {
             InitializeComponent();
+            //txtValue.BackColor = Color.White;
+            //txtValue.ForeColor = Color.FromArgb(51, 128, 196);
         }
 
         public string Naziv
@@ -47,6 +49,8 @@ namespace DomZdravlja
         public void setReadOnly()
         {
             txtValue.ReadOnly = true;
+            //txtValue.BackColor = Color.FromKnownColor(KnownColor.Control);
+           // txtValue.ForeColor = Color.FromArgb(51, 128, 196);
         }
     }
 }

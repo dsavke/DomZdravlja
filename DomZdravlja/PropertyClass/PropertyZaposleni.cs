@@ -129,7 +129,7 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.InsertLookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyOsoba", "Šifra osobe", Tip.OsobaBezPosla, "Ime", "Prezime", true)]
         [ValidatePattern(@"^\d+$")]
-        [Editing(Use.Insert)]
+        [Editing(Use.InsertAndUpdate)]
         [MainSearch(null)]
         public int OsobaID
         {

@@ -15,6 +15,10 @@ namespace DomZdravlja
         public UCLookup()
         {
             InitializeComponent();
+            btnLookUP.FlatAppearance.BorderSize = 0;
+            btnLookUP.BackColor = Color.White;
+            btnLookUP.FlatStyle = FlatStyle.Flat;
+            //btnLookUP.FlatAppearance.MouseOverBackColor = Color.White;
         }
 
         public string Naziv

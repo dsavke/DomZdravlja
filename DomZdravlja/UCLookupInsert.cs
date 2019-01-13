@@ -15,6 +15,14 @@ namespace DomZdravlja
         public UCLookupInsert()
         {
             InitializeComponent();
+            btnLookUP.FlatAppearance.BorderSize = 0;
+            btnLookUP.BackColor = Color.White;
+            btnLookUP.FlatStyle = FlatStyle.Flat;
+
+            btnDodaj.FlatAppearance.BorderSize = 0;
+            btnDodaj.BackColor = Color.White;
+            btnDodaj.FlatStyle = FlatStyle.Flat;
+
         }
 
         public string Naziv
@@ -51,6 +59,11 @@ namespace DomZdravlja
             set { lblGreska.Visible = value; }
         }
 
+        public Use Use
+        {
+            get; set;
+        }
+
         public event EventHandler LookupControlClick;
 
         private void btnLookUP_Click(object sender, EventArgs e)
@@ -71,6 +84,15 @@ namespace DomZdravlja
         {
             btnLookUP.Enabled = false;
             btnDodaj.Enabled = false;
+        }
+
+        public void setEdit()
+        {
+            btnLookUP.Enabled = false;
+            btnDodaj.Text = "";
+            btnDodaj.Image = DomZdravlja.Properties.Resources.edit_new;
+            btnDodaj.ImageAlign = ContentAlignment.MiddleCenter;
+
         }
 
     }

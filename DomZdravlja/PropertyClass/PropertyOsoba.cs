@@ -16,7 +16,7 @@ namespace DomZdravlja.PropertyClass
         private string ime;
         private string prezime;
         private string jmb;
-        private string adresa;
+        private string adresa = string.Empty;
         private string kontakt;
         private string pol;
         private string mjestoRodjenja;

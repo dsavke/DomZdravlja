@@ -87,7 +87,6 @@ namespace DomZdravlja.CustomControls
         #region SelektovaniTab
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            //predraggedTab = getPointedTab();
             var p = e.Location;
             if (!this.ShowClosingButton)
             {

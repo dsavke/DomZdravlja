@@ -62,7 +62,7 @@ namespace DomZdravlja.PropertyClass
         [ForeignKey("DomZdravlja.PropertyClass.PropertyOsoba", "Šifra osobe", Tip.Osoba, "Ime", "Prezime", true)]
         [ValidatePattern(@"^\d+$")]
         [MainSearch(null)]
-        [Editing(Use.Insert)]
+        [Editing(Use.InsertAndUpdate)]
         public int OsobaID
         {
             get

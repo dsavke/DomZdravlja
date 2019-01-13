@@ -24,6 +24,7 @@ namespace DomZdravlja
         Dijagnoze,
         OsobaBezPosla,
         SveOsobe,
-        NoviRacun
+        NoviRacun,
+        Rezervacija
     }
 }

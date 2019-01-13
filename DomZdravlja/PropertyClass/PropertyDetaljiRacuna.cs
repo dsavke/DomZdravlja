@@ -44,7 +44,7 @@ namespace DomZdravlja.PropertyClass
         [ForeignKey("DomZdravlja.PropertyClass.PropertyRacun", "Broj računa", Tip.NoviRacun, "Ime i prezime pacijenta", "Šifra pacijenta", true)]
         [ValidatePattern(@"^\d+$")]
         [MainSearch(null)]
-        [Editing(Use.Insert)]
+        [Editing(Use.InsertAndUpdate)]
         public int RacunID
         {
             get
@@ -62,7 +62,7 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.Lookup)]
         [ForeignKey("DomZdravlja.PropertyClass.PropertyCjenovnik", "Šifra cjenovnika", Tip.Cjenovnik, "Naziv usluge", "", false)]
         [ValidatePattern(@"^\d+$")]
-        [Editing(Use.Insert)]
+        [Editing(Use.InsertAndUpdate)]
         public int CijenaID
         {
             get
@@ -79,7 +79,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("Kolicina")]
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"^\d+$")]
-        [Editing(Use.Insert)]
+        [Editing(Use.InsertAndUpdate)]
         public int Kolicina
         {
             get
