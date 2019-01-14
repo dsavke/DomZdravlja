@@ -1367,8 +1367,8 @@ namespace DomZdravlja
             }
 
             Panel panel = new Panel();
-            //panel.Location = new Point(0, 600);//ovo vratiti
-            panel.Location = new Point(0, 500);
+            //panel.Location = new Point(0, 500);//ovo vratiti
+            panel.Location = new Point(0, 600);
             panel.Width = 908;
             panel.Height = 160;
 
@@ -1525,8 +1525,8 @@ namespace DomZdravlja
             data = urediGridView(data) as CustomDataGridView;
 
             Panel panel = new Panel();
-            //panel.Location = new Point(20, 620); //ovo vratiti
-            panel.Location = new Point(20, 500);
+            //panel.Location = new Point(20, 500); //ovo vratiti
+            panel.Location = new Point(20, 600);
             panel.Width = 908;
             panel.Height = 160;
 
