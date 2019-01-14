@@ -68,6 +68,9 @@
     <Compile Include="AttributeClass\Invisible.cs" />
     <Compile Include="AttributeClass\ValidatePattern.cs" />
     <Compile Include="ComponentType.cs" />
+    <Compile Include="CustomControls\CustomDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CustomControls\CustomPretraga.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -274,6 +277,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reload %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

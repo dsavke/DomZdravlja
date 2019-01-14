@@ -63,8 +63,9 @@ namespace DomZdravlja
         }
 
         private void PanelTabControl_MouseEnter(object sender, EventArgs e)
-        {
-            this.BackColor = Color.FromArgb(51, 128, 196);    
+        { 
+            if(!Selektovan)
+                this.BackColor = Color.FromArgb(51, 128, 196);
         }
 
         private void PanelTabControl_MouseLeave(object sender, EventArgs e)

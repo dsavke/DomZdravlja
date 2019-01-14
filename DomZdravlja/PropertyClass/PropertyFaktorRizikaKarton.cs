@@ -39,10 +39,10 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Šifra faktor rizika")]
         [SqlName("FaktorRizikaID")]
-        [GenerateComponent(ComponentType.Lookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyFaktorRizika", "Šifra faktor rizika")]
+        [GenerateComponent(ComponentType.InsertLookup)]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyFaktorRizika", "Šifra faktor rizika", Tip.Rizici, "Naziv rizika", "", true)]
         [ValidatePattern(@"^\d+$")]
-
+        [Editing(Use.Insert)]
         public int FaktorRizikaID
         {
             get
@@ -55,12 +55,13 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Šifra kartona")]
+        [DisplayName("Broj kartona")]
         [SqlName("KartonID")]
         [GenerateComponent(ComponentType.Lookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyKarton", "Šifra kartona", Tip.Karton)]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyKarton", "Broj kartona", Tip.Karton, "Ime", "Prezime", false)]
         [ValidatePattern(@"^\d+$")]
-
+        [Editing(Use.Insert)]
+        [MainSearch(null)]
         public int KartonID
         {
             get
@@ -104,7 +105,7 @@ namespace DomZdravlja.PropertyClass
             return @"
                     UPDATE [dbo].[FaktorRizikaKarton]
                        SET [FaktorRizikaID] = @FaktorRizikaID
-                          ,[KartonID] = @KartonID
+                          
                      WHERE FRKID = @FRKID
                     ";
         }

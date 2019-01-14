@@ -25,6 +25,9 @@ namespace DomZdravlja
         OsobaBezPosla,
         SveOsobe,
         NoviRacun,
-        Rezervacija
+        Rezervacija,
+        FaktorRizika,
+        KartonNema,
+        Rizici
     }
 }

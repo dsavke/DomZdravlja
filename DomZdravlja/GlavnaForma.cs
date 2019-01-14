@@ -448,14 +448,14 @@ namespace DomZdravlja
                 noviTabControl.TabPages.Add(tabPage);
                 tabControl.SelectedTab.Controls.Add(noviTabControl);
 
-                DataGridView data = izgled();
+                CustomDataGridView data = izgled();
              
-                data.DataSource = vratiPodatke(Tip);
+                data.DataSource = vratiPodatke(Tip, null);
+                data.Tip = Tip;
                 
                 tabPage.Controls.Add(data);
-            
 
-                data = urediGridView(data);
+                data = urediGridView(data) as CustomDataGridView;
 
                 data.Dock = DockStyle.Fill;
                 data.BorderStyle = BorderStyle.None;
@@ -661,53 +661,50 @@ namespace DomZdravlja
 
             if (Tip != Tip.Karton)
             {
-                
-                  
+                CustomDataGridView data = izgled();
+                data.Tip = Tip;
+                data.DataSource = vratiPodatke(Tip, null);
 
-                DataGridView data = izgled();
-                data.DataSource = vratiPodatke(Tip);
+                CustomTabPage noviPage1 = new CustomTabPage() { State = State.Search, Naziv = "PRETRAGA" };
+                pomTabControl.TabPages.Add(noviPage1);
+                pomTabControl.SelectedTab = noviPage1;
+                noviPage1.Controls.Add(data);
 
-                    CustomTabPage noviPage1 = new CustomTabPage() { State = State.Search, Naziv = "PRETRAGA" };
-                    pomTabControl.TabPages.Add(noviPage1);
-                    pomTabControl.SelectedTab = noviPage1;
-                    noviPage1.Controls.Add(data);
+                CustomDataGridView dgvNovi = izgled();
+                dgvNovi.Tip = Tip;
+                dgvNovi.Dock = DockStyle.Fill;
+                dgvNovi.BorderStyle = BorderStyle.None;
+                dgvNovi.BackgroundColor = Color.FromArgb(255, 255, 255);
+                dgvNovi.Focus();
 
-                    
+                foreach (DataGridViewColumn item in data.Columns)
+                {
+                    dgvNovi.Columns.Add((DataGridViewColumn)item.Clone());
+                }
 
-                    DataGridView dgvNovi = izgled();
-                    dgvNovi.Dock = DockStyle.Fill;
-                    dgvNovi.BorderStyle = BorderStyle.None;
-                    dgvNovi.BackgroundColor = Color.FromArgb(255, 255, 255);
-                    dgvNovi.Focus();
-
-                    foreach (DataGridViewColumn item in data.Columns)
-                    {
-                        dgvNovi.Columns.Add((DataGridViewColumn)item.Clone());
-                    }
-
-                    dgvNovi = urediGridView(dgvNovi);
-
-                    data = urediGridView(data);
+                dgvNovi = urediGridView(dgvNovi) as CustomDataGridView;
+                data = urediGridView(data) as CustomDataGridView;
 
                 
-                    foreach (DataGridViewRow row in data.Rows)
-                    {
+                foreach (DataGridViewRow row in data.Rows)
+                {
                     
-                        if (((listaTxt[0] == null) ? true : (row.Cells[listaTxt[0].Naziv].Value.ToString().ToLower().Contains(listaTxt[0].Value.ToLower()))) &&
-                            ((listaTxt[1] == null) ? true : (row.Cells[listaTxt[1].Naziv].Value.ToString().ToLower().Contains(listaTxt[1].Value.ToLower()))) &&
-                            ((listaTxt[2] == null) ? true : (row.Cells[listaTxt[2].Naziv].Value.ToString().ToLower().Contains(listaTxt[2].Value.ToLower()))))
+                    if (((listaTxt[0] == null) ? true : (row.Cells[listaTxt[0].Naziv].Value.ToString().ToLower().Contains(listaTxt[0].Value.ToLower()))) &&
+                    ((listaTxt[1] == null) ? true : (row.Cells[listaTxt[1].Naziv].Value.ToString().ToLower().Contains(listaTxt[1].Value.ToLower()))) &&
+                    ((listaTxt[2] == null) ? true : (row.Cells[listaTxt[2].Naziv].Value.ToString().ToLower().Contains(listaTxt[2].Value.ToLower()))))
+                    {
+                        int index = dgvNovi.Rows.Add(row.Clone() as DataGridViewRow);
+                        foreach (DataGridViewCell o in row.Cells)
                         {
-                            int index = dgvNovi.Rows.Add(row.Clone() as DataGridViewRow);
-                            foreach (DataGridViewCell o in row.Cells)
-                            {
-                                dgvNovi.Rows[index].Cells[o.ColumnIndex].Value = o.Value;
-                            }
+                            dgvNovi.Rows[index].Cells[o.ColumnIndex].Value = o.Value;
                         }
                     }
-                    noviPage1.Controls.Remove(data);
-                    noviPage1.Controls.Add(dgvNovi);
+                }
 
-                    data = urediGridView(data);
+                noviPage1.Controls.Remove(data);
+                noviPage1.Controls.Add(dgvNovi);
+
+                data = urediGridView(data) as CustomDataGridView;
               
             }
 
@@ -827,9 +824,14 @@ namespace DomZdravlja
                         {
                             if (property.IsDefined(typeof(ForeignKey)))
                             {
-                                DataTable data = vratiPodatke(property.GetCustomAttribute<ForeignKey>().Tip);
-                                data = urediDataTable(data);
+                                Tip t = property.GetCustomAttribute<ForeignKey>().Tip;
+                                if (t == Tip.OsobaBezPosla || t == Tip.Osoba) t = Tip.SveOsobe;
+                                if (t == Tip.KartonNema) t = Tip.Karton;
+                                if (t == Tip.NoviRacun) t = Tip.Racun;
 
+                                DataTable data = vratiPodatke(t, null);
+                                data = urediDataTable(data);
+                               
                                 var r = from p in data.AsEnumerable()
                                         where p.Field<int>(property.GetCustomAttribute<ForeignKey>().ReferencedColumn) == Convert.ToInt32(dataRow.Cells[id].Value)
                                         select p;
@@ -866,9 +868,10 @@ namespace DomZdravlja
                             {
                                 Tip t = property.GetCustomAttribute<ForeignKey>().Tip;
                                 if (t == Tip.OsobaBezPosla || t == Tip.Osoba) t = Tip.SveOsobe;
+                                if (t == Tip.KartonNema) t = Tip.Karton;
                                 if (t == Tip.NoviRacun) t = Tip.Racun;
                    
-                                DataTable data = vratiPodatke(t);
+                                DataTable data = vratiPodatke(t, null);
                                 data = urediDataTable(data);
 
                                 var r = from p in data.AsEnumerable()
@@ -957,8 +960,9 @@ namespace DomZdravlja
                 Tip t = property.GetCustomAttribute<ForeignKey>().Tip;
                 if (t == Tip.OsobaBezPosla || t == Tip.Osoba) t = Tip.SveOsobe;
                 if (t == Tip.NoviRacun) t = Tip.Racun;
+                if (t == Tip.KartonNema) t = Tip.Karton;
 
-                DataTable data = vratiPodatke(t);
+                DataTable data = vratiPodatke(t, null);
                 data = urediDataTable(data);
 
                 var r = from p in data.AsEnumerable()
@@ -1369,31 +1373,45 @@ namespace DomZdravlja
             panel.Height = 160;
 
             Button btnSacuvaj = new Button();
-            btnSacuvaj.Text = "Sacuvaj";
-            btnSacuvaj.Image = DomZdravlja.Properties.Resources.tick;
-            btnSacuvaj.Width = 80;
-            btnSacuvaj.Height = 28;
-            btnSacuvaj.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSacuvaj.AutoSize = false;
-            btnSacuvaj.TextAlign = ContentAlignment.MiddleRight;
-            btnSacuvaj.Location = new Point(700, 100);
+            urediButton(btnSacuvaj, "SACUVAJ", 88, 30, Resources.tick, new Point(682, 100));
             btnSacuvaj.Click += (send, EventArgs) => { BtnSacuvaj_Click(send, EventArgs, propertyInterface, uCLookupInsert1, use); };
        
             Button btnOdustani = new Button();
-            btnOdustani.Text = "Odustani";
-            btnOdustani.Image = DomZdravlja.Properties.Resources.multiply;
-            btnOdustani.Width = 80;
-            btnOdustani.Height = 28;
-            btnOdustani.ImageAlign = ContentAlignment.MiddleLeft;
-            btnOdustani.AutoSize = false;
-            btnOdustani.TextAlign = ContentAlignment.MiddleRight;
-            btnOdustani.Location = new Point(785, 100);
+            urediButton(btnOdustani, "ODUSTANI", 96, 30, Resources.multiply, new Point(767, 100));
             btnOdustani.Click += BtnOdustani_Click;
 
             panel.Controls.Add(btnSacuvaj);
             panel.Controls.Add(btnOdustani);
 
             tabControl.SelectedTab.Controls.Add(panel);
+        }
+
+        private void urediButton(Button btn, string tekst, int width, int height, Image image, Point location)
+        {
+            btn.Text = tekst;
+            btn.Width = width;
+            btn.Height = height;
+            btn.ImageAlign = ContentAlignment.MiddleLeft;
+            btn.AutoSize = false;
+            btn.TextAlign = ContentAlignment.MiddleRight;
+            btn.ForeColor = Color.FromArgb(51, 128, 196);
+            btn.Font = new Font(btn.Font.Name, btn.Font.Size, FontStyle.Bold);
+            btn.Image = image;
+            btn.Location = location;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0;
+            btn.MouseEnter += Btn_MouseEnter;
+            btn.MouseLeave += Btn_MouseLeave;
+        }
+
+        private void Btn_MouseLeave(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+        }
+
+        private void Btn_MouseEnter(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
         }
 
         private void UCLookup_LookupTextChanged(object sender, EventArgs e)
@@ -1493,9 +1511,10 @@ namespace DomZdravlja
 
             var objekat = Activator.CreateInstance(Type.GetType(property.GetCustomAttribute<ForeignKey>().ReferencedTable));
 
-            DataGridView data = izgled();
+            CustomDataGridView data = izgled();
+            data.Tip = property.GetCustomAttribute<ForeignKey>().Tip;
 
-            data.DataSource = vratiPodatke(property.GetCustomAttribute<ForeignKey>().Tip);
+            data.DataSource = vratiPodatke(property.GetCustomAttribute<ForeignKey>().Tip, null);
 
             data.Location = new Point(20, 20);
 
@@ -1503,23 +1522,21 @@ namespace DomZdravlja
 
             tabControl.SelectedTab.Controls.Add(data);
 
-            data = urediGridView(data);
+            data = urediGridView(data) as CustomDataGridView;
 
             Panel panel = new Panel();
             //panel.Location = new Point(20, 620); //ovo vratiti
-            panel.Location = new Point(20, 520);
+            panel.Location = new Point(20, 500);
             panel.Width = 908;
             panel.Height = 160;
 
             Button btnVrati = new Button();
-            btnVrati.Text = "Vrati";
-            btnVrati.Location = new Point(710, 100);
+            urediButton(btnVrati, "VRATI", 70, 30, Resources.left_arrow, new Point(678, 100));
             
             btnVrati.Click += (send, EventArgs) => { BtnVrati_Click(send, EventArgs, property, (sender as Button).Parent, data, objekat, tabPage); };
 
             Button btnOdustani = new Button();
-            btnOdustani.Text = "Odustani";
-            btnOdustani.Location = new Point(795, 100);
+            urediButton(btnOdustani, "ODUSTANI", 96, 30, Resources.multiply, new Point(750, 100));
             btnOdustani.Click += BtnOdustaniLookup_Click; 
 
             panel.Controls.Add(btnVrati);
@@ -1627,29 +1644,128 @@ namespace DomZdravlja
             return dgv;
         }
 
-        private DataGridView izgled()
+        private CustomDataGridView izgled()
         {
-            DataGridView dataGridView = new DataGridView();
-            dataGridView.Width = 880;
-            dataGridView.Height = 400;
-            dataGridView.Font = new Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
-            dataGridView.MultiSelect = false;
-            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
+            CustomDataGridView customDataGridView = new CustomDataGridView(880, 400);
 
-            dataGridView.RowsDefaultCellStyle.BackColor = Color.White;
-            dataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(227, 234, 244);
-            dataGridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(51, 128, 196);
-            dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dataGridView.AllowUserToAddRows = false;
+            customDataGridView.SelectionChanged += DataGridView_SelectionChanged;
+            customDataGridView.ContextMenuStrip = napraviContextMenyStrip();
 
-            dataGridView.SelectionChanged += DataGridView_SelectionChanged;
+            return customDataGridView;
+
+        }
+
+        private ContextMenuStrip napraviContextMenyStrip()
+        {
+
+            //posto se ovo poziva na datagridview staviti da sadrzi podatke o tip tako da ih znam vratiti
+
+            ContextMenuStrip contextMenuStrip = new ContextMenuStrip();
+            contextMenuStrip.Opened += ContextMenuStrip_Opened;
+            ToolStripMenuItem item = new ToolStripMenuItem();
+            item.Text = "Osvijezi                                   ";
+            item.Image = Resources.reload__1_;
+            item.Click += Osvijezi_Click;
+
+            ToolStripSeparator tool = new ToolStripSeparator();
+
+            ToolStripMenuItem item1 = new ToolStripMenuItem();
+            item1.Text = "Azuriraj";
+            item1.Image = Resources.edit;
+
+            ToolStripMenuItem item2 = new ToolStripMenuItem();
+            item2.Text = "Obrisi";
+            item2.Image = Resources.add;
+
+            ToolStripSeparator tool1 = new ToolStripSeparator();
+
+            ToolStripMenuItem item3 = new ToolStripMenuItem();
+            item3.Text = "Gore";
+            item3.Image = Resources.edit;
+            item3.Click += CustomToolStrip_GoreClick;
+
+            ToolStripMenuItem item4 = new ToolStripMenuItem();
+            item4.Text = "Dole";
+            item4.Image = Resources.add;
+            item4.Click += CustomToolStrip_DoleClick;
+
+            ToolStripMenuItem item5 = new ToolStripMenuItem();
+            item5.Text = "Prvi";
+            item5.Image = Resources.edit;
+            item5.Click += CustomToolStrip_PrviClick;
+
+            ToolStripMenuItem item6 = new ToolStripMenuItem();
+            item6.Text = "Zadnji";
+            item6.Image = Resources.add;
+            item6.Click += CustomToolStrip_ZadnjiClick;
 
 
-            return dataGridView;
+            contextMenuStrip.Items.Add(item);
+            contextMenuStrip.Items.Add(tool);
+            contextMenuStrip.Items.Add(item1);
+            contextMenuStrip.Items.Add(item2);
+            contextMenuStrip.Items.Add(tool1);
+            contextMenuStrip.Items.Add(item6);
+            contextMenuStrip.Items.Add(item4);
+            contextMenuStrip.Items.Add(item3);
+            contextMenuStrip.Items.Add(item5);
 
+            return contextMenuStrip;
+        }
+
+        private void Osvijezi_Click(object sender, EventArgs e)
+        {
+
+            CustomDataGridView customDataGridView = ((sender as ToolStripMenuItem).Owner as ContextMenuStrip).SourceControl as CustomDataGridView;
+            customDataGridView.DataSource = vratiPodatke(customDataGridView.Tip, null);
+
+        }
+
+        private void ContextMenuStrip_Opened(object sender, EventArgs e)
+        {
+           // (sender as ContextMenuStrip).Items[0].Enabled = false;
+            Control control = (sender as ContextMenuStrip).SourceControl;
+
+
+            CustomDataGridView dgv = control as CustomDataGridView;
+            try
+            {
+                if (dgv.Rows.Count == 0)
+                {
+                    (sender as ContextMenuStrip).Items[5].Enabled = false;
+                    (sender as ContextMenuStrip).Items[6].Enabled = false;
+                    (sender as ContextMenuStrip).Items[7].Enabled = false;
+                    (sender as ContextMenuStrip).Items[8].Enabled = false;
+                }
+                else if (dgv.SelectedRows[0] == dgv.Rows[0])
+                {
+                    (sender as ContextMenuStrip).Items[5].Enabled = true;
+                    (sender as ContextMenuStrip).Items[6].Enabled = true;
+                    (sender as ContextMenuStrip).Items[7].Enabled = false;
+                    (sender as ContextMenuStrip).Items[8].Enabled = false;
+
+                }
+                else if (dgv.SelectedRows[0] == dgv.Rows[dgv.Rows.Count - 1])
+                {
+                    (sender as ContextMenuStrip).Items[5].Enabled = false;
+                    (sender as ContextMenuStrip).Items[6].Enabled = false;
+                    (sender as ContextMenuStrip).Items[7].Enabled = true;
+                    (sender as ContextMenuStrip).Items[8].Enabled = true;
+
+                }
+                else
+                {
+                    (sender as ContextMenuStrip).Items[5].Enabled = true;
+                    (sender as ContextMenuStrip).Items[6].Enabled = true;
+                    (sender as ContextMenuStrip).Items[7].Enabled = true;
+                    (sender as ContextMenuStrip).Items[8].Enabled = true;
+
+                }
+            }catch(Exception ex)
+            {
+
+            }
         }
 
         private void DataGridView_SelectionChanged(object sender, EventArgs e)
@@ -1664,6 +1780,7 @@ namespace DomZdravlja
                     CustomToolStrip.Prvi = false;
                     CustomToolStrip.Dole = true;
                     CustomToolStrip.Zadnji = true;
+
                 }
                 else if (dgv.SelectedRows[0] == dgv.Rows[dgv.Rows.Count - 1])
                 {
@@ -1671,6 +1788,7 @@ namespace DomZdravlja
                     CustomToolStrip.Prvi = true;
                     CustomToolStrip.Dole = false;
                     CustomToolStrip.Zadnji = false;
+
                 }
                 else
                 {
@@ -1678,6 +1796,7 @@ namespace DomZdravlja
                     CustomToolStrip.Prvi = true;
                     CustomToolStrip.Dole = true;
                     CustomToolStrip.Zadnji = true;
+                    
                 }
             }
             catch (Exception)
@@ -1701,6 +1820,8 @@ namespace DomZdravlja
             panelTabControl3.ControlClick += RedoslijedDolazaka_ControlClick;
             PanelTabControl panelTabControl4 = new PanelTabControl((Image)resources.GetObject("karton"), "KARTON");
             panelTabControl4.ControlClick += Karton_ControlClick;
+            PanelTabControl panelTabControl9 = new PanelTabControl((Image)resources.GetObject("karton"), "FAKTOR RIZIKA");
+            panelTabControl9.ControlClick += FaktorRizika_ControlClick;
             PanelTabControl panelTabControl5 = new PanelTabControl((Image)resources.GetObject("pregled"), "PREGLED");
             panelTabControl5.ControlClick += Pregled_ControlClick;
             Label label = new Label() { Name = "", Width = 266, Height = 1, BackColor = Color.White };
@@ -1710,8 +1831,9 @@ namespace DomZdravlja
 
             panelGlavniTab.Controls.Add(panelTabControl);
             panelGlavniTab.Controls.Add(panelTabControl3);
-            panelGlavniTab.Controls.Add(panelTabControl4);
             panelGlavniTab.Controls.Add(panelTabControl5);
+            panelGlavniTab.Controls.Add(panelTabControl9);
+            panelGlavniTab.Controls.Add(panelTabControl4);
             panelGlavniTab.Controls.Add(label);
             panelGlavniTab.Controls.Add(panelTabControl6);
 
@@ -1721,7 +1843,7 @@ namespace DomZdravlja
         private void postaviPocetnu()
         {
             ucitajOsobu();
-            PocetnaStrana pocetna = new PocetnaStrana();
+            PocetnaStrana pocetna = new PocetnaStrana(Logovan);
             tabControl.SelectedTab.Controls.Add(pocetna);
             foreach (PropertyOsoba item in propertyInterfaces[9])
             {
@@ -1863,6 +1985,9 @@ namespace DomZdravlja
             kreirajToolStrip();
             dodajPoljaZaPretragu();
             kreirajTabove();
+            CustomToolStrip.Dodaj = false;
+            CustomToolStrip.Azuriraj = false;
+            CustomToolStrip.Obrisi = false;
         }
 
         private void Rezervacija_ControlClick(object sender, EventArgs e)
@@ -1877,6 +2002,7 @@ namespace DomZdravlja
             kreirajToolStrip();
             dodajPoljaZaPretragu();
             kreirajTabove();
+            CustomToolStrip.Obrisi = false;
         }
 
         private void Karton_ControlClick(object sender, EventArgs e)
@@ -1891,7 +2017,23 @@ namespace DomZdravlja
             kreirajToolStrip();
             dodajPoljaZaPretragu();
             kreirajTabove();
+            CustomToolStrip.Obrisi = false;
         }
+
+        private void FaktorRizika_ControlClick(object sender, EventArgs e)
+        {
+            zatvoriSve();
+            rijesiSelekt("FAKTOR RIZIKA");
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "FAKTOR RIZIKA" };
+            tabControl.Controls.Add(tabPage);
+            Tip = Tip.FaktorRizika;
+            postaviFokus(State.Main);
+            myProperty = new PropertyFaktorRizikaKarton();
+            kreirajToolStrip();
+            dodajPoljaZaPretragu();
+            kreirajTabove();
+        }
+
 
         private void Pregled_ControlClick(object sender, EventArgs e)
         {
@@ -1930,6 +2072,7 @@ namespace DomZdravlja
             kreirajToolStrip();
             dodajPoljaZaPretragu();
             kreirajTabove();
+            CustomToolStrip.Obrisi = false;
         }
 
         private void Pacijent_ControlClick(object sender, EventArgs e)
@@ -1954,7 +2097,6 @@ namespace DomZdravlja
             tabControl.Controls.Add(tabPage);
             Tip = Tip.Racun;
             postaviFokus(State.Main);
-            //myProperty = new PropertyRacun();
             myProperty = new PropertyDetaljiRacuna();
             kreirajToolStrip();
             dodajPoljaZaPretragu();
@@ -2074,9 +2216,9 @@ namespace DomZdravlja
         }
 
         #region Podaci
-        private DataTable vratiPodatke(Tip tip)
+        private DataTable vratiPodatke(Tip tip, int? id)
         {
-       
+
             DataTable dataTable = null;
             switch (tip)
             {
@@ -2364,7 +2506,6 @@ namespace DomZdravlja
                                         from p in (propertyInterfaces[0].Cast<PropertyZaposleni>())
                                         join osoba in (propertyInterfaces[9].Cast<PropertyOsoba>())
                                         on p.OsobaID equals osoba.OsobaID
-                                        //where p.RadnoMjesto == "Recepcija" || p.RadnoMjesto == "Ordinacija"
                                         where p.RadnoMjesto == "Recepcija" || p.RadnoMjesto == "Kancelarija"
                                         select new
                                         {
@@ -2518,7 +2659,7 @@ namespace DomZdravlja
                     ucitaj(0);
                     ucitaj(9);
                     ucitaj(1);
-                    ucitaj(13);//rezervacija
+                    ucitaj(13);
                     var queryRezervacija = (
                                             from rezervacija in (propertyInterfaces[13].Cast<PropertyRezervacije>())
                                             join prijem in (propertyInterfaces[0].Cast<PropertyZaposleni>())
@@ -2539,30 +2680,88 @@ namespace DomZdravlja
                                                 Šifra_pacijenta_hide = rezervacija.PacijentID,
                                                 Šifra_rezervacije_hide = rezervacija.RezervacijaID
                                             }
-                                            /*from recepcija in (propertyInterfaces[12].Cast<PropertyRecepcija>())
-                                            join prijem in (propertyInterfaces[0].Cast<PropertyZaposleni>())
-                                            on recepcija.DoktorID equals prijem.ZaposleniID
-                                            join osoba1 in (propertyInterfaces[9].Cast<PropertyOsoba>())
-                                            on prijem.OsobaID equals osoba1.OsobaID
-                                            join pacijent in (propertyInterfaces[1].Cast<PropertyPacijent>())
-                                            on recepcija.PacijentID equals pacijent.PacijentID
-                                            join osoba2 in (propertyInterfaces[9].Cast<PropertyOsoba>())
-                                            on pacijent.OsobaID equals osoba2.OsobaID
-                                            select new
-                                            {
-                                                Ime_i_prezime_pacijenta = (osoba2.Ime + " " + osoba2.Prezime),
-                                                Ime_i_prezime_doktora = (osoba1.Ime + " " + osoba1.Prezime),
-                                                Vrijeme_prijema = recepcija.VrijemePrijema,
-                                                Vrijeme_otpusta = recepcija.VrijemeOtpusta,
-                                                Prioritet_hide = recepcija.Prioritet,
-                                                Šifra_prijema_hide = recepcija.PrijemID,
-                                                Šifra_prijem_zaposlenih_hide = recepcija.PrijemZaposleniID,
-                                                Šifra_doktora_hide = recepcija.DoktorID,
-                                                Šifra_pacijenta_hide = recepcija.PacijentID
-                                            }*/
+                                           
                                          );
 
                     dataTable = ListToDataTable.ToDataTable(queryRezervacija.ToList());
+
+                    break;
+                case Tip.FaktorRizika:
+                    ucitaj(6);
+                    ucitaj(7);
+                    ucitaj(5);
+                    ucitaj(1);
+                    ucitaj(9);
+                    var queryFaktorRizika = (
+                                            from frk in (propertyInterfaces[6].Cast<PropertyFaktorRizikaKarton>())
+                                            join karton in (propertyInterfaces[7].Cast<PropertyKarton>())
+                                            on frk.KartonID equals karton.PacijentID
+                                            join pacijent in (propertyInterfaces[1].Cast<PropertyPacijent>())
+                                            on karton.PacijentID equals pacijent.PacijentID
+                                            join osoba in (propertyInterfaces[9].Cast<PropertyOsoba>())
+                                            on pacijent.OsobaID equals osoba.OsobaID
+                                            join fr in (propertyInterfaces[5].Cast<PropertyFaktorRizika>())
+                                            on frk.FaktorRizikaID equals fr.FaktorRizikaID
+                                            select new
+                                            {
+                                                Broj_kartona = karton.KartonID,
+                                                Ime_i_prezime_pacijenta = (osoba.Ime + " " + osoba.Prezime),
+                                                Naziv_rizika = fr.NazivRizika,
+                                                Opis = fr.Opis,
+                                                Šifra_pacijenta_hide = pacijent.PacijentID,
+                                                Šifra_doktora_hide = pacijent.DoktorID,
+                                                Šifra_osobe_hide = pacijent.OsobaID,
+                                                Šifra_faktor_rizika_hide = fr.FaktorRizikaID,
+                                                Šifra_faktor_rizika_karton_hide = frk.FRKID 
+                                            }
+                                            );
+                    dataTable = ListToDataTable.ToDataTable(queryFaktorRizika.ToList());
+
+                    break;
+                case Tip.KartonNema:
+                    ucitaj(7);
+                    ucitaj(1);
+                    ucitaj(9);
+                    ucitaj(0);
+
+                    var queryKartonNema = (
+                                    from pacijent in (propertyInterfaces[1].Cast<PropertyPacijent>())
+                                    join osoba in (propertyInterfaces[9].Cast<PropertyOsoba>())
+                                     on pacijent.OsobaID equals osoba.OsobaID
+                                    join doktor in (propertyInterfaces[0].Cast<PropertyZaposleni>())
+                                     on pacijent.DoktorID equals doktor.ZaposleniID
+                                    join osoba1 in (propertyInterfaces[9].Cast<PropertyOsoba>())
+                                     on doktor.OsobaID equals osoba1.OsobaID
+                                    where !(from karton in propertyInterfaces[7].Cast<PropertyKarton>()
+                                            select karton.PacijentID).Contains(pacijent.PacijentID)
+                                    select new
+                                    {
+                                        Ime = osoba.Ime,
+                                        Prezime = osoba.Prezime,
+                                        JMB = osoba.JMB,
+                                        Pol = osoba.Pol,
+                                        Datum_rodjenja = osoba.DatumRodjenja,
+                                        Ime_i_prezime_doktora = (osoba1.Ime + " " + osoba1.Prezime),
+                                        Šifra_pacijenta_hide = pacijent.PacijentID,
+                                    }
+                                );
+
+
+                    dataTable = ListToDataTable.ToDataTable(queryKartonNema.ToList());
+
+                    break;
+                case Tip.Rizici:
+                    ucitaj(5);
+                    var queryRizic = (
+                                            from fr in (propertyInterfaces[5].Cast<PropertyFaktorRizika>())
+                                            select new
+                                            {
+                                                Naziv_rizika = fr.NazivRizika,
+                                                Opis = fr.Opis,
+                                                Šifra_faktor_rizika_hide = fr.FaktorRizikaID
+                                            }
+                                            );
+                    dataTable = ListToDataTable.ToDataTable(queryRizic.ToList());
 
                     break;
 

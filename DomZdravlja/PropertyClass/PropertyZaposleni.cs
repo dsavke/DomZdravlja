@@ -168,13 +168,13 @@ namespace DomZdravlja.PropertyClass
         }
         public string GetUpdateQuery()
         {
-            return @"UPDATE dbo.Zapolseni
+            return @"UPDATE dbo.Zaposleni
                        set[Zvanje]=@Zvanje,
                        [RadnoMjesto]=@RadnoMjesto,
                        [KorisnickoIme]=@KorisnickoIme,
                        [Password]=@Password,
                        [TipZaposlenog]=@TipZaposlenog,
-                       [OsobaID]=@OsobaID,
+                       [OsobaID]=@OsobaID
                    where ZaposleniID=@ZaposleniID";
         }
 

@@ -55,6 +55,24 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
+        [DisplayName("Šifra doktora")]
+        [SqlName("DoktorID")]
+        [GenerateComponent(ComponentType.Lookup)]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "Šifra doktora", Tip.Doktori, "Ime", "Prezime", false)]
+        [ValidatePattern(@"^\d+$")]
+        [Editing(Use.Insert)]
+        public int DoktorID
+        {
+            get
+            {
+                return doktorID;
+            }
+            set
+            {
+                doktorID = value;
+            }
+        }
+
         [DisplayName("Vrijeme rezervacije")]
         [SqlName("VrijemeRezervacije")]
         [Editing(Use.Insert)]
@@ -85,24 +103,6 @@ namespace DomZdravlja.PropertyClass
             set
             {
                 termin = value;
-            }
-        }
-
-        [DisplayName("Šifra doktora")]
-        [SqlName("DoktorID")]
-        [GenerateComponent(ComponentType.Lookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "Šifra doktora", Tip.Doktori, "Ime", "Prezime", false)]
-        [ValidatePattern(@"^\d+$")]
-        [Editing(Use.Insert)]
-        public int DoktorID
-        {
-            get
-            {
-                return doktorID;
-            }
-            set
-            {
-                doktorID = value;
             }
         }
         #endregion

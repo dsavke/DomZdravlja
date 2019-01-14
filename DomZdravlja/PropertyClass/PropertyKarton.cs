@@ -21,11 +21,11 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Šifra pacijenta")]
         [SqlName("PacijentID")]
-        [GenerateComponent(ComponentType.Tekst)]
+        [GenerateComponent(ComponentType.Lookup)]
         [PrimaryKey]
-        //[ForeignKey("DomZdravlja.PropertyClass.PropertyPacijent", "Sifra pacijenta")]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyPacijent", "Šifra pacijenta", Tip.KartonNema, "Ime", "Prezime", false)]
         [ValidatePattern(@"^\d+$")]
-
+        [Editing(Use.Insert)]
         public int PacijentID
         {
             get
@@ -43,7 +43,7 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"^\d+$")]
         [MainSearch(null)]
-
+        [Editing(Use.Insert)]
         public int KartonID
         {
             get

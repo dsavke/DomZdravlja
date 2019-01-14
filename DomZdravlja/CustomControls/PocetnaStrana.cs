@@ -7,24 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DomZdravlja.PropertyClass;
+using System.Text.RegularExpressions;
 
 namespace DomZdravlja.CustomControls
 {
     public partial class PocetnaStrana : UserControl
     {
-        PropertyInterface myProperty;
-        public PocetnaStrana(PropertyInterface myProperty)
+        PropertyZaposleni Logovan;
+        public PocetnaStrana(PropertyZaposleni logovan)
         {
-
             InitializeComponent();
-            this.myProperty = myProperty;
-
+            Logovan = logovan;
         }
 
         public PocetnaStrana()
         {
             InitializeComponent();
         }
+
         public string Ime
         {
             get { return lblIme.Text; }
@@ -56,5 +57,25 @@ namespace DomZdravlja.CustomControls
             btnSifra.Click -= BtnSifraSakrij_Click;
             btnSifra.Click += btnSifra_Click;
         }
+
+        private void btnSacuvajPromjene_Click(object sender, EventArgs e)
+        {
+            Regex regex = new Regex(@"^([a-z0-9]{3,15}(([\._][a-z0-9]{3,16})?))*$");
+
+            if(Logovan.Password == tbStaraSifra.Text && 
+               Regex.Match(tbNovaSifra.Text, @"^([a-z0-9]{3,15}(([\._][a-z0-9]{3,16})?))*$").Success &&
+               tbNovaSifra.Text == tbPonovljenaSifra.Text &&
+               !string.IsNullOrWhiteSpace(tbNovaSifra.Text))
+            {
+                Logovan.Password = tbNovaSifra.Text;
+                SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, Logovan.GetUpdateQuery(), Logovan.GetUpdateParameters().ToArray());
+                MessageBox.Show("Sifra uspijesno promijenjena!");
+            }
+            else
+            {
+                MessageBox.Show("Niste uspijeli promijeniti sifru!");
+            }
+        }
+        
     }
 }

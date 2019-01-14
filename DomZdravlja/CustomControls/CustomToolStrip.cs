@@ -49,6 +49,30 @@ namespace DomZdravlja.CustomControls
             set { tsbtnZadnji.Enabled = value; }
         }
 
+        public bool Dodaj
+        {
+            get { return tsbtnDodaj.Enabled; }
+            set { tsbtnDodaj.Enabled = value; }
+        }
+
+        public bool Azuriraj
+        {
+            get { return tsbtnAzuriraj.Enabled; }
+            set { tsbtnAzuriraj.Enabled = value; }
+        }
+
+        public bool Pretraga
+        {
+            get { return tsbtnPretraga.Enabled; }
+            set { tsbtnPretraga.Enabled = value; }
+        }
+
+        public bool Obrisi
+        {
+            get { return tsbtnObrisi.Enabled; }
+            set { tsbtnObrisi.Enabled = value; }
+        }
+
         public CustomToolStrip()
         {
             InitializeComponent();
@@ -67,8 +91,6 @@ namespace DomZdravlja.CustomControls
         {
             if (DodajClick != null)
                 DodajClick(sender, e);
-            /* tabPage = new CustomTabPage() { State = State.Insert, Naziv = "DODAVANJE"};
-            ((this.Parent as CustomTabPage).Parent as CustomTabControl).TabPages.Add(tabPage);*/
         }
 
         private void tsbtnPretraga_Click(object sender, EventArgs e)
