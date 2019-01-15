@@ -74,7 +74,6 @@ namespace DomZdravlja
                 pomPacijenti.PacijentID = Convert.ToInt32(dataReader["PacijentID"]);
                 pomPacijenti.DoktorID = Convert.ToInt32(dataReader["DoktorID"]);
                 pomPacijenti.OsobaID = Convert.ToInt32(dataReader["OsobaID"]);
-                pomPacijenti.BrojKartona = Convert.ToInt32(dataReader["BrojKartona"]);
                 pomPacijenti.Osiguran = Convert.ToInt32(dataReader["Osiguran"]);
                 propertyInterfaces[1].Add(pomPacijenti);
             }
@@ -126,8 +125,6 @@ namespace DomZdravlja
             {
                 PropertyDijagnoza pomDijagnoza = new PropertyDijagnoza();
                 pomDijagnoza.DijagnozaID = Convert.ToInt32(dataReader["DijagnozaID"]);
-                pomDijagnoza.PacijentID = Convert.ToInt32(dataReader["PacijentID"]);
-                pomDijagnoza.DoktorID = Convert.ToInt32(dataReader["DoktorID"]);
                 pomDijagnoza.Terapija = dataReader["Terapija"].ToString();
                 pomDijagnoza.Opis = dataReader["Opis"].ToString();
                 propertyInterfaces[4].Add(pomDijagnoza);
@@ -2263,8 +2260,7 @@ namespace DomZdravlja
                                             Životni_status_hide = osoba.ZivotniStatus,
                                             Šifra_pacijenta_hide = p.PacijentID,
                                             Šifra_doktora_hide = p.DoktorID,
-                                            Šifra_osobe_hide = p.OsobaID,
-                                            Broj_kartona_hide = p.BrojKartona
+                                            Šifra_osobe_hide = p.OsobaID
                                         }
                                         );
 
@@ -2334,20 +2330,23 @@ namespace DomZdravlja
                     break;
                 case Tip.Pregled:
                     ucitaj(10);
+                    ucitaj(7);
                     ucitaj(1);
                     ucitaj(0);
                     ucitaj(9);
                     ucitaj(4);
                     var queryPregled = (
                                         from pregled in (propertyInterfaces[10].Cast<PropertyPregled>())
+                                        join karton in (propertyInterfaces[7].Cast<PropertyKarton>())
+                                        on pregled.PacijentID equals karton.PacijentID
                                         join pacijent in (propertyInterfaces[1].Cast<PropertyPacijent>())
-                                        on pregled.PacijentID equals pacijent.PacijentID
+                                        on karton.PacijentID equals pacijent.PacijentID
                                         join osoba2 in (propertyInterfaces[9].Cast<PropertyOsoba>())
-                                            on pacijent.OsobaID equals osoba2.OsobaID
+                                        on pacijent.OsobaID equals osoba2.OsobaID
                                         join prijem in (propertyInterfaces[0].Cast<PropertyZaposleni>())
                                         on pregled.DoktorID equals prijem.ZaposleniID
                                         join osoba1 in (propertyInterfaces[9].Cast<PropertyOsoba>())
-                                            on prijem.OsobaID equals osoba1.OsobaID
+                                        on prijem.OsobaID equals osoba1.OsobaID
                                         join dijagnoza in (propertyInterfaces[4].Cast<PropertyDijagnoza>())
                                         on pregled.DijagnozaID equals dijagnoza.DijagnozaID
                                         select new {
@@ -2355,6 +2354,7 @@ namespace DomZdravlja
                                             Ime_i_prezime_pacijenta = (osoba2.Ime + " " + osoba2.Prezime),
                                             Ime_i_prezime_doktora = (osoba1.Ime + " " + osoba1.Prezime),
                                             dijagnoza.Opis, dijagnoza.Terapija,
+                                            Broj_kartona = karton.KartonID,
                                             Šifra_pregleda_hide = pregled.PregledID,
                                             Šifra_doktora_hide = pregled.DoktorID,
                                             Šifra_pacijenta_hide = pregled.PacijentID,

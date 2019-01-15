@@ -15,7 +15,6 @@ namespace DomZdravlja.PropertyClass
         private int pacijentID;
         private int doktorID;
         private int osobaID;
-        private int brojKartona;
         private int osiguran;
         #endregion
 
@@ -75,23 +74,6 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Broj kartona")]
-        [SqlName("BrojKartona")]
-        [GenerateComponent(ComponentType.Tekst)]
-        [ValidatePattern(@"^\d+$")]
-        [Editing(Use.Insert)]
-        public int BrojKartona
-        {
-            get
-            {
-                return brojKartona;
-            }
-            set
-            {
-                brojKartona = value;
-            }
-        }
-
         [DisplayName("Osiguran")]
         [SqlName("Osiguran")]
         [GenerateComponent(ComponentType.RadioButton)]
@@ -127,12 +109,10 @@ namespace DomZdravlja.PropertyClass
                     INSERT INTO [dbo].[Pacijent]
                                ([DoktorID]
                                ,[OsobaID]
-                               ,[BrojKartona]
                                ,[Osiguran])
                          VALUES
                                (@DoktorID
                                ,@OsobaID
-                               ,@BrojKartona
                                ,@Osiguran)
                     ";
         }
@@ -144,7 +124,6 @@ namespace DomZdravlja.PropertyClass
                     SELECT [PacijentID]
                           ,[DoktorID]
                           ,[OsobaID]
-                          ,[BrojKartona]
                           ,[Osiguran]
                       FROM [dbo].[Pacijent]
                    
@@ -157,7 +136,6 @@ namespace DomZdravlja.PropertyClass
                     UPDATE [dbo].[Pacijent]
                        SET [DoktorID] = @DoktorID
                           ,[OsobaID] = @OsobaID
-                          ,[BrojKartona] = @BrojKartona
                           ,[Osiguran] = @Osiguran
                      WHERE PacijentID = @PacijentID
                     ";
@@ -190,10 +168,6 @@ namespace DomZdravlja.PropertyClass
             OsobaID.Value = osobaID;
             list.Add(OsobaID);
 
-            SqlParameter BrojKartona = new SqlParameter("@BrojKartona", System.Data.SqlDbType.Int);
-            BrojKartona.Value = brojKartona;
-            list.Add(BrojKartona);
-
             SqlParameter Osiguran = new SqlParameter("@Osiguran", System.Data.SqlDbType.TinyInt);
             Osiguran.Value = osiguran;
             list.Add(Osiguran);
@@ -216,10 +190,6 @@ namespace DomZdravlja.PropertyClass
             SqlParameter OsobaID = new SqlParameter("@OsobaID", System.Data.SqlDbType.Int);
             OsobaID.Value = osobaID;
             list.Add(OsobaID);
-
-            SqlParameter BrojKartona = new SqlParameter("@BrojKartona", System.Data.SqlDbType.Int);
-            BrojKartona.Value = brojKartona;
-            list.Add(BrojKartona);
 
             SqlParameter Osiguran = new SqlParameter("@Osiguran", System.Data.SqlDbType.TinyInt);
             Osiguran.Value = osiguran;

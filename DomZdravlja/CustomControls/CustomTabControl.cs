@@ -108,11 +108,14 @@ namespace DomZdravlja.CustomControls
                         {
                             if ((this.TabPages[i] as CustomTabPage).State == State.Main) continue;
                         }
-                        this.TabPages.RemoveAt(i);
-                        if (this.SelectedIndex == -1 && this.TabCount > 0)
+                        if (this.TabPages[i].Enabled)
                         {
-                            this.TabPages[this.TabCount - 1].Enabled = true;
-                            this.SelectedIndex = this.TabCount - 1;
+                            this.TabPages.RemoveAt(i);
+                            if (this.SelectedIndex == -1 && this.TabCount > 0)
+                            {
+                                this.TabPages[this.TabCount - 1].Enabled = true;
+                                this.SelectedIndex = this.TabCount - 1;
+                            }
                         }
                     }
                 
