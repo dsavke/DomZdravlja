@@ -23,7 +23,6 @@ namespace DomZdravlja.CustomControls
         private Color backTabColor = Color.FromArgb(255, 255, 255);
         private Color closingButtonColor = Color.FromArgb(51, 128, 196);
         private Color headerColor = SystemColors.Control;
-        private TabPage predraggedTab;
         public bool ShowClosingButton { get; set; }
         public Color selectedTextColor = Color.FromArgb(51, 128, 196);
         #endregion

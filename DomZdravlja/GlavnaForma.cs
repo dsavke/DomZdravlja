@@ -1759,7 +1759,7 @@ namespace DomZdravlja
                     (sender as ContextMenuStrip).Items[8].Enabled = true;
 
                 }
-            }catch(Exception ex)
+            }catch(Exception)
             {
 
             }
@@ -2560,8 +2560,6 @@ namespace DomZdravlja
                                                     dijagnoza.Opis
                                                     , dijagnoza.Terapija
                                                     , Šifra_dijagnoze_hide = dijagnoza.DijagnozaID
-                                                    , Šifra_pacijenta_hide = dijagnoza.PacijentID
-                                                    , Šifra_doktora_hide = dijagnoza.DoktorID
                                                 }
                                          );
                     dataTable = ListToDataTable.ToDataTable(queryDijagnoza.ToList());

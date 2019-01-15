@@ -13,8 +13,6 @@ namespace DomZdravlja.PropertyClass
     {
         #region Atributi
         private int dijagnozaID;
-        private int pacijentID;
-        private int doktorID;
         private string terapija;
         private string opis;
         #endregion
