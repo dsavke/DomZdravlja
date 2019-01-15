@@ -55,10 +55,10 @@ namespace DomZdravlja.PropertyClass
             }
         }
 
-        [DisplayName("Broj kartona")]
+        [DisplayName("Šifra pacijenta")]
         [SqlName("KartonID")]
         [GenerateComponent(ComponentType.Lookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyKarton", "Broj kartona", Tip.Karton, "Ime", "Prezime", false)]
+        [ForeignKey("DomZdravlja.PropertyClass.PropertyKarton", "Šifra pacijenta", Tip.Karton, "Ime", "Prezime", false)]
         [ValidatePattern(@"^\d+$")]
         [Editing(Use.Insert)]
         [MainSearch(null)]

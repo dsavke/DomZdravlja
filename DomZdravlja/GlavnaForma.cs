@@ -656,13 +656,19 @@ namespace DomZdravlja
             if (!postoji)
                 return;
 
-            if (Tip != Tip.Karton)
-            {
+          
                 CustomDataGridView data = izgled();
                 data.Tip = Tip;
                 data.DataSource = vratiPodatke(Tip, null);
 
                 CustomTabPage noviPage1 = new CustomTabPage() { State = State.Search, Naziv = "PRETRAGA" };
+                foreach(CustomTabPage p in pomTabControl.TabPages)
+                {
+                    if(p.State == State.Search)
+                    {
+                        pomTabControl.TabPages.Remove(p);
+                    }
+                }
                 pomTabControl.TabPages.Add(noviPage1);
                 pomTabControl.SelectedTab = noviPage1;
                 noviPage1.Controls.Add(data);
@@ -703,7 +709,7 @@ namespace DomZdravlja
 
                 data = urediGridView(data) as CustomDataGridView;
               
-            }
+          
 
         }
 
@@ -832,13 +838,13 @@ namespace DomZdravlja
                                 var r = from p in data.AsEnumerable()
                                         where p.Field<int>(property.GetCustomAttribute<ForeignKey>().ReferencedColumn) == Convert.ToInt32(dataRow.Cells[id].Value)
                                         select p;
-                               
+    
                                 DataRow dRow = r.FirstOrDefault();
 
                                 object col1 = property.GetCustomAttribute<ForeignKey>().BackCol1;
                                 object col2 = property.GetCustomAttribute<ForeignKey>().BackCol2;
 
-
+                                
                                 (c as UCLookup).Info = dRow.Field<string>(col1.ToString()) + " "
                                              + (col2.ToString() != "" ? dRow.Field<string>(col2.ToString()) : "");
 
@@ -1645,7 +1651,6 @@ namespace DomZdravlja
         {
 
             CustomDataGridView customDataGridView = new CustomDataGridView(880, 400);
-
             customDataGridView.SelectionChanged += DataGridView_SelectionChanged;
             customDataGridView.ContextMenuStrip = napraviContextMenyStrip();
 
@@ -1728,7 +1733,7 @@ namespace DomZdravlja
             CustomDataGridView dgv = control as CustomDataGridView;
             try
             {
-                if (dgv.Rows.Count == 0)
+                if (dgv.Rows.Count == 0 || dgv.Rows.Count == 1)
                 {
                     (sender as ContextMenuStrip).Items[5].Enabled = false;
                     (sender as ContextMenuStrip).Items[6].Enabled = false;
@@ -1770,7 +1775,6 @@ namespace DomZdravlja
             DataGridView dgv = sender as DataGridView;
             try
             {
-
                 if (dgv.SelectedRows[0] == dgv.Rows[0])
                 {
                     CustomToolStrip.Gore = false;
@@ -2239,7 +2243,7 @@ namespace DomZdravlja
                                          Broj_kartona = p.KartonID,
                                          Ime = osoba.Ime, Prezime = osoba.Prezime, JMB = osoba.JMB, Pol = osoba.Pol, Datum_rodjenja = osoba.DatumRodjenja,
                                                  Ime_i_prezime_doktora = (osoba1.Ime + " " + osoba1.Prezime),
-                                         Šifra_pacijenta_hide = p.PacijentID,
+                                         Šifra_pacijenta_hide = p.PacijentID
                                      }
                                  );
 
@@ -2359,6 +2363,8 @@ namespace DomZdravlja
                                             Šifra_doktora_hide = pregled.DoktorID,
                                             Šifra_pacijenta_hide = pregled.PacijentID,
                                             Šifra_dijagnoze_hide = pregled.DijagnozaID,
+                                            Ime_hide = osoba2.Ime,
+                                            Prezime_hide = osoba2.Prezime
                                         }
                                        );
         

@@ -77,7 +77,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("KorisnickoIme")]
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"^([a-z0-9]{3,15}(([\._][a-z0-9]{3,16})?))*$")]
-        [Editing(Use.Insert)]
+        [Editing(Use.InsertAndUpdate)]
         public string KorisnickoIme
         {
             get
