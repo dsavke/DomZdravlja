@@ -36,44 +36,7 @@ namespace DomZdravlja.PropertyClass
             {
                 dijagnozaID = value;
             }
-        }
-
-        [DisplayName("Šifra pacijenta")]
-        [SqlName("PacijentID")]
-        [GenerateComponent(ComponentType.Lookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyPacijent", "Šifra pacijenta", Tip.Pacijent, "Ime", "Prezime", false)]
-        [ValidatePattern(@"^\d+$")]
-        [Editing(Use.Insert)]
-        public int PacijentID
-        {
-            get
-            {
-                return pacijentID;
-            }
-            set
-            {
-                pacijentID = value;
-            }
-        }
-
-        [DisplayName("Šifra doktora")]
-        [SqlName("DoktorID")]
-        [GenerateComponent(ComponentType.Lookup)]
-        [ForeignKey("DomZdravlja.PropertyClass.PropertyZaposleni", "Šifra doktora", Tip.Doktori, "Ime", "Prezime", false)]
-        [ValidatePattern(@"^\d+$")]
-        [DefaultPropertValue(TargetValue.LoginUser, "")]
-        [Editing(Use.Insert)]
-        public int DoktorID
-        {
-            get
-            {
-                return doktorID;
-            }
-            set
-            {
-                doktorID = value;
-            }
-        }
+        } 
 
         [DisplayName("Terapija")]
         [SqlName("Terapija")]
@@ -125,12 +88,10 @@ namespace DomZdravlja.PropertyClass
         {
             return @"
                     INSERT INTO dbo.Dijagnoza
-                       (PacijentID
-                        ,DoktorID
-                        ,Terapija
+                       (Terapija
                         ,Opis)    
                     VALUES
-                       (@PacijentID,@DoktorID,@Terapija,@Opis)
+                       (@Terapija,@Opis)
                     ";
         }
 
@@ -138,9 +99,7 @@ namespace DomZdravlja.PropertyClass
         {
             return @"
                     UPDATE [dbo].[Dijagnoza]
-                       SET [PacijentID] = @PacijentID
-                          ,[DoktorID] = @DoktorID
-                          ,[Terapija] = @Terapija
+                       SET [Terapija] = @Terapija
                           ,[Opis] = @Opis
                      WHERE [DijagnozaID] = @DijagnozaID
                     ";
@@ -151,8 +110,6 @@ namespace DomZdravlja.PropertyClass
             return @"
                   
                     SELECT [DijagnozaID]
-                          ,[PacijentID]
-                          ,[DoktorID]
                           ,[Terapija]
                           ,[Opis]
                       FROM [dbo].[Dijagnoza]
@@ -180,15 +137,7 @@ namespace DomZdravlja.PropertyClass
         public List<SqlParameter> GetInsertParameters()
         {
             List<SqlParameter> list = new List<SqlParameter>();
-
-            SqlParameter PacijentID = new SqlParameter("@PacijentID", System.Data.SqlDbType.Int);
-            PacijentID.Value = pacijentID;
-            list.Add(PacijentID);
-
-            SqlParameter DoktorID = new SqlParameter("@DoktorID", System.Data.SqlDbType.Int);
-            DoktorID.Value = doktorID;
-            list.Add(DoktorID);
-
+           
             SqlParameter Terapija = new SqlParameter("@Terapija", System.Data.SqlDbType.NVarChar);
             Terapija.Value = terapija;
             list.Add(Terapija);
@@ -205,14 +154,6 @@ namespace DomZdravlja.PropertyClass
         public List<SqlParameter> GetUpdateParameters()
         {
             List<SqlParameter> list = new List<SqlParameter>();
-
-            SqlParameter PacijentID = new SqlParameter("@PacijentID", System.Data.SqlDbType.Int);
-            PacijentID.Value = pacijentID;
-            list.Add(PacijentID);
-
-            SqlParameter DoktorID = new SqlParameter("@DoktorID", System.Data.SqlDbType.Int);
-            DoktorID.Value = doktorID;
-            list.Add(DoktorID);
 
             SqlParameter Terapija = new SqlParameter("@Terapija", System.Data.SqlDbType.NVarChar);
             Terapija.Value = terapija;
