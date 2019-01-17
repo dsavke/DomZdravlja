@@ -656,15 +656,16 @@ namespace DomZdravlja
             if (!postoji)
                 return;
 
-          
+            if (Tip != Tip.Karton)
+            {
                 CustomDataGridView data = izgled();
                 data.Tip = Tip;
                 data.DataSource = vratiPodatke(Tip, null);
 
                 CustomTabPage noviPage1 = new CustomTabPage() { State = State.Search, Naziv = "PRETRAGA" };
-                foreach(CustomTabPage p in pomTabControl.TabPages)
+                foreach (CustomTabPage p in pomTabControl.TabPages)
                 {
-                    if(p.State == State.Search)
+                    if (p.State == State.Search)
                     {
                         pomTabControl.TabPages.Remove(p);
                     }
@@ -688,10 +689,10 @@ namespace DomZdravlja
                 dgvNovi = urediGridView(dgvNovi) as CustomDataGridView;
                 data = urediGridView(data) as CustomDataGridView;
 
-                
+
                 foreach (DataGridViewRow row in data.Rows)
                 {
-                    
+
                     if (((listaTxt[0] == null) ? true : (row.Cells[listaTxt[0].Naziv].Value.ToString().ToLower().Contains(listaTxt[0].Value.ToLower()))) &&
                     ((listaTxt[1] == null) ? true : (row.Cells[listaTxt[1].Naziv].Value.ToString().ToLower().Contains(listaTxt[1].Value.ToLower()))) &&
                     ((listaTxt[2] == null) ? true : (row.Cells[listaTxt[2].Naziv].Value.ToString().ToLower().Contains(listaTxt[2].Value.ToLower()))))
@@ -704,16 +705,66 @@ namespace DomZdravlja
                     }
                 }
 
-           // MessageBox.Show(data.Rows.Count.ToString());
-            //MessageBox.Show(dgvNovi.Rows.Count.ToString());
                 noviPage1.Controls.Remove(data);
                 noviPage1.Controls.Add(dgvNovi);
-           // MessageBox.Show(data.Rows.Count.ToString());
-            //MessageBox.Show(dgvNovi.Rows.Count.ToString());
 
-            data = urediGridView(data) as CustomDataGridView;
-              
-          
+                data = urediGridView(data) as CustomDataGridView;
+            }else
+            {
+                foreach (CustomTabPage p in pomTabControl.TabPages)
+                {
+                    if (p.State == State.Search)
+                    {
+                        pomTabControl.TabPages.Remove(p);
+                    }
+                }
+
+                /*CustomDataGridView data = izgled();
+                data.Tip = Tip;
+                data.DataSource = vratiPodatke(Tip, null);*/
+
+                CustomTabPage noviPage1 = new CustomTabPage() { State = State.Search, Naziv = "OSNOVNE INFORMACIJE" };
+                CustomTabPage noviPage2 = new CustomTabPage() { State = State.Search, Naziv = "FAKTORI RIZIKA" };
+                CustomTabPage noviPage3 = new CustomTabPage() { State = State.Search, Naziv = "PREGLEDI" };
+
+                pomTabControl.TabPages.Add(noviPage1);
+                pomTabControl.TabPages.Add(noviPage2);
+                pomTabControl.TabPages.Add(noviPage3);
+
+                CustomDataGridView data = izgled();
+                data.Tip = Tip.Osoba;
+                data.DataSource = vratiPodatke(Tip.Osoba, Convert.ToInt32(listaTxt[0].Value));
+                data = urediGridView(data) as CustomDataGridView;
+                data.Dock = DockStyle.Fill;
+                data.BorderStyle = BorderStyle.None;
+                data.BackgroundColor = Color.FromArgb(255, 255, 255);
+                noviPage1.Controls.Add(data);
+                pomTabControl.SelectedTab = noviPage1;
+                data = urediGridView(data) as CustomDataGridView;
+
+                CustomDataGridView data1 = izgled();
+                data1.Tip = Tip.FaktorRizika;
+                data1.DataSource = vratiPodatke(Tip.FaktorRizika, Convert.ToInt32(listaTxt[0].Value));
+                data1.Dock = DockStyle.Fill;
+                data1.BorderStyle = BorderStyle.None;
+                data1.BackgroundColor = Color.FromArgb(255, 255, 255);
+                data1 = urediGridView(data1) as CustomDataGridView;
+                noviPage2.Controls.Add(data1);
+                pomTabControl.SelectedTab = noviPage2;
+                data1 = urediGridView(data1) as CustomDataGridView;
+
+                CustomDataGridView data2 = izgled();
+                data2.Tip = Tip.Pregled;
+                data2.DataSource = vratiPodatke(Tip.Pregled, Convert.ToInt32(listaTxt[0].Value));
+                data2.Dock = DockStyle.Fill;
+                data2.BorderStyle = BorderStyle.None;
+                data2.BackgroundColor = Color.FromArgb(255, 255, 255);
+                data2 = urediGridView(data2) as CustomDataGridView;
+                noviPage3.Controls.Add(data2);
+                pomTabControl.SelectedTab = noviPage3;
+                data2 = urediGridView(data2) as CustomDataGridView;
+                
+            }
 
         }
 
@@ -1474,7 +1525,10 @@ namespace DomZdravlja
                 {
                     if (property.GetCustomAttribute<DefaultPropertValue>().Target == TargetValue.StartPrize)
                         (control as UCTekst).Value = property.GetCustomAttribute<DefaultPropertValue>().Value.ToString();
-                }else if(control.GetType() == typeof(UCDatum))
+                    else if (property.GetCustomAttribute<DefaultPropertValue>().Target == TargetValue.ProvjeraDaLiJeOsiguran)
+                        (control as UCTekst).Value = property.GetCustomAttribute<DefaultPropertValue>().Value.ToString();
+                }
+                else if(control.GetType() == typeof(UCDatum))
                 {
                     if (property.GetCustomAttribute<DefaultPropertValue>().Target == TargetValue.DefaultDate)
                         (control as UCDatum).Value = Convert.ToDateTime(property.GetCustomAttribute<DefaultPropertValue>().Value);
@@ -2261,7 +2315,7 @@ namespace DomZdravlja
                     var queryPacijent = (
                                         from p in (propertyInterfaces[1].Cast<PropertyPacijent>())
                                         join osoba in (propertyInterfaces[9].Cast<PropertyOsoba>())
-                                        on p.OsobaID equals osoba.OsobaID
+                                        on p.OsobaID equals osoba.OsobaID 
                                         select new {Ime = osoba.Ime, Prezime = osoba.Prezime, JMB = osoba.JMB,
                                         osoba.Pol, Mjesto_rodjenja = osoba.MjestoRodjenja, Datum_rodjenja = osoba.DatumRodjenja, Adresa = osoba.Adresa, osoba.Kontakt,
                                             Osiguran = p.Osiguran,
@@ -2357,6 +2411,7 @@ namespace DomZdravlja
                                         on prijem.OsobaID equals osoba1.OsobaID
                                         join dijagnoza in (propertyInterfaces[4].Cast<PropertyDijagnoza>())
                                         on pregled.DijagnozaID equals dijagnoza.DijagnozaID
+                                        where karton.KartonID == id || id == null
                                         select new {
                                             Šifra_pregleda = pregled.PregledID,
                                             Ime_i_prezime_pacijenta = (osoba2.Ime + " " + osoba2.Prezime),
@@ -2396,6 +2451,7 @@ namespace DomZdravlja
                                         on racun.ZaposleniID equals prijem.ZaposleniID
                                         join osoba1 in (propertyInterfaces[9].Cast<PropertyOsoba>())
                                             on prijem.OsobaID equals osoba1.OsobaID
+                                        where pacijent.Osiguran == 1
                                         select new {
                                             Broj_računa = racun.RacunID,
                                             Ime_i_prezime_pacijenta = (osoba2.Ime + " " + osoba2.Prezime),
@@ -2710,6 +2766,7 @@ namespace DomZdravlja
                                             on pacijent.OsobaID equals osoba.OsobaID
                                             join fr in (propertyInterfaces[5].Cast<PropertyFaktorRizika>())
                                             on frk.FaktorRizikaID equals fr.FaktorRizikaID
+                                            where karton.KartonID == id || id == null
                                             select new
                                             {
                                                 Broj_kartona = karton.KartonID,
@@ -2772,7 +2829,36 @@ namespace DomZdravlja
                     dataTable = ListToDataTable.ToDataTable(queryRizic.ToList());
 
                     break;
+                case Tip.PacijentNijeOsiguran:
+                    ucitaj(1);
+                    ucitaj(9);
+                    var queryPacijentNijeOsiguran = (
+                                        from p in (propertyInterfaces[1].Cast<PropertyPacijent>())
+                                        join osoba in (propertyInterfaces[9].Cast<PropertyOsoba>())
+                                        on p.OsobaID equals osoba.OsobaID
+                                        where p.Osiguran == 1
+                                        select new
+                                        {
+                                            Ime = osoba.Ime,
+                                            Prezime = osoba.Prezime,
+                                            JMB = osoba.JMB,
+                                            osoba.Pol,
+                                            Mjesto_rodjenja = osoba.MjestoRodjenja,
+                                            Datum_rodjenja = osoba.DatumRodjenja,
+                                            Adresa = osoba.Adresa,
+                                            osoba.Kontakt,
+                                            Osiguran = p.Osiguran,
+                                            Životni_status_hide = osoba.ZivotniStatus,
+                                            Šifra_pacijenta_hide = p.PacijentID,
+                                            Šifra_doktora_hide = p.DoktorID,
+                                            Šifra_osobe_hide = p.OsobaID
+                                        }
+                                        );
 
+                    dataTable = ListToDataTable.ToDataTable(queryPacijentNijeOsiguran.ToList());
+
+
+                    break;
             }
 
             return dataTable;

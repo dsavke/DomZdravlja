@@ -90,8 +90,10 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Aktivno")]
         [SqlName("Aktivno")]
-        [GenerateComponent(ComponentType.Tekst)]
-        [Invisible(Use.InsertAndUpdate)]
+        [GenerateComponent(ComponentType.RadioButton)]
+        [OpcijeRadioButton("Da", "Ne", 1, 0)]
+        [Invisible(Use.Insert)]
+        [Editing(Use.Update)]
         public int Aktivno
         {
             get
@@ -143,21 +145,10 @@ namespace DomZdravlja.PropertyClass
             return @"
 
                     UPDATE [dbo].[Cjenovnik]
-                       SET [Aktivno] = 0
+                       SET [Aktivno] = @Aktivno,
+                        [NazivUsluge] = @NazivUsluge
                      WHERE CjenovnikID = @CjenovnikID
-                    
-
-                    INSERT INTO [dbo].[Cjenovnik]
-                               ([NazivUsluge]
-                               ,[CijenaUsluge]
-                               ,[DatumUspostavljanjaCijene]
-                               ,[Aktivno])
-                         VALUES
-                               (@NazivUsluge
-                               ,@CijenaUsluge
-                               ,GETDATE()
-                               ,1)
-                    
+                   
                     ";
         }
 
@@ -212,9 +203,9 @@ namespace DomZdravlja.PropertyClass
             NazivUsluge.Value = nazivUsluge;
             list.Add(NazivUsluge);
 
-            SqlParameter CijenaUsluge = new SqlParameter("@CijenaUsluge", System.Data.SqlDbType.Money);
-            CijenaUsluge.Value = cijenaUsluge;
-            list.Add(CijenaUsluge);
+            SqlParameter AktivnoPar = new SqlParameter("@Aktivno", System.Data.SqlDbType.TinyInt);
+            AktivnoPar.Value = aktivno;
+            list.Add(AktivnoPar);
 
             return list;
         }

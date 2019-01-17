@@ -11,6 +11,7 @@ namespace DomZdravlja
         Today,
         DefaultDate,
         LoginUser,
-        StartPrize
+        StartPrize,
+        ProvjeraDaLiJeOsiguran
     }
 }

@@ -28,6 +28,7 @@ namespace DomZdravlja
         Rezervacija,
         FaktorRizika,
         KartonNema,
-        Rizici
+        Rizici,
+        PacijentNijeOsiguran
     }
 }

@@ -134,7 +134,7 @@ namespace DomZdravlja.PropertyClass
                                ,@SumaLinije);
 
                     UPDATE [dbo].[Racun]
-                           SET [SumaRacuna] = @SumaLinije - (SELECT dbo.Racun.Popust FROM dbo.Racun WHERE RacunID = @RacunID)
+                           SET [SumaRacuna] = @SumaLinije - (@SumaLinije * ((0.01) * (SELECT dbo.Racun.Popust FROM dbo.Racun WHERE RacunID = @RacunID)))
                          WHERE RacunID = @RacunID
                     ";
         }
@@ -161,7 +161,10 @@ namespace DomZdravlja.PropertyClass
                           ,[CijenaID] = @CijenaID
                           ,[Kolicina] = @Kolicina
                           ,[SumaLinije] = @SumaLinije
-                     WHERE DetaljiRacunaID = @DetaljiRacunaID
+                     WHERE DetaljiRacunaID = @DetaljiRacunaID;
+                    UPDATE [dbo].[Racun]
+                           SET [SumaRacuna] = @SumaLinije - (@SumaLinije * ((0.01) * (SELECT dbo.Racun.Popust FROM dbo.Racun WHERE RacunID = @RacunID)))
+                         WHERE RacunID = @RacunID
                     ";
         }
 
