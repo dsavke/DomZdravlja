@@ -144,6 +144,7 @@ namespace DomZdravlja.PropertyClass
                       ,[Termin]
                       ,[DoktorID]
                  FROM [dbo].[Rezervacije]
+                 WHERE [Termin] > GETDATE()
                     ";
         }
         #endregion

@@ -704,10 +704,14 @@ namespace DomZdravlja
                     }
                 }
 
+           // MessageBox.Show(data.Rows.Count.ToString());
+            //MessageBox.Show(dgvNovi.Rows.Count.ToString());
                 noviPage1.Controls.Remove(data);
                 noviPage1.Controls.Add(dgvNovi);
+           // MessageBox.Show(data.Rows.Count.ToString());
+            //MessageBox.Show(dgvNovi.Rows.Count.ToString());
 
-                data = urediGridView(data) as CustomDataGridView;
+            data = urediGridView(data) as CustomDataGridView;
               
           
 
@@ -2187,7 +2191,7 @@ namespace DomZdravlja
             }
         }
 
-        private DataGridView urediGridView(DataGridView data)
+        private CustomDataGridView urediGridView(CustomDataGridView data)
         {
             foreach (DataGridViewColumn column in data.Columns)
             {
