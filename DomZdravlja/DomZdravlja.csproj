@@ -290,5 +290,15 @@
   <ItemGroup>
     <None Include="Resources\reload %281%29.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chevron-up.png" />
+    <None Include="Resources\angle-arrow-down.png" />
+    <None Include="Resources\icon.png" />
+    <None Include="Resources\add-icon.png" />
+    <None Include="Resources\up-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\thin-arrowheads-pointing-down.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

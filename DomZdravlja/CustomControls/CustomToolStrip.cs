@@ -18,7 +18,6 @@ namespace DomZdravlja.CustomControls
         public event EventHandler DodajClick;
         public event EventHandler PretragaClick;
         public event EventHandler AzurirajClick;
-        public event EventHandler ObrisiClick;
 
         public event EventHandler PrviClick;
         public event EventHandler DoleClick;
@@ -67,12 +66,7 @@ namespace DomZdravlja.CustomControls
             set { tsbtnPretraga.Enabled = value; }
         }
 
-        public bool Obrisi
-        {
-            get { return tsbtnObrisi.Enabled; }
-            set { tsbtnObrisi.Enabled = value; }
-        }
-
+       
         public CustomToolStrip()
         {
             InitializeComponent();
@@ -128,11 +122,6 @@ namespace DomZdravlja.CustomControls
             if (AzurirajClick != null)
                 AzurirajClick(sender, e);
         }
-
-        private void tsbtnObrisi_Click(object sender, EventArgs e)
-        {
-            if (ObrisiClick != null)
-                ObrisiClick(sender, e);
-        }
+        
     }
 }

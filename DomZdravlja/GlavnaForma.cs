@@ -522,7 +522,6 @@ namespace DomZdravlja
                 CustomToolStrip.DodajClick += CustomToolStrip_DodajClick;
                 CustomToolStrip.AzurirajClick += CustomToolStrip_AzurirajClick;
                 CustomToolStrip.PretragaClick += CustomToolStrip_PretragaClick;
-                CustomToolStrip.ObrisiClick += CustomToolStrip_ObrisiClick;
                 CustomToolStrip.GoreClick += CustomToolStrip_GoreClick;
                 CustomToolStrip.DoleClick += CustomToolStrip_DoleClick;
                 CustomToolStrip.PrviClick += CustomToolStrip_PrviClick;
@@ -1742,38 +1741,34 @@ namespace DomZdravlja
             ToolStripMenuItem item1 = new ToolStripMenuItem();
             item1.Text = "Azuriraj";
             item1.Image = Resources.edit;
-
-            ToolStripMenuItem item2 = new ToolStripMenuItem();
-            item2.Text = "Obrisi";
-            item2.Image = Resources.add;
+            
 
             ToolStripSeparator tool1 = new ToolStripSeparator();
 
             ToolStripMenuItem item3 = new ToolStripMenuItem();
             item3.Text = "Gore";
-            item3.Image = Resources.edit;
+            item3.Image = Resources.up_arrow;
             item3.Click += CustomToolStrip_GoreClick;
 
             ToolStripMenuItem item4 = new ToolStripMenuItem();
             item4.Text = "Dole";
-            item4.Image = Resources.add;
+            item4.Image = Resources.angle_arrow_down;
             item4.Click += CustomToolStrip_DoleClick;
 
             ToolStripMenuItem item5 = new ToolStripMenuItem();
             item5.Text = "Prvi";
-            item5.Image = Resources.edit;
+            item5.Image = Resources.chevron_up;
             item5.Click += CustomToolStrip_PrviClick;
 
             ToolStripMenuItem item6 = new ToolStripMenuItem();
             item6.Text = "Zadnji";
-            item6.Image = Resources.add;
+            item6.Image = Resources.thin_arrowheads_pointing_down;
             item6.Click += CustomToolStrip_ZadnjiClick;
 
 
             contextMenuStrip.Items.Add(item);
             contextMenuStrip.Items.Add(tool);
             contextMenuStrip.Items.Add(item1);
-            contextMenuStrip.Items.Add(item2);
             contextMenuStrip.Items.Add(tool1);
             contextMenuStrip.Items.Add(item6);
             contextMenuStrip.Items.Add(item4);
@@ -2055,7 +2050,6 @@ namespace DomZdravlja
             kreirajTabove();
             CustomToolStrip.Dodaj = false;
             CustomToolStrip.Azuriraj = false;
-            CustomToolStrip.Obrisi = false;
         }
 
         private void Rezervacija_ControlClick(object sender, EventArgs e)
@@ -2070,7 +2064,6 @@ namespace DomZdravlja
             kreirajToolStrip();
             dodajPoljaZaPretragu();
             kreirajTabove();
-            CustomToolStrip.Obrisi = false;
         }
 
         private void Karton_ControlClick(object sender, EventArgs e)
@@ -2085,7 +2078,6 @@ namespace DomZdravlja
             kreirajToolStrip();
             dodajPoljaZaPretragu();
             kreirajTabove();
-            CustomToolStrip.Obrisi = false;
         }
 
         private void FaktorRizika_ControlClick(object sender, EventArgs e)
@@ -2140,7 +2132,6 @@ namespace DomZdravlja
             kreirajToolStrip();
             dodajPoljaZaPretragu();
             kreirajTabove();
-            CustomToolStrip.Obrisi = false;
         }
 
         private void Pacijent_ControlClick(object sender, EventArgs e)

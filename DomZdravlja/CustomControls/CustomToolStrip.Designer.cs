@@ -38,7 +38,6 @@
             this.tsbtnDodaj = new System.Windows.Forms.ToolStripButton();
             this.tsbtnAzuriraj = new System.Windows.Forms.ToolStripButton();
             this.tsbtnPretraga = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnObrisi = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,12 +55,11 @@
             this.toolStripSeparator1,
             this.tsbtnDodaj,
             this.tsbtnAzuriraj,
-            this.tsbtnPretraga,
-            this.tsbtnObrisi});
-            this.toolStrip1.Location = new System.Drawing.Point(555, 0);
+            this.tsbtnPretraga});
+            this.toolStrip1.Location = new System.Drawing.Point(448, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStrip1.Size = new System.Drawing.Size(472, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(322, 27);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -117,7 +115,7 @@
             this.tsbtnDodaj.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnDodaj.Image")));
             this.tsbtnDodaj.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnDodaj.Name = "tsbtnDodaj";
-            this.tsbtnDodaj.Size = new System.Drawing.Size(74, 24);
+            this.tsbtnDodaj.Size = new System.Drawing.Size(62, 24);
             this.tsbtnDodaj.Text = "Dodaj";
             this.tsbtnDodaj.ToolTipText = "Dodaj";
             this.tsbtnDodaj.Click += new System.EventHandler(this.tsbtnDodaj_Click);
@@ -127,7 +125,7 @@
             this.tsbtnAzuriraj.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnAzuriraj.Image")));
             this.tsbtnAzuriraj.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnAzuriraj.Name = "tsbtnAzuriraj";
-            this.tsbtnAzuriraj.Size = new System.Drawing.Size(84, 24);
+            this.tsbtnAzuriraj.Size = new System.Drawing.Size(71, 24);
             this.tsbtnAzuriraj.Text = "Ažuriraj";
             this.tsbtnAzuriraj.Click += new System.EventHandler(this.tsbtnAzuriraj_Click);
             // 
@@ -136,27 +134,17 @@
             this.tsbtnPretraga.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnPretraga.Image")));
             this.tsbtnPretraga.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnPretraga.Name = "tsbtnPretraga";
-            this.tsbtnPretraga.Size = new System.Drawing.Size(89, 24);
+            this.tsbtnPretraga.Size = new System.Drawing.Size(75, 24);
             this.tsbtnPretraga.Text = "Pretraga";
             this.tsbtnPretraga.Click += new System.EventHandler(this.tsbtnPretraga_Click);
             // 
-            // tsbtnObrisi
-            // 
-            this.tsbtnObrisi.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnObrisi.Image")));
-            this.tsbtnObrisi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnObrisi.Name = "tsbtnObrisi";
-            this.tsbtnObrisi.Size = new System.Drawing.Size(72, 24);
-            this.tsbtnObrisi.Text = "Obriši";
-            this.tsbtnObrisi.Click += new System.EventHandler(this.tsbtnObrisi_Click);
-            // 
             // CustomToolStrip
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.toolStrip1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "CustomToolStrip";
-            this.Size = new System.Drawing.Size(1211, 41);
+            this.Size = new System.Drawing.Size(908, 33);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -169,7 +157,6 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsbtnDodaj;
         private System.Windows.Forms.ToolStripButton tsbtnAzuriraj;
-        private System.Windows.Forms.ToolStripButton tsbtnObrisi;
         private System.Windows.Forms.ToolStripButton tsbtnPretraga;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsbtnZadnji;
