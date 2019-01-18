@@ -618,18 +618,12 @@ namespace DomZdravlja
             UCTekst pom = null;
             bool postoji = false;
             var itemsPretraga = pomPretraga.Controls;
-            List<UCDatum> listaDatuma = new List<UCDatum>();
             UCTekst[] listaTxt = { null, null, null };
 
 
             foreach (var item in itemsPretraga)
             {
-                if(item.GetType().Equals(typeof(UCDatum)))
-                {
-                    postoji = true;
-                    listaDatuma.Add(item as UCDatum);
-                }
-                else
+                if(item.GetType() == typeof(UCTekst))
                 {
                     pom = item as UCTekst;
                     for (int i = 0; i < 3; i++)
@@ -648,7 +642,6 @@ namespace DomZdravlja
             }
             if (!postoji)
                 return;
-
             if (Tip != Tip.Karton)
             {
                 CustomDataGridView data = izgled();
@@ -716,10 +709,15 @@ namespace DomZdravlja
                     }
                 }
 
-                /*CustomDataGridView data = izgled();
-                data.Tip = Tip;
-                data.DataSource = vratiPodatke(Tip, null);*/
+                int index;
+                if(!int.TryParse(listaTxt[0].Value.ToString(), out index)) return;
 
+                int i = 0;
+
+                i = propertyInterfaces[7].Cast<PropertyKarton>().Where(karton => karton.KartonID == index).Select(k => k.KartonID).FirstOrDefault();
+  
+                if (i == 0) return;
+                
                 CustomTabPage noviPage1 = new CustomTabPage() { State = State.Search, Naziv = "OSNOVNE INFORMACIJE" };
                 CustomTabPage noviPage2 = new CustomTabPage() { State = State.Search, Naziv = "FAKTORI RIZIKA" };
                 CustomTabPage noviPage3 = new CustomTabPage() { State = State.Search, Naziv = "PREGLEDI" };
@@ -729,8 +727,8 @@ namespace DomZdravlja
                 pomTabControl.TabPages.Add(noviPage3);
 
                 CustomDataGridView data = izgled();
-                data.Tip = Tip.Osoba;
-                data.DataSource = vratiPodatke(Tip.Osoba, Convert.ToInt32(listaTxt[0].Value));
+                data.Tip = Tip.Karton;
+                data.DataSource = vratiPodatke(Tip.Karton, i);
                 data = urediGridView(data) as CustomDataGridView;
                 data.Dock = DockStyle.Fill;
                 data.BorderStyle = BorderStyle.None;
@@ -741,7 +739,7 @@ namespace DomZdravlja
 
                 CustomDataGridView data1 = izgled();
                 data1.Tip = Tip.FaktorRizika;
-                data1.DataSource = vratiPodatke(Tip.FaktorRizika, Convert.ToInt32(listaTxt[0].Value));
+                data1.DataSource = vratiPodatke(Tip.FaktorRizika, i);
                 data1.Dock = DockStyle.Fill;
                 data1.BorderStyle = BorderStyle.None;
                 data1.BackgroundColor = Color.FromArgb(255, 255, 255);
@@ -752,7 +750,7 @@ namespace DomZdravlja
 
                 CustomDataGridView data2 = izgled();
                 data2.Tip = Tip.Pregled;
-                data2.DataSource = vratiPodatke(Tip.Pregled, Convert.ToInt32(listaTxt[0].Value));
+                data2.DataSource = vratiPodatke(Tip.Pregled, i);
                 data2.Dock = DockStyle.Fill;
                 data2.BorderStyle = BorderStyle.None;
                 data2.BackgroundColor = Color.FromArgb(255, 255, 255);
@@ -2297,6 +2295,7 @@ namespace DomZdravlja
                                          on pacijent.DoktorID equals doktor.ZaposleniID
                                          join osoba1 in (propertyInterfaces[9].Cast<PropertyOsoba>())
                                          on doktor.OsobaID equals osoba1.OsobaID
+                                     where p.KartonID == id || id == null
                                      select new {
                                          Broj_kartona = p.KartonID,
                                          Ime = osoba.Ime, Prezime = osoba.Prezime, JMB = osoba.JMB, Pol = osoba.Pol, Datum_rodjenja = osoba.DatumRodjenja,
@@ -2661,6 +2660,7 @@ namespace DomZdravlja
                    
                     var qurySvi = (
                                                         from o in (propertyInterfaces[9].Cast<PropertyOsoba>())
+                                                        where o.OsobaID == id || id == null
                                                         select new
                                                         {
                                                             o.Ime

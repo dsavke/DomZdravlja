@@ -113,7 +113,6 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Datum i vrijeme izdavanja")]
         [SqlName("VrijemeIzdavanja")]
-        [MainSearch(null)]
         [GenerateComponent(ComponentType.Datum)]
         [DefaultPropertValue(TargetValue.Today, "")]
         public DateTime VrijemeIzdavanja
