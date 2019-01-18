@@ -459,13 +459,7 @@ namespace DomZdravlja
                 data.BackgroundColor = Color.FromArgb(255, 255, 255);
                 data.Focus();
 
-                if (data.Rows.Count == 0 || data.Rows.Count == 1)
-                {
-                    CustomToolStrip.Gore = false;
-                    CustomToolStrip.Prvi = false;
-                    CustomToolStrip.Dole = false;
-                    CustomToolStrip.Zadnji = false;
-                }
+                IskljuciDugmice(data);
 
 
             }
@@ -708,6 +702,10 @@ namespace DomZdravlja
                 noviPage1.Controls.Remove(data);
                 noviPage1.Controls.Add(dgvNovi);
 
+
+                IskljuciDugmice(dgvNovi);
+                
+
                 data = urediGridView(data) as CustomDataGridView;
             }else
             {
@@ -766,6 +764,17 @@ namespace DomZdravlja
                 
             }
 
+        }
+
+        private void IskljuciDugmice(CustomDataGridView dgvNovi)
+        {
+            if (dgvNovi.Rows.Count == 0 || dgvNovi.Rows.Count == 1)
+            {
+                CustomToolStrip.Gore = false;
+                CustomToolStrip.Prvi = false;
+                CustomToolStrip.Dole = false;
+                CustomToolStrip.Zadnji = false;
+            }
         }
 
         private void CustomToolStrip_AzurirajClick(object sender, EventArgs e)
