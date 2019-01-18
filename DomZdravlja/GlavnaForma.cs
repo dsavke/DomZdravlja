@@ -446,7 +446,9 @@ namespace DomZdravlja
                 tabControl.SelectedTab.Controls.Add(noviTabControl);
 
                 CustomDataGridView data = izgled();
-             
+
+                noviTabControl.TabIndexChanged += NoviTabControl_TabIndexChanged;
+
                 data.DataSource = vratiPodatke(Tip, null);
                 data.Tip = Tip;
                 
@@ -465,6 +467,19 @@ namespace DomZdravlja
             }
         }
 
+        private void NoviTabControl_TabIndexChanged(object sender, EventArgs e)
+        {
+           
+            CustomTabPage control = sender as CustomTabPage;
+            CustomDataGridView pom = control.Controls[0] as CustomDataGridView;
+            IskljuciDugmice(pom);
+        }
+
+        private void Data_SelectionChanged(object sender, EventArgs e)
+        {
+            //CustomDataGridView pom = sender as CustomDataGridView;
+            //IskljuciDugmice(pom);
+        }
 
         private void kreirajPoljaZaPretragu(PropertyInterface myProperty, FlowLayoutPanel flowLayoutPanel)
         {
@@ -771,6 +786,12 @@ namespace DomZdravlja
                 CustomToolStrip.Prvi = false;
                 CustomToolStrip.Dole = false;
                 CustomToolStrip.Zadnji = false;
+            }
+            else
+            {
+                dgvNovi.Rows[0].Selected = true;
+                CustomToolStrip.Dole = true;
+                CustomToolStrip.Zadnji = true;
             }
         }
 
