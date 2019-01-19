@@ -831,9 +831,9 @@ namespace DomZdravlja
 
                 dodajMetoda(sender, e, myProperty, null, Use.Update);
                 populateControls(tabPage, dataRow, data.Columns, myProperty);
-
+                
             }
-
+            
         }
 
         private void populateControls(CustomTabPage tabPage, DataGridViewRow dataRow, DataGridViewColumnCollection columnCollection, PropertyInterface propertyInterface)
@@ -1284,7 +1284,15 @@ namespace DomZdravlja
                         SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, propertyInterface.GetUpdateQuery(), propertyInterface.GetUpdateParameters().ToArray());
                         MessageBox.Show("Uspjesno ste azurirali!");
                     }
-                   
+
+                    CustomTabPage tabPage = tabControl.TabPages[0] as CustomTabPage;
+
+                    CustomDataGridView c = (tabPage.Controls[2] as CustomTabControl).TabPages[0].Controls[0] as CustomDataGridView;
+
+                    //MessageBox.Show(c.GetType().ToString());
+
+                    c.DataSource = vratiPodatke(c.Tip, null);
+
                     tabControl.TabPages.Remove(tabControl.SelectedTab);
                     rijesiLookup();
                     if (!provjeriKreiraj(State.Lookup))
