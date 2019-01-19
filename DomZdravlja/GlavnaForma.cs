@@ -9,9 +9,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -90,7 +92,7 @@ namespace DomZdravlja
                 PropertyCjenovnik pomCijena = new PropertyCjenovnik();
                 pomCijena.CjenovnikID = Convert.ToInt32(dataReader["CjenovnikID"]);
                 pomCijena.NazivUsluge = dataReader["NazivUsluge"].ToString();
-                pomCijena.CijenaUsluge = Convert.ToDecimal(dataReader["CijenaUsluge"]);
+                pomCijena.CijenaUsluge = Math.Round(Convert.ToDecimal(dataReader["CijenaUsluge"]), 2);
                 pomCijena.DatumUspostavljanjaCijene = Convert.ToDateTime(dataReader["DatumUspostavljanjaCijene"]);
                 pomCijena.Aktivno = Convert.ToInt32(dataReader["Aktivno"]);
                 propertyInterfaces[2].Add(pomCijena);
@@ -371,6 +373,10 @@ namespace DomZdravlja
             InitializeComponent();
             Logovan = logovan;
             dodajList();
+            CultureInfo culture = (CultureInfo)CultureInfo.CurrentCulture.Clone();
+            culture.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
+            culture.DateTimeFormat.LongTimePattern = "dd/MM/yyyy HH:mm";
+            Thread.CurrentThread.CurrentCulture = culture;
             myProperty = null;
             ucitajPacijente();
             trenutnoStanje = State.Main;
@@ -2227,7 +2233,6 @@ namespace DomZdravlja
 
         private void zatvoriSve()
         {
-
             for (int i = 0; i < tabControl.TabPages.Count; i++)
             {
                 tabControl.TabPages.RemoveAt(i);
