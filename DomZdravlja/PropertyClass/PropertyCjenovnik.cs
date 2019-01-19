@@ -118,7 +118,6 @@ namespace DomZdravlja.PropertyClass
                           ,[DatumUspostavljanjaCijene] 
                           ,[Aktivno]  
                       FROM [dbo].[Cjenovnik]
-                    WHERE [AKTIVNO] = 1
                     ";
         }
 
@@ -136,7 +135,6 @@ namespace DomZdravlja.PropertyClass
                                ,@CijenaUsluge
                                ,GETDATE()
                                ,1)
-                    
                     ";
         }
 

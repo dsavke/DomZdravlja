@@ -913,6 +913,7 @@ namespace DomZdravlja
                                 if (t == Tip.OsobaBezPosla || t == Tip.Osoba) t = Tip.SveOsobe;
                                 if (t == Tip.KartonNema) t = Tip.Karton;
                                 if (t == Tip.NoviRacun) t = Tip.Racun;
+                                if (t == Tip.Cjenovnik) t = Tip.CjenovnikZaSve;
 
                                 DataTable data = vratiPodatke(t, null);
                                 data = urediDataTable(data);
@@ -955,7 +956,8 @@ namespace DomZdravlja
                                 if (t == Tip.OsobaBezPosla || t == Tip.Osoba) t = Tip.SveOsobe;
                                 if (t == Tip.KartonNema) t = Tip.Karton;
                                 if (t == Tip.NoviRacun) t = Tip.Racun;
-                   
+                                if (t == Tip.Cjenovnik) t = Tip.CjenovnikZaSve;
+
                                 DataTable data = vratiPodatke(t, null);
                                 data = urediDataTable(data);
 
@@ -1046,6 +1048,7 @@ namespace DomZdravlja
                 if (t == Tip.OsobaBezPosla || t == Tip.Osoba) t = Tip.SveOsobe;
                 if (t == Tip.NoviRacun) t = Tip.Racun;
                 if (t == Tip.KartonNema) t = Tip.Karton;
+                if (t == Tip.Cjenovnik) t = Tip.CjenovnikZaSve;
 
                 DataTable data = vratiPodatke(t, null);
                 data = urediDataTable(data);
@@ -1422,6 +1425,14 @@ namespace DomZdravlja
                         }
                     }
 
+                    if (propertyInterface.GetType() == typeof(PropertyRacun))
+                    {
+                        if (uCLookup.Naziv == "Šifra pacijenta")
+                        {
+                            uCLookup.LookupTextChanged += ProvjerDaLiJePacijentOsiguran_LookupTextChanged1;
+                        }
+                    }
+
                 }
                 else if (componentType == ComponentType.InsertLookup)
                 {
@@ -1469,6 +1480,26 @@ namespace DomZdravlja
             panel.Controls.Add(btnOdustani);
 
             tabControl.SelectedTab.Controls.Add(panel);
+        }
+
+        private void ProvjerDaLiJePacijentOsiguran_LookupTextChanged1(object sender, EventArgs e)
+        {
+            UCLookup lookupPacijent = findControl("Šifra pacijenta") as UCLookup;
+            int index = Convert.ToInt32(lookupPacijent.Value);
+
+            var i = propertyInterfaces[1].Cast<PropertyPacijent>().Where(pacijent => pacijent.PacijentID == index).FirstOrDefault();
+
+            if (i == null) return;
+
+            UCTekst pomPopust = findControl("Popust") as UCTekst;
+            if (i.Osiguran == 1)
+            {
+                pomPopust.Value = 90.ToString();
+            }
+            else
+            {
+                pomPopust.Value = 0.ToString();
+            }
         }
 
         private void urediButton(Button btn, string tekst, int width, int height, Image image, Point location)
@@ -2179,6 +2210,10 @@ namespace DomZdravlja
             kreirajToolStrip();
             dodajPoljaZaPretragu();
             kreirajTabove();
+            if (Logovan.RadnoMjesto == "Kancelarija")
+            {
+                CustomToolStrip.Dodaj = false;
+            }
         }
         #endregion
 
@@ -2471,7 +2506,6 @@ namespace DomZdravlja
                                         on racun.ZaposleniID equals prijem.ZaposleniID
                                         join osoba1 in (propertyInterfaces[9].Cast<PropertyOsoba>())
                                             on prijem.OsobaID equals osoba1.OsobaID
-                                        where pacijent.Osiguran == 1
                                         select new {
                                             Broj_računa = racun.RacunID,
                                             Ime_i_prezime_pacijenta = (osoba2.Ime + " " + osoba2.Prezime),
@@ -2533,6 +2567,15 @@ namespace DomZdravlja
                                          );
                     dataTable = ListToDataTable.ToDataTable(queryCjenovnik.ToList());
                     
+                    break;
+                case Tip.CjenovnikZaSve:
+                    ucitaj(2);
+                    var queryCjenovnikZaSve = (
+                                            from cjenovnik in (propertyInterfaces[2].Cast<PropertyCjenovnik>())
+                                            select new { Naziv_usluge = cjenovnik.NazivUsluge, Cijena_usluge = cjenovnik.CijenaUsluge, Šifra_cjenovnika_hide = cjenovnik.CjenovnikID, Datum_uspostavljanja_cijene_hide = cjenovnik.DatumUspostavljanjaCijene, Aktivno_hide = cjenovnik.Aktivno }
+                                         );
+                    dataTable = ListToDataTable.ToDataTable(queryCjenovnikZaSve.ToList());
+
                     break;
                 case Tip.MedicinskaSestra:
                     ucitaj(0);
@@ -2850,36 +2893,7 @@ namespace DomZdravlja
                     dataTable = ListToDataTable.ToDataTable(queryRizic.ToList());
 
                     break;
-                case Tip.PacijentNijeOsiguran:
-                    ucitaj(1);
-                    ucitaj(9);
-                    var queryPacijentNijeOsiguran = (
-                                        from p in (propertyInterfaces[1].Cast<PropertyPacijent>())
-                                        join osoba in (propertyInterfaces[9].Cast<PropertyOsoba>())
-                                        on p.OsobaID equals osoba.OsobaID
-                                        where p.Osiguran == 1
-                                        select new
-                                        {
-                                            Ime = osoba.Ime,
-                                            Prezime = osoba.Prezime,
-                                            JMB = osoba.JMB,
-                                            osoba.Pol,
-                                            Mjesto_rodjenja = osoba.MjestoRodjenja,
-                                            Datum_rodjenja = osoba.DatumRodjenja,
-                                            Adresa = osoba.Adresa,
-                                            osoba.Kontakt,
-                                            Osiguran = p.Osiguran,
-                                            Životni_status_hide = osoba.ZivotniStatus,
-                                            Šifra_pacijenta_hide = p.PacijentID,
-                                            Šifra_doktora_hide = p.DoktorID,
-                                            Šifra_osobe_hide = p.OsobaID
-                                        }
-                                        );
-
-                    dataTable = ListToDataTable.ToDataTable(queryPacijentNijeOsiguran.ToList());
-
-
-                    break;
+                
             }
 
             return dataTable;

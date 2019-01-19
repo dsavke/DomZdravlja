@@ -29,6 +29,6 @@ namespace DomZdravlja
         FaktorRizika,
         KartonNema,
         Rizici,
-        PacijentNijeOsiguran
+        CjenovnikZaSve
     }
 }
