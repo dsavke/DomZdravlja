@@ -300,5 +300,21 @@
   <ItemGroup>
     <None Include="Resources\thin-arrowheads-pointing-down.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\faktorRizika2.png" />
+    <None Include="Resources\recepcija2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\karton2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pharmacy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\medical-result.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\id.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

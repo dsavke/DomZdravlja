@@ -40,6 +40,7 @@
             this.ikonica.Location = new System.Drawing.Point(8, 11);
             this.ikonica.Name = "ikonica";
             this.ikonica.Size = new System.Drawing.Size(32, 32);
+            this.ikonica.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ikonica.TabIndex = 0;
             this.ikonica.TabStop = false;
             this.ikonica.Click += new System.EventHandler(this.PanelTabControl_Click);

@@ -1900,9 +1900,9 @@ namespace DomZdravlja
             panelTabControl.ControlClick += Pocetna_ControlClick;
             PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("rezervacija"), "REDOSLIJED DOLAZAKA");
             panelTabControl3.ControlClick += RedoslijedDolazaka_ControlClick;
-            PanelTabControl panelTabControl4 = new PanelTabControl((Image)resources.GetObject("karton"), "KARTON");
+            PanelTabControl panelTabControl4 = new PanelTabControl((Image)resources.GetObject("karton2"), "KARTON");
             panelTabControl4.ControlClick += Karton_ControlClick;
-            PanelTabControl panelTabControl9 = new PanelTabControl((Image)resources.GetObject("karton"), "FAKTOR RIZIKA");
+            PanelTabControl panelTabControl9 = new PanelTabControl((Image)resources.GetObject("faktorRizika2"), "FAKTOR RIZIKA");
             panelTabControl9.ControlClick += FaktorRizika_ControlClick;
             PanelTabControl panelTabControl5 = new PanelTabControl((Image)resources.GetObject("pregled"), "PREGLED");
             panelTabControl5.ControlClick += Pregled_ControlClick;
@@ -1950,7 +1950,7 @@ namespace DomZdravlja
             panelTabControl.ControlClick += Pocetna_ControlClick;
             PanelTabControl panelTabControl9 = new PanelTabControl((Image)resources.GetObject("rezervacija"), "REZERVACIJA");
             panelTabControl9.ControlClick += Rezervacija_ControlClick;
-            PanelTabControl panelTabControl1 = new PanelTabControl((Image)resources.GetObject("rezervacija"), "RECEPCIJA");
+            PanelTabControl panelTabControl1 = new PanelTabControl((Image)resources.GetObject("recepcija2"), "RECEPCIJA");
             panelTabControl1.ControlClick += Recepcija_ControlClick;
             PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("pacijent"), "PACIJENT");
             panelTabControl3.ControlClick += Pacijent_ControlClick;
