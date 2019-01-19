@@ -316,5 +316,14 @@
   <ItemGroup>
     <None Include="Resources\id.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\received_343080329865412.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\received_2231381277099932.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x-button.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

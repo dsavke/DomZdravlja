@@ -1288,7 +1288,7 @@ namespace DomZdravlja
                     else
                     {
                         SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, propertyInterface.GetUpdateQuery(), propertyInterface.GetUpdateParameters().ToArray());
-                        MessageBox.Show("Uspjesno ste azurirali!");
+                        MessageBox.Show("Uspjesno ste ažurirali!");
                     }
 
                     CustomTabPage tabPage = tabControl.TabPages[0] as CustomTabPage;
