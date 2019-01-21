@@ -408,7 +408,7 @@ namespace DomZdravlja
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             if ((sender as CustomTabControl).TabPages.Count > 0)
-            { 
+            {
                 if ((tabControl.SelectedTab as CustomTabPage).State != State.Lookup)
                 {
                     rijesiLookup();
@@ -442,7 +442,7 @@ namespace DomZdravlja
         {
             if (tabControl.SelectedIndex != -1 && myProperty != null)
             {
-                CustomTabControl noviTabControl = new CustomTabControl() { HeaderColor = Color.FromArgb(255, 255, 255)};
+                CustomTabControl noviTabControl = new CustomTabControl() { HeaderColor = Color.FromArgb(255, 255, 255) };
                 noviTabControl.ShowClosingButton = true;
                 noviTabControl.Location = new Point(5, 300);
                 noviTabControl.Width = 890;
@@ -452,14 +452,14 @@ namespace DomZdravlja
                 noviTabControl.TabPages.Add(tabPage);
                 tabControl.SelectedTab.Controls.Add(noviTabControl);
 
-                CustomDataGridView data = izgled();                
+                CustomDataGridView data = izgled();
 
                 noviTabControl.TabIndexChanged += NoviTabControl_TabIndexChanged;
                 noviTabControl.SelectedIndexChanged += NoviTabControl_SelectedIndexChanged;
 
                 data.DataSource = vratiPodatke(Tip, null);
                 data.Tip = Tip;
-                
+
                 tabPage.Controls.Add(data);
 
                 data = urediGridView(data) as CustomDataGridView;
@@ -488,19 +488,18 @@ namespace DomZdravlja
             {
 
             }
-            
+
         }
 
         private void NoviTabControl_TabIndexChanged(object sender, EventArgs e)
         {
-            
-            
+
+
         }
 
         private void Data_SelectionChanged(object sender, EventArgs e)
         {
-            //CustomDataGridView pom = sender as CustomDataGridView;
-            //IskljuciDugmice(pom);
+
         }
 
         private void kreirajPoljaZaPretragu(PropertyInterface myProperty, FlowLayoutPanel flowLayoutPanel)
@@ -631,7 +630,7 @@ namespace DomZdravlja
 
         private void CustomToolStrip_ObrisiClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+
         }
 
         private void CustomToolStrip_PretragaClick(object sender, EventArgs e)
@@ -642,8 +641,8 @@ namespace DomZdravlja
 
             foreach (var item in items)
             {
-                
-                if(item.GetType().Equals(typeof(FlowLayoutPanel)))
+
+                if (item.GetType().Equals(typeof(FlowLayoutPanel)))
                 {
                     pomPretraga = item as FlowLayoutPanel;
                 }
@@ -656,11 +655,11 @@ namespace DomZdravlja
             bool postoji = false;
             var itemsPretraga = pomPretraga.Controls;
             UCTekst[] listaTxt = { null, null, null };
-
+            pomTabControl.PritisnutX += PomTabControl_PritisnutX;
 
             foreach (var item in itemsPretraga)
             {
-                if(item.GetType() == typeof(UCTekst))
+                if (item.GetType() == typeof(UCTekst))
                 {
                     pom = item as UCTekst;
                     for (int i = 0; i < 3; i++)
@@ -696,6 +695,7 @@ namespace DomZdravlja
                 pomTabControl.TabPages.Add(noviPage1);
                 pomTabControl.SelectedTab = noviPage1;
                 noviPage1.Controls.Add(data);
+
 
                 CustomDataGridView dgvNovi = izgled();
                 dgvNovi.Tip = Tip;
@@ -733,10 +733,11 @@ namespace DomZdravlja
 
 
                 IskljuciDugmice(dgvNovi);
-                
+
 
                 data = urediGridView(data) as CustomDataGridView;
-            }else
+            }
+            else
             {
                 foreach (CustomTabPage p in pomTabControl.TabPages)
                 {
@@ -747,14 +748,14 @@ namespace DomZdravlja
                 }
 
                 int index;
-                if(!int.TryParse(listaTxt[0].Value.ToString(), out index)) return;
+                if (!int.TryParse(listaTxt[0].Value.ToString(), out index)) return;
 
                 int i = 0;
 
                 i = propertyInterfaces[7].Cast<PropertyKarton>().Where(karton => karton.KartonID == index).Select(k => k.KartonID).FirstOrDefault();
-  
+
                 if (i == 0) return;
-                
+
                 CustomTabPage noviPage1 = new CustomTabPage() { State = State.Search, Naziv = "OSNOVNE INFORMACIJE" };
                 CustomTabPage noviPage2 = new CustomTabPage() { State = State.Search, Naziv = "FAKTORI RIZIKA" };
                 CustomTabPage noviPage3 = new CustomTabPage() { State = State.Search, Naziv = "PREGLEDI" };
@@ -795,9 +796,34 @@ namespace DomZdravlja
                 noviPage3.Controls.Add(data2);
                 pomTabControl.SelectedTab = noviPage3;
                 data2 = urediGridView(data2) as CustomDataGridView;
-                
+
             }
 
+        }
+
+        private void PomTabControl_PritisnutX(object sender, EventArgs e)
+        {
+            var items = tabControl.SelectedTab.Controls;
+            FlowLayoutPanel pomPretraga = null;
+
+            foreach (var item in items)
+            {
+
+                if (item.GetType().Equals(typeof(FlowLayoutPanel)))
+                {
+                    pomPretraga = item as FlowLayoutPanel;
+                }
+                
+            }
+            var itemsPretraga = pomPretraga.Controls;
+            foreach (var item in itemsPretraga)
+            {
+                if (item.GetType() == typeof(UCTekst))
+                {
+                    UCTekst pom = item as UCTekst;
+                    pom.Value = "";
+                }
+            }
         }
 
         private void IskljuciDugmice(CustomDataGridView dgvNovi)
@@ -853,9 +879,9 @@ namespace DomZdravlja
 
                 dodajMetoda(sender, e, myProperty, null, Use.Update);
                 populateControls(tabPage, dataRow, data.Columns, myProperty);
-                
+
             }
-            
+
         }
 
         private void populateControls(CustomTabPage tabPage, DataGridViewRow dataRow, DataGridViewColumnCollection columnCollection, PropertyInterface propertyInterface)
@@ -864,21 +890,21 @@ namespace DomZdravlja
             var propertie = propertyInterface.GetType().GetProperties();
             PropertyInfo property = null;
 
-            foreach(Control c in tabPage.Controls[0].Controls)
+            foreach (Control c in tabPage.Controls[0].Controls)
             {
-                if(c.GetType() == typeof(UCDatum))
+                if (c.GetType() == typeof(UCDatum))
                 {
                     id = getCellID((c as UCDatum).Naziv, columnCollection);
-                    if(id != -1)
+                    if (id != -1)
                     {
                         (c as UCDatum).Value = Convert.ToDateTime(dataRow.Cells[id].Value);
                     }
                     else
                     {
-                 
+
                     }
                 }
-                else if(c.GetType() == typeof(UCTekst))
+                else if (c.GetType() == typeof(UCTekst))
                 {
                     id = getCellID((c as UCTekst).Naziv, columnCollection);
                     if (id != -1)
@@ -887,10 +913,10 @@ namespace DomZdravlja
                     }
                     else
                     {
-                        
+
                     }
                 }
-                else if(c.GetType() == typeof(UCRadioButton))
+                else if (c.GetType() == typeof(UCRadioButton))
                 {
                     id = getCellID((c as UCRadioButton).Naziv, columnCollection);
                     if (id != -1)
@@ -903,20 +929,21 @@ namespace DomZdravlja
 
                             if (property.IsDefined(typeof(OpcijeRadioButton)))
                             {
-                                if(property.GetCustomAttribute<OpcijeRadioButton>().Vrijednost1.ToString() == vrijednost)
+                                if (property.GetCustomAttribute<OpcijeRadioButton>().Vrijednost1.ToString() == vrijednost)
                                 {
                                     (c as UCRadioButton).postavi(1);
-                                }else (c as UCRadioButton).postavi(2);
+                                }
+                                else (c as UCRadioButton).postavi(2);
                             }
                         }
 
                     }
                     else
                     {
-                        
+
                     }
                 }
-                else if(c.GetType() == typeof(UCLookup))
+                else if (c.GetType() == typeof(UCLookup))
                 {
                     id = getCellID((c as UCLookup).Naziv, columnCollection);
 
@@ -924,7 +951,7 @@ namespace DomZdravlja
                     {
                         property = null;
                         (c as UCLookup).Value = dataRow.Cells[id].Value.ToString();
-                        
+
 
                         property = propertie.Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == (c as UCLookup).Naziv).FirstOrDefault();
                         if (property != null)
@@ -939,30 +966,30 @@ namespace DomZdravlja
 
                                 DataTable data = vratiPodatke(t, null);
                                 data = urediDataTable(data);
-                               
+
                                 var r = from p in data.AsEnumerable()
                                         where p.Field<int>(property.GetCustomAttribute<ForeignKey>().ReferencedColumn) == Convert.ToInt32(dataRow.Cells[id].Value)
                                         select p;
-    
+
                                 DataRow dRow = r.FirstOrDefault();
 
                                 object col1 = property.GetCustomAttribute<ForeignKey>().BackCol1;
                                 object col2 = property.GetCustomAttribute<ForeignKey>().BackCol2;
 
-                                
+
                                 (c as UCLookup).Info = dRow.Field<string>(col1.ToString()) + " "
                                              + (col2.ToString() != "" ? dRow.Field<string>(col2.ToString()) : "");
 
                             }
-                           
+
                         }
                     }
                     else
                     {
-                      
+
                     }
                 }
-                else if(c.GetType() == typeof(UCLookupInsert))
+                else if (c.GetType() == typeof(UCLookupInsert))
                 {
                     id = getCellID((c as UCLookupInsert).Naziv, columnCollection);
                     if (id != -1)
@@ -1002,7 +1029,7 @@ namespace DomZdravlja
                     }
                     else
                     {
-                        
+
                     }
                 }
             }
@@ -1010,9 +1037,9 @@ namespace DomZdravlja
 
         private int getCellID(string columnName, DataGridViewColumnCollection columnCollection)
         {
-            for(int i = 0; i < columnCollection.Count; i++)
+            for (int i = 0; i < columnCollection.Count; i++)
             {
-                if(columnCollection[i].HeaderText == columnName)
+                if (columnCollection[i].HeaderText == columnName)
                 {
                     return i;
                 }
@@ -1026,7 +1053,7 @@ namespace DomZdravlja
         private void CustomToolStrip_DodajClick(object sender, EventArgs e)
         {
 
-            foreach(CustomTabPage tab in tabControl.TabPages)
+            foreach (CustomTabPage tab in tabControl.TabPages)
             {
                 if (tab.State == State.Insert)
                 {
@@ -1062,7 +1089,7 @@ namespace DomZdravlja
             dodajMetoda(sender, e, (objekat as PropertyInterface), (sender as Button).Parent as UCLookupInsert, ((sender as Button).Parent as UCLookupInsert).Use);
             lookupTab();
 
-            if(((sender as Button).Parent as UCLookupInsert).Use == Use.Update)
+            if (((sender as Button).Parent as UCLookupInsert).Use == Use.Update)
             {
                 int id = Convert.ToInt32(((sender as Button).Parent as UCLookupInsert).Value);
 
@@ -1272,11 +1299,11 @@ namespace DomZdravlja
                             if (col2.Contains("Šifra"))
                             {
 
-                                foreach(Control control in (sender as Button).Parent.Parent.Controls[0].Controls)
+                                foreach (Control control in (sender as Button).Parent.Parent.Controls[0].Controls)
                                 {
-                                    if(control.GetType() == typeof(UCLookup))
+                                    if (control.GetType() == typeof(UCLookup))
                                     {
-                                        if((control as UCLookup).Naziv == col2)
+                                        if ((control as UCLookup).Naziv == col2)
                                         {
                                             cLookupInsert.Info = (control as UCLookup).Info;
                                         }
@@ -1357,8 +1384,8 @@ namespace DomZdravlja
 
                 if (property.IsDefined(typeof(Invisible)))
                 {
-                    if(property.GetCustomAttribute<Invisible>().Use == use || property.GetCustomAttribute<Invisible>().Use == Use.InsertAndUpdate)
-                    continue;
+                    if (property.GetCustomAttribute<Invisible>().Use == use || property.GetCustomAttribute<Invisible>().Use == Use.InsertAndUpdate)
+                        continue;
                 }
 
                 ComponentType componentType;
@@ -1370,21 +1397,21 @@ namespace DomZdravlja
                     UCTekst uCTekst = new UCTekst();
                     uCTekst.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
                     flowLayoutPanel.Controls.Add(uCTekst);
-                    if(use == Use.Insert)
+                    if (use == Use.Insert)
                         defaultValue(property, uCTekst);
                     if (property.IsDefined(typeof(Editing)))
                     {
                         if (property.GetCustomAttribute<Editing>().Use != use &&
                             property.GetCustomAttribute<Editing>().Use != Use.InsertAndUpdate)
                         {
-                                uCTekst.setReadOnly();
+                            uCTekst.setReadOnly();
                         }
                     }
                     else uCTekst.setReadOnly();
 
                     if (propertyInterface.GetType() == typeof(PropertyDetaljiRacuna))
                     {
-                        if(uCTekst.Naziv == "Količina")
+                        if (uCTekst.Naziv == "Količina")
                         {
                             uCTekst.UCTekstTextChanged += UCTekst_UCTekstTextChanged;
                         }
@@ -1501,7 +1528,7 @@ namespace DomZdravlja
             Button btnSacuvaj = new Button();
             urediButton(btnSacuvaj, "SAČUVAJ", 88, 30, Resources.tick, new Point(682, 100));
             btnSacuvaj.Click += (send, EventArgs) => { BtnSacuvaj_Click(send, EventArgs, propertyInterface, uCLookupInsert1, use); };
-       
+
             Button btnOdustani = new Button();
             urediButton(btnOdustani, "ODUSTANI", 96, 30, Resources.multiply, new Point(767, 100));
             btnOdustani.Click += BtnOdustani_Click;
@@ -1591,9 +1618,9 @@ namespace DomZdravlja
 
         private Control findControl(string tekst)
         {
-            foreach(Control c in tabControl.SelectedTab.Controls[0].Controls)
+            foreach (Control c in tabControl.SelectedTab.Controls[0].Controls)
             {
-                if(c.GetType() == typeof(UCTekst))
+                if (c.GetType() == typeof(UCTekst))
                 {
                     if ((c as UCTekst).Naziv == tekst) return c;
                 }
@@ -1609,25 +1636,28 @@ namespace DomZdravlja
         {
             if (property.IsDefined(typeof(DefaultPropertValue)))
             {
-                if(control.GetType() == typeof(UCTekst))
+                if (control.GetType() == typeof(UCTekst))
                 {
                     if (property.GetCustomAttribute<DefaultPropertValue>().Target == TargetValue.StartPrize)
                         (control as UCTekst).Value = property.GetCustomAttribute<DefaultPropertValue>().Value.ToString();
                     else if (property.GetCustomAttribute<DefaultPropertValue>().Target == TargetValue.ProvjeraDaLiJeOsiguran)
                         (control as UCTekst).Value = property.GetCustomAttribute<DefaultPropertValue>().Value.ToString();
                 }
-                else if(control.GetType() == typeof(UCDatum))
+                else if (control.GetType() == typeof(UCDatum))
                 {
                     if (property.GetCustomAttribute<DefaultPropertValue>().Target == TargetValue.DefaultDate)
                         (control as UCDatum).Value = Convert.ToDateTime(property.GetCustomAttribute<DefaultPropertValue>().Value);
                     else if (property.GetCustomAttribute<DefaultPropertValue>().Target == TargetValue.Today)
                         (control as UCDatum).Value = DateTime.Now;
-                }else if(control.GetType() == typeof(UCRadioButton))
+                }
+                else if (control.GetType() == typeof(UCRadioButton))
                 {
 
-                }else if(control.GetType() == typeof(UCLookup))
+                }
+                else if (control.GetType() == typeof(UCLookup))
                 {
-                    if (property.GetCustomAttribute<DefaultPropertValue>().Target == TargetValue.LoginUser) {
+                    if (property.GetCustomAttribute<DefaultPropertValue>().Target == TargetValue.LoginUser)
+                    {
                         ucitaj(9);
                         PropertyOsoba osoba = propertyInterfaces[9].Cast<PropertyOsoba>().Where(o => o.OsobaID == Logovan.OsobaID).FirstOrDefault();
 
@@ -1635,7 +1665,7 @@ namespace DomZdravlja
                         (control as UCLookup).Info = osoba.Ime + " " + osoba.Prezime;
                     }
                 }
-                else if(control.GetType() == typeof(UCLookupInsert))
+                else if (control.GetType() == typeof(UCLookupInsert))
                 {
                     if (property.GetCustomAttribute<DefaultPropertValue>().Target == TargetValue.LoginUser)
                     {
@@ -1655,7 +1685,7 @@ namespace DomZdravlja
             trenutnoStanje = State.Lookup;
             tabControl.TabPages.Add(tabPage);
             postaviFokus(State.Lookup);
-            
+
             PropertyInfo property = propertyForward;
 
             var objekat = Activator.CreateInstance(Type.GetType(property.GetCustomAttribute<ForeignKey>().ReferencedTable));
@@ -1681,12 +1711,12 @@ namespace DomZdravlja
 
             Button btnVrati = new Button();
             urediButton(btnVrati, "VRATI", 70, 30, Resources.left_arrow, new Point(678, 100));
-            
+
             btnVrati.Click += (send, EventArgs) => { BtnVrati_Click(send, EventArgs, property, (sender as Button).Parent, data, objekat, tabPage); };
 
             Button btnOdustani = new Button();
             urediButton(btnOdustani, "ODUSTANI", 96, 30, Resources.multiply, new Point(750, 100));
-            btnOdustani.Click += BtnOdustaniLookup_Click; 
+            btnOdustani.Click += BtnOdustaniLookup_Click;
 
             panel.Controls.Add(btnVrati);
             panel.Controls.Add(btnOdustani);
@@ -1708,7 +1738,7 @@ namespace DomZdravlja
             var objekat = Activator.CreateInstance(Type.GetType(thisTable));
 
             PropertyInfo property = objekat.GetType().GetProperties().Where(prop => prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName == name).FirstOrDefault();
-      
+
             lookupMetoda(sender, e, property);
 
         }
@@ -1741,7 +1771,7 @@ namespace DomZdravlja
                 string info = "";
 
                 info = row.Cells[col1.ToString()].Value + " "
-                            +  (col2.ToString() != "" && !col2.ToString().Contains("Šifra") ? row.Cells[col2.ToString()].Value : "");
+                            + (col2.ToString() != "" && !col2.ToString().Contains("Šifra") ? row.Cells[col2.ToString()].Value : "");
 
                 tabControl.TabPages.Remove(tabControl.SelectedTab);
                 rijesiLookup();
@@ -1757,7 +1787,8 @@ namespace DomZdravlja
                 {
                     (uC as UCLookup).Value = id.ToString();
                     (uC as UCLookup).Info = info;
-                }else
+                }
+                else
                 {
                     (uC as UCLookupInsert).Value = id.ToString();
                     (uC as UCLookupInsert).Info = info;
@@ -1821,7 +1852,7 @@ namespace DomZdravlja
             ToolStripMenuItem item1 = new ToolStripMenuItem();
             item1.Text = "Azuriraj";
             item1.Image = Resources.edit;
-            
+
 
             ToolStripSeparator tool1 = new ToolStripSeparator();
 
@@ -1868,7 +1899,7 @@ namespace DomZdravlja
 
         private void ContextMenuStrip_Opened(object sender, EventArgs e)
         {
-           // (sender as ContextMenuStrip).Items[0].Enabled = false;
+            // (sender as ContextMenuStrip).Items[0].Enabled = false;
             Control control = (sender as ContextMenuStrip).SourceControl;
 
 
@@ -1906,7 +1937,8 @@ namespace DomZdravlja
                     (sender as ContextMenuStrip).Items[8].Enabled = true;
 
                 }
-            }catch(Exception)
+            }
+            catch (Exception)
             {
 
             }
@@ -1939,15 +1971,15 @@ namespace DomZdravlja
                     CustomToolStrip.Prvi = true;
                     CustomToolStrip.Dole = true;
                     CustomToolStrip.Zadnji = true;
-                    
+
                 }
             }
             catch (Exception)
             {
 
-               
+
             }
-            
+
         }
 
         #endregion
@@ -2075,9 +2107,9 @@ namespace DomZdravlja
         private void postaviFokus(State stanje)
         {
 
-            for(int i = 0; i < tabControl.TabPages.Count; i++)
+            for (int i = 0; i < tabControl.TabPages.Count; i++)
             {
-                if((tabControl.TabPages[i] as CustomTabPage).State == stanje)
+                if ((tabControl.TabPages[i] as CustomTabPage).State == stanje)
                 {
                     tabControl.TabPages[i].Focus();
                     tabControl.SelectedIndex = i;
@@ -2321,9 +2353,9 @@ namespace DomZdravlja
 
         private bool provjeriKreiraj(State state)
         {
-            for(int i = tabControl.TabPages.Count - 1; i >= 0; i--)
+            for (int i = tabControl.TabPages.Count - 1; i >= 0; i--)
             {
-                if((tabControl.TabPages[i] as CustomTabPage).State == state)
+                if ((tabControl.TabPages[i] as CustomTabPage).State == state)
                 {
                     tabControl.SelectedIndex = i;
                     return true;
@@ -2336,13 +2368,14 @@ namespace DomZdravlja
         {
             foreach (var item in panelGlavniTab.Controls)
             {
-                if(item.GetType() == typeof(PanelTabControl))
+                if (item.GetType() == typeof(PanelTabControl))
                 {
                     if ((item as PanelTabControl).Naziv != trazen)
                     {
                         (item as PanelTabControl).Selektovan = false;
-                        (item as PanelTabControl).SelektovanIkona = null; 
-                    }else
+                        (item as PanelTabControl).SelektovanIkona = null;
+                    }
+                    else
                     {
                         (item as PanelTabControl).Selektovan = true;
                         (item as PanelTabControl).SelektovanIkona = Resources.play_button;
@@ -2371,7 +2404,7 @@ namespace DomZdravlja
         {
             foreach (DataColumn column in data.Columns)
             {
-                if(column.ColumnName.EndsWith("_hide"))
+                if (column.ColumnName.EndsWith("_hide"))
                 {
                     column.ColumnName = column.ColumnName.Replace("_hide", "");
                 }
@@ -2393,28 +2426,33 @@ namespace DomZdravlja
                     ucitaj(9);
                     ucitaj(0);
 
-                     var query = (
-                                     from p in (propertyInterfaces[7].Cast<PropertyKarton>())
-                                         join pacijent in (propertyInterfaces[1].Cast<PropertyPacijent>())
-                                         on p.PacijentID equals pacijent.PacijentID
-                                         join osoba in (propertyInterfaces[9].Cast<PropertyOsoba>())
-                                         on pacijent.OsobaID equals osoba.OsobaID
-                                         join doktor in (propertyInterfaces[0].Cast<PropertyZaposleni>())
-                                         on pacijent.DoktorID equals doktor.ZaposleniID
-                                         join osoba1 in (propertyInterfaces[9].Cast<PropertyOsoba>())
-                                         on doktor.OsobaID equals osoba1.OsobaID
-                                     where p.KartonID == id || id == null
-                                     select new {
-                                         Broj_kartona = p.KartonID,
-                                         Ime = osoba.Ime, Prezime = osoba.Prezime, JMB = osoba.JMB, Pol = osoba.Pol, Datum_rodjenja = osoba.DatumRodjenja,
-                                                 Ime_i_prezime_doktora = (osoba1.Ime + " " + osoba1.Prezime),
-                                         Šifra_pacijenta_hide = p.PacijentID
-                                     }
-                                 );
+                    var query = (
+                                    from p in (propertyInterfaces[7].Cast<PropertyKarton>())
+                                    join pacijent in (propertyInterfaces[1].Cast<PropertyPacijent>())
+                                     on p.PacijentID equals pacijent.PacijentID
+                                    join osoba in (propertyInterfaces[9].Cast<PropertyOsoba>())
+                                     on pacijent.OsobaID equals osoba.OsobaID
+                                    join doktor in (propertyInterfaces[0].Cast<PropertyZaposleni>())
+                                     on pacijent.DoktorID equals doktor.ZaposleniID
+                                    join osoba1 in (propertyInterfaces[9].Cast<PropertyOsoba>())
+                                     on doktor.OsobaID equals osoba1.OsobaID
+                                    where p.KartonID == id || id == null
+                                    select new
+                                    {
+                                        Broj_kartona = p.KartonID,
+                                        Ime = osoba.Ime,
+                                        Prezime = osoba.Prezime,
+                                        JMB = osoba.JMB,
+                                        Pol = osoba.Pol,
+                                        Datum_rodjenja = osoba.DatumRodjenja,
+                                        Ime_i_prezime_doktora = (osoba1.Ime + " " + osoba1.Prezime),
+                                        Šifra_pacijenta_hide = p.PacijentID
+                                    }
+                                );
 
 
                     dataTable = ListToDataTable.ToDataTable(query.ToList());
-                
+
                     break;
                 case Tip.Pacijent:
                     ucitaj(1);
@@ -2422,9 +2460,17 @@ namespace DomZdravlja
                     var queryPacijent = (
                                         from p in (propertyInterfaces[1].Cast<PropertyPacijent>())
                                         join osoba in (propertyInterfaces[9].Cast<PropertyOsoba>())
-                                        on p.OsobaID equals osoba.OsobaID 
-                                        select new {Ime = osoba.Ime, Prezime = osoba.Prezime, JMB = osoba.JMB,
-                                        osoba.Pol, Mjesto_rodjenja = osoba.MjestoRodjenja, Datum_rodjenja = osoba.DatumRodjenja, Adresa = osoba.Adresa, osoba.Kontakt,
+                                        on p.OsobaID equals osoba.OsobaID
+                                        select new
+                                        {
+                                            Ime = osoba.Ime,
+                                            Prezime = osoba.Prezime,
+                                            JMB = osoba.JMB,
+                                            osoba.Pol,
+                                            Mjesto_rodjenja = osoba.MjestoRodjenja,
+                                            Datum_rodjenja = osoba.DatumRodjenja,
+                                            Adresa = osoba.Adresa,
+                                            osoba.Kontakt,
                                             Osiguran = p.Osiguran,
                                             Životni_status_hide = osoba.ZivotniStatus,
                                             Šifra_pacijenta_hide = p.PacijentID,
@@ -2434,7 +2480,7 @@ namespace DomZdravlja
                                         );
 
                     dataTable = ListToDataTable.ToDataTable(queryPacijent.ToList());
-                    
+
 
                     break;
                 case Tip.Zaposleni:
@@ -2464,7 +2510,7 @@ namespace DomZdravlja
                                         );
 
                     dataTable = ListToDataTable.ToDataTable(queryZaposleni.ToList());
-                    
+
                     break;
                 case Tip.Recepcija:
                     ucitaj(12);
@@ -2481,7 +2527,8 @@ namespace DomZdravlja
                                             on recepcija.PacijentID equals pacijent.PacijentID
                                             join osoba2 in (propertyInterfaces[9].Cast<PropertyOsoba>())
                                             on pacijent.OsobaID equals osoba2.OsobaID
-                                            select new {
+                                            select new
+                                            {
                                                 Ime_i_prezime_pacijenta = (osoba2.Ime + " " + osoba2.Prezime),
                                                 Ime_i_prezime_doktora = (osoba1.Ime + " " + osoba1.Prezime),
                                                 Vrijeme_prijema = recepcija.VrijemePrijema,
@@ -2493,9 +2540,9 @@ namespace DomZdravlja
                                                 Šifra_pacijenta_hide = recepcija.PacijentID
                                             }
                                          );
-        
+
                     dataTable = ListToDataTable.ToDataTable(queryRecepcija.ToList());
-                    
+
                     break;
                 case Tip.Pregled:
                     ucitaj(10);
@@ -2519,11 +2566,13 @@ namespace DomZdravlja
                                         join dijagnoza in (propertyInterfaces[4].Cast<PropertyDijagnoza>())
                                         on pregled.DijagnozaID equals dijagnoza.DijagnozaID
                                         where karton.KartonID == id || id == null
-                                        select new {
+                                        select new
+                                        {
                                             Šifra_pregleda = pregled.PregledID,
                                             Ime_i_prezime_pacijenta = (osoba2.Ime + " " + osoba2.Prezime),
                                             Ime_i_prezime_doktora = (osoba1.Ime + " " + osoba1.Prezime),
-                                            dijagnoza.Opis, dijagnoza.Terapija,
+                                            dijagnoza.Opis,
+                                            dijagnoza.Terapija,
                                             Broj_kartona = karton.KartonID,
                                             Šifra_pregleda_hide = pregled.PregledID,
                                             Šifra_doktora_hide = pregled.DoktorID,
@@ -2533,9 +2582,9 @@ namespace DomZdravlja
                                             Prezime_hide = osoba2.Prezime
                                         }
                                        );
-        
+
                     dataTable = ListToDataTable.ToDataTable(queryPregled.ToList());
-                    
+
                     break;
                 case Tip.Racun:
                     ucitaj(11);
@@ -2558,7 +2607,8 @@ namespace DomZdravlja
                                         on racun.ZaposleniID equals prijem.ZaposleniID
                                         join osoba1 in (propertyInterfaces[9].Cast<PropertyOsoba>())
                                             on prijem.OsobaID equals osoba1.OsobaID
-                                        select new {
+                                        select new
+                                        {
                                             Broj_računa = racun.RacunID,
                                             Ime_i_prezime_pacijenta = (osoba2.Ime + " " + osoba2.Prezime),
                                             Ime_i_prezime_doktora = (osoba1.Ime + " " + osoba1.Prezime),
@@ -2576,7 +2626,7 @@ namespace DomZdravlja
                                      );
 
                     dataTable = ListToDataTable.ToDataTable(queryRacun.ToList());
-                    
+
                     break;
                 case Tip.RedoslijedDolazaka:
                     ucitaj(12);
@@ -2597,28 +2647,35 @@ namespace DomZdravlja
                                             select new
                                             {
                                                 osoba2.Ime
-                                                , osoba2.Prezime
-                                                , osoba2.JMB
-                                                ,Vrijeme_prijema = recepcija.VrijemePrijema
-                                                ,Vrijeme_otpusta = recepcija.VrijemeOtpusta
-                                                ,Šifra_prijem_zaposleni_hide = recepcija.PrijemZaposleniID
-                                                ,Šifra_doktor_hide = recepcija.DoktorID
-                                                ,Šifra_pacijent_hide = recepcija.PacijentID
+                                                ,
+                                                osoba2.Prezime
+                                                ,
+                                                osoba2.JMB
+                                                ,
+                                                Vrijeme_prijema = recepcija.VrijemePrijema
+                                                ,
+                                                Vrijeme_otpusta = recepcija.VrijemeOtpusta
+                                                ,
+                                                Šifra_prijem_zaposleni_hide = recepcija.PrijemZaposleniID
+                                                ,
+                                                Šifra_doktor_hide = recepcija.DoktorID
+                                                ,
+                                                Šifra_pacijent_hide = recepcija.PacijentID
                                             }
                                          );
 
                     dataTable = ListToDataTable.ToDataTable(queryRedoslijedDolazaka.ToList());
-                    
+
                     break;
                 case Tip.Cjenovnik:
                     ucitaj(2);
                     var queryCjenovnik = (
                                             from cjenovnik in (propertyInterfaces[2].Cast<PropertyCjenovnik>())
                                             where cjenovnik.Aktivno == 1
-                                            select new {Naziv_usluge = cjenovnik.NazivUsluge, Cijena_usluge = cjenovnik.CijenaUsluge, Šifra_cjenovnika_hide = cjenovnik.CjenovnikID, Datum_uspostavljanja_cijene_hide = cjenovnik.DatumUspostavljanjaCijene, Aktivno_hide = cjenovnik.Aktivno}
+                                            select new { Naziv_usluge = cjenovnik.NazivUsluge, Cijena_usluge = cjenovnik.CijenaUsluge, Šifra_cjenovnika_hide = cjenovnik.CjenovnikID, Datum_uspostavljanja_cijene_hide = cjenovnik.DatumUspostavljanjaCijene, Aktivno_hide = cjenovnik.Aktivno }
                                          );
                     dataTable = ListToDataTable.ToDataTable(queryCjenovnik.ToList());
-                    
+
                     break;
                 case Tip.CjenovnikZaSve:
                     ucitaj(2);
@@ -2678,7 +2735,7 @@ namespace DomZdravlja
                                         );
 
                     dataTable = ListToDataTable.ToDataTable(queryDoktori.ToList());
-                    
+
                     break;
                 case Tip.MSD:
                     ucitaj(0);
@@ -2717,14 +2774,22 @@ namespace DomZdravlja
                                                         select new
                                                         {
                                                             o.Ime
-                                                            , o.Prezime
-                                                            , o.JMB
-                                                            , o.Pol
-                                                            , Mjesto_rodjenja = o.MjestoRodjenja
-                                                            , Datum_rodjenja = o.DatumRodjenja
-                                                            , o.Adresa
-                                                            , o.Kontakt
-                                                            ,Šifra_osobe_hide = o.OsobaID
+                                                            ,
+                                                            o.Prezime
+                                                            ,
+                                                            o.JMB
+                                                            ,
+                                                            o.Pol
+                                                            ,
+                                                            Mjesto_rodjenja = o.MjestoRodjenja
+                                                            ,
+                                                            Datum_rodjenja = o.DatumRodjenja
+                                                            ,
+                                                            o.Adresa
+                                                            ,
+                                                            o.Kontakt
+                                                            ,
+                                                            Šifra_osobe_hide = o.OsobaID
                                                         }
                                                  );
 
@@ -2739,8 +2804,10 @@ namespace DomZdravlja
                                                 select new
                                                 {
                                                     dijagnoza.Opis
-                                                    , dijagnoza.Terapija
-                                                    , Šifra_dijagnoze_hide = dijagnoza.DijagnozaID
+                                                    ,
+                                                    dijagnoza.Terapija
+                                                    ,
+                                                    Šifra_dijagnoze_hide = dijagnoza.DijagnozaID
                                                 }
                                          );
                     dataTable = ListToDataTable.ToDataTable(queryDijagnoza.ToList());
@@ -2757,14 +2824,22 @@ namespace DomZdravlja
                                                         select new
                                                         {
                                                             o.Ime
-                                                            ,o.Prezime
-                                                            ,o.JMB
-                                                            ,o.Pol
-                                                            ,Mjesto_rodjenja = o.MjestoRodjenja
-                                                            ,Datum_rodjenja = o.DatumRodjenja
-                                                            ,o.Adresa
-                                                            ,o.Kontakt
-                                                            ,Šifra_osobe_hide = o.OsobaID
+                                                            ,
+                                                            o.Prezime
+                                                            ,
+                                                            o.JMB
+                                                            ,
+                                                            o.Pol
+                                                            ,
+                                                            Mjesto_rodjenja = o.MjestoRodjenja
+                                                            ,
+                                                            Datum_rodjenja = o.DatumRodjenja
+                                                            ,
+                                                            o.Adresa
+                                                            ,
+                                                            o.Kontakt
+                                                            ,
+                                                            Šifra_osobe_hide = o.OsobaID
                                                         }
                                                  );
 
@@ -2773,7 +2848,7 @@ namespace DomZdravlja
                     break;
                 case Tip.SveOsobe:
                     ucitaj(9);
-                   
+
                     var qurySvi = (
                                                         from o in (propertyInterfaces[9].Cast<PropertyOsoba>())
                                                         where o.OsobaID == id || id == null
@@ -2818,7 +2893,7 @@ namespace DomZdravlja
                                         join osoba1 in (propertyInterfaces[9].Cast<PropertyOsoba>())
                                             on prijem.OsobaID equals osoba1.OsobaID
                                         where !(from detalji in propertyInterfaces[3].Cast<PropertyDetaljiRacuna>()
-                                                      select detalji.RacunID).Contains(racun.RacunID)
+                                                select detalji.RacunID).Contains(racun.RacunID)
                                         select new
                                         {
                                             Broj_računa = racun.RacunID,
@@ -2860,7 +2935,7 @@ namespace DomZdravlja
                                                 Šifra_pacijenta_hide = rezervacija.PacijentID,
                                                 Šifra_rezervacije_hide = rezervacija.RezervacijaID
                                             }
-                                           
+
                                          );
 
                     dataTable = ListToDataTable.ToDataTable(queryRezervacija.ToList());
@@ -2893,7 +2968,7 @@ namespace DomZdravlja
                                                 Šifra_doktora_hide = pacijent.DoktorID,
                                                 Šifra_osobe_hide = pacijent.OsobaID,
                                                 Šifra_faktor_rizika_hide = fr.FaktorRizikaID,
-                                                Šifra_faktor_rizika_karton_hide = frk.FRKID 
+                                                Šifra_faktor_rizika_karton_hide = frk.FRKID
                                             }
                                             );
                     dataTable = ListToDataTable.ToDataTable(queryFaktorRizika.ToList());
@@ -2945,7 +3020,7 @@ namespace DomZdravlja
                     dataTable = ListToDataTable.ToDataTable(queryRizic.ToList());
 
                     break;
-                
+
             }
 
             return dataTable;
