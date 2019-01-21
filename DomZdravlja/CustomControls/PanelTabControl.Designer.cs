@@ -29,23 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PanelTabControl));
-            this.ikonica = new System.Windows.Forms.PictureBox();
             this.lblNaziv = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ikonica = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ikonica)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ikonica
-            // 
-            this.ikonica.Image = ((System.Drawing.Image)(resources.GetObject("ikonica.Image")));
-            this.ikonica.Location = new System.Drawing.Point(8, 11);
-            this.ikonica.Name = "ikonica";
-            this.ikonica.Size = new System.Drawing.Size(32, 32);
-            this.ikonica.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ikonica.TabIndex = 0;
-            this.ikonica.TabStop = false;
-            this.ikonica.Click += new System.EventHandler(this.PanelTabControl_Click);
-            this.ikonica.MouseEnter += new System.EventHandler(this.PanelTabControl_MouseEnter);
-            this.ikonica.MouseLeave += new System.EventHandler(this.PanelTabControl_MouseLeave);
             // 
             // lblNaziv
             // 
@@ -61,11 +50,37 @@
             this.lblNaziv.MouseEnter += new System.EventHandler(this.PanelTabControl_MouseEnter);
             this.lblNaziv.MouseLeave += new System.EventHandler(this.PanelTabControl_MouseLeave);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::DomZdravlja.Properties.Resources.play_button;
+            this.pictureBox1.Location = new System.Drawing.Point(221, 11);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseEnter += new System.EventHandler(this.PanelTabControl_MouseEnter);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.PanelTabControl_MouseLeave);
+            // 
+            // ikonica
+            // 
+            this.ikonica.Image = ((System.Drawing.Image)(resources.GetObject("ikonica.Image")));
+            this.ikonica.Location = new System.Drawing.Point(8, 11);
+            this.ikonica.Name = "ikonica";
+            this.ikonica.Size = new System.Drawing.Size(32, 32);
+            this.ikonica.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ikonica.TabIndex = 0;
+            this.ikonica.TabStop = false;
+            this.ikonica.Click += new System.EventHandler(this.PanelTabControl_Click);
+            this.ikonica.MouseEnter += new System.EventHandler(this.PanelTabControl_MouseEnter);
+            this.ikonica.MouseLeave += new System.EventHandler(this.PanelTabControl_MouseLeave);
+            // 
             // PanelTabControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(67)))), ((int)(((byte)(127)))));
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblNaziv);
             this.Controls.Add(this.ikonica);
             this.Name = "PanelTabControl";
@@ -73,6 +88,7 @@
             this.Click += new System.EventHandler(this.PanelTabControl_Click);
             this.MouseEnter += new System.EventHandler(this.PanelTabControl_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.PanelTabControl_MouseLeave);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ikonica)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -83,5 +99,6 @@
 
         private System.Windows.Forms.PictureBox ikonica;
         private System.Windows.Forms.Label lblNaziv;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

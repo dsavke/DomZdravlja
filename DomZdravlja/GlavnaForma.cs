@@ -2043,6 +2043,8 @@ namespace DomZdravlja
             panelTabControl4.ControlClick += Cjenovnik_ControlClick;
             PanelTabControl panelTabControl2 = new PanelTabControl((Image)resources.GetObject("racun"), "RAČUN");
             panelTabControl2.ControlClick += Racun_ControlClick;
+            PanelTabControl panelTabControl10 = new PanelTabControl((Image)resources.GetObject("cjenovnik"), "IZVJEŠTAJ");
+            panelTabControl10.ControlClick += Izvjestaj_ControlClick;
             Label label = new Label() { Name = "", Width = 266, Height = 1, BackColor = Color.White };
             PanelTabControl panelTabControl6 = new PanelTabControl((Image)resources.GetObject("odjava"), "ODJAVA");
             panelTabControl6.ControlClick += Odjava_ControlClick;
@@ -2052,11 +2054,13 @@ namespace DomZdravlja
             panelGlavniTab.Controls.Add(panelTabControl3);
             panelGlavniTab.Controls.Add(panelTabControl4);
             panelGlavniTab.Controls.Add(panelTabControl2);
+            panelGlavniTab.Controls.Add(panelTabControl10);
             panelGlavniTab.Controls.Add(label);
             panelGlavniTab.Controls.Add(panelTabControl6);
 
 
         }
+
         #endregion
 
         private void postaviFokus(State stanje)
@@ -2074,11 +2078,22 @@ namespace DomZdravlja
         }
 
         #region ControlClickMetode
+
+        private void Izvjestaj_ControlClick(object sender, EventArgs e)
+        {
+            zatvoriSve();
+            rijesiSelekt("IZVJEŠTAJ");
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "IZVJEŠTAJ" };
+            tabControl.Controls.Add(tabPage);
+            postaviFokus(State.Main);
+            myProperty = null;
+            kreirajTabove();
+        }
+
         private void Pocetna_ControlClick(object sender, EventArgs e)
         {
             zatvoriSve();
             rijesiSelekt("POČETNA");
-           // MessageBox.Show(sender.GetType().ToString());
             CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "POČETNA" };
             tabControl.Controls.Add(tabPage);
             Tip = Tip.Pocetna;
@@ -2317,11 +2332,11 @@ namespace DomZdravlja
                     if ((item as PanelTabControl).Naziv != trazen)
                     {
                         (item as PanelTabControl).Selektovan = false;
-                        (item as PanelTabControl).BackgroundColor = Color.FromArgb(0, 67, 127);
+                        (item as PanelTabControl).SelektovanIkona = null; 
                     }else
                     {
                         (item as PanelTabControl).Selektovan = true;
-                        (item as PanelTabControl).BackgroundColor = Color.FromArgb(51, 128, 196);
+                        (item as PanelTabControl).SelektovanIkona = Resources.play_button;
                     }
                 }
             }

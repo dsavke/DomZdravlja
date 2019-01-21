@@ -39,6 +39,8 @@ namespace DomZdravlja.CustomControls
             AllowDrop = true;
         }
 
+        public event EventHandler PritisnutX;
+
         #region Property
         [Category("Colors"), Browsable(true), Description("The color of the closing button")]
         public Color ClosingButtonColor
@@ -115,6 +117,8 @@ namespace DomZdravlja.CustomControls
                                 this.TabPages[this.TabCount - 1].Enabled = true;
                                 this.SelectedIndex = this.TabCount - 1;
                             }
+                            if (PritisnutX != null)
+                                PritisnutX(new Button(), e);
                         }
                     }
                 

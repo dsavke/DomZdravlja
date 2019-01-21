@@ -20,6 +20,12 @@ namespace DomZdravlja
             get;set;
         }
 
+        public Image SelektovanIkona
+        {
+            get { return pictureBox1.Image; }
+            set { pictureBox1.Image = value; }
+        }
+
         public Image Ikona
         {
             get
@@ -60,6 +66,7 @@ namespace DomZdravlja
             InitializeComponent();
             Ikona = image;
             Naziv = naziv;
+            pictureBox1.Image = null;
         }
 
         private void PanelTabControl_MouseEnter(object sender, EventArgs e)
@@ -70,7 +77,6 @@ namespace DomZdravlja
 
         private void PanelTabControl_MouseLeave(object sender, EventArgs e)
         {
-            if(!Selektovan)
             this.BackColor = Color.FromArgb(0, 67, 127);
         }
 
