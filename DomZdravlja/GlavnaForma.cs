@@ -451,9 +451,10 @@ namespace DomZdravlja
                 noviTabControl.TabPages.Add(tabPage);
                 tabControl.SelectedTab.Controls.Add(noviTabControl);
 
-                CustomDataGridView data = izgled();
+                CustomDataGridView data = izgled();                
 
                 noviTabControl.TabIndexChanged += NoviTabControl_TabIndexChanged;
+                noviTabControl.SelectedIndexChanged += NoviTabControl_SelectedIndexChanged;
 
                 data.DataSource = vratiPodatke(Tip, null);
                 data.Tip = Tip;
@@ -473,12 +474,26 @@ namespace DomZdravlja
             }
         }
 
+        private void NoviTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CustomTabControl control = sender as CustomTabControl;
+            CustomTabPage page = control.SelectedTab as CustomTabPage;
+            try
+            {
+                CustomDataGridView pom = page.Controls[0] as CustomDataGridView;
+                IskljuciDugmice(pom);
+            }
+            catch (Exception)
+            {
+
+            }
+            
+        }
+
         private void NoviTabControl_TabIndexChanged(object sender, EventArgs e)
         {
-           
-            CustomTabPage control = sender as CustomTabPage;
-            CustomDataGridView pom = control.Controls[0] as CustomDataGridView;
-            IskljuciDugmice(pom);
+            
+            
         }
 
         private void Data_SelectionChanged(object sender, EventArgs e)
