@@ -32,15 +32,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
-            this.btnIzlaz = new Bunifu.Framework.UI.BunifuImageButton();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtKorisnickoIme = new System.Windows.Forms.TextBox();
             this.txtLozinka = new System.Windows.Forms.TextBox();
             this.btnNastavi = new Bunifu.Framework.UI.BunifuFlatButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.btnIzlaz)).BeginInit();
+            this.btnIzlaz = new Bunifu.Framework.UI.BunifuImageButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnIzlaz)).BeginInit();
             this.SuspendLayout();
             // 
             // bunifuElipse1
@@ -54,22 +54,6 @@
             this.bunifuDragControl1.Horizontal = true;
             this.bunifuDragControl1.TargetControl = this;
             this.bunifuDragControl1.Vertical = true;
-            // 
-            // btnIzlaz
-            // 
-            this.btnIzlaz.BackColor = System.Drawing.SystemColors.Control;
-            this.btnIzlaz.Image = ((System.Drawing.Image)(resources.GetObject("btnIzlaz.Image")));
-            this.btnIzlaz.ImageActive = null;
-            this.btnIzlaz.Location = new System.Drawing.Point(464, 12);
-            this.btnIzlaz.Name = "btnIzlaz";
-            this.btnIzlaz.Size = new System.Drawing.Size(25, 25);
-            this.btnIzlaz.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnIzlaz.TabIndex = 0;
-            this.btnIzlaz.TabStop = false;
-            this.btnIzlaz.Zoom = 10;
-            this.btnIzlaz.Click += new System.EventHandler(this.btnIzlaz_Click);
-            this.btnIzlaz.MouseEnter += new System.EventHandler(this.btnIzlaz_MouseEnter);
-            this.btnIzlaz.MouseLeave += new System.EventHandler(this.btnIzlaz_MouseLeave);
             // 
             // label2
             // 
@@ -148,13 +132,29 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = global::DomZdravlja.Properties.Resources.login;
             this.pictureBox1.Location = new System.Drawing.Point(43, 52);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(401, 100);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            // 
+            // btnIzlaz
+            // 
+            this.btnIzlaz.BackColor = System.Drawing.SystemColors.Control;
+            this.btnIzlaz.Image = ((System.Drawing.Image)(resources.GetObject("btnIzlaz.Image")));
+            this.btnIzlaz.ImageActive = null;
+            this.btnIzlaz.Location = new System.Drawing.Point(464, 12);
+            this.btnIzlaz.Name = "btnIzlaz";
+            this.btnIzlaz.Size = new System.Drawing.Size(25, 25);
+            this.btnIzlaz.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnIzlaz.TabIndex = 0;
+            this.btnIzlaz.TabStop = false;
+            this.btnIzlaz.Zoom = 10;
+            this.btnIzlaz.Click += new System.EventHandler(this.btnIzlaz_Click);
+            this.btnIzlaz.MouseEnter += new System.EventHandler(this.btnIzlaz_MouseEnter);
+            this.btnIzlaz.MouseLeave += new System.EventHandler(this.btnIzlaz_MouseLeave);
             // 
             // Form1
             // 
@@ -173,8 +173,8 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.btnIzlaz)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnIzlaz)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1989,20 +1989,19 @@ namespace DomZdravlja
         {
             ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
 
-            PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POČETNA");
+            PanelTabControl panelTabControl = new PanelTabControl(Resources.pocetna, "POČETNA");
             panelTabControl.ControlClick += Pocetna_ControlClick;
-            PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("rezervacija"), "REDOSLIJED DOLAZAKA");
+            PanelTabControl panelTabControl3 = new PanelTabControl(Resources.rezervacija, "REDOSLIJED DOLAZAKA");
             panelTabControl3.ControlClick += RedoslijedDolazaka_ControlClick;
-            PanelTabControl panelTabControl4 = new PanelTabControl((Image)resources.GetObject("karton2"), "KARTON");
+            PanelTabControl panelTabControl4 = new PanelTabControl(Resources.karton, "KARTON");
             panelTabControl4.ControlClick += Karton_ControlClick;
-            PanelTabControl panelTabControl9 = new PanelTabControl((Image)resources.GetObject("faktorRizika2"), "FAKTOR RIZIKA");
+            PanelTabControl panelTabControl9 = new PanelTabControl(Resources.faktor_rizika, "FAKTOR RIZIKA");
             panelTabControl9.ControlClick += FaktorRizika_ControlClick;
-            PanelTabControl panelTabControl5 = new PanelTabControl((Image)resources.GetObject("pregled"), "PREGLED");
+            PanelTabControl panelTabControl5 = new PanelTabControl(Resources.pregled, "PREGLED");
             panelTabControl5.ControlClick += Pregled_ControlClick;
             Label label = new Label() { Name = "", Width = 266, Height = 1, BackColor = Color.White };
-            PanelTabControl panelTabControl6 = new PanelTabControl((Image)resources.GetObject("odjava"), "ODJAVA");
+            PanelTabControl panelTabControl6 = new PanelTabControl(Resources.odjava, "ODJAVA");
             panelTabControl6.ControlClick += Odjava_ControlClick;
-
 
             panelGlavniTab.Controls.Add(panelTabControl);
             panelGlavniTab.Controls.Add(panelTabControl3);
@@ -2033,11 +2032,11 @@ namespace DomZdravlja
 
             ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
             if (Logovan.TipZaposlenog.Equals("Medicinska sestra"))
-                pocetna.PostaviImage = (Image)resources.GetObject("nurse");
+                pocetna.PostaviImage = Resources.nurse;
             else if (Logovan.TipZaposlenog.Equals("Sistem administrator"))
-                pocetna.PostaviImage = (Image)resources.GetObject("admin");
+                pocetna.PostaviImage = Resources.admin;
             else
-                pocetna.PostaviImage = (Image)resources.GetObject("doctor");
+                pocetna.PostaviImage = Resources.doctor;
 
 
         }
@@ -2047,18 +2046,18 @@ namespace DomZdravlja
             ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
 
 
-            PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POČETNA");
+            PanelTabControl panelTabControl = new PanelTabControl(Resources.pocetna, "POČETNA");
             panelTabControl.ControlClick += Pocetna_ControlClick;
-            PanelTabControl panelTabControl9 = new PanelTabControl((Image)resources.GetObject("rezervacija"), "REZERVACIJA");
+            PanelTabControl panelTabControl9 = new PanelTabControl(Resources.rezervacija, "REZERVACIJA");
             panelTabControl9.ControlClick += Rezervacija_ControlClick;
-            PanelTabControl panelTabControl1 = new PanelTabControl((Image)resources.GetObject("recepcija2"), "RECEPCIJA");
+            PanelTabControl panelTabControl1 = new PanelTabControl(Resources.recepcija2, "RECEPCIJA");
             panelTabControl1.ControlClick += Recepcija_ControlClick;
-            PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("pacijent"), "PACIJENT");
+            PanelTabControl panelTabControl3 = new PanelTabControl(Resources.pacijent, "PACIJENT");
             panelTabControl3.ControlClick += Pacijent_ControlClick;
-            PanelTabControl panelTabControl2 = new PanelTabControl((Image)resources.GetObject("racun"), "RAČUN");
+            PanelTabControl panelTabControl2 = new PanelTabControl(Resources.racun, "RAČUN");
             panelTabControl2.ControlClick += Racun_ControlClick;
             Label label = new Label() { Name = "", Width = 266, Height = 1, BackColor = Color.White };
-            PanelTabControl panelTabControl6 = new PanelTabControl((Image)resources.GetObject("odjava"), "ODJAVA");
+            PanelTabControl panelTabControl6 = new PanelTabControl(Resources.odjava, "ODJAVA");
             panelTabControl6.ControlClick += Odjava_ControlClick;
 
             panelGlavniTab.Controls.Add(panelTabControl);
@@ -2074,20 +2073,20 @@ namespace DomZdravlja
         {
             ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
 
-            PanelTabControl panelTabControl = new PanelTabControl((Image)resources.GetObject("pocetna"), "POČETNA");
+            PanelTabControl panelTabControl = new PanelTabControl(Resources.pocetna, "POČETNA");
             panelTabControl.ControlClick += Pocetna_ControlClick;
-            PanelTabControl panelTabControl1 = new PanelTabControl((Image)resources.GetObject("zaposleni"), "ZAPOSLENI");
+            PanelTabControl panelTabControl1 = new PanelTabControl(Resources.zaposleni, "ZAPOSLENI");
             panelTabControl1.ControlClick += Zaposleni_ControlClick;
-            PanelTabControl panelTabControl3 = new PanelTabControl((Image)resources.GetObject("pacijent"), "PACIJENT");
+            PanelTabControl panelTabControl3 = new PanelTabControl(Resources.pacijent, "PACIJENT");
             panelTabControl3.ControlClick += Pacijent_ControlClick;
-            PanelTabControl panelTabControl4 = new PanelTabControl((Image)resources.GetObject("cjenovnik"), "CJENOVNIK");
+            PanelTabControl panelTabControl4 = new PanelTabControl(Resources.cjenovnik, "CJENOVNIK");
             panelTabControl4.ControlClick += Cjenovnik_ControlClick;
-            PanelTabControl panelTabControl2 = new PanelTabControl((Image)resources.GetObject("racun"), "RAČUN");
+            PanelTabControl panelTabControl2 = new PanelTabControl(Resources.racun, "RAČUN");
             panelTabControl2.ControlClick += Racun_ControlClick;
-            PanelTabControl panelTabControl10 = new PanelTabControl((Image)resources.GetObject("cjenovnik"), "IZVJEŠTAJ");
+            PanelTabControl panelTabControl10 = new PanelTabControl(Resources.izvjestaj, "IZVJEŠTAJ");
             panelTabControl10.ControlClick += Izvjestaj_ControlClick;
             Label label = new Label() { Name = "", Width = 266, Height = 1, BackColor = Color.White };
-            PanelTabControl panelTabControl6 = new PanelTabControl((Image)resources.GetObject("odjava"), "ODJAVA");
+            PanelTabControl panelTabControl6 = new PanelTabControl(Resources.odjava, "ODJAVA");
             panelTabControl6.ControlClick += Odjava_ControlClick;
 
             panelGlavniTab.Controls.Add(panelTabControl);
