@@ -77,7 +77,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("VrijemeRezervacije")]
         [Editing(Use.Insert)]
         [GenerateComponent(ComponentType.Datum)]
-        
+        [DefaultPropertValue(TargetValue.Today, "")]
         public DateTime VrijemeRezervacije
         {
             get
@@ -94,6 +94,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("Termin")]
         [GenerateComponent(ComponentType.Datum)]
         [Editing(Use.InsertAndUpdate)]
+        [DefaultPropertValue(TargetValue.Today, "")]
         public DateTime Termin
         {
             get

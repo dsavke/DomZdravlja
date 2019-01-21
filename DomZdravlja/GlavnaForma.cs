@@ -112,7 +112,7 @@ namespace DomZdravlja
                 pomDetaljiRacuna.RacunID = Convert.ToInt32(dataReader["RacunID"]);
                 pomDetaljiRacuna.CijenaID = Convert.ToInt32(dataReader["CijenaID"]);
                 pomDetaljiRacuna.Kolicina = Convert.ToInt32(dataReader["Kolicina"]);
-                pomDetaljiRacuna.SumaLinije = Convert.ToInt32(dataReader["SumaLinije"]);
+                pomDetaljiRacuna.SumaLinije = Math.Round(Convert.ToDecimal(dataReader["SumaLinije"]), 2);
                 propertyInterfaces[3].Add(pomDetaljiRacuna);
             }
         }
@@ -176,7 +176,6 @@ namespace DomZdravlja
                 PropertyKarton pomKarton = new PropertyKarton();
                 pomKarton.PacijentID = Convert.ToInt32(dataReader["PacijentID"]);
                 pomKarton.KartonID = Convert.ToInt32(dataReader["BrojKartona"]);
-
                 propertyInterfaces[7].Add(pomKarton);
             }
         }
@@ -248,9 +247,9 @@ namespace DomZdravlja
                 pomRacun.RacunID = Convert.ToInt32(dataReader["RacunID"]);
                 pomRacun.VrijemeIzdavanja = Convert.ToDateTime(dataReader["VrijemeIzdavanja"]);
                 pomRacun.ZaposleniID = Convert.ToInt32(dataReader["ZaposleniID"]);
-                pomRacun.Popust = Convert.ToDecimal(dataReader["Popust"]);
+                pomRacun.Popust = Math.Round(Convert.ToDecimal(dataReader["Popust"]), 2);
                 pomRacun.PacijentID = Convert.ToInt32(dataReader["PacijentID"]);
-                pomRacun.SumaRacuna = Convert.ToInt32(dataReader["SumaRacuna"]);
+                pomRacun.SumaRacuna = Math.Round(Convert.ToDecimal(dataReader["SumaRacuna"]), 2);
                 propertyInterfaces[11].Add(pomRacun);
             }
         }
