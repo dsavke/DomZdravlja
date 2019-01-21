@@ -59,7 +59,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Radno mjesto")]
         [SqlName("RadnoMjesto")]
         [GenerateComponent(ComponentType.Tekst)]
-        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s]+$")]
+        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s\p{L}-]+$")]
         [Editing(Use.InsertAndUpdate)]
         public string RadnoMjesto
         {
@@ -110,7 +110,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Tip Zaposlenog")]
         [SqlName("TipZaposlenog")]
         [GenerateComponent(ComponentType.Tekst)]
-        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z0-9\s\.]*$")]
+        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z0-9\s\.\p{L}-]*$")]
         [Editing(Use.InsertAndUpdate)]
         public string TipZaposlenog
         {

@@ -150,7 +150,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Mjesto rođenja")]
         [SqlName("MjestoRodjenja")]
         [GenerateComponent(ComponentType.Tekst)]
-        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s((\-)?)]*$")]
+        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z\s\p{L}-((\-)?)]*$")]
         [Editing(Use.Insert)]
         public string MjestoRodjenja
         {
