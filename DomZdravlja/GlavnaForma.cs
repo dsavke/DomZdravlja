@@ -2031,13 +2031,19 @@ namespace DomZdravlja
 
             ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
             if (Logovan.TipZaposlenog.Equals("Medicinska sestra"))
-                pocetna.PostaviImage = Resources.nurse;
+                pocetna.PostaviImage = Resources.nurse; 
             else if (Logovan.TipZaposlenog.Equals("Sistem administrator"))
                 pocetna.PostaviImage = Resources.admin;
             else
-                pocetna.PostaviImage = Resources.doctor;
-
-
+            {
+                foreach (PropertyOsoba item in propertyInterfaces[9])
+                {
+                    if (item.OsobaID.Equals(Logovan.OsobaID) && item.Pol.Equals("Ž"))
+                        pocetna.PostaviImage = Resources.femaleDoctor;
+                    else if (item.OsobaID.Equals(Logovan.OsobaID) && item.Pol.Equals("M"))
+                        pocetna.PostaviImage = Resources.maleDoctor;
+                 }
+            }
         }
 
         private void ucitajRecepciju()
