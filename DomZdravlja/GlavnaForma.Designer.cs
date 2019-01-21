@@ -34,8 +34,8 @@
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelGlavniTab = new System.Windows.Forms.FlowLayoutPanel();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tabControl = new DomZdravlja.CustomControls.CustomTabControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -71,6 +71,16 @@
             this.panelGlavniTab.Size = new System.Drawing.Size(266, 653);
             this.panelGlavniTab.TabIndex = 2;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::DomZdravlja.Properties.Resources.pocetniLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(266, 99);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // tabPage9
             // 
             this.tabPage9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
@@ -80,16 +90,6 @@
             this.tabPage9.Size = new System.Drawing.Size(358, 263);
             this.tabPage9.TabIndex = 4;
             this.tabPage9.Text = "tabPage9";
-            // 
-            // pictureBox1
-            // 
-            //this.pictureBox1.Image = global::DomZdravlja.Properties.Resources.pocetniLogo;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(266, 99);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // tabControl
             // 
