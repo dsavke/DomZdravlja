@@ -1991,7 +1991,7 @@ namespace DomZdravlja
 
             PanelTabControl panelTabControl = new PanelTabControl(Resources.pocetna, "POČETNA");
             panelTabControl.ControlClick += Pocetna_ControlClick;
-            PanelTabControl panelTabControl3 = new PanelTabControl(Resources.rezervacija, "REDOSLIJED DOLAZAKA");
+            PanelTabControl panelTabControl3 = new PanelTabControl(Resources.rezervacija, "R. DOLAZAKA");
             panelTabControl3.ControlClick += RedoslijedDolazaka_ControlClick;
             PanelTabControl panelTabControl4 = new PanelTabControl(Resources.karton, "KARTON");
             panelTabControl4.ControlClick += Karton_ControlClick;
@@ -2173,8 +2173,8 @@ namespace DomZdravlja
         private void RedoslijedDolazaka_ControlClick(object sender, EventArgs e)
         {
             zatvoriSve();
-            rijesiSelekt("REDOSLIJED DOLAZAKA");
-            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "REDOSLIJED DOLAZAKA" };
+            rijesiSelekt("R. DOLAZAKA");
+            CustomTabPage tabPage = new CustomTabPage() { State = State.Main, Naziv = "R. DOLAZAKA" };
             tabControl.Controls.Add(tabPage);
             Tip = Tip.RedoslijedDolazaka;
             postaviFokus(State.Main);
