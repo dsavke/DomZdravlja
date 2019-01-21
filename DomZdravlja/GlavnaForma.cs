@@ -57,7 +57,7 @@ namespace DomZdravlja
                 pomZaposleni.Zvanje = dataReader["Zvanje"].ToString();
                 pomZaposleni.RadnoMjesto = dataReader["RadnoMjesto"].ToString();
                 pomZaposleni.KorisnickoIme = dataReader["KorisnickoIme"].ToString();
-                pomZaposleni.Password = dataReader["Password"].ToString();
+                pomZaposleni.Password = dataReader["Password"].ToString(); 
                 pomZaposleni.TipZaposlenog = dataReader["TipZaposlenog"].ToString();
                 pomZaposleni.OsobaID = Convert.ToInt32(dataReader["OsobaID"]);
                 propertyInterfaces[0].Add(pomZaposleni);
@@ -380,6 +380,7 @@ namespace DomZdravlja
             myProperty = null;
             ucitajPacijente();
             trenutnoStanje = State.Main;
+            
         }
 
 
@@ -1259,7 +1260,7 @@ namespace DomZdravlja
                         if (cLookupInsert != null)
                         {
                             var id = SqlHelper.ExecuteScalar(SqlHelper.GetConnectionString(), CommandType.Text, propertyInterface.GetInsertQuery() + "SELECT SCOPE_IDENTITY()", propertyInterface.GetInsertParameters().ToArray());
-                            MessageBox.Show("Uspjesno ste dodali!");
+                            MessageBox.Show("Uspješno ste dodali!");
 
                             PropertyInfo prop = myProperty.GetType().GetProperties().Where(prope => prope.GetCustomAttribute<DisplayNameAttribute>().DisplayName == cLookupInsert.Naziv).FirstOrDefault();
 
@@ -1297,13 +1298,13 @@ namespace DomZdravlja
                         else
                         {
                             SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, propertyInterface.GetInsertQuery(), propertyInterface.GetInsertParameters().ToArray());
-                            MessageBox.Show("Uspjesno ste dodali!");
+                            MessageBox.Show("Uspješno ste dodali!");
                         }
                     }
                     else
                     {
                         SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, propertyInterface.GetUpdateQuery(), propertyInterface.GetUpdateParameters().ToArray());
-                        MessageBox.Show("Uspjesno ste ažurirali!");
+                        MessageBox.Show("Uspješno ste ažurirali!");
                     }
 
                     CustomTabPage tabPage = tabControl.TabPages[0] as CustomTabPage;
@@ -1498,7 +1499,7 @@ namespace DomZdravlja
             panel.Height = 160;
 
             Button btnSacuvaj = new Button();
-            urediButton(btnSacuvaj, "SACUVAJ", 88, 30, Resources.tick, new Point(682, 100));
+            urediButton(btnSacuvaj, "SAČUVAJ", 88, 30, Resources.tick, new Point(682, 100));
             btnSacuvaj.Click += (send, EventArgs) => { BtnSacuvaj_Click(send, EventArgs, propertyInterface, uCLookupInsert1, use); };
        
             Button btnOdustani = new Button();
@@ -1998,6 +1999,14 @@ namespace DomZdravlja
             }
             pocetna.TipZaposlenog = Logovan.TipZaposlenog;
 
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(GlavnaForma));
+            if (Logovan.TipZaposlenog.Equals("Medicinska sestra"))
+                pocetna.PostaviImage = (Image)resources.GetObject("nurse");
+            else if (Logovan.TipZaposlenog.Equals("Sistem administrator"))
+                pocetna.PostaviImage = (Image)resources.GetObject("admin");
+            else
+                pocetna.PostaviImage = (Image)resources.GetObject("doctor");
+
 
         }
 
@@ -2205,7 +2214,7 @@ namespace DomZdravlja
 
         private void Odjava_ControlClick(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Da li zelite izaći iz programa?", "Warnning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult dialogResult = MessageBox.Show("Da li želite napustiti program?", "Warnning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dialogResult == DialogResult.Yes)
             {
                 this.Hide();

@@ -42,6 +42,11 @@ namespace DomZdravlja.CustomControls
             set { lblTipZaposlenog.Text = value; }
         }
 
+        public Image PostaviImage
+        {
+            set { pictureBox1.Image = value; }
+        }
+
         private void btnSifra_Click(object sender, EventArgs e)
         {
             panel2.Show();

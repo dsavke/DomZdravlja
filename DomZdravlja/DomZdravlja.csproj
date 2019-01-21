@@ -225,31 +225,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\cjenovnik.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\karton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\odjava.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pacijent.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pocetna.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pregled.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\racun.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\rezervacija.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\zaposleni.png" />
+    <None Include="cjenovnik.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\edit.png" />
@@ -302,10 +278,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\faktorRizika2.png" />
-    <None Include="Resources\recepcija2.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\karton2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ikonica.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pocetniLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\received_343080329865412.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\received_2231381277099932.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\received_2231381277099932 - Copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\received_2231381277099932 - Copy.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\pharmacy.png" />
@@ -317,13 +313,46 @@
     <None Include="Resources\id.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\received_343080329865412.png" />
+    <None Include="Resources\cjenovnik.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\received_2231381277099932.png" />
+    <None Include="Resources\pregled.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\x-button.png" />
+    <None Include="Resources\racun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaposleni.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pacijent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\karton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\faktor rizika.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pocetna.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\odjava.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rezervacija.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recepcija2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\admin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\doctor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nurse.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\play-button.png" />
