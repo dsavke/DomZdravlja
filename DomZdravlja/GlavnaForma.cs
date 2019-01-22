@@ -2621,7 +2621,7 @@ namespace DomZdravlja
                                         {
                                             Broj_računa = racun.RacunID,
                                             Ime_i_prezime_pacijenta = (osoba2.Ime + " " + osoba2.Prezime),
-                                            Ime_i_prezime_doktora = (osoba1.Ime + " " + osoba1.Prezime),
+                                            Izdao = (osoba1.Ime + " " + osoba1.Prezime),
                                             Suma_računa = racun.SumaRacuna,
                                             Datum_i_vrijeme_izdavanja = racun.VrijemeIzdavanja,
                                             Šifra_zaposlenog_hide = racun.ZaposleniID,
