@@ -453,7 +453,7 @@ namespace DomZdravlja
 
                 CustomDataGridView data = izgled();
 
-                noviTabControl.TabIndexChanged += NoviTabControl_TabIndexChanged;
+                
                 noviTabControl.SelectedIndexChanged += NoviTabControl_SelectedIndexChanged;
 
                 data.DataSource = vratiPodatke(Tip, null);
@@ -490,16 +490,8 @@ namespace DomZdravlja
 
         }
 
-        private void NoviTabControl_TabIndexChanged(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void Data_SelectionChanged(object sender, EventArgs e)
-        {
-
-        }
+        
+        
 
         private void kreirajPoljaZaPretragu(PropertyInterface myProperty, FlowLayoutPanel flowLayoutPanel)
         {
@@ -562,7 +554,6 @@ namespace DomZdravlja
                 CustomToolStrip.PrviClick += CustomToolStrip_PrviClick;
                 CustomToolStrip.ZadnjiClick += CustomToolStrip_ZadnjiClick;
                 tabControl.SelectedTab.Controls.Add(CustomToolStrip);
-                //CustomToolStrip.Gore = false;
 
             }
         }
@@ -626,11 +617,7 @@ namespace DomZdravlja
                 }
             }
         }
-
-        private void CustomToolStrip_ObrisiClick(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void CustomToolStrip_PretragaClick(object sender, EventArgs e)
         {
@@ -871,7 +858,7 @@ namespace DomZdravlja
 
                 DataGridViewRow dataRow = data.SelectedRows[0];
 
-                CustomTabPage tabPage = new CustomTabPage() { State = State.Update, Naziv = "AZURIRANJE" };
+                CustomTabPage tabPage = new CustomTabPage() { State = State.Update, Naziv = "AŽURIRANJE" };
                 trenutnoStanje = State.Update;
                 tabControl.TabPages.Add(tabPage);
                 postaviFokus(State.Update);
@@ -1273,7 +1260,7 @@ namespace DomZdravlja
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Puklo " + ex.ToString());
+                    
                 }
 
             }
@@ -1337,7 +1324,7 @@ namespace DomZdravlja
 
                     CustomDataGridView c = (tabPage.Controls[2] as CustomTabControl).TabPages[0].Controls[0] as CustomDataGridView;
 
-                    //MessageBox.Show(c.GetType().ToString());
+                    
 
                     c.DataSource = vratiPodatke(c.Tip, null);
 
@@ -1355,13 +1342,10 @@ namespace DomZdravlja
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("" + ex.ToString());
+                    
                 }
             }
-            else
-            {
-                //dodavanje nije proslo
-            }
+            
 
         }
         #endregion
@@ -1796,7 +1780,7 @@ namespace DomZdravlja
             }
             else
             {
-                MessageBox.Show("Greska. Niste nista selektovali!");
+                MessageBox.Show("Greška. Ništa niste selektovali!");
             }
 
         }
@@ -1836,20 +1820,17 @@ namespace DomZdravlja
 
         private ContextMenuStrip napraviContextMenyStrip()
         {
-
-            //posto se ovo poziva na datagridview staviti da sadrzi podatke o tip tako da ih znam vratiti
-
             ContextMenuStrip contextMenuStrip = new ContextMenuStrip();
             contextMenuStrip.Opened += ContextMenuStrip_Opened;
             ToolStripMenuItem item = new ToolStripMenuItem();
-            item.Text = "Osvijezi                                   ";
+            item.Text = "Osvježi";
             item.Image = Resources.reload__1_;
             item.Click += Osvijezi_Click;
 
             ToolStripSeparator tool = new ToolStripSeparator();
 
             ToolStripMenuItem item1 = new ToolStripMenuItem();
-            item1.Text = "Azuriraj";
+            item1.Text = "Ažuriraj";
             item1.Image = Resources.edit;
 
 
@@ -1898,7 +1879,6 @@ namespace DomZdravlja
 
         private void ContextMenuStrip_Opened(object sender, EventArgs e)
         {
-            // (sender as ContextMenuStrip).Items[0].Enabled = false;
             Control control = (sender as ContextMenuStrip).SourceControl;
 
 

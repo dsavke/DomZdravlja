@@ -132,7 +132,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox1.Image = global::DomZdravlja.Properties.Resources.login;
+            this.pictureBox1.Image = global::DomZdravlja.Properties.Resources.DomZdravlja2;
             this.pictureBox1.Location = new System.Drawing.Point(43, 52);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(401, 100);
