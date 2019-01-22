@@ -23,6 +23,7 @@ namespace DomZdravlja.CustomControls
             this.MultiSelect = false;
             this.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             this.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.EditMode = DataGridViewEditMode.EditProgrammatically;
 
             this.RowsDefaultCellStyle.BackColor = Color.White;
