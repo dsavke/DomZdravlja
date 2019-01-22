@@ -40,7 +40,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Naziv usluge")]
         [SqlName("NazivUsluge")]
         [GenerateComponent(ComponentType.Tekst)]
-        [ValidatePattern(@"(?!^.*[A-Z]{2,}.*$)^[A-Za-z0-9\s\p{L}-]+$")]
+        [ValidatePattern(@"^[1-9a-zA-ZšđčćžŠĐČĆŽ\s.,]+$")]
         [MainSearch(null)]
         [Editing(Use.InsertAndUpdate)]
         public string NazivUsluge
@@ -58,7 +58,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Cijena usluge")]
         [SqlName("CijenaUsluge")]
         [GenerateComponent(ComponentType.Tekst)]
-        [ValidatePattern(@"^[0-9]{1,5}([\.][0-9]{1,5})?$")]
+        [ValidatePattern(@"^[0-9]{1,5}([\.]{1}[0-9]{1,5})?$")]
         [Editing(Use.Insert)]
         public decimal CijenaUsluge
         {

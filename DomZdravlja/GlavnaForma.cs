@@ -461,7 +461,7 @@ namespace DomZdravlja
 
                 tabPage.Controls.Add(data);
 
-                data = urediGridView(data) as CustomDataGridView;
+                data = urediGridView(data) as CustomDataGridView;                           
 
                 data.Dock = DockStyle.Fill;
                 data.BorderStyle = BorderStyle.None;
@@ -1339,6 +1339,8 @@ namespace DomZdravlja
                     {
                         lookupTab();
                     }
+
+                    IskljuciDugmice(c);
                 }
                 catch (Exception ex)
                 {
@@ -1392,6 +1394,7 @@ namespace DomZdravlja
                     }
                     else uCTekst.setReadOnly();
 
+
                     if (propertyInterface.GetType() == typeof(PropertyDetaljiRacuna))
                     {
                         if (uCTekst.Naziv == "Količina")
@@ -1406,6 +1409,11 @@ namespace DomZdravlja
                     UCDatum uCDatum = new UCDatum();
                     uCDatum.Naziv = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
                     flowLayoutPanel.Controls.Add(uCDatum);
+                    if (uCDatum.Naziv == "Datum rođenja")
+                    {
+                        DateTimePicker dtp = uCDatum.Controls[1] as DateTimePicker;
+                        dtp.CustomFormat = "dd/MM/yyyy";
+                    }
                     if (use == Use.Insert)
                         defaultValue(property, uCDatum);
                     if (property.IsDefined(typeof(Editing)))
@@ -1803,6 +1811,14 @@ namespace DomZdravlja
             else if (objekat.GetType() == typeof(PropertyRacun)) dgv.DataSource = list.Cast<PropertyRacun>().ToList();
             else if (objekat.GetType() == typeof(PropertyRecepcija)) dgv.DataSource = list.Cast<PropertyRecepcija>().ToList();
             else if (objekat.GetType() == typeof(PropertyRezervacije)) dgv.DataSource = list.Cast<PropertyRezervacije>().ToList();
+
+            foreach (DataGridViewColumn item in dgv.Columns)
+            {
+                if (item.HeaderText == "Pol")
+                {
+                    item.Width = 50;
+                }
+            }
 
             return dgv;
         }
@@ -2380,6 +2396,15 @@ namespace DomZdravlja
                 }
                 column.Name = column.Name.Replace('_', ' ');
                 column.HeaderText = column.HeaderText.Replace('_', ' ');
+                if (column.HeaderText == "Pol")
+                {
+                    column.Width = 35;
+                }
+
+                if (column.HeaderText == "Osiguran")
+                {
+                    column.Width = 40;
+                }
             }
             return data;
         }
