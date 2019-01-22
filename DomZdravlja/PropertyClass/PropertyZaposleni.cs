@@ -14,7 +14,7 @@ namespace DomZdravlja.PropertyClass
         #region Atributi
         private int zaposleniId;
         private string zvanje;
-        private string radnoMjesto;
+        private string radnoMjesto; 
         private string korisnickoIme;
         private string password;
         private string tipZaposlenog;

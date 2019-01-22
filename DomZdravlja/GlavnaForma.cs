@@ -418,6 +418,7 @@ namespace DomZdravlja
                     }
                 }
                 trenutnoStanje = (tabControl.SelectedTab as CustomTabPage).State;
+
             }
         }
 

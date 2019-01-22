@@ -18,7 +18,7 @@ namespace DomZdravlja.PropertyClass
         private int dijagnozaID;
         #endregion
 
-        #region Property
+        #region Property 
         [DisplayName("Šifra pregleda")]
         [SqlName("PregledID")]
         [GenerateComponent(ComponentType.Tekst)]
@@ -73,7 +73,7 @@ namespace DomZdravlja.PropertyClass
                 pacijentID = value;
             }
         }
-
+        
         [DisplayName("Šifra dijagnoze")]
         [SqlName("DijagnozaID")]
         [GenerateComponent(ComponentType.InsertLookup)]
