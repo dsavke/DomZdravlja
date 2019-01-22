@@ -75,7 +75,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Vrijeme rezervacije")]
         [SqlName("VrijemeRezervacije")]
-        [Editing(Use.Insert)]
+        [Invisible(Use.InsertAndUpdate)]
         [GenerateComponent(ComponentType.Datum)]
         [DefaultPropertValue(TargetValue.Today, "")]
         public DateTime VrijemeRezervacije
@@ -124,7 +124,7 @@ namespace DomZdravlja.PropertyClass
                        ,[Termin]
                        ,[DoktorID])
                      VALUES
-                       (@PacijentID, @VrijemeRezervacije, @Termin, @DoktorID)
+                       (@PacijentID, GetDate(), @Termin, @DoktorID)
                     ";
         }
         public string GetUpdateQuery()
