@@ -42,7 +42,7 @@ namespace DomZdravlja.PropertyClass
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"^[1-9a-zA-ZšđčćžŠĐČĆŽ\s.,]+$")]
         [MainSearch(null)]
-        [Editing(Use.InsertAndUpdate)]
+        [Editing(Use.Insert)]
         public string NazivUsluge
         {
             get

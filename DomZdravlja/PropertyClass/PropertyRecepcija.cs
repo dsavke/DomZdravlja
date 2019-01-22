@@ -117,6 +117,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("VrijemePrijema")]
         [GenerateComponent(ComponentType.Datum)]
         [DefaultPropertValue(TargetValue.Today, "")]
+        [Editing(Use.Insert)]
         public DateTime VrijemePrijema
         {
             get

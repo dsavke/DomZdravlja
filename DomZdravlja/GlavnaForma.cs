@@ -1,4 +1,6 @@
-﻿using DomZdravlja.AttributeClass;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Windows.Forms;
+using DomZdravlja.AttributeClass;
 using DomZdravlja.CustomControls;
 using DomZdravlja.Helpers;
 using DomZdravlja.Properties;
@@ -57,7 +59,7 @@ namespace DomZdravlja
                 pomZaposleni.Zvanje = dataReader["Zvanje"].ToString();
                 pomZaposleni.RadnoMjesto = dataReader["RadnoMjesto"].ToString();
                 pomZaposleni.KorisnickoIme = dataReader["KorisnickoIme"].ToString();
-                pomZaposleni.Password = dataReader["Password"].ToString(); 
+                pomZaposleni.Password = dataReader["Password"].ToString();
                 pomZaposleni.TipZaposlenog = dataReader["TipZaposlenog"].ToString();
                 pomZaposleni.OsobaID = Convert.ToInt32(dataReader["OsobaID"]);
                 propertyInterfaces[0].Add(pomZaposleni);
@@ -379,7 +381,7 @@ namespace DomZdravlja
             myProperty = null;
             ucitajPacijente();
             trenutnoStanje = State.Main;
-            
+
         }
 
 
@@ -473,6 +475,170 @@ namespace DomZdravlja
 
 
             }
+        }
+
+        private void kreirajIzvjestaj()
+        {
+            Panel panelHeader = new Panel() { Width = 890, Height = 40 };
+            panelHeader.Location = new Point(5, 5);
+            tabControl.SelectedTab.Controls.Add(panelHeader);
+
+            PictureBox pibMenuNavigation = new PictureBox() { Width = 40, Height = 40, Image = Resources.menu, SizeMode = PictureBoxSizeMode.CenterImage };
+            pibMenuNavigation.Click += PibMenuNavigation_Click;
+            panelHeader.Controls.Add(pibMenuNavigation);
+
+            Panel panelBody = new Panel() { Width = 890, Height = 755 };
+            panelBody.Location = new Point(5, 45);
+            tabControl.SelectedTab.Controls.Add(panelBody);
+
+            CustomPanel panelReportsList = new CustomPanel() { Width = 300, Height = 710, BorderColor = Color.FromArgb(0, 67, 128) };
+
+            panelBody.Controls.Add(panelReportsList);
+            panelReportsList.Margin = new Padding(0);
+
+            Panel panelReport = new Panel() { Width = 590, Height = 710 };//, BackColor = Color.Aqua };
+            panelReport.Location = new Point(301, 0);
+            panelBody.Controls.Add(panelReport);
+
+            panelReport.Controls.Add(ucitajReport(4));
+
+            /*Panel panelBtnSeeReport = new Panel() { Width = 296, Height = 58 };
+            panelBtnSeeReport.Location = new Point(2, 650);
+            panelReportsList.Controls.Add(panelBtnSeeReport);
+
+            Button btnSeeReport = new Button();
+            urediButton(btnSeeReport, "PRIKAŽI IZVJEŠTAJ", 150, 30, Resources.eye, new Point(2, 25));
+            panelBtnSeeReport.Controls.Add(btnSeeReport);*/
+
+            ReportItem riZaposleni = new ReportItem(Resources.zaposleni, "IZVJEŠTAJ ZAPOSLENI") { IzvjestajID = 1 };
+            riZaposleni.ReportItemClick += (send, EventArgs) => { ReportItemClick(send, EventArgs, panelReportsList, panelReport); };
+            riZaposleni.Location = new Point(2, 2);
+            panelReportsList.Controls.Add(riZaposleni);
+
+            ReportItem riPacijenti = new ReportItem(Resources.pacijent, "IZVJEŠTAJ PACIJENTI") { IzvjestajID = 2 };
+            riPacijenti.ReportItemClick += (send, EventArgs) => { ReportItemClick(send, EventArgs, panelReportsList, panelReport); };
+            riPacijenti.Location = new Point(2, 52);
+            panelReportsList.Controls.Add(riPacijenti);
+
+            ReportItem riRacuni = new ReportItem(Resources.racun, "IZVJEŠTAJ RACUNI") { IzvjestajID = 3 };
+            riRacuni.ReportItemClick += (send, EventArgs) => { ReportItemClick(send, EventArgs, panelReportsList, panelReport); };
+            riRacuni.Location = new Point(2, 102);
+            panelReportsList.Controls.Add(riRacuni);
+
+            ReportItem riRezervacija = new ReportItem(Resources.rezervacija, "IZVJEŠTAJ REZERVACIJE") { IzvjestajID = 4 };
+            riRezervacija.ReportItemClick += (send, EventArgs) => { ReportItemClick(send, EventArgs, panelReportsList, panelReport); };
+            riRezervacija.Location = new Point(2, 152);
+            panelReportsList.Controls.Add(riRezervacija);
+
+            ReportItem riPregled = new ReportItem(Resources.pregled, "IZVJEŠTAJ PREGLEDI") { IzvjestajID = 5 };
+            riPregled.ReportItemClick += (send, EventArgs) => { ReportItemClick(send, EventArgs, panelReportsList, panelReport); };
+            riPregled.Location = new Point(2, 202);
+            panelReportsList.Controls.Add(riPregled);
+
+        }
+
+        private void ReportItemClick(object sender, EventArgs e, CustomPanel panelReportsList, Panel panelReport)
+        {
+            panelReportsList.Width = 0;
+            panelReport.Location = new Point(0, 0);
+            panelReport.Width = 890;
+            panelReport.Height = 710;
+
+            panelReport.Controls.RemoveAt(0);
+            if (sender.GetType() == typeof(ReportItem))
+            {
+                panelReport.Controls.Add(ucitajReport((sender as ReportItem).IzvjestajID));
+            }
+            else if(sender.GetType() == typeof(PictureBox))
+            {
+                panelReport.Controls.Add(ucitajReport(((sender as PictureBox).Parent as ReportItem).IzvjestajID));
+            }
+            else if (sender.GetType() == typeof(Label))
+            {
+                panelReport.Controls.Add(ucitajReport(((sender as Label).Parent as ReportItem).IzvjestajID));
+            }
+
+        }
+
+        private void PibMenuNavigation_Click(object sender, EventArgs e)
+        {
+            CustomPanel panelReportsList = tabControl.SelectedTab.Controls[1].Controls[0] as CustomPanel;
+            Panel panelReport = tabControl.SelectedTab.Controls[1].Controls[1] as Panel;
+            if (panelReportsList.Width == 0)
+            {
+                panelReportsList.Width = 300;
+                panelReportsList.Height = 710;
+
+                panelReport.Width = 590;
+                panelReport.Height = 710;
+                panelReport.Location = new Point(301, 0);
+            }
+            else
+            {
+                panelReportsList.Width = 0;
+                panelReport.Location = new Point(0, 0);
+                panelReport.Width = 890;
+                panelReport.Height = 710;
+            }
+        }
+
+        private CrystalReportViewer ucitajReport(int? reportID)
+        {
+            CrystalReportViewer reportViewer = new CrystalReportViewer();
+
+            reportViewer.DisplayGroupTree = false;
+            reportViewer.ShowGroupTreeButton = false;
+            reportViewer.ShowGotoPageButton = false;
+            reportViewer.ShowTextSearchButton = false;
+            reportViewer.Dock = DockStyle.Fill;
+
+            var pom = new ReportDocument();
+            string reportPath = Environment.CurrentDirectory;
+
+            switch (reportID)
+            {
+                case null:
+                    return null;
+                case 1:
+                    reportPath += @"\Reports\SviZaposleni.rpt";
+                    pom.Load(reportPath);
+                    pom.Refresh();
+                    pom.SetParameterValue("@Tip", null);
+                    break;
+                case 2:
+                    reportPath += @"\Reports\SviZaposleni.rpt";
+                    pom.Load(reportPath);
+                    pom.Refresh();
+                    //pom.SetParameterValue("@DoktorID", null);
+                    break;
+                case 3:
+                    reportPath += @"\Reports\SviRacuni.rpt";
+                    pom.Load(reportPath);
+                    pom.Refresh();
+                    pom.SetParameterValue("@datum", null);
+                    break;
+                case 4:
+                    reportPath += @"\Reports\SveRezervacije.rpt";
+                    pom.Load(reportPath);
+                    pom.Refresh();
+                    pom.SetParameterValue("@DoktorID", null);
+                    break;
+                case 5:
+                    reportPath += @"\Reports\SviPregledi.rpt";
+                    pom.Load(reportPath);
+                    pom.Refresh();
+                    pom.SetParameterValue("@DoktorId", null);
+                    break;
+            }
+
+            //pom.
+            
+            pom.SetDatabaseLogon("domZdravlja_admin", "dom.123");
+            reportViewer.ReportSource = pom;
+
+            reportViewer.Refresh();
+
+            return reportViewer;
         }
 
         private void NoviTabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -2129,7 +2295,7 @@ namespace DomZdravlja
             tabControl.Controls.Add(tabPage);
             postaviFokus(State.Main);
             myProperty = null;
-            kreirajTabove();
+            kreirajIzvjestaj();
         }
 
         private void Pocetna_ControlClick(object sender, EventArgs e)
