@@ -59,7 +59,7 @@ namespace DomZdravlja.PropertyClass
         [SqlName("CijenaUsluge")]
         [GenerateComponent(ComponentType.Tekst)]
         [ValidatePattern(@"^[0-9]{1,5}([\.]{1}[0-9]{1,5})?$")]
-        [Editing(Use.Insert)]
+        [Editing(Use.InsertAndUpdate)]
         public decimal CijenaUsluge
         {
             get
@@ -140,13 +140,32 @@ namespace DomZdravlja.PropertyClass
 
         public string GetUpdateQuery()
         {
-            return @"
-
-                    UPDATE [dbo].[Cjenovnik]
-                       SET [Aktivno] = @Aktivno,
-                        [NazivUsluge] = @NazivUsluge
-                     WHERE CjenovnikID = @CjenovnikID
-                   
+            return @"IF @Aktivno = 1
+                            BEGIN
+                                UPDATE [dbo].[Cjenovnik]
+                                  SET 
+                                      [Aktivno] = 0
+                                WHERE CjenovnikID = @CjenovnikID;
+                                INSERT INTO [dbo].[Cjenovnik]
+                                ([NazivUsluge], 
+                                 [CijenaUsluge], 
+                                 [DatumUspostavljanjaCijene], 
+                                 [Aktivno]
+                                )
+                                VALUES
+                                (@NazivUsluge, 
+                                 @CijenaUsluge, 
+                                 GETDATE(), 
+                                 1
+                                );
+                        END;
+                            ELSE
+                            BEGIN
+                                UPDATE [dbo].[Cjenovnik]
+                                  SET 
+                                      [Aktivno] = 0
+                                WHERE CjenovnikID = @CjenovnikID;
+                        END; 
                     ";
         }
 
@@ -200,6 +219,10 @@ namespace DomZdravlja.PropertyClass
             SqlParameter NazivUsluge = new SqlParameter("@NazivUsluge", System.Data.SqlDbType.NVarChar);
             NazivUsluge.Value = nazivUsluge;
             list.Add(NazivUsluge);
+
+            SqlParameter CijenaUsluge = new SqlParameter("@CijenaUsluge", System.Data.SqlDbType.Money);
+            CijenaUsluge.Value = cijenaUsluge;
+            list.Add(CijenaUsluge);
 
             SqlParameter AktivnoPar = new SqlParameter("@Aktivno", System.Data.SqlDbType.TinyInt);
             AktivnoPar.Value = aktivno;
