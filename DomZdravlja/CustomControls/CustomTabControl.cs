@@ -145,16 +145,16 @@ namespace DomZdravlja.CustomControls
             }
             catch
             {
-                // ignored
+                
             }
 
-            try//Rijesen po kratkom postupku
+            try
             {
                 SelectedTab.BorderStyle = BorderStyle.None;
             }
             catch
             {
-                // ignored
+                
             }
             int index = -1;
             for (var i = 0; i <= TabCount - 1; i++)

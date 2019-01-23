@@ -29,37 +29,7 @@ namespace DomZdravlja.CustomControls
 
         private void CustomPretraga_Load(object sender, EventArgs e)
         {
-            //if (tabName == "ZAPOSLENI" || tabName == "PACIJENT")
-            //{
-            //    UCTekst ucIme = new UCTekst();
-            //    ucIme.Naziv = "Ime";
-            //    flowLayoutPanel.Controls.Add(ucIme);
-
-            //    UCTekst ucPrezime = new UCTekst();
-            //    ucPrezime.Naziv = "Prezime";
-            //    flowLayoutPanel.Controls.Add(ucPrezime);
-
-            //    UCDatum ucDatum = new UCDatum();
-            //    ucDatum.Naziv = "Datum rodjenja";
-            //    flowLayoutPanel.Controls.Add(ucDatum);
-            //}
-            //else if ( tabName == "RACUN")
-            //{
-            //    UCDatum ucDatum = new UCDatum();
-            //    ucDatum.Naziv = "Datum";
-            //    flowLayoutPanel.Controls.Add(ucDatum);
-            //}
-            //else if (tabName == "CJENOVNIK")
-            //{
-            //    UCTekst ucNaziv = new UCTekst();
-            //    ucNaziv.Naziv = "Naziv usluge";
-            //    flowLayoutPanel.Controls.Add(ucNaziv);
-            //}
-            //else
-            //{
-            //    lblPretraga.Visible = false;
-            //}
-
+           
         }
     }
 }

@@ -17,20 +17,5 @@ namespace DomZdravlja
             get { return base.Text; }
             set { base.Text = value + (State == State.Main?"":"     "); }
         }
-
-       
-        /*public Font Slova
-        {
-            get { return base.Font; }
-            set {
-                base.Font =
-              new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-            }
-                //new Font(new FontFamily( "Microsoft Sans Serif", 8.25, FontStyle.Bold); }
-            
-        }*/
-
-        
-
     }
 }
