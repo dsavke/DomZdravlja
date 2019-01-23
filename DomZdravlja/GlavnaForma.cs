@@ -579,8 +579,8 @@ namespace DomZdravlja
             CrystalReportViewer reportViewer = new CrystalReportViewer();
 
             reportViewer.DisplayGroupTree = false;
-            reportViewer.ToolPanelView = ToolPanelViewType.None;
-            reportViewer.ShowParameterPanelButton = false;
+//            reportViewer.ToolPanelView = ToolPanelViewType.None;
+//            reportViewer.ShowParameterPanelButton = false;
             reportViewer.ShowCloseButton = false;
             
             reportViewer.ShowGroupTreeButton = false;
@@ -717,6 +717,12 @@ namespace DomZdravlja
 
         private void CustomToolStrip_ZadnjiClick(object sender, EventArgs e)
         {
+            if(tabControl.SelectedTab.Controls[0].GetType() == typeof(CustomDataGridView))
+            {
+                CustomDataGridView dgv = tabControl.SelectedTab.Controls[0] as CustomDataGridView;
+                dgv.Rows[dgv.Rows.Count - 1].Selected = true;
+                dgv.CurrentCell = dgv.Rows[dgv.SelectedRows[0].Index].Cells[0];
+            }
             foreach (Control control in tabControl.SelectedTab.Controls)
             {
                 if (control.GetType() == typeof(CustomTabControl))
@@ -731,6 +737,13 @@ namespace DomZdravlja
 
         private void CustomToolStrip_PrviClick(object sender, EventArgs e)
         {
+            if (tabControl.SelectedTab.Controls[0].GetType() == typeof(CustomDataGridView))
+            {
+                CustomDataGridView dgv = tabControl.SelectedTab.Controls[0] as CustomDataGridView;
+                dgv.Rows[0].Selected = true;
+                dgv.CurrentCell = dgv.Rows[dgv.SelectedRows[0].Index].Cells[0];
+            }
+
             foreach (Control control in tabControl.SelectedTab.Controls)
             {
                 if (control.GetType() == typeof(CustomTabControl))
@@ -745,6 +758,15 @@ namespace DomZdravlja
 
         private void CustomToolStrip_DoleClick(object sender, EventArgs e)
         {
+            if (tabControl.SelectedTab.Controls[0].GetType() == typeof(CustomDataGridView))
+            {
+                CustomDataGridView dgv = tabControl.SelectedTab.Controls[0] as CustomDataGridView;
+                if (dgv.Rows[0].Index == dgv.Rows.Count - 1)
+                { }
+                dgv.Rows[dgv.SelectedRows[0].Index + 1].Selected = true;
+                dgv.CurrentCell = dgv.Rows[dgv.SelectedRows[0].Index].Cells[0];
+            }
+
             foreach (Control control in tabControl.SelectedTab.Controls)
             {
                 if (control.GetType() == typeof(CustomTabControl))
@@ -761,6 +783,15 @@ namespace DomZdravlja
 
         private void CustomToolStrip_GoreClick(object sender, EventArgs e)
         {
+            if (tabControl.SelectedTab.Controls[0].GetType() == typeof(CustomDataGridView))
+            {
+                CustomDataGridView dgv = tabControl.SelectedTab.Controls[0] as CustomDataGridView;
+                if (dgv.Rows[0].Index == dgv.Rows.Count + 1)
+                { }
+                dgv.Rows[dgv.SelectedRows[0].Index - 1].Selected = true;
+                dgv.CurrentCell = dgv.Rows[dgv.SelectedRows[0].Index].Cells[0];
+            }
+
             foreach (Control control in tabControl.SelectedTab.Controls)
             {
                 if (control.GetType() == typeof(CustomTabControl))
@@ -2000,13 +2031,6 @@ namespace DomZdravlja
 
             ToolStripSeparator tool = new ToolStripSeparator();
 
-            ToolStripMenuItem item1 = new ToolStripMenuItem();
-            item1.Text = "Ažuriraj";
-            item1.Image = Resources.edit;
-
-
-            ToolStripSeparator tool1 = new ToolStripSeparator();
-
             ToolStripMenuItem item3 = new ToolStripMenuItem();
             item3.Text = "Gore";
             item3.Image = Resources.up_arrow;
@@ -2030,8 +2054,6 @@ namespace DomZdravlja
 
             contextMenuStrip.Items.Add(item);
             contextMenuStrip.Items.Add(tool);
-            contextMenuStrip.Items.Add(item1);
-            contextMenuStrip.Items.Add(tool1);
             contextMenuStrip.Items.Add(item6);
             contextMenuStrip.Items.Add(item4);
             contextMenuStrip.Items.Add(item3);
@@ -2058,39 +2080,39 @@ namespace DomZdravlja
             {
                 if (dgv.Rows.Count == 0 || dgv.Rows.Count == 1)
                 {
+                   
+                    (sender as ContextMenuStrip).Items[2].Enabled = false;
+                    (sender as ContextMenuStrip).Items[3].Enabled = false;
+                    (sender as ContextMenuStrip).Items[4].Enabled = false;
                     (sender as ContextMenuStrip).Items[5].Enabled = false;
-                    (sender as ContextMenuStrip).Items[6].Enabled = false;
-                    (sender as ContextMenuStrip).Items[7].Enabled = false;
-                    (sender as ContextMenuStrip).Items[8].Enabled = false;
                 }
                 else if (dgv.SelectedRows[0] == dgv.Rows[0])
                 {
-                    (sender as ContextMenuStrip).Items[5].Enabled = true;
-                    (sender as ContextMenuStrip).Items[6].Enabled = true;
-                    (sender as ContextMenuStrip).Items[7].Enabled = false;
-                    (sender as ContextMenuStrip).Items[8].Enabled = false;
+                    (sender as ContextMenuStrip).Items[2].Enabled = true;
+                    (sender as ContextMenuStrip).Items[3].Enabled = true;
+                    (sender as ContextMenuStrip).Items[4].Enabled = false;
+                    (sender as ContextMenuStrip).Items[5].Enabled = false;
 
                 }
                 else if (dgv.SelectedRows[0] == dgv.Rows[dgv.Rows.Count - 1])
                 {
-                    (sender as ContextMenuStrip).Items[5].Enabled = false;
-                    (sender as ContextMenuStrip).Items[6].Enabled = false;
-                    (sender as ContextMenuStrip).Items[7].Enabled = true;
-                    (sender as ContextMenuStrip).Items[8].Enabled = true;
+                    (sender as ContextMenuStrip).Items[2].Enabled = false;
+                    (sender as ContextMenuStrip).Items[3].Enabled = false;
+                    (sender as ContextMenuStrip).Items[4].Enabled = true;
+                    (sender as ContextMenuStrip).Items[5].Enabled = true;
 
                 }
                 else
                 {
+                    (sender as ContextMenuStrip).Items[2].Enabled = true;
+                    (sender as ContextMenuStrip).Items[3].Enabled = true;
+                    (sender as ContextMenuStrip).Items[4].Enabled = true;
                     (sender as ContextMenuStrip).Items[5].Enabled = true;
-                    (sender as ContextMenuStrip).Items[6].Enabled = true;
-                    (sender as ContextMenuStrip).Items[7].Enabled = true;
-                    (sender as ContextMenuStrip).Items[8].Enabled = true;
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
             }
         }
 
