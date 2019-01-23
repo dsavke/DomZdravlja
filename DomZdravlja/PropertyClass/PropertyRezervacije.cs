@@ -75,7 +75,6 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Vrijeme rezervacije")]
         [SqlName("VrijemeRezervacije")]
-        [Invisible(Use.InsertAndUpdate)]
         [GenerateComponent(ComponentType.Datum)]
         [DefaultPropertValue(TargetValue.Today, "")]
         public DateTime VrijemeRezervacije

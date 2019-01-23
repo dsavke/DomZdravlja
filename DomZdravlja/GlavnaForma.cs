@@ -500,15 +500,7 @@ namespace DomZdravlja
             panelReport.Location = new Point(301, 0);
             panelBody.Controls.Add(panelReport);
 
-            panelReport.Controls.Add(ucitajReport(4));
-
-            /*Panel panelBtnSeeReport = new Panel() { Width = 296, Height = 58 };
-            panelBtnSeeReport.Location = new Point(2, 650);
-            panelReportsList.Controls.Add(panelBtnSeeReport);
-
-            Button btnSeeReport = new Button();
-            urediButton(btnSeeReport, "PRIKAŽI IZVJEŠTAJ", 150, 30, Resources.eye, new Point(2, 25));
-            panelBtnSeeReport.Controls.Add(btnSeeReport);*/
+            panelReport.Controls.Add(ucitajReport(1));
 
             ReportItem riZaposleni = new ReportItem(Resources.zaposleni, "IZVJEŠTAJ ZAPOSLENI") { IzvjestajID = 1 };
             riZaposleni.ReportItemClick += (send, EventArgs) => { ReportItemClick(send, EventArgs, panelReportsList, panelReport); };
@@ -631,8 +623,6 @@ namespace DomZdravlja
                     break;
             }
 
-            //pom.
-            
             pom.SetDatabaseLogon("domZdravlja_admin", "dom.123");
             reportViewer.ReportSource = pom;
 
@@ -1427,7 +1417,6 @@ namespace DomZdravlja
                 }
                 catch (Exception ex)
                 {
-                    
                 }
 
             }
@@ -1511,7 +1500,6 @@ namespace DomZdravlja
                 }
                 catch (Exception ex)
                 {
-                    
                 }
             }
             
