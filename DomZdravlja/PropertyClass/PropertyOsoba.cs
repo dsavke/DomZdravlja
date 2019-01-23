@@ -98,7 +98,7 @@ namespace DomZdravlja.PropertyClass
 
         [DisplayName("Adresa")]
         [SqlName("Adresa")] 
-        [ValidatePattern(@"^[0-9A-Za-z\s.,/-šđčćžŠĐČĆŽ]*$")]
+        [ValidatePattern(@"^[0-9A-Za-z\s.,/\-šđčćžŠĐČĆŽ]*$")]
         [Editing(Use.InsertAndUpdate)]
         [GenerateComponent(ComponentType.Tekst)]
         public string Adresa
@@ -116,7 +116,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Kontakt")]
         [SqlName("Kontakt")]
         [GenerateComponent(ComponentType.Tekst)]
-        [ValidatePattern(@"^[0-9a-zA-Z\s/-@._]*$")]
+        [ValidatePattern(@"^[0-9a-zA-Z\s/\-@._]*$")]
         [Editing(Use.InsertAndUpdate)]
         public string Kontakt
         {
@@ -151,7 +151,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Mjesto rođenja")]
         [SqlName("MjestoRodjenja")]
         [GenerateComponent(ComponentType.Tekst)]
-        [ValidatePattern(@"^[0-9A-Za-z\s.,/-šđčćžŠĐČĆŽ]*$")]
+        [ValidatePattern(@"^[0-9A-Za-z\s.,/\-šđčćžŠĐČĆŽ]*$")]
         [Editing(Use.Insert)]
         public string MjestoRodjenja
         {
