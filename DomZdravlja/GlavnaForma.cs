@@ -579,6 +579,10 @@ namespace DomZdravlja
             CrystalReportViewer reportViewer = new CrystalReportViewer();
 
             reportViewer.DisplayGroupTree = false;
+            reportViewer.ToolPanelView = ToolPanelViewType.None;
+            reportViewer.ShowParameterPanelButton = false;
+            reportViewer.ShowCloseButton = false;
+            
             reportViewer.ShowGroupTreeButton = false;
             reportViewer.ShowGotoPageButton = false;
             reportViewer.ShowTextSearchButton = false;
