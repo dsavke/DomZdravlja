@@ -116,7 +116,7 @@ namespace DomZdravlja.PropertyClass
         [DisplayName("Kontakt")]
         [SqlName("Kontakt")]
         [GenerateComponent(ComponentType.Tekst)]
-        [ValidatePattern(@"^[0-9a-zA-Z/-]*$")]
+        [ValidatePattern(@"^[0-9a-zA-Z/-\s@]*$")]
         [Editing(Use.InsertAndUpdate)]
         public string Kontakt
         {
