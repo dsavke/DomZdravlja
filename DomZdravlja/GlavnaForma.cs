@@ -406,6 +406,7 @@ namespace DomZdravlja
 
             postaviPocetnu();
             rijesiSelekt("POČETNA");
+
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -1462,7 +1463,10 @@ namespace DomZdravlja
                         if (cLookupInsert != null)
                         {
                             var id = SqlHelper.ExecuteScalar(SqlHelper.GetConnectionString(), CommandType.Text, propertyInterface.GetInsertQuery() + "SELECT SCOPE_IDENTITY()", propertyInterface.GetInsertParameters().ToArray());
-                            MessageBox.Show("Uspješno ste dodali!");
+                            
+                            CustomMessageBox messageBox = new CustomMessageBox("Obavještenje", "Uspješno dodavanje!", MessageBoxButtons.OK);
+                            DialogResult dr = messageBox.ShowDialog();
+                            
 
                             PropertyInfo prop = myProperty.GetType().GetProperties().Where(prope => prope.GetCustomAttribute<DisplayNameAttribute>().DisplayName == cLookupInsert.Naziv).FirstOrDefault();
 
@@ -1500,13 +1504,17 @@ namespace DomZdravlja
                         else
                         {
                             SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, propertyInterface.GetInsertQuery(), propertyInterface.GetInsertParameters().ToArray());
-                            MessageBox.Show("Uspješno ste dodali!");
+                           
+                            CustomMessageBox messageBox = new CustomMessageBox("Obavještenje", "Uspješno dodavanje", MessageBoxButtons.OK);
+                            DialogResult dr = messageBox.ShowDialog();
                         }
                     }
                     else
                     {
                         SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, propertyInterface.GetUpdateQuery(), propertyInterface.GetUpdateParameters().ToArray());
-                        MessageBox.Show("Uspješno ste ažurirali!");
+                        
+                        CustomMessageBox messageBox = new CustomMessageBox("Obavještenje", "Uspješno ažuriranje", MessageBoxButtons.OK);
+                        DialogResult dr = messageBox.ShowDialog();
                     }
 
                     CustomTabPage tabPage = tabControl.TabPages[0] as CustomTabPage;
@@ -1976,7 +1984,8 @@ namespace DomZdravlja
             }
             else
             {
-                MessageBox.Show("Greška. Ništa niste selektovali!");
+                CustomMessageBox messageBox = new CustomMessageBox("Greška", "Ništa niste selektovali", MessageBoxButtons.OK);
+                DialogResult dr = messageBox.ShowDialog();
             }
 
         }
@@ -2425,8 +2434,9 @@ namespace DomZdravlja
 
         private void Odjava_ControlClick(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Da li želite napustiti program?", "Warnning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (dialogResult == DialogResult.Yes)
+            CustomMessageBox messageBox = new CustomMessageBox("Upoyorenje", "Da li želite napustiti program?", MessageBoxButtons.YesNo);
+            DialogResult dr = messageBox.ShowDialog();
+            if (dr == DialogResult.Yes)
             {
                 this.Hide();
                 Form1 form1 = new Form1();

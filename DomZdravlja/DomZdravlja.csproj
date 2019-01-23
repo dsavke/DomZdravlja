@@ -97,6 +97,12 @@
     <Compile Include="CustomControls\CustomDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CustomControls\CustomMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomControls\CustomMessageBox.Designer.cs">
+      <DependentUpon>CustomMessageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\CustomPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -203,6 +209,9 @@
       <DependentUpon>UCTekst.cs</DependentUpon>
     </Compile>
     <Compile Include="Use.cs" />
+    <EmbeddedResource Include="CustomControls\CustomMessageBox.resx">
+      <DependentUpon>CustomMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\CustomPretraga.resx">
       <DependentUpon>CustomPretraga.cs</DependentUpon>
     </EmbeddedResource>
@@ -333,9 +342,6 @@
     <None Include="Resources\received_2231381277099932.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\x-button.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\received_2231381277099932 - Copy.png" />
   </ItemGroup>
   <ItemGroup>
@@ -430,6 +436,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\zaposleniBlue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x-buttonWhite.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

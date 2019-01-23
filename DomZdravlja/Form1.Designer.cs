@@ -143,7 +143,7 @@
             // btnIzlaz
             // 
             this.btnIzlaz.BackColor = System.Drawing.SystemColors.Control;
-            this.btnIzlaz.Image = ((System.Drawing.Image)(resources.GetObject("btnIzlaz.Image")));
+            this.btnIzlaz.Image = global::DomZdravlja.Properties.Resources.x_button;
             this.btnIzlaz.ImageActive = null;
             this.btnIzlaz.Location = new System.Drawing.Point(464, 12);
             this.btnIzlaz.Name = "btnIzlaz";

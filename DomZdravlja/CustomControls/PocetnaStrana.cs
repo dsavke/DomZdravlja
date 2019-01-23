@@ -74,11 +74,14 @@ namespace DomZdravlja.CustomControls
             {
                 Logovan.Password = tbNovaSifra.Text;
                 SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, Logovan.GetUpdateQuery(), Logovan.GetUpdateParameters().ToArray());
-                MessageBox.Show("Sifra uspijesno promijenjena!");
+                CustomMessageBox messageBox = new CustomMessageBox("Obavještenje", "Šifra uspješno promjenjena", MessageBoxButtons.OK);
+                messageBox.ShowDialog();
             }
             else
             {
-                MessageBox.Show("Niste uspijeli promijeniti sifru!");
+                CustomMessageBox messageBox = new CustomMessageBox("Upozorenje", "Niste promijenili šifru", MessageBoxButtons.OK);
+                messageBox.ShowDialog();
+                
             }
         }
         
