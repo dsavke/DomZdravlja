@@ -1967,7 +1967,7 @@ namespace DomZdravlja
             {
                 if (item.HeaderText == "Pol")
                 {
-                    item.Width = 50;
+                    item.Width = 35;
                 }
             }
 
@@ -2549,7 +2549,7 @@ namespace DomZdravlja
                 column.HeaderText = column.HeaderText.Replace('_', ' ');
                 if (column.HeaderText == "Pol")
                 {
-                    column.Width = 35;
+                    column.Width = 20;
                 }
 
                 if (column.HeaderText == "Osiguran")
