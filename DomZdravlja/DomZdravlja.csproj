@@ -416,5 +416,20 @@
   <ItemGroup>
     <None Include="Resources\eye.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendarBlue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\debt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\patientBlue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pregledBlue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaposleniBlue.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

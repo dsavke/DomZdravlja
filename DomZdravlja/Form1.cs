@@ -34,6 +34,7 @@ namespace DomZdravlja
         #region Ucitavanje
         private void ucitajZaposlene()
         {
+            listaZaposlenih = new List<PropertyZaposleni>();
             PropertyZaposleni zaposleni = new PropertyZaposleni();
             SqlDataReader dataReader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, zaposleni.GetSelectQuery());
 
@@ -68,24 +69,27 @@ namespace DomZdravlja
         private void dugme()
         {
 
-             bool provjera = false;
-             if (txtKorisnickoIme.Text != "")   
-             foreach (var item in listaZaposlenih)
-             {
-                 if (item.KorisnickoIme.Equals(txtKorisnickoIme.Text))
-                 {
-                     if (item.Password.Equals(txtLozinka.Text))
-                     {
-                         GlavnaForma glavnaForma = new GlavnaForma(item);
-                         this.Hide();
-                         glavnaForma.Show();                        
-                     }
-                     else
-                         MessageBox.Show("Pogrešna lozinka!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                     provjera = true;
-                     break;
-                 }
-             }
+            bool provjera = false;
+            ucitajZaposlene();
+            if (txtKorisnickoIme.Text != "")
+            {
+                foreach (var item in listaZaposlenih)
+                {
+                    if (item.KorisnickoIme.Equals(txtKorisnickoIme.Text))
+                    {
+                        if (item.Password.Equals(txtLozinka.Text))
+                        {
+                            GlavnaForma glavnaForma = new GlavnaForma(item);
+                            this.Hide();
+                            glavnaForma.Show();
+                        }
+                        else
+                            MessageBox.Show("Pogrešna lozinka!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        provjera = true;
+                        break;
+                    }
+                }
+            }
              if (!provjera)
                  MessageBox.Show("Pogrešno korisničko ime!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
  

@@ -38,6 +38,7 @@ namespace DomZdravlja.CustomControls
         public ReportItem(Image slikaIzvjestaja, string nazivIzvjestaja)
         {
             InitializeComponent();
+            pibSlikaIzvjestaja.SizeMode = PictureBoxSizeMode.StretchImage;
             SlikaIzvjestaja = slikaIzvjestaja;
             NazivIzvjestaja = nazivIzvjestaja;
         }

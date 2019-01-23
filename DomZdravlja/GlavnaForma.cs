@@ -496,33 +496,33 @@ namespace DomZdravlja
             panelBody.Controls.Add(panelReportsList);
             panelReportsList.Margin = new Padding(0);
 
-            Panel panelReport = new Panel() { Width = 590, Height = 710 };//, BackColor = Color.Aqua };
+            Panel panelReport = new Panel() { Width = 590, Height = 710 };
             panelReport.Location = new Point(301, 0);
             panelBody.Controls.Add(panelReport);
 
             panelReport.Controls.Add(ucitajReport(1));
 
-            ReportItem riZaposleni = new ReportItem(Resources.zaposleni, "IZVJEŠTAJ ZAPOSLENI") { IzvjestajID = 1 };
+            ReportItem riZaposleni = new ReportItem(Resources.zaposleniBlue, "IZVJEŠTAJ ZAPOSLENI") { IzvjestajID = 1 };
             riZaposleni.ReportItemClick += (send, EventArgs) => { ReportItemClick(send, EventArgs, panelReportsList, panelReport); };
             riZaposleni.Location = new Point(2, 2);
             panelReportsList.Controls.Add(riZaposleni);
 
-            ReportItem riPacijenti = new ReportItem(Resources.pacijent, "IZVJEŠTAJ PACIJENTI") { IzvjestajID = 2 };
+            ReportItem riPacijenti = new ReportItem(Resources.patientBlue, "IZVJEŠTAJ PACIJENTI") { IzvjestajID = 2 };
             riPacijenti.ReportItemClick += (send, EventArgs) => { ReportItemClick(send, EventArgs, panelReportsList, panelReport); };
             riPacijenti.Location = new Point(2, 52);
             panelReportsList.Controls.Add(riPacijenti);
 
-            ReportItem riRacuni = new ReportItem(Resources.racun, "IZVJEŠTAJ RACUNI") { IzvjestajID = 3 };
+            ReportItem riRacuni = new ReportItem(Resources.debtBlue, "IZVJEŠTAJ RACUNI") { IzvjestajID = 3 };
             riRacuni.ReportItemClick += (send, EventArgs) => { ReportItemClick(send, EventArgs, panelReportsList, panelReport); };
             riRacuni.Location = new Point(2, 102);
             panelReportsList.Controls.Add(riRacuni);
 
-            ReportItem riRezervacija = new ReportItem(Resources.rezervacija, "IZVJEŠTAJ REZERVACIJE") { IzvjestajID = 4 };
+            ReportItem riRezervacija = new ReportItem(Resources.calendarBlue, "IZVJEŠTAJ REZERVACIJE") { IzvjestajID = 4 };
             riRezervacija.ReportItemClick += (send, EventArgs) => { ReportItemClick(send, EventArgs, panelReportsList, panelReport); };
             riRezervacija.Location = new Point(2, 152);
             panelReportsList.Controls.Add(riRezervacija);
 
-            ReportItem riPregled = new ReportItem(Resources.pregled, "IZVJEŠTAJ PREGLEDI") { IzvjestajID = 5 };
+            ReportItem riPregled = new ReportItem(Resources.pregledBlue, "IZVJEŠTAJ PREGLEDI") { IzvjestajID = 5 };
             riPregled.ReportItemClick += (send, EventArgs) => { ReportItemClick(send, EventArgs, panelReportsList, panelReport); };
             riPregled.Location = new Point(2, 202);
             panelReportsList.Controls.Add(riPregled);
@@ -585,38 +585,37 @@ namespace DomZdravlja
             reportViewer.Dock = DockStyle.Fill;
 
             var pom = new ReportDocument();
-            string reportPath = Environment.CurrentDirectory;
+            string reportPath = "";
 
             switch (reportID)
             {
                 case null:
                     return null;
                 case 1:
-                    reportPath += @"\Reports\SviZaposleni.rpt";
+                    reportPath += @"..\..\Reports\SviZaposleni.rpt";
                     pom.Load(reportPath);
                     pom.Refresh();
                     pom.SetParameterValue("@Tip", null);
                     break;
                 case 2:
-                    reportPath += @"\Reports\SviZaposleni.rpt";
+                    reportPath += @"..\..\Reports\SviPacijenti.rpt";
                     pom.Load(reportPath);
                     pom.Refresh();
-                    //pom.SetParameterValue("@DoktorID", null);
                     break;
                 case 3:
-                    reportPath += @"\Reports\SviRacuni.rpt";
+                    reportPath += @"..\..\Reports\SviRacuni.rpt";
                     pom.Load(reportPath);
                     pom.Refresh();
                     pom.SetParameterValue("@datum", null);
                     break;
                 case 4:
-                    reportPath += @"\Reports\SveRezervacije.rpt";
+                    reportPath += @"..\..\Reports\SveRezervacije.rpt";
                     pom.Load(reportPath);
                     pom.Refresh();
                     pom.SetParameterValue("@DoktorID", null);
                     break;
                 case 5:
-                    reportPath += @"\Reports\SviPregledi.rpt";
+                    reportPath += @"..\..\Reports\SviPregledi.rpt";
                     pom.Load(reportPath);
                     pom.Refresh();
                     pom.SetParameterValue("@DoktorId", null);
@@ -646,9 +645,6 @@ namespace DomZdravlja
             }
 
         }
-
-        
-        
 
         private void kreirajPoljaZaPretragu(PropertyInterface myProperty, FlowLayoutPanel flowLayoutPanel)
         {

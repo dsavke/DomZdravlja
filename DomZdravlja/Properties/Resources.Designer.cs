@@ -113,6 +113,16 @@ namespace DomZdravlja.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap calendarBlue {
+            get {
+                object obj = ResourceManager.GetObject("calendarBlue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap chevron_up {
             get {
                 object obj = ResourceManager.GetObject("chevron_up", resourceCulture);
@@ -126,6 +136,16 @@ namespace DomZdravlja.Properties {
         internal static System.Drawing.Bitmap cjenovnik {
             get {
                 object obj = ResourceManager.GetObject("cjenovnik", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap debtBlue {
+            get {
+                object obj = ResourceManager.GetObject("debtBlue", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -363,6 +383,16 @@ namespace DomZdravlja.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap patientBlue {
+            get {
+                object obj = ResourceManager.GetObject("patientBlue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pharmacy {
             get {
                 object obj = ResourceManager.GetObject("pharmacy", resourceCulture);
@@ -406,6 +436,16 @@ namespace DomZdravlja.Properties {
         internal static System.Drawing.Bitmap pregled {
             get {
                 object obj = ResourceManager.GetObject("pregled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pregledBlue {
+            get {
+                object obj = ResourceManager.GetObject("pregledBlue", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -506,6 +546,16 @@ namespace DomZdravlja.Properties {
         internal static System.Drawing.Bitmap zaposleni {
             get {
                 object obj = ResourceManager.GetObject("zaposleni", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zaposleniBlue {
+            get {
+                object obj = ResourceManager.GetObject("zaposleniBlue", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
