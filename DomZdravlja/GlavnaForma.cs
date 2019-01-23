@@ -216,6 +216,8 @@ namespace DomZdravlja
                 pomOsoba.Pol = dataReader["Pol"].ToString();
                 pomOsoba.MjestoRodjenja = dataReader["MjestoRodjenja"].ToString();
                 pomOsoba.DatumRodjenja = Convert.ToDateTime(dataReader["DatumRodjenja"]);
+                pomOsoba.ZivotniStatus = Convert.ToInt32(dataReader["ZivotniStatus"]);
+
                 propertyInterfaces[9].Add(pomOsoba);
             }
         }
@@ -2975,7 +2977,8 @@ namespace DomZdravlja
                                                             ,
                                                             o.Kontakt
                                                             ,
-                                                            Šifra_osobe_hide = o.OsobaID
+                                                            Šifra_osobe_hide = o.OsobaID,
+                                                            Životni_status_hide = o.ZivotniStatus
                                                         }
                                                  );
 
@@ -3026,6 +3029,8 @@ namespace DomZdravlja
                                                             o.Kontakt
                                                             ,
                                                             Šifra_osobe_hide = o.OsobaID
+                                                            ,
+                                                            Životni_status_hide = o.ZivotniStatus
                                                         }
                                                  );
 
@@ -3057,6 +3062,8 @@ namespace DomZdravlja
                                                             o.Kontakt
                                                             ,
                                                             Šifra_osobe_hide = o.OsobaID
+                                                            ,
+                                                            Životni_status_hide = o.ZivotniStatus
                                                         }
                                                  );
 

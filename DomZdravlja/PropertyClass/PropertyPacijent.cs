@@ -126,7 +126,6 @@ namespace DomZdravlja.PropertyClass
                           ,[OsobaID]
                           ,[Osiguran]
                       FROM [dbo].[Pacijent]
-                   
                     ";
         }
 
