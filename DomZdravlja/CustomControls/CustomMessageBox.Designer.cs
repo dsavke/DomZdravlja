@@ -28,13 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomMessageBox));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnX = new System.Windows.Forms.PictureBox();
             this.lblNazivPoruke = new System.Windows.Forms.Label();
             this.lblPoruka = new System.Windows.Forms.Label();
-            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.btnDa = new System.Windows.Forms.Button();
             this.btnNe = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -83,13 +81,6 @@
             this.lblPoruka.Size = new System.Drawing.Size(51, 20);
             this.lblPoruka.TabIndex = 1;
             this.lblPoruka.Text = "label1";
-            // 
-            // bunifuDragControl1
-            // 
-            this.bunifuDragControl1.Fixed = true;
-            this.bunifuDragControl1.Horizontal = true;
-            this.bunifuDragControl1.TargetControl = this.panel1;
-            this.bunifuDragControl1.Vertical = true;
             // 
             // btnDa
             // 
@@ -140,7 +131,6 @@
         private System.Windows.Forms.PictureBox btnX;
         private System.Windows.Forms.Label lblNazivPoruke;
         private System.Windows.Forms.Label lblPoruka;
-        private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
         private System.Windows.Forms.Button btnDa;
         private System.Windows.Forms.Button btnNe;
     }

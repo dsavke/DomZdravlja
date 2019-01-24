@@ -2733,7 +2733,7 @@ namespace DomZdravlja
                                             on recepcija.PacijentID equals pacijent.PacijentID
                                             join osoba2 in (propertyInterfaces[9].Cast<PropertyOsoba>())
                                             on pacijent.OsobaID equals osoba2.OsobaID
-                                            where (recepcija.VrijemePrijema.Date == DateTime.Today.Date)
+                                            where (recepcija.VrijemePrijema.Date == DateTime.Today.Date) && osoba2.ZivotniStatus == 1 && osoba1.ZivotniStatus == 1
                                             select new
                                             {
                                                 Ime_i_prezime_pacijenta = (osoba2.Ime + " " + osoba2.Prezime),
@@ -2850,7 +2850,7 @@ namespace DomZdravlja
                                             on recepcija.PacijentID equals pacijent.PacijentID
                                             join osoba2 in (propertyInterfaces[9].Cast<PropertyOsoba>())
                                             on pacijent.OsobaID equals osoba2.OsobaID
-                                            where (osoba1.OsobaID == Logovan.OsobaID) && (recepcija.VrijemePrijema.Date == DateTime.Today.Date)
+                                            where (osoba1.OsobaID == Logovan.OsobaID) && (recepcija.VrijemePrijema.Date == DateTime.Today.Date) && osoba2.ZivotniStatus == 1 && osoba1.ZivotniStatus == 1
                                             select new
                                             {
                                                 osoba2.Ime
@@ -3137,7 +3137,7 @@ namespace DomZdravlja
                                             on rezervacija.PacijentID equals pacijent.PacijentID
                                             join osoba2 in (propertyInterfaces[9].Cast<PropertyOsoba>())
                                             on pacijent.OsobaID equals osoba2.OsobaID
-                                            where (rezervacija.Termin.Date >= DateTime.Today.Date)
+                                            where (rezervacija.Termin.Date >= DateTime.Today.Date) && osoba2.ZivotniStatus == 1 && osoba1.ZivotniStatus == 1
                                             select new
                                             {
                                                 Ime_i_prezime_pacijenta = (osoba2.Ime + " " + osoba2.Prezime),

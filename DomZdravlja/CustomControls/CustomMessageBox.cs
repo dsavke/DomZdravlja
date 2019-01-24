@@ -39,6 +39,7 @@ namespace DomZdravlja.CustomControls
         {
             InitializeComponent();
             lblNazivPoruke.Text = naziv;
+            this.Text = naziv;
             lblPoruka.Text = por;
 
             if (btn == MessageBoxButtons.YesNo)
@@ -76,5 +77,12 @@ namespace DomZdravlja.CustomControls
         {
             DialogResult = DialogResult.No;
         }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            e.Graphics.DrawRectangle(new Pen(new SolidBrush(Color.FromArgb(0, 67, 127)), 2), e.ClipRectangle);
+        }
+
     }
 }
