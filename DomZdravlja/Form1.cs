@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DomZdravlja.Helpers;
+using DomZdravlja.CustomControls;
 
 namespace DomZdravlja
 {
@@ -84,15 +85,20 @@ namespace DomZdravlja
                             glavnaForma.Show();
                         }
                         else
-                            MessageBox.Show("Pogrešna lozinka!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        {
+                            CustomMessageBox messageBox = new CustomMessageBox("Greška", "Pogrešna lozinka!", MessageBoxButtons.OK);
+                            DialogResult dr = messageBox.ShowDialog();
+                        }
                         provjera = true;
                         break;
                     }
                 }
             }
              if (!provjera)
-                 MessageBox.Show("Pogrešno korisničko ime!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
- 
+            {
+                CustomMessageBox messageBox = new CustomMessageBox("Greška", "Pogrešno korisničko ime!", MessageBoxButtons.OK);
+                DialogResult dr = messageBox.ShowDialog();
+            }
         }
 
         private void btnIzlaz_MouseEnter(object sender, EventArgs e)

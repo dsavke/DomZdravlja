@@ -1505,7 +1505,7 @@ namespace DomZdravlja
                         {
                             SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, propertyInterface.GetInsertQuery(), propertyInterface.GetInsertParameters().ToArray());
                            
-                            CustomMessageBox messageBox = new CustomMessageBox("Obavještenje", "Uspješno dodavanje", MessageBoxButtons.OK);
+                            CustomMessageBox messageBox = new CustomMessageBox("Obavještenje", "Uspješno dodavanje!", MessageBoxButtons.OK);
                             DialogResult dr = messageBox.ShowDialog();
                         }
                     }
@@ -1513,7 +1513,7 @@ namespace DomZdravlja
                     {
                         SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, propertyInterface.GetUpdateQuery(), propertyInterface.GetUpdateParameters().ToArray());
                         
-                        CustomMessageBox messageBox = new CustomMessageBox("Obavještenje", "Uspješno ažuriranje", MessageBoxButtons.OK);
+                        CustomMessageBox messageBox = new CustomMessageBox("Obavještenje", "Uspješno ažuriranje!", MessageBoxButtons.OK);
                         DialogResult dr = messageBox.ShowDialog();
                     }
 
@@ -1984,7 +1984,7 @@ namespace DomZdravlja
             }
             else
             {
-                CustomMessageBox messageBox = new CustomMessageBox("Greška", "Ništa niste selektovali", MessageBoxButtons.OK);
+                CustomMessageBox messageBox = new CustomMessageBox("Greška", "Ništa niste selektovali!", MessageBoxButtons.OK);
                 DialogResult dr = messageBox.ShowDialog();
             }
 
@@ -2434,7 +2434,7 @@ namespace DomZdravlja
 
         private void Odjava_ControlClick(object sender, EventArgs e)
         {
-            CustomMessageBox messageBox = new CustomMessageBox("Upoyorenje", "Da li želite napustiti program?", MessageBoxButtons.YesNo);
+            CustomMessageBox messageBox = new CustomMessageBox("Upozorenje", "Da li želite napustiti program?", MessageBoxButtons.YesNo);
             DialogResult dr = messageBox.ShowDialog();
             if (dr == DialogResult.Yes)
             {
