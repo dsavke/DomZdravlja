@@ -1897,7 +1897,7 @@ namespace DomZdravlja
             panel.Height = 160;
 
             Button btnVrati = new Button();
-            urediButton(btnVrati, "VRATI", 70, 30, Resources.left_arrow, new Point(678, 100));
+            urediButton(btnVrati, "POTVRDI", 90, 30, Resources.left_arrow, new Point(664, 100));
 
             btnVrati.Click += (send, EventArgs) => { BtnVrati_Click(send, EventArgs, property, (sender as Button).Parent, data, objekat, tabPage); };
 
