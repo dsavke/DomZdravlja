@@ -2077,6 +2077,14 @@ namespace DomZdravlja
         {
 
             CustomDataGridView customDataGridView = ((sender as ToolStripMenuItem).Owner as ContextMenuStrip).SourceControl as CustomDataGridView;
+            if (customDataGridView.Parent.GetType() == typeof(CustomTabPage))
+            {
+                CustomTabControl ctb = customDataGridView.Parent.Parent as CustomTabControl;
+                if ((customDataGridView.Parent as CustomTabPage).State == State.Search)
+                {
+                    if (((ctb.TabPages[0] as CustomTabPage).Controls[0] as CustomDataGridView).Tip == Tip.Karton && ctb.SelectedTab != ctb.TabPages[0]) return;
+                }
+            }
             customDataGridView.DataSource = vratiPodatke(customDataGridView.Tip, null);
 
         }
@@ -2841,7 +2849,7 @@ namespace DomZdravlja
                                             on recepcija.PacijentID equals pacijent.PacijentID
                                             join osoba2 in (propertyInterfaces[9].Cast<PropertyOsoba>())
                                             on pacijent.OsobaID equals osoba2.OsobaID
-                                            where osoba1.OsobaID == Logovan.OsobaID
+                                            where (osoba1.OsobaID == Logovan.OsobaID) && (recepcija.VrijemePrijema.Date == DateTime.Today.Date)
                                             select new
                                             {
                                                 osoba2.Ime
